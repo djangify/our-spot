@@ -1,0 +1,1 @@
+web: gunicorn ourspot.wsgi:application
