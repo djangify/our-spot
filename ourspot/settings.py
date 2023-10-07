@@ -30,7 +30,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com']
+ALLOWED_HOSTS = ['8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com'
+                 'ourspot-49a5ec9f2c8b.herokuapp.com/']
 
 
 # Application definition
