@@ -38,6 +38,11 @@ ALLOWED_HOSTS = ['8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com',
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com']
 
+# LOGIN URLS
+LOGIN_REDIRECT_URL = 'dashoard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+
 # Application definition
 
 INSTALLED_APPS = [
