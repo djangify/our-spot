@@ -39,7 +39,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com']
 
 # LOGIN URLS
-LOGIN_REDIRECT_URL = 'dashoard'
+LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
@@ -141,6 +141,8 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
