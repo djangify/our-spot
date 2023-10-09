@@ -45,7 +45,7 @@ LOGOUT_URL = 'logout'
 
 # Application definition
 
-INSTALLED_APPS = [  
+INSTALLED_APPS = [
     'django.contrib.admin',
     'account.apps.AccountConfig',
     'django.contrib.auth',
