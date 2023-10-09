@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django_countries',
+    'images.apps.ImageConfig',
 ]
 
 MIDDLEWARE = [
