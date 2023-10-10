@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Location Detail - {{locations.title}}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="location-info mt-3 p-1">
+        <div class="location-img">
+            <img src="{{ locations.image.url }}" alt="{{ locations.image_alt }}" class="location-pic">
+        </div>
+        <div class="location-detail">
+            <h1 class="text-center">{{ locations.title }}</h1>
+            <p class="text-center">Posted by {{locations.user}} on {{locations.posted_date}}</p>
+            <hr>
+            <p>{{local.description}}</p>
+            <p class="p-3"><strong>Location: </strong> {{ locations.location_types|title }}</p>
+
+            {% if request.user == location.user %}
+            <div class="text-center">
+                <a href="{% url 'edit_location' location.id %}" class="btn btn-primary w-25">Edit</a>
+                <a href="{% url 'delete_location' location.id %}" class="btn btn-primary w-25">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
