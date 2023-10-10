@@ -10,4 +10,4 @@ class LocationsAdmin(admin.ModelAdmin):
         "description",
         "image",
     )
-    list_filter = ("location_type",)
+    list_filter = ("location_types",)
