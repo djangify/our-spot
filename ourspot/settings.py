@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_countries',
     'images.apps.ImagesConfig',
+    'easy_thumbnails'
 ]
 
 MIDDLEWARE = [

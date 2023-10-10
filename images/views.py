@@ -5,6 +5,7 @@ from .forms import ImageCreateForm
 from django.shortcuts import get_object_or_404
 from .models import Image
 
+
 @login_required
 def image_create(request):
     if request.method == 'POST':
