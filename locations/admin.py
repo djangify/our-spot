@@ -4,8 +4,7 @@ from .models import Locations
 
 @admin.register(Locations)
 class LocationsAdmin(admin.ModelAdmin):
-    list_display = (
-        
+    list_display = (  
         "title",
         "description",
         "image",

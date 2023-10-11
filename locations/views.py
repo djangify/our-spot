@@ -16,7 +16,7 @@ from .models import Locations
 from .forms import LocationForm
 
 
-class Locations(ListView):
+class Location(ListView):
     """View all images"""
 
     template_name = "locations/location.html"
@@ -33,7 +33,7 @@ class Locations(ListView):
             )
         else:
             location = self.model.objects.all()
-        return locations
+        return location
 
 
 class LocationDetail(DetailView):
