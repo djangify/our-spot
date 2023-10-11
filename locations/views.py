@@ -12,45 +12,45 @@ from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Location
+from .models import Locations
 from .forms import LocationForm
 
 
 class Locations(ListView):
     """View all images"""
 
-    template_name = "location/location.html"
-    model = Recipe
-    context_object_name = "location"
+    template_name = "locations/location.html"
+    model = Locations
+    context_object_name = "locations"
 
     def get_queryset(self, **kwargs):
         query = self.request.GET.get('q')
         if query:
-            recipes = self.model.objects.filter(
+            location = self.model.objects.filter(
                 Q(title__icontains=query) |
                 Q(description__icontains=query) |
                 Q(location_types__icontains=query)
             )
         else:
             location = self.model.objects.all()
-        return location
+        return locations
 
 
 class LocationDetail(DetailView):
     """View a single location"""
 
-    template_name = "location/location_detail.html"
+    template_name = "locations/location_detail.html"
     model = Locations
-    context_object_name = "location"
+    context_object_name = "locations"
 
 
 class AddLocation(LoginRequiredMixin, CreateView):
     """Add location view"""
 
-    template_name = "location/location.html"
-    model = Location
+    template_name = "locations/location.html"
+    model = Locations
     form_class = LocationForm
-    success_url = "/location/"
+    success_url = "/locations/"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -59,10 +59,10 @@ class AddLocation(LoginRequiredMixin, CreateView):
 
 class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Edit a location"""
-    template_name = 'location/edit_location.html'
-    model = Location
+    template_name = 'locations/edit_location.html'
+    model = Locations
     form_class = LocationForm
-    success_url = '/location/'
+    success_url = '/locations/'
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -71,7 +71,7 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """Delete an Image"""
     model = Locations
-    success_url = '/location/'
+    success_url = '/locations/'
 
     def test_func(self):
         return self.request.user == self.get_object().user
