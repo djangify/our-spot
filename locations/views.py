@@ -12,16 +12,16 @@ from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Locations
+from .models import Location
 from .forms import LocationForm
 
 
 class Location(ListView):
     """View all images"""
 
-    template_name = "locations/location.html"
-    model = Locations
-    context_object_name = "locations"
+    template_name = "location/location.html"
+    model = Location
+    context_object_name = "location"
 
     def get_queryset(self, **kwargs):
         query = self.request.GET.get('q')
@@ -39,18 +39,18 @@ class Location(ListView):
 class LocationDetail(DetailView):
     """View a single location"""
 
-    template_name = "locations/location_detail.html"
-    model = Locations
-    context_object_name = "locations"
+    template_name = "location/location_detail.html"
+    model = Location
+    context_object_name = "location"
 
 
 class AddLocation(LoginRequiredMixin, CreateView):
     """Add location view"""
 
-    template_name = "locations/location.html"
-    model = Locations
+    template_name = "location/location.html"
+    model = Location
     form_class = LocationForm
-    success_url = "/locations/"
+    success_url = "/location/"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -59,10 +59,10 @@ class AddLocation(LoginRequiredMixin, CreateView):
 
 class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Edit a location"""
-    template_name = 'locations/edit_location.html'
-    model = Locations
+    template_name = 'location/edit_location.html'
+    model = Location
     form_class = LocationForm
-    success_url = '/locations/'
+    success_url = '/location/'
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -70,8 +70,8 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """Delete an Image"""
-    model = Locations
-    success_url = '/locations/'
+    model = Location
+    success_url = '/location/'
 
     def test_func(self):
         return self.request.user == self.get_object().user

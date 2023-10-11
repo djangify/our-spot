@@ -1,12 +1,12 @@
 from django import forms
-from .models import Locations
+from .models import Location
 
 
 class LocationForm(forms.ModelForm):
     """Form to create a spot"""
 
     class Meta:
-        model = Locations
+        model = Location
         fields = [
             "title",
             "description",

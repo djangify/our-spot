@@ -7,14 +7,14 @@
 <div class="container">
     <div class="location-info mt-3 p-1">
         <div class="location-img">
-            <img src="{{ locations.image.url }}" alt="{{ locations.image_alt }}" class="location-pic">
+            <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" class="location-pic">
         </div>
         <div class="location-detail">
-            <h1 class="text-center">{{ locations.title }}</h1>
-            <p class="text-center">Posted by {{locations.user}} on {{locations.posted_date}}</p>
+            <h1 class="text-center">{{ location.title }}</h1>
+            <p class="text-center">Posted by {{location.user}} on {{location.posted_date}}</p>
             <hr>
             <p>{{local.description}}</p>
-            <p class="p-3"><strong>Location: </strong> {{ locations.location_types|title }}</p>
+            <p class="p-3"><strong>Location: </strong> {{ location.location_types|title }}</p>
 
             {% if request.user == location.user %}
             <div class="text-center">

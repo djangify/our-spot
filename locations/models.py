@@ -17,20 +17,20 @@ LOCATION_TYPES = (
 )
 
 
-class Locations(models.Model):
+class Location(models.Model):
     """
     A model to create and manage shared locations
     """
 
     user = models.ForeignKey(
-        User, related_name="image_owner", on_delete=models.CASCADE
+        User, related_name="location_owner", on_delete=models.CASCADE
     )
     title = models.CharField(max_length=300, null=False, blank=False)
     description = models.CharField(max_length=500, null=False, blank=False)
     image = ResizedImageField(
         size=[400, None],
         quality=75,
-        upload_to="Locations/",
+        upload_to="locations/",
         force_format="WEBP",
         blank=False,
         null=False,
