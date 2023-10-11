@@ -17,8 +17,11 @@
         <li {% if section == "dashboard" %}class="selected" {% endif %}>
             <a href="{% url 'dashboard' %}">My dashboard</a>
         </li>
-        <li {% if section == "location" %}class="selected" {% endif %}>
-            <a href="{% url 'location' %}">Location</a>
+        <li {% if section == "locations" %}class="selected" {% endif %}>
+            <a href="{% url 'locations' %}">My Spots</a>
+        </li>
+        <li {% if section == "add_location" %}class="selected" {% endif %}>
+            <a href="{% url 'add_location' %}">New Spot</a>
         </li>
         <li {% if section == "people" %}class="selected" {% endif %}>
             <a href="#">People</a>
