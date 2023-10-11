@@ -1,29 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Location Detail - {{location.title}}{% endblock %}
+{% block title %}Location Detail {{ object.title }}{% endblock title %}
 
 {% block content %}
-<div class="container">
-    <div class="location-info mt-3 p-1">
-        <div class="location-img">
-            <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" class="location-pic">
-        </div>
-        <div class="location-detail">
-            <h1 class="text-center">{{ location.title }}</h1>
-            <p class="text-center">Posted by {{location.user}} on {{location.posted_date}}</p>
-            <hr>
-            <p>{{local.description}}</p>
-            <p class="p-3"><strong>Location: </strong> {{ location.location_types|title }}</p>
+
 
             {% if request.user == location.user %}
             <div class="text-center">
-                <a href="{% url 'edit_location' location.id %}" class="btn btn-primary w-25">Edit</a>
-                <a href="{% url 'delete_location' location.id %}" class="btn btn-primary w-25">Delete</a>
+                <a href="{% url 'edit_location' location.id %}" class="selected">Edit</a>
+                <a href="{% url 'delete_location' location.id %}" class="selected">Delete</a>
             </div>
             {% endif %}
         </div>
     </div>
     
 </div>
-{% endblock %}
+{% endblock content %}
