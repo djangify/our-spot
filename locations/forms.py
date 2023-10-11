@@ -10,6 +10,8 @@ class LocationForm(forms.ModelForm):
         fields = [
             "title",
             "description",
+            "image",
+            "image_alt",
             "location_types",
         ]
 
