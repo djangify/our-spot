@@ -4,7 +4,7 @@
 {% block title %}Locations{% endblock title %}
 
 {% block content %}
-<h1>My Locations</h1>
+<h1>My Top Spots</h1>
 <div class="container d-flex flex-row flex-wrap justify-content-center">
     {% for location in locations %}
     <a href="{% url 'location_detail' location.id %}" class="locations" aria-label="Click to view {{location.title}}">
