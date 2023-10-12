@@ -1,34 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home{% endblock title %}
 
 
 {% block content %}
 
-<div class="container flex-column pt-3">
-    <section class="text-center">
-        <h1 class="main-title mx-auto">Discover the Ultimate Locations</h1>
+<div>
+<h1>Discover the Ultimate Locations</h1>
 
-        <p class="pt-4">
-            Welcome to our one-stop hub for sharing your spot. Got a spot you 
-            love to be at with a friend, loved one or family? Share it here.
-            Find spots worth visiting.
-        </p>
-    </section>
-    <section>
-        <div class="location-cont">
-            {% for location in locations %}
-            <a href="{% url 'location_detail' location.id %}" class="img-container">
-                <img src="{{location.image.url}}" alt="{{location.image_alt}}" style="width: 100%">
-                <div class="centered">
-                    <h2>{{location.title}}</h2>
-                </div>
-            </a>
-            
-            {% endfor %}
-
-        </div>
-    </section>
+<p>
+    Welcome to our one-stop hub for sharing your spot. Got a spot you 
+    love to be at with a friend, loved one or family? Share it here.
+    Find spots worth visiting.
+    </p>
 </div>
 
-{% endblock %}
+<section>
+    <div>
+        {% for location in locations %}
+        <a href="{% url 'location_detail' location.id %}" class="img-container">
+            <img src="{{location.image.url}}" alt="{{location.image_alt}}" style="width: 100%">
+            <div class="centered">
+                <h2>{{location.title}}</h2>
+            </div>
+        </a>
+        
+        {% endfor %}
+
+    </div>
+</section>
+
+
+{% endblock content %}
