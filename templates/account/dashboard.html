@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<h1>Your Dashboard</h1>
+<h1>Welcome to your dashboard, {{ user.first_name }}!</h1>
+<p>You have shared {{ image_count }} images.</p>
+<p>Here is a list of all your shared spots:</p>
+<ul>
+    {% for image in image_list %}
+    <li>
+        <a href="{% url 'location_detail' image.id %}">View</a>
+        <a href="{% url 'edit_location' image.id %}">Edit</a>
+        <a href="{% url 'location_confirm_delete' image.id %}">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
 
-<p>Welcome to your dashboard {{ user.first_name }}. </p>
-<p>You have shared <p>You have shared {{ image_count }} SPOTS.
-</p>
-
-<p>You can also <a href="{% url 'edit' %}">edit your profile</a> or <a href="{% url 'password_change' %}">change your
-        password</a>.</p>
-{% endblock %}
