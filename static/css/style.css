@@ -127,11 +127,20 @@ textarea {
 input[type=submit],
 a.button {
     font-weight: bold;
-    background: #575757;
-    color: #fff;
+    background: #F2F2F2;
+    color: #333;
     padding: 10px 20px;
     font-size: 14px;
     text-transform: uppercase;
+}
+
+.button2 {
+    background-color: #F2F2F2;
+    color: #333;
+    display: inline-block;
+    margin: 2px 1px;
+    cursor: pointer;
+    padding: 5px 20px;
 }
 
 .errorlist {

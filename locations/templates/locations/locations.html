@@ -4,13 +4,13 @@
 {% block title %}Locations{% endblock title %}
 
 {% block content %}
-<h1>My Top Spots</h1>
-<div class="container d-flex flex-row flex-wrap justify-content-center">
+<h1>Recent Spots</h1>
+<div>
     {% for location in locations %}
     <a href="{% url 'location_detail' location.id %}" class="locations" aria-label="Click to view {{location.title}}">
-        <div class="card m-3" style="width: 18rem;">
+        <div>
             <img src="{{location.image.url}}" class="card-img-top" alt="{{location.image_alt}}">
-            <div class="card-body">
+            <div>
                 <h2 class="card-title">{{location.title}}</h2>
                 <p class="card-text">{{location.description|truncatechars:100}}</p>
             </div>
