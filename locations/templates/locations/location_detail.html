@@ -4,13 +4,6 @@
 {% block title %}Location Detail {{ object.title }}{% endblock title %}
 
 {% block content %}
-
-
-{% extends "base.html" %}
-
-{% block title %}Recipe Detail - {{recipe.title}}{% endblock %}
-
-{% block content %}
 <div class="container">
     <!-- <div class="recipe-info mt-3 p-1"> -->
         <div class="location-img">
@@ -24,8 +17,8 @@
 
             {% if request.user == location.user %}
             <div class="text-center">
-                <a href="{% url 'edit_location' location.id %}" class="selected">Edit</a>
-                <a href="{% url 'delete_location' location.id %}" class="selected">Delete</a>
+                <a href="{% url 'edit_location' location.id %}" class="selected" class="btn btn-primary mt-2">Edit  |</a>
+                <a href="{% url 'delete_location' location.id %}" class="selected" class="btn btn-primary mt-2">Delete</a>
             </div>
             {% endif %}
         </div>
