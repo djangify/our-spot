@@ -13,6 +13,7 @@ LOCATION_TYPES = (
     ("europe", "Europe"),
     ("great_britain", "Great Britain"),
     ("middle_east", "Middle East"),
+    ("oceanic", "Oceanic"),
 
 )
 
