@@ -47,7 +47,7 @@ class LocationDetail(DetailView):
 class AddLocation(LoginRequiredMixin, CreateView):
     """Add location view"""
 
-    template_name = "locations/location.html"
+    template_name = "locations/add_location.html"
     model = Location
     form_class = LocationForm
     success_url = "/locations/"

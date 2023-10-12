@@ -17,14 +17,16 @@
     </section>
     <section>
         <div class="location-cont">
-            {% for locations in location %}
+            {% for location in locations %}
             <a href="{% url 'location_detail' location.id %}" class="img-container">
                 <img src="{{location.image.url}}" alt="{{location.image_alt}}" style="width: 100%">
                 <div class="centered">
                     <h2>{{location.title}}</h2>
                 </div>
             </a>
+            
             {% endfor %}
+
         </div>
     </section>
 </div>
