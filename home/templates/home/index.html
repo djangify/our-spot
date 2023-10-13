@@ -15,13 +15,22 @@
     Find spots worth visiting.
     </p>
 </div>
+{% for location in locations %}
 
+<p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
+
+<img src="{{location.image.url}}">
+
+
+{% endfor %}
+
+</section>
 <section>
     <div>
         {% for location in locations %}
         <a href="{% url 'location_detail' location.id %}" class="img-container">
             <img src="{{location.image.url}}" alt="{{location.image_alt}}" style="width: 100%">
-            <div class="centered">
+            <div>
                 <h2>{{location.title}}</h2>
             </div>
         </a>
