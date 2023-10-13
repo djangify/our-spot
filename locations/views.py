@@ -1,7 +1,7 @@
 from django.views.generic import (
     CreateView, ListView,
     DetailView, DeleteView,
-    UpdateView
+    UpdateView, TemplateView
 )
 
 from django.contrib.auth.mixins import (
@@ -75,3 +75,15 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         return self.request.user == self.get_object().user
+
+
+class LocationImage(LoginRequiredMixin, TemplateView):
+    """View user images in dashboard"""
+    template_name = 'account/dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_user = self.request.user
+        location_count = current_user.location_owner.count()
+        context['location_count'] = location_count
+        return context

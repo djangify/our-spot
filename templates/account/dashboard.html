@@ -3,9 +3,16 @@
 
 
 {% block content %}
+
 <h1>Welcome to your dashboard, {{ user.first_name }}!</h1>
-<p>You have shared {{ image_count }} images.</p>
+
+<p>You have shared {{ user.location_count|default_if_none:"0" }} spots.</p>
 <p>Here is a list of all your shared spots:</p>
+
+<p>{{ location.title }}  | {{ location.description }}  |  
+    Posted on {{ location.posted_date }}</p>
+
+
 <ul>
     {% for image in image_list %}
     <li>
@@ -15,5 +22,6 @@
     </li>
     {% endfor %}
 </ul>
+
 {% endblock content %}
 
