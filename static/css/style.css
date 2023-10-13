@@ -96,6 +96,30 @@ ol {
     padding: 30px 100px;
 }
 
+/* Define the flex container */
+.flex-container {
+    display: flex;
+    justify-content: space-between; 
+    padding: 20px; 
+  }
+  
+  /* Style the left box with the image */
+  .image-box {
+    flex: 30%; /* Take up 40% of the container */
+    margin-right: 20px; /* Add margin for space */
+  }
+  
+  /* Style the right box with text */
+  .text-box {
+    flex: 70%; /* Take up 60% of the container */
+  }
+  
+  /* Optional: Style the image or text as needed */
+  .image-box img {
+    max-width: 100%;
+    height: auto;
+  }
+
 /* forms */
 form {
     overflow: auto;
@@ -222,37 +246,6 @@ ul.messages li a.close {
 .login-form {
     float: left;
 }
-
-/* social-auth */
-.social {
-    float: right;
-}
-
-.social li {
-    list-style: none;
-    padding: 10px 20px;
-    margin: 0 0 10px 0;
-}
-
-.social li a {
-    width: 100%;
-    height: 100%;
-    display: block;
-    color: #fff;
-}
-
-.social li.facebook {
-    background: #3b5399;
-}
-
-.social li.twitter {
-    background: #00cffa;
-}
-
-.social li.google {
-    background: #de1710;
-}
-
 
 /* images */
 

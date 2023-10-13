@@ -6,39 +6,25 @@
 
 {% block content %}
 
-<div>
+
 <h1>Discover the Ultimate Locations</h1>
 
-<p>
-    Welcome to our one-stop hub for sharing your spot. Got a spot you 
-    love to be at with a friend, loved one or family? Share it here.
-    Find spots worth visiting.
-    </p>
-</div>
-{% for location in locations %}
-
-<p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
-
-<img src="{{location.image.url}}">
-
-
-{% endfor %}
-
-</section>
-<section>
-    <div>
-        {% for location in locations %}
-        <a href="{% url 'location_detail' location.id %}" class="img-container">
-            <img src="{{location.image.url}}" alt="{{location.image_alt}}" style="width: 100%">
-            <div>
-                <h2>{{location.title}}</h2>
-            </div>
-        </a>
-        
-        {% endfor %}
-
+<div class="flex-container">
+    <div class="image-box">
+      <img src="static/images/ourspot2.png" alt="our spot logo">
     </div>
-</section>
+    <div class="text-box">
+      <h2>Welcome to our one-stop hub for sharing our spot.</h2> Got a location you 
+        love to be at with a friend, loved one or family? Share it here.
+       Find places worth visiting. <p> Our spot is your spot.</p> 
+
+       <div class="button2">
+        <a href="{% url 'register' %}" class="button2">Register Here</a>
+    </div>
+    <div class="button2">
+        <a href="{% url 'login' %}" class="button2">Log-In Here</a>
+    </div>
+    </div>
 
 
 {% endblock content %}
