@@ -84,6 +84,6 @@ class LocationImage(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         current_user = self.request.user
-        location_count = current_user.location_owner.count()
-        context['location_count'] = location_count
+        locations = Location.objects.filter(user=current_user)
+        context['locations'] = locations
         return context
