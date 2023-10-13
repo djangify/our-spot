@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     #others
     'cloudinary',
     'cloudinary_storage',
+    'easy_thumbnails',
 
 
 ]
