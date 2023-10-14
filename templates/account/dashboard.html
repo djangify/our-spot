@@ -9,8 +9,6 @@
 
 <h2>You have shared {{ locations.count|default_if_none:"0" }} spot(s).</h2>
 
-<p>Here is a list of all your shared spot(s):</p>
-
 {% for location in locations %}
 
 <p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
@@ -19,11 +17,9 @@
 
 <ul>
 
-<li>
 <a href="{% url 'location_detail' location.id %}" class="button2">View</a>
 <a href="{% url 'edit_location' location.id %}" class="button2">Edit</a>
 <a href="{% url 'delete_location' location.id %}" class="button2">Delete</a>
-</li>
  
 </ul>
 {% endfor %}
