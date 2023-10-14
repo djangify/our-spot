@@ -10,18 +10,20 @@
 <h2>You have shared {{ locations.count|default_if_none:"0" }} spot(s).</h2>
 
 {% for location in locations %}
-
-<p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
-
-<img src="{{location.image.url}}">
-
-<ul>
-
-<a href="{% url 'location_detail' location.id %}" class="button2">View</a>
-<a href="{% url 'edit_location' location.id %}" class="button2">Edit</a>
-<a href="{% url 'delete_location' location.id %}" class="button2">Delete</a>
- 
-</ul>
+    <div>
+    <p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
+    <p><img src="{{location.image.url}}"></p>
+<p></p>
+    <ul>
+    <a href="{% url 'location_detail' location.id %}" class="button2">View</a>
+    <a href="{% url 'edit_location' location.id %}" class="button2">Edit</a>
+    <a href="{% url 'delete_location' location.id %}" class="button2">Delete</a>
+    </ul>
+</p>
+<hr>
+    </div>
 {% endfor %}
+
+
 {% endblock content %}
 
