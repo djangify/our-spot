@@ -5,15 +5,22 @@ import django_resized.forms
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('locations', '0003_alter_location_location_types'),
+        ("locations", "0003_alter_location_location_types"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='location',
-            name='image',
-            field=django_resized.forms.ResizedImageField(crop=None, force_format='WEBP', keep_meta=True, quality=75, scale=None, size=[400, 400], upload_to='locations/'),
+            model_name="location",
+            name="image",
+            field=django_resized.forms.ResizedImageField(
+                crop=None,
+                force_format="WEBP",
+                keep_meta=True,
+                quality=75,
+                scale=None,
+                size=[400, 400],
+                upload_to="locations/",
+            ),
         ),
     ]

@@ -4,15 +4,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('locations', '0002_auto_20231011_1028'),
+        ("locations", "0002_auto_20231011_1028"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='location',
-            name='location_types',
-            field=models.CharField(choices=[('africa', 'Africa'), ('america', 'America'), ('asia', 'Asia'), ('caribbean', 'Caribbean'), ('europe', 'Europe'), ('great_britain', 'Great Britain'), ('middle_east', 'Middle East'), ('oceanic', 'Oceanic')], default='Africa', max_length=50),
+            model_name="location",
+            name="location_types",
+            field=models.CharField(
+                choices=[
+                    ("africa", "Africa"),
+                    ("america", "America"),
+                    ("asia", "Asia"),
+                    ("caribbean", "Caribbean"),
+                    ("europe", "Europe"),
+                    ("great_britain", "Great Britain"),
+                    ("middle_east", "Middle East"),
+                    ("oceanic", "Oceanic"),
+                ],
+                default="Africa",
+                max_length=50,
+            ),
         ),
     ]

@@ -14,7 +14,6 @@ LOCATION_TYPES = (
     ("great_britain", "Great Britain"),
     ("middle_east", "Middle East"),
     ("oceanic", "Oceanic"),
-
 )
 
 
@@ -47,6 +46,3 @@ class Location(models.Model):
 
     def __str__(self):
         return str(self.title)
-
-
-

@@ -1,12 +1,13 @@
 from django.views.generic import (
-    CreateView, ListView,
-    DetailView, DeleteView,
-    UpdateView, TemplateView
+    CreateView,
+    ListView,
+    DetailView,
+    DeleteView,
+    UpdateView,
+    TemplateView,
 )
 
-from django.contrib.auth.mixins import (
-    UserPassesTestMixin, LoginRequiredMixin
-)
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 from django.db.models import Q
 
@@ -24,12 +25,12 @@ class Locations(ListView):
     context_object_name = "locations"
 
     def get_queryset(self, **kwargs):
-        query = self.request.GET.get('q')
+        query = self.request.GET.get("q")
         if query:
             location = self.model.objects.filter(
-                Q(title__icontains=query) |
-                Q(description__icontains=query) |
-                Q(location_types__icontains=query)
+                Q(title__icontains=query)
+                | Q(description__icontains=query)
+                | Q(location_types__icontains=query)
             )
         else:
             location = self.model.objects.all()
@@ -59,10 +60,11 @@ class AddLocation(LoginRequiredMixin, CreateView):
 
 class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Edit a location"""
-    template_name = 'locations/edit_location.html'
+
+    template_name = "locations/edit_location.html"
     model = Location
     form_class = LocationForm
-    success_url = '/locations/'
+    success_url = "/locations/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -70,8 +72,9 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """Delete an Image"""
+
     model = Location
-    success_url = '/locations/'
+    success_url = "/locations/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -79,11 +82,12 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 class LocationImage(LoginRequiredMixin, TemplateView):
     """View user images in dashboard"""
-    template_name = 'account/dashboard.html'
+
+    template_name = "account/dashboard.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         current_user = self.request.user
         locations = Location.objects.filter(user=current_user)
-        context['locations'] = locations
+        context["locations"] = locations
         return context
