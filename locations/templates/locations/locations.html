@@ -7,12 +7,13 @@
 <h1>Recent Spots</h1>
 <div>
     {% for location in locations %}
-    <a href="{% url 'location_detail' location.id %}" class="locations" aria-label="Click to view {{location.title}}">
+    <div id="image-list">
+    <a href="{% url 'location_detail' location.id %}" class="image-detail" aria-label="Click to view {{location.title}}">
         <div>
-            <img src="{{location.image.url}}" class="card-img-top" alt="{{location.image_alt}}">
+            <img src="{{location.image.url}}" class="image-detail" alt="{{location.image_alt}}">
             <div>
-                <h2 class="card-title">{{location.title}}</h2>
-                <p class="card-text">{{location.description|truncatechars:100}}</p>
+                <h2>{{location.title}}</h2>
+                <p>{{location.description|truncatechars:100}}</p>
             </div>
         </div>
     </a>

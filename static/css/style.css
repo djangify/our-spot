@@ -96,7 +96,8 @@ ol {
     padding: 30px 100px;
 }
 
-/* Define the flex container */
+/* HomePage flex container */
+
 .flex-container {
     display: flex;
     justify-content: space-between; 
