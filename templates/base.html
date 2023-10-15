@@ -30,7 +30,7 @@
             <a href="{% url 'add_location' %}">Add A Spot</a>
         </li>
         <li {% if section == "people" %}class="selected" {% endif %}>
-            <a href="#">People</a>
+            <a href="{% url 'user_list' %}">People</a>
         </li>
     </ul>
     {% endif %}

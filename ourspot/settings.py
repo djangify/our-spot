@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+from django.urls import reverse_lazy
 
 if os.path.isfile("env.py"):
     import env
@@ -40,13 +41,6 @@ ALLOWED_HOSTS = [
 # CSRF_TRUSTED
 CSRF_TRUSTED_ORIGINS = ["https://8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com"]
 
-# LOGIN URLS
-LOGIN_REDIRECT_URL = "dashboard"
-LOGIN_URL = "login"
-LOGOUT_URL = "logout"
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 # SITE ID
 SITE_ID = 1
 
@@ -66,6 +60,7 @@ INSTALLED_APPS = [
     # others
     "cloudinary",
     "cloudinary_storage",
+    "easy_thumbnails",
 ]
 
 MIDDLEWARE = [
@@ -161,3 +156,17 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# LOGIN URLS
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
+
+#EMAIL BACKEND
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+#GENERATES CANONICAL URL FOR USERS
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail',
+                                        args=[u.username])
+}
