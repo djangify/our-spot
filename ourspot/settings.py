@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-from django.urls import reverse_lazy
+
 
 if os.path.isfile("env.py"):
     import env
@@ -33,13 +33,14 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com",
+    "8000-todiane-our-spot-dxxc7vb3hx.us2.codeanyapp.com",
     "ourspot-49a5ec9f2c8b.herokuapp.com",
 ]
 
 
 # CSRF_TRUSTED
-CSRF_TRUSTED_ORIGINS = ["https://8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com"]
 
 # SITE ID
 SITE_ID = 1
@@ -162,11 +163,5 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
-#EMAIL BACKEND
+# EMAIL BACKEND
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-#GENERATES CANONICAL URL FOR USERS
-ABSOLUTE_URL_OVERRIDES = {
-    'auth.user': lambda u: reverse_lazy('user_detail',
-                                        args=[u.username])
-}
