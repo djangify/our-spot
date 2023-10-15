@@ -15,17 +15,10 @@ class Index(ListView):
     def get_queryset(self):
         return self.model.objects.all()[:7]
 
+# Tells user how many uploads they have and lists them
 
 class HomePageImage(TemplateView):
     template_name = "home/index.html"
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     all_images = cloudinary.api.resources(type="upload", resource_type="image")
-    #     random.shuffle(all_images['resources'])
-    #     random_image = all_images['resources'][0]
-    #     context['random_image'] = random_image
-    #     return context
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
