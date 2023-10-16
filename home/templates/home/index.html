@@ -1,30 +1,28 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block title %}Home{% endblock title %}
-
-
-{% block content %}
-
+{% extends 'base.html' %} {% load static %} {% block title %}Home{% endblock
+title %} {% block content %}
 
 <h1>Discover the Ultimate Locations</h1>
 
 <div class="flex-container">
-    <div class="image-box">
-      <img src="static/images/ourspot-new-logo.jpg" alt="our spot logo">
-    </div>
-    <div class="text-box">
-      <h2>Welcome to our one-stop hub for sharing our spot.</h2> Got a location you 
-        love to be at with a friend, loved one or family? Share it here.
-       Find places worth visiting. <p> Our spot is your spot.</p> 
+  <div class="image-box">
+    <img
+      src="{% static 'images/outspot-new-logo.webp' %}"
+      alt="our spot logo"
+    />
+  </div>
+  <div class="text-box">
+    <h2>Welcome to our one-stop hub for sharing our spot.</h2>
+    Got a location you love to be at with a friend, loved one or family? Share
+    it here. Find places worth visiting.
+    <p>Our spot is your spot.</p>
 
-       <div class="button2">
-        <a href="{% url 'register' %}" class="button2">Register Here</a>
+    <div class="button2">
+      <a href="{% url 'register' %}" class="button2">Register Here</a>
     </div>
     <div class="button2">
-        <a href="{% url 'login' %}" class="button2">Log-In Here</a>
+      <a href="{% url 'login' %}" class="button2">Log-In Here</a>
     </div>
-    </div>
+  </div>
 
-
-{% endblock content %}
+  {% endblock content %}
+</div>
