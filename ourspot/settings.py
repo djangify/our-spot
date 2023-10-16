@@ -49,7 +49,6 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
-    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -61,6 +60,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'home',
     'locations',
+    'account',
     'easy_thumbnails',
 ]
 
@@ -165,17 +165,3 @@ LOGOUT_URL = "logout"
 
 # EMAIL BACKEND
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
-    },
-}
