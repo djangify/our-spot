@@ -8,8 +8,9 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .forms import LoginForm, UserRegistrationForm, \
-                   UserEditForm, ProfileEditForm
-from .models import Profile, Contact
+    UserEditForm, ProfileEditForm
+from .models import Profile
+from .models import Contact
 
 
 def user_login(request):
