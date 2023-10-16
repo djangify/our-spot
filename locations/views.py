@@ -8,13 +8,12 @@ from django.views.generic import (
 )
 
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-
 from django.db.models import Q
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from .models import Location
 from .forms import LocationForm
+from django.http import JsonResponse
+from django.utils.decorators import method_decorator
 
 
 class Locations(ListView):
@@ -91,3 +90,21 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         locations = Location.objects.filter(user=current_user)
         context["locations"] = locations
         return context
+
+
+class LocationDetailView(LoginRequiredMixin, DetailView):
+
+    model = Location
+    slug_field = 'slug'
+
+    def post(self, request, slug):
+
+        location = Location.objects.get(slug=slug)
+
+        if request.user in location.likes.all():
+            location.likes.remove(request.user)
+        else:
+            location.likes.add(request.user)
+
+        likes_count = location.likes.count()
+        return JsonResponse({'likes_count': likes_count})

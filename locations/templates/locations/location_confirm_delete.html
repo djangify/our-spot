@@ -1,21 +1,15 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block title %}Delete Spot {{ object.title }}{% endblock title %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
 
 <h1>Confirm Your Deletion Request</h1>
-  
-<div class="container">
-    <div>
-        <form method="post" class="text-center">
-            {% csrf_token %}
-            <p>Are you sure you want to delete "{{object.title}}"?</p>
-            <input type="submit" value="Confirm">
-        </form>
-    </div>
+
+{% block title %}Delete Spot: {{ object.title }}{% endblock title %}
+
+<div>
+  <form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{object.title}}"?</p>
+    <input type="submit" value="Confirm" />
+  </form>
 </div>
-           
 
 {% endblock content %}

@@ -17,6 +17,7 @@ class Index(ListView):
 
 # Tells user how many uploads they have and lists them
 
+
 class HomePageImage(TemplateView):
     template_name = "home/index.html"
 

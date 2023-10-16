@@ -13,7 +13,21 @@
             <p>Posted by {{location.user}} on {{location.posted_date}}</p>
             
             <p>{{location.description}}</p>
+            
 
+            <!-- Code For Like Button -->
+        <div>
+            <p>
+<button class="like-btn" data-slug="{{ location.slug }}" data-likes="{{ location.likes.count }}">
+
+    <span class="likes-count">{{ location.likes.count }}</span>
+    Like
+</button>
+</p>
+    </div>
+
+
+<!-- Code for edit and delete image button -->
             {% if request.user == location.user %}
             <div class="button2">
                 <a href="{% url 'edit_location' location.id %}" class="button2">Edit</a>

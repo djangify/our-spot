@@ -55,10 +55,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # apps
+    # APPS
     "home",
     "locations",
-    # others
+    # OTHERS
     "cloudinary",
     "cloudinary_storage",
     "easy_thumbnails",
