@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-
+from django.urls import reverse_lazy
 
 if os.path.isfile("env.py"):
     import env
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'locations',
     'account',
     'easy_thumbnails',
+    'djrichtextfield',
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,8 @@ LOGOUT_URL = "logout"
 
 # EMAIL BACKEND
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail',
+                                        args=[u.username])
+}

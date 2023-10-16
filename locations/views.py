@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Location, LikeLocation
 from .forms import LocationForm
 from django.http import JsonResponse
+
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -95,42 +96,3 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         return context
 
 
-# class LocationDetailView(LoginRequiredMixin, DetailView):
-
-#     model = Location
-#     slug_field = 'slug'
-
-#     def post(self, request, slug):
-
-#         location = Location.objects.get(slug=slug)
-
-#         if request.user in location.likes.all():
-#             location.likes.remove(request.user)
-#         else:
-#             location.likes.add(request.user)
-
-#         likes_count = location.likes.count()
-#         return JsonResponse({'likes_count': likes_count})
-
-
-@login_required
-def like_location(request):
-    username = request.user.username
-    location_id = request.GET.get('location_id')
-
-    location = Location.objects.get(id=location_id)
-
-    like_filter = LikeLocation.objects.filter(
-        location_id=location_id, username=username).first()
-
-    if like_filter == None:
-        new_like = LikeLocation.objects.create(location_id=location_id, username=username)
-        new_like.save()
-        location.no_of_likes = location.no_of_likes+1
-        location.save()
-        return redirect('/')
-    else:
-        like_filter.delete()
-        location.no_of_likes = location.no_of_likes-1
-        location.save()
-        return redirect('/')
