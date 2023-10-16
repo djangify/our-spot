@@ -34,7 +34,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "8000-todiane-our-spot-dxxc7vb3hx.us2.codeanyapp.com",
-    "ourspot-49a5ec9f2c8b.herokuapp.com",
+    "ourspot-3d33dbf8dcf2.herokuapp.com",
 ]
 
 
