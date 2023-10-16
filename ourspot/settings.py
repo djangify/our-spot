@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "8000-todiane-our-spot-dxxc7vb3hx.us2.codeanyapp.com",
@@ -49,20 +49,19 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
-    "account.apps.AccountConfig",
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    # APPS
-    "home",
-    "locations",
-    # OTHERS
-    "cloudinary",
-    "cloudinary_storage",
-    "easy_thumbnails",
+    'account.apps.AccountConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.sites',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
+    'home',
+    'locations',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
@@ -166,3 +165,17 @@ LOGOUT_URL = "logout"
 
 # EMAIL BACKEND
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "WARNING",
+    },
+}
