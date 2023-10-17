@@ -211,7 +211,7 @@ ul.messages li.success a {
 
 ul.messages li.error {
     background: #a30029;
-    color: #e9828e;
+    color: #fff;
 }
 
 ul.messages li.error a {
