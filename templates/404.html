@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h2 class="txt-color-3">404 Error</h2>
+<div class="d-flex justify-content-center">
+    <p><i class="fa-solid fa-bomb"></i></p>
+    <hr>
+    <p class="alert-text position-relative top-25">Sorry. This page can't be found. 
+    You can return to the <a href='{% url "home" %}'>HomePage Here.</a></p>
+</div>
+
+{% endblock %}

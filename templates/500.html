@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h2 class="txt-color-3">500 Error</h2>
+    <p><i class="fa-solid fa-bomb"></i></p>
+    <hr>
+    <p class="alert-text position-relative top-25">The server has experienced an issue trying to retrieve the
+    requested information. You can return to the <a href='{% url "home" %}'>HomePage Here.</a></p>
+    
+</div>
+
+{% endblock %}
