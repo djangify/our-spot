@@ -21,7 +21,7 @@ class UserRegistrationForm(forms.ModelForm):
         if cd["password"] != cd["password2"]:
             raise forms.ValidationError("Passwords don't match.")
         return cd["password2"]
- 
+
     def clean_email(self):
         data = self.cleaned_data.get("email")
         if data:
