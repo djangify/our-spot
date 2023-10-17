@@ -94,5 +94,3 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         locations = Location.objects.filter(user=current_user)
         context["locations"] = locations
         return context
-
-
