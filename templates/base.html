@@ -1,24 +1,41 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-{% block extra_css %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Photo Sharing Social Network">
+    <meta name="keywords" content="photos, location, things to do, family holidays, wedding venue">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.webp' %}">
+
+    {% block extra_css %}
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+    integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Font Awesome link -->
+    <script src="https://kit.fontawesome.com/8e1ff888c3.js" crossorigin="anonymous"></script>
+
+ 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
 
 
-{% block onload_js %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-{% endblock %}
-<title>{% block title %} {% endblock %}</title>
+    <title>{% block title %} {% endblock %}</title>
 
 </head>
 
 <body>
+    <!-- Logo Text -->
     <div id="header">
         <a href="{% url 'home' %}"> <span class="logo">Our Spot</a></span>
+    
+    <!-- Navigation bar -->
     {% if request.user.is_authenticated %}
     <ul class="menu">
         <li {% if section == "dashboard" %}class="selected" {% endif %}>
@@ -35,6 +52,8 @@
         </li>
     </ul>
     {% endif %}
+
+    <!-- Login and Logout Section -->
         <span class="user">
             {% if request.user.is_authenticated %}
             Hello {{ request.user.first_name|default:request.user.username }},
@@ -44,6 +63,8 @@
             {% endif %}
         </span>
     </div>
+
+    <!-- Messages shown to users -->
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -54,11 +75,24 @@
         {% endfor %}
     </ul>
     {% endif %}
+
+    <!-- Content of each page -->
+
     <div id="content">
         {% block content %}
         {% endblock %}
     </div>
 </body>
+    {% block onload_js %}
+    <!-- Bootstrap JavaScript link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+        integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <!-- Custom scripts -->
+        <script src="{% static 'scripts/script.js' %}"></script>
+    {% endblock %}
+
 
 </html>
 
