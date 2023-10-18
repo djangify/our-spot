@@ -7,9 +7,8 @@
 <h1>Welcome to your dashboard, {{ request.user.first_name }}!</h1>
 
 
-
 <div id="image-list">
-<h6>From here you can <a href="{% url 'user_profile' user.username %}" class="button2">View Your Profile</a>  |
+<h6>From here you can <a href="{{ user.get_absolute_url }}" class="button2">View Your Profile</a>  |
     <a href="{% url 'edit' %}" class="button2">SETUP/Edit Your Profile</a>   |
     <a href="{% url 'password_change' %}" class="button2">Change Your
     Password</a></h6>
