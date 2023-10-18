@@ -15,11 +15,28 @@
             <p>{{location.description}}</p>
             
 
-            <!-- Code For Like Button -->
+    <!-- Code For Like Button taken from I think therefore I blog walkthrough -->
 
-
-
-
+<div>
+    <strong>
+        {% if user.is_authenticated %}
+        <form class="d-inline" action="{% url 'like_location' location.pk %}" method="POST">
+            {% csrf_token %}
+            {% if request.user in location.like_set.all %}
+            <button type="submit" name="location_id" value="{{ location.pk }}" class="btn-like"><i
+                    class="fa-duotone fa-heart"></i></button>
+            {% else %}
+            <button type="submit" name="location_id" value="{{ location.pk }}" class="btn-like"><i
+                    class="fa-regular fa-heart"></i></button>
+            {% endif %}
+        </form>
+        {% else %}
+        <span class="text-secondary"><i class="far fa-heart"></i></span>
+        {% endif %}
+        <span class="text-secondary">{{ location.like_set.count }} </span>
+    </strong>
+</div>
+    <br>
 
 <!-- Code for edit and delete image button -->
             {% if request.user == location.user %}

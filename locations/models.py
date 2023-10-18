@@ -48,9 +48,9 @@ class Location(models.Model):
         return str(self.title)
 
 
-class LikeLocation(models.Model):
-    post_id = models.CharField(max_length=500)
-    username = models.CharField(max_length=100)
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.username
+        return f"{self.user.username} likes {self.location.name}"

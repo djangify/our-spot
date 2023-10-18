@@ -274,7 +274,6 @@ ul.messages li a.close {
     margin: 20px 10px 0;
 }
 
-a.like,
 a.follow {
     float: right;
     margin-top: -8px;
@@ -306,18 +305,6 @@ a.follow {
     color: #333;
 }
 
-.image-likes div {
-    float: left;
-    width: auto;
-    padding: 10px;
-    text-align: center;
-}
-
-.image-likes img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-}
 
 /* users */
 #people-list img {

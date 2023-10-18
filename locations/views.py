@@ -5,19 +5,23 @@ from django.views.generic import (
     DeleteView,
     UpdateView,
     TemplateView,
+    View,
 )
 
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Location, LikeLocation
+from .models import Location, Like
 from .forms import LocationForm
 from django.http import JsonResponse
-
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
+from django.urls import reverse
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+
 
 
 class Locations(ListView):
@@ -94,3 +98,16 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         locations = Location.objects.filter(user=current_user)
         context["locations"] = locations
         return context
+
+
+class LikeLocationView(LoginRequiredMixin, View):
+
+    def post(self, request, pk, *args, **kwargs):
+        location = get_object_or_404(Location, pk=pk)
+        like, created = Like.objects.get_or_create(
+            user=request.user, location=location)
+
+        if not created:
+            like.delete()
+
+        return HttpResponseRedirect(reverse('location_detail', args=[pk]))
