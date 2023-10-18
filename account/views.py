@@ -135,3 +135,16 @@ def user_detail(request, username):
   }
 
   return render(request, 'account/user/detail.html', context)
+
+
+@login_required
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+    # You can also retrieve additional user-related information here if needed
+
+    context = {
+        'user': user,
+        # Add other user-related data to the context as needed
+    }
+
+    return render(request, 'account/user/detail.html', context)
