@@ -33,15 +33,15 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-todiane-our-spot-dxxc7vb3hx.us2.codeanyapp.com",
-    "ourspot-3d33dbf8dcf2.herokuapp.com",
+    "8000-todiane-our-spot-7f88vi944l.us2.codeanyapp.com",
+    "ourspot-d2a3c52401dc.herokuapp.com",
 
 ]
 
 
 # CSRF_TRUSTED
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-todiane-our-spot-11mlobf9y5.us2.codeanyapp.com"]
+    "https://8000-todiane-our-spot-7f88vi944l.us2.codeanyapp.com/"]
 
 # SITE ID
 SITE_ID = 1

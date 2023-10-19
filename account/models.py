@@ -24,7 +24,7 @@ class Profile(models.Model):
     def __str__(self):
         return f'Profile of {self.user.username}'
 
-
+# user relationships contact model for Follow
 class Contact(models.Model):
     user_from = models.ForeignKey('auth.User',
                                   related_name='rel_from_set',

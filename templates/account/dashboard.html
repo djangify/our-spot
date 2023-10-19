@@ -8,8 +8,8 @@
 
 
 <div id="image-list">
-<h6>From here you can <a href="{{ user.get_absolute_url }}" class="button2">View Your Profile</a>  |
-    <a href="{% url 'edit' %}" class="button2">SETUP/Edit Your Profile</a>   |
+<h6>From here you can <a href="{{ user.get_absolute_url }}" class="button2">View Your Profile</a>   | 
+    <a href="{% url 'edit' %}" class="button2">SETUP/Edit Your Profile</a>    | 
     <a href="{% url 'password_change' %}" class="button2">Change Your
     Password</a></h6>
 </div>
@@ -22,9 +22,9 @@
     <p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
 <p>  <p>{{location.description|truncatechars:280}}</p>
     <ul>
-    <a href="{% url 'location_detail' location.id %}" class="button2">View</a>
-    <a href="{% url 'edit_location' location.id %}" class="button2">Edit</a>
-    <a href="{% url 'delete_location' location.id %}" class="button2">Delete</a>
+    <a href="{ location_detail.get_absolute_url }" class="button2">View</a>
+    <a href="{ edit_location.get_absolute_url }" class="button2">Edit</a>
+    <a href="{ delete_location.get_absolute_url }" class="button2">Delete</a>
     </ul>
 </p>
     <hr>
@@ -34,7 +34,7 @@
 
 {% for location in locations %}
 <div id="image-list">
-<a href="{% url 'location_detail' location.id %}" class="image-detail" aria-label="Click to view {{location.title}}">
+<a href="{ location.get_absolute_url }" class="image-detail" aria-label="Click to view {{location.title}}">
     <div>
         <img src="{{location.image.url}}" class="image-detail" alt="{{location.image_alt}}">
         <div>

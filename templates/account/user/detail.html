@@ -31,7 +31,7 @@
 
 {% for location in locations %}
 <div id="image-list">
-    <a href="{% url 'location_detail' location.id %}" class="image-detail"
+    <a href="{ location.get_absolute_url }" class="image-detail"
         aria-label="Click to view {{location.title}}">
         <div>
             <img src="{{location.image.url}}" class="image-detail" alt="{{location.image_alt}}">

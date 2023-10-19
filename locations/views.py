@@ -52,9 +52,9 @@ class LocationDetail(DetailView):
     # context_object_name = "location"
 
     def get(self, request, slug, *args, **kwargs):
-        queryset = Location.objects.filter(status=1)
-        location = get_object_or_404(queryset, slug=slug)
-        if location.likes.filter(id=self.request.user.id).exists():
+        location = get_object_or_404(Location, slug=slug)  
+        liked = False
+        if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
             liked = True
 
         return render(

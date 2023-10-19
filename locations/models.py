@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 
+
+
 # Choice Fields
 
 LOCATION_TYPES = (
@@ -26,7 +28,7 @@ class Location(models.Model):
         User, related_name="location_owner", on_delete=models.CASCADE
     )
     title = models.CharField(max_length=300, null=False, blank=False)
-    slug = models.SlugField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, null=False, unique=True)
     description = models.CharField(max_length=500, null=False, blank=False)
     image = CloudinaryField('image', default='placeholder')
     image_alt = models.CharField(max_length=100, null=False, blank=False)
@@ -48,3 +50,7 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user.username} likes {self.location.title}"
+
+
+def get_absolute_url(self):
+    return reverse("location_detail", kwargs={"slug": self.slug})
