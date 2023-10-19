@@ -22,9 +22,9 @@
     <p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
 <p>  <p>{{location.description|truncatechars:280}}</p>
     <ul>
-    <a href="{ location_detail.get_absolute_url }" class="button2">View</a>
-    <a href="{ edit_location.get_absolute_url }" class="button2">Edit</a>
-    <a href="{ delete_location.get_absolute_url }" class="button2">Delete</a>
+    <a href="{{ location_detail.get_absolute_url }}" class="button2">View</a>
+    <a href="{{ edit_location.get_absolute_url }}" class="button2">Edit</a>
+    <a href="{{ delete_location.get_absolute_url }}" class="button2">Delete</a>
     </ul>
 </p>
     <hr>
@@ -34,7 +34,7 @@
 
 {% for location in locations %}
 <div id="image-list">
-<a href="{ location.get_absolute_url }" class="image-detail" aria-label="Click to view {{location.title}}">
+<a href="{{ location.get_absolute_url }}" class="image-detail" aria-label="Click to view {{location.title}}">
     <div>
         <img src="{{location.image.url}}" class="image-detail" alt="{{location.image_alt}}">
         <div>

@@ -44,13 +44,13 @@ class Location(models.Model):
         return str(self.title)
 
 
+    def get_absolute_url(self):
+        return reverse("location_detail", kwargs={"slug": self.slug})
+
+
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.user.username} likes {self.location.title}"
-
-
-def get_absolute_url(self):
-    return reverse("location_detail", kwargs={"slug": self.slug})
