@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django_resized import ResizedImageField
+from cloudinary.models import CloudinaryField
 
 
 # Choice Fields
@@ -26,15 +26,9 @@ class Location(models.Model):
         User, related_name="location_owner", on_delete=models.CASCADE
     )
     title = models.CharField(max_length=300, null=False, blank=False)
+    slug = models.SlugField(max_length=200, unique=True)
     description = models.CharField(max_length=500, null=False, blank=False)
-    image = ResizedImageField(
-        size=[400, None],
-        quality=75,
-        upload_to="locations/",
-        force_format="WEBP",
-        blank=False,
-        null=False,
-    )
+    image = CloudinaryField('image', default='placeholder')
     image_alt = models.CharField(max_length=100, null=False, blank=False)
     location_types = models.CharField(
         max_length=50, choices=LOCATION_TYPES, default="Africa"

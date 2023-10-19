@@ -47,9 +47,24 @@ class Locations(ListView):
 class LocationDetail(DetailView):
     """View a single location"""
 
-    template_name = "locations/location_detail.html"
-    model = Location
-    context_object_name = "location"
+    # template_name = "locations/location_detail.html"
+    # model = Location
+    # context_object_name = "location"
+
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Location.objects.filter(status=1)
+        location = get_object_or_404(queryset, slug=slug)
+        if location.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        return render(
+            request,
+            "locations/location_detail.html",
+            {
+                "location": location,
+                "liked": liked
+            },
+        )
 
 
 class AddLocation(LoginRequiredMixin, CreateView):
