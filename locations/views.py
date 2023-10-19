@@ -21,6 +21,7 @@ from django.contrib.auth.models import User, auth
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator
 
 
 
@@ -101,6 +102,7 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         return self.request.user == self.get_object().user
 
+# shows the location images uploaded by the user
 
 class LocationImage(LoginRequiredMixin, TemplateView):
     """View user images in dashboard"""
@@ -114,6 +116,21 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         context["locations"] = locations
         return context
 
+# Pagination of user locations on their dashboard
+
+class LocationImageView(ListView):
+    model = Location
+    template_name = 'account/dashboard.html'
+    context_object_name = 'locations'
+    ordering = ['-posted_date']
+    paginate_by = 2
+
+    def get_queryset(self):
+        current_user = self.request.user
+        return Location.objects.filter(user=current_user).order_by('-posted_date')
+
+
+# For the Like Button
 
 class LikeLocationView(LoginRequiredMixin, View):
 
