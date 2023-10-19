@@ -22,9 +22,9 @@
     <p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
 <p>  <p>{{location.description|truncatechars:280}}</p>
     <ul>
-    <a href="{{ location_detail.get_absolute_url }}" class="button2">View</a>
-    <a href="{{ edit_location.get_absolute_url }}" class="button2">Edit</a>
-    <a href="{{ delete_location.get_absolute_url }}" class="button2">Delete</a>
+    <a href="{% url 'location_detail' slug=location.slug %}" class="button2">View</a>
+    <a href="{% url 'edit_location' slug=location.slug %}" class="button2">Edit</a>
+    <a href="{% url 'delete_location' slug=location.slug %}" class="button2">Delete</a>
     </ul>
 </p>
     <hr>

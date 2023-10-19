@@ -53,16 +53,16 @@ class LocationDetail(DetailView):
 
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)  
-        liked = False
-        if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
-            liked = True
+        # liked = False
+        # if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
+        #     liked = True
 
         return render(
             request,
             "locations/location_detail.html",
             {
                 "location": location,
-                "liked": liked
+                # "liked": liked
             },
         )
 
@@ -117,12 +117,12 @@ class LocationImage(LoginRequiredMixin, TemplateView):
 
 class LikeLocationView(LoginRequiredMixin, View):
 
-    def post(self, request, pk, *args, **kwargs):
-        location = get_object_or_404(Location, pk=pk)
+    def post(self, request, slug, *args, **kwargs):
+        location = get_object_or_404(Location, slug=slug)
         like, created = Like.objects.get_or_create(
             user=request.user, location=location)
 
         if not created:
             like.delete()
 
-        return HttpResponseRedirect(reverse('location_detail', args=[pk]))
+        return HttpResponseRedirect(reverse('location_detail', args=[slug]))

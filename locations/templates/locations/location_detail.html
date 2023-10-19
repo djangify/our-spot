@@ -20,13 +20,13 @@
 <div>
     <strong>
         {% if user.is_authenticated %}
-        <form class="d-inline" action="{% url 'like_location' location.pk %}" method="POST">
+        <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
             {% csrf_token %}
             {% if request.user in location.like_set.all %}
-            <button type="submit" name="location_id" value="{{ location.pk }}" class="btn-like"><i
+            <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
                     class="fa-duotone fa-heart"></i></button>
             {% else %}
-            <button type="submit" name="location_id" value="{{ location.pk }}" class="btn-like"><i
+            <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
                     class="fa-regular fa-heart"></i></button>
             {% endif %}
         </form>
@@ -39,16 +39,14 @@
     <br>
 
 <!-- Code for edit and delete image button -->
-            {% if request.user == location.user %}
-            <div class="button2">
-                <a href="{ edit_location.get_absolute_url }" class="button2">Edit</a>
-                
-            </div>
-            <div class="button2">
-                <a href="{ delete_location.get_absolute_url }" class="button2">Delete</a>
-            </div>
-            {% endif %}
-        </div>
+            
+{% if request.user == location.user %}
+    <div class="button2">
+    <a href="{% url 'edit_location' slug=location.slug %}" class="button2">Edit</a>
     </div>
+    <div class="button2">
+    <a href="{% url 'delete_location' slug=location.slug %}" class="button2">Delete</a>
+    </div>
+{% endif %}
     
 {% endblock content %}

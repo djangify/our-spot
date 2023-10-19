@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.urls import reverse
+from django.utils.text import slugify
 
 
 
@@ -47,6 +49,13 @@ class Location(models.Model):
     def get_absolute_url(self):
         return reverse("location_detail", kwargs={"slug": self.slug})
 
+
+    def save(self, *args, **kwargs):
+       # Generate a slug based on the title
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        super(Location, self).save(*args, **kwargs)
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
