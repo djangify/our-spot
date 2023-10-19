@@ -53,4 +53,4 @@ class Like(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} likes {self.location.name}"
+        return f"{self.user.username} likes {self.location.title}"
