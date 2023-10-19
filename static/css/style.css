@@ -6,6 +6,7 @@ body {
     font-family: helvetica, sans-serif;
 }
 
+
 p {
     line-height: 1.8;
 }
@@ -92,6 +93,8 @@ ol {
     padding-top: 4px;
 }
 
+
+
 #content {
     padding: 30px 100px;
 }
@@ -119,6 +122,25 @@ ol {
   .image-box img {
     max-width: 100%;
     height: auto;
+  }
+
+  /* Footer */
+  #social-networks {
+      text-align: center;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-evenly;
+      list-style-type: none;
+  }
+
+  #social-networks i {
+      font-size: 160%;
+      padding: 5%;
+      color: #3a3a3a;
+  }
+
+  .site-content {
+      flex: 1;
   }
 
 /* forms */

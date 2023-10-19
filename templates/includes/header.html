@@ -1,0 +1,69 @@
+{% load static %}
+
+{% block extra_css %}
+
+<!-- Bootstrap CSS link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+    integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Font Awesome link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+<!-- css style link -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+<header class ="site">
+        <!-- Logo Text -->
+        <div id="header">
+        <a href="{% url 'home' %}"> <span class="logo">Our Spot</a></span>
+
+
+
+        <!-- Navigation bar -->
+        {% if request.user.is_authenticated %}
+        <!-- <input type="checkbox" id="nav-toggle" name="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+            <i class="fa-solid fa-bars"></i>
+        </label> -->
+        <nav>
+            <ul class="menu">
+                <li {% if section == "dashboard" %}class="selected" {% endif %}>
+                    <a href="{% url 'dashboard' %}">My dashboard</a>
+                </li>
+                <li {% if section == "locations" %}class="selected" {% endif %}>
+                    <a href="{% url 'locations' %}">New Spots</a>
+                </li>
+                <li {% if section == "add_location" %}class="selected" {% endif %}>
+                    <a href="{% url 'add_location' %}">Add A Spot</a>
+                </li>
+                <li {% if section == "people" %}class="selected" {% endif %}>
+                    <a href="{% url 'user_list' %}">People</a>
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+
+        <!-- Login and Logout Section -->
+        <span class="user">
+            {% if request.user.is_authenticated %}
+            Hello {{ request.user.first_name|default:request.user.username }},
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Log-in</a>
+            {% endif %}
+        </span>
+    </div>
+
+    <!-- Messages shown to users -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">
+            {{ message|safe }}
+            <a href="#" class="close">x</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+</header>
