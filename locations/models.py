@@ -45,10 +45,8 @@ class Location(models.Model):
     def __str__(self):
         return str(self.title)
 
-
     def get_absolute_url(self):
         return reverse("location_detail", kwargs={"slug": self.slug})
-
 
     def save(self, *args, **kwargs):
        # Generate a slug based on the title

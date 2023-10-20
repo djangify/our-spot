@@ -48,7 +48,8 @@ class LocationDetail(DetailView):
     """View a single location"""
 
     def get(self, request, slug, *args, **kwargs):
-        location = get_object_or_404(Location, slug=slug)  
+        location = get_object_or_404(Location, slug=slug)
+        paginate_by = 2
         # liked = False
         # if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
         #     liked = True
@@ -107,6 +108,11 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         current_user = self.request.user
         locations = Location.objects.filter(user=current_user)
+        paginator = Paginator(locations, 2)
+
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
         context["locations"] = locations
         return context
 

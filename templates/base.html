@@ -10,8 +10,12 @@
         <meta name="description" content="Photo Sharing Social Network">
         <meta name="keywords" content="photos, location, things to do, family holidays, wedding venue">
         <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.webp' %}">
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         {% block extra_css %}
+        <!-- Bootstrap CSS link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+            integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Font Awesome link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <!-- css style link -->
@@ -37,6 +41,12 @@
 
     </body>
 
+{% block onload_js %}
+<!-- Bootstrap JavaScript link -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+    integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+{% endblock %}
 </html>
 
