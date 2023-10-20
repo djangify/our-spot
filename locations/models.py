@@ -55,6 +55,7 @@ class Location(models.Model):
 
         super(Location, self).save(*args, **kwargs)
 
+
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)

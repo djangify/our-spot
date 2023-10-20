@@ -16,7 +16,7 @@
 
 <h2>You have shared {{ locations.count|default_if_none:"0" }} spot(s).</h2>
 <div class="row infinite-container">
-    {% for location in page_obj%}
+    {% for location in page_obj %}
     <div class="infinite-item">
         <div id="image-list">
             <p><img src="{{location.image.url}}" class="image-detail"></p>

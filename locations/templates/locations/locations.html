@@ -5,13 +5,14 @@
 
 {% block content %}
 <h1>Recent Spots</h1>
-<div>
+<div class="row infinite-container">
+
     {% for location in locations %}
-    <div class="image-detail">
-    <a href="{{ location.get_absolute_url }}" class="image-detail" aria-label="Click to view {{location.title}}">
+    <div class="infinite-item">
+    <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{location.title}}">
     
         <div>
-            <img src="{{location.image.url}}" class="image-detail" alt="{{location.image_alt}}">
+            <img src="{{location.image.url}}" alt="{{location.image_alt}}">
             <div>
                 <h2>{{location.title}}</h2>
                 <p>{{location.description|truncatechars:100}}</p>
@@ -20,4 +21,39 @@
     </a>
     {% endfor %}
 </div>
+
+
+<div class="d-flex d-none position-fixed" style="top:35vh;left:46vw">
+    <button class="btn btn-primary loading">
+        <span class="spinner-border spinner-border-sm"></span>
+        Please wait...
+    </button>
+</div>
+<div class="row">
+    <div class="col-12">
+        {% if page_obj.has_next %}
+        <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">next</a>
+        {% endif %}
+    </div>
+</div>
+
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/infinite.min.js' %}"></script>
+
+<script>
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+
+        offset: 'bottom-in-view',
+
+        onBeforePageLoad: function () {
+            $('.loading').show();
+        },
+        onAfterPageLoad: function () {
+            $('.loading').hide();
+        }
+
+    });
+</script>
+
 {% endblock content %}

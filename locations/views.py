@@ -30,6 +30,7 @@ class Locations(ListView):
     template_name = "locations/locations.html"
     model = Location
     context_object_name = "locations"
+    paginate_by = 2
 
     def get_queryset(self, **kwargs):
         query = self.request.GET.get("q")
@@ -49,7 +50,6 @@ class LocationDetail(DetailView):
 
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
-        paginate_by = 2
         # liked = False
         # if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
         #     liked = True
@@ -83,7 +83,7 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "locations/edit_location.html"
     model = Location
     form_class = LocationForm
-    success_url = "/locations/"
+    success_url = "locations"
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -93,7 +93,7 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """Delete an Image"""
 
     model = Location
-    success_url = "/locations/"
+    success_url = "locations"
 
     def test_func(self):
         return self.request.user == self.get_object().user
