@@ -20,53 +20,18 @@
     <div id="image-list">
     <p><img src="{{location.image.url}}" class="image-detail"></p>
     <p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
-<p>  <p>{{location.description|truncatechars:280}}</p>
+    <p>{{location.description|truncatechars:280}}</p>
+
     <ul>
     <a href="{% url 'location_detail' slug=location.slug %}" class="button2">View</a>
     <a href="{% url 'edit_location' slug=location.slug %}" class="button2">Edit</a>
     <a href="{% url 'delete_location' slug=location.slug %}" class="button2">Delete</a>
     </ul>
-</p>
+
     <hr>
-<br>
+
     </div>
 {% endfor %}
-
-{% if locations.count > 2 %}
-<div class="pagination">
-    <span class="step-links">
-        {% if page.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ page.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current-page">
-            Page {{ page.number }} of {{ page.paginator.num_pages }}.
-        </span>
-
-        {% if page.has_next %}
-        <a href="?page={{ page.next_page_number }}">next</a>
-        <a href="?page={{ page.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
-{% endif %}
-
-
-
-<!-- {% for location in locations %}
-<div id="image-list">
-<a href="{{ location.get_absolute_url }}" class="image-detail" aria-label="Click to view {{location.title}}">
-    <div>
-        <img src="{{location.image.url}}" class="image-detail" alt="{{location.image_alt}}">
-        <div>
-            <h2>{{location.title}}</h2>
-            <p>{{location.description|truncatechars:100}}</p>
-        </div>
-    </div>
-</a>
-{% endfor %} -->
-
 
 {% endblock content %}
 

@@ -24,7 +24,6 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 
 
-
 class Locations(ListView):
     """View all images"""
 
@@ -47,10 +46,6 @@ class Locations(ListView):
 
 class LocationDetail(DetailView):
     """View a single location"""
-
-    # template_name = "locations/location_detail.html"
-    # model = Location
-    # context_object_name = "location"
 
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)  
@@ -102,7 +97,6 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         return self.request.user == self.get_object().user
 
-# shows the location images uploaded by the user
 
 class LocationImage(LoginRequiredMixin, TemplateView):
     """View user images in dashboard"""
@@ -116,24 +110,9 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         context["locations"] = locations
         return context
 
-# Pagination of user locations on their dashboard
-
-class LocationImageView(ListView):
-    model = Location
-    template_name = 'account/dashboard.html'
-    context_object_name = 'locations'
-    ordering = ['-posted_date']
-    paginate_by = 2
-
-    def get_queryset(self):
-        current_user = self.request.user
-        return Location.objects.filter(user=current_user).order_by('-posted_date')
-
-
-# For the Like Button
 
 class LikeLocationView(LoginRequiredMixin, View):
-
+    """Like Button"""
     def post(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
         like, created = Like.objects.get_or_create(
