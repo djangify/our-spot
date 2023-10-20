@@ -83,7 +83,7 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "locations/edit_location.html"
     model = Location
     form_class = LocationForm
-    success_url = "locations"
+    success_url = "/locations/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -93,7 +93,7 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """Delete an Image"""
 
     model = Location
-    success_url = "locations"
+    success_url = "/locations/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
