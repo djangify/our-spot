@@ -91,6 +91,7 @@ def edit(request):
 
 # Provides a list of all members
 
+
 @login_required
 def user_list(request):
     users = User.objects.filter(is_active=True)
@@ -98,6 +99,33 @@ def user_list(request):
                   'account/user/list.html',
                   {'section': 'people',
                    'users': users})
+
+# to show photos that a user has uploaded on their profile
+
+
+@login_required
+def user_detail(request, username):
+    user = get_object_or_404(User, username=username, is_active=True)
+    locations = Location.objects.filter(user=user)
+    context = {
+      'user': user,
+      'locations': locations
+    }
+
+    return render(request, 'account/user/detail.html', context)
+
+
+# @login_required
+# def user_profile(request, username):
+#     user = User.objects.get(username=username)
+#     # You can also retrieve additional user-related information here if needed
+
+#     context = {
+#         'user': user,
+#         # Add other user-related data to the context as needed
+#     }
+
+#     return render(request, 'account/user/detail.html', context)
 
 
 # Using The Follow Button
@@ -122,29 +150,3 @@ def user_follow(request):
         except User.DoesNotExist:
             return JsonResponse({'status': 'error'})
     return JsonResponse({'status': 'error'})
-
-# to show photos that a user has uploaded on their profile
-
-@login_required
-def user_detail(request, username):
-  user = get_object_or_404(User, username=username, is_active=True)
-  locations = Location.objects.filter(user=user)
-  context = {
-      'user': user,
-      'locations': locations
-  }
-
-  return render(request, 'account/user/detail.html', context)
-
-
-@login_required
-def user_profile(request, username):
-    user = User.objects.get(username=username)
-    # You can also retrieve additional user-related information here if needed
-
-    context = {
-        'user': user,
-        # Add other user-related data to the context as needed
-    }
-
-    return render(request, 'account/user/detail.html', context)

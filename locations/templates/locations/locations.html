@@ -9,15 +9,14 @@
 
     {% for location in locations %}
     <div class="infinite-item">
-    <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{location.title}}">
-    
-        <div>
-            <img src="{{location.image.url}}" alt="{{location.image_alt}}">
-            <div>
-                <h2>{{location.title}}</h2>
-                <p>{{location.description|truncatechars:100}}</p>
-            </div>
-        </div>
+        <a href="{{ location.get_absolute_url }}" class="image-detail" aria-label="Click to view {{ location.title }}">
+        <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 75%; height: auto;">
+        </a>
+        <br>
+        <h3>{{location.title}}</h3>
+        <p>{{location.description|truncatechars:100}}</p>
+            
+    </div>
     </a>
     {% endfor %}
 </div>

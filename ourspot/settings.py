@@ -31,6 +31,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = [
     "8000-todiane-our-spot-7f88vi944l.us2.codeanyapp.com",
@@ -167,6 +168,7 @@ LOGOUT_URL = "logout"
 # EMAIL BACKEND
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+# RETURNS THE USER DETAIL URL FOR GIVEN USER
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail',
                                         args=[u.username])

@@ -124,24 +124,6 @@ ol {
     height: auto;
   }
 
-  /* Footer */
-  #social-networks {
-      text-align: center;
-      padding: 20px 0;
-      display: flex;
-      justify-content: space-evenly;
-      list-style-type: none;
-  }
-
-  #social-networks i {
-      font-size: 160%;
-      padding: 5%;
-      color: #3a3a3a;
-  }
-
-  .site-content {
-      flex: 1;
-  }
 
 /* forms */
 form {
@@ -376,4 +358,16 @@ img.user-detail {
 .action .date {
     font-style: italic;
     color: #ccc;
+}
+
+
+
+/* Media query for screens wider than 768px */
+
+
+@media (min-width: 768px) {
+    img {
+        max-width: 50%;
+        height: auto;
+    }
 }

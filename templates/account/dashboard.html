@@ -3,7 +3,7 @@
 
 
 {% block content %}
-
+<div class="container">
 <h1>Welcome to your dashboard, {{ request.user.first_name }}!</h1>
 
 
@@ -20,7 +20,7 @@
     <div class="infinite-item">
         <div id="image-list">
             <p><img src="{{location.image.url}}" class="image-detail"></p>
-            <p>{{ location.title }}  |  Posted on {{ location.posted_date }}</p>
+            <h4>{{ location.title }}  |  Posted on {{ location.posted_date }}</h4>
             <p>{{location.description|truncatechars:280}}</p>
 
             <ul>
@@ -30,7 +30,9 @@
             </ul>
         </div>
     </div>
-    <hr>
+   
+</div>
+
     {% endfor %}
 </div>
     <div class="d-flex d-none position-fixed" style="top:35vh;left:46vw">
