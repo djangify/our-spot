@@ -115,18 +115,35 @@ def user_detail(request, username):
     return render(request, 'account/user/detail.html', context)
 
 
-# @login_required
-# def user_profile(request, username):
-#     user = User.objects.get(username=username)
-#     # You can also retrieve additional user-related information here if needed
+@login_required
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+    # You can also retrieve additional user-related information here if needed
 
-#     context = {
-#         'user': user,
-#         # Add other user-related data to the context as needed
-#     }
+    context = {
+        'user': user,
+        # Add other user-related data to the context as needed
+    }
 
-#     return render(request, 'account/user/detail.html', context)
 
+@login_required
+def follow(request):
+    if request.method == 'POST':
+        follower = request.POST['follower']
+        user = request.POST['user']
+
+        if FollowersCount.objects.filter(follower=follower, user=user).first():
+            delete_follower = FollowersCount.objects.get(
+                follower=follower, user=user)
+            delete_follower.delete()
+            return redirect('/detail/'+user)
+        else:
+            new_follower = FollowersCount.objects.create(
+                follower=follower, user=user)
+            new_follower.save()
+            return redirect('/detail/'+user)
+    else:
+        return redirect('/')
 
 # Using The Follow Button
 
