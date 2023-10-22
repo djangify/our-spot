@@ -28,7 +28,8 @@ def register(request):
             new_user.save()
             # Create the user profile
             Profile.objects.create(user=new_user)
-            return render(request, "account/register_done.html", {"new_user": new_user})
+            return render(request, "account/register_done.html",
+                          {"new_user": new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request, "account/register.html", {"user_form": user_form})
@@ -71,7 +72,8 @@ def edit(request):
     if request.method == "POST":
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(
-            instance=request.user.profile, data=request.POST, files=request.FILES
+            instance=request.user.profile, data=request.POST,
+            files=request.FILES
         )
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
@@ -108,8 +110,8 @@ def user_detail(request, username):
     user = get_object_or_404(User, username=username, is_active=True)
     locations = Location.objects.filter(user=user)
     context = {
-      'user': user,
-      'locations': locations
+        'user': user,
+        'locations': locations
     }
 
     return render(request, 'account/user/detail.html', context)
@@ -146,6 +148,7 @@ def follow(request):
         return redirect('/')
 
 # Using The Follow Button
+
 
 @require_POST
 @login_required

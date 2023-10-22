@@ -5,8 +5,6 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 
-
-
 # Choice Fields
 
 LOCATION_TYPES = (
@@ -49,7 +47,7 @@ class Location(models.Model):
         return reverse("location_detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):
-       # Generate a slug based on the title
+        # Generate a slug based on the title
         if not self.slug:
             self.slug = slugify(self.title)
 

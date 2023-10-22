@@ -49,7 +49,8 @@ class LocationDetail(DetailView):
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
         # liked = False
-        # if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
+        # if request.user.is_authenticated and
+        # location.likes.filter(id=request.user.id).exists():
         #     liked = True
 
         return render(
@@ -117,6 +118,7 @@ class LocationImage(LoginRequiredMixin, TemplateView):
 
 class LikeLocationView(LoginRequiredMixin, View):
     """Like Button"""
+
     def post(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
         like, created = Like.objects.get_or_create(

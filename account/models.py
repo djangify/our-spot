@@ -26,6 +26,7 @@ class Profile(models.Model):
 
 # user relationships contact model for Follow
 
+
 class Contact(models.Model):
     user_from = models.ForeignKey('auth.User',
                                   related_name='rel_from_set',
