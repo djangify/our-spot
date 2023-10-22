@@ -1,39 +1,148 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+NEED A README AND A TESTING.MD
 
-Welcome,
+# Our Spot Social Network
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+A network of people who love to share photos of their favourite spots around the world.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+## Model Views Template (MVC) for scheduler
 
-## Codeanywhere Reminders
+<details>
+I used MVT to help define the project's requirements, features, and structure by considering the following questions
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+**Model :**
 
-`python3 -m http.server`
+- What data do we need to store in the database for this network? E.g. username, password, photo etc
+- What are the attributes of a User profile for the members?
+- What information should be associated with a location (or spot) shared by users.
+- What profile is needed to represent users and their attributes?
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+**View :**
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+- What should users see when they first visit the website (homepage)?
+- How do we display the latest locations shared by all users and by the user alone.
+- What views or pages are needed for users to register and log in?
+- How should the process to add new locations be structured in terms of user interactions and views?
+- What information should be displayed on a users profile page?
 
-`http_server`
+**Template :**
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+- What should the HTML structure of the site look like? What is the layout for the pages?
+- What should the structure and design of the user registration and login forms look like?
+- What does the users template to add, edit and delete locations look like? How should they be structured?
+- What should these templates include?
+- What should the format and style of a users profile page look like?
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+**Authorization :**
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+- How will users authentication and authorization be handled to ensure that only authorised users can add photos?
+- Do we need to integrate any third-party services for features like email notifications?
+- How will errors and validation on user input be handled?
+- What testing strategies will be employed to ensure the system functions correctly?
+- How will user acceptance testing (UAT) be handled?
 
-To log into the Heroku toolbelt CLI:
+These questions lay the groundwork for creating user stories, developing the database schema, designing templates, and implementing the necessary views and functionality within Django.
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+</details>
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Agile Terminologies
 
----
+<details>
 
-Happy coding!
+- Create backlog
+
+- Divide work into sprints
+
+- Create subset sprints
+
+- Review work - completed yesterday, to do today, any challenges
+
+- Testing - developer tool, (print) command, keep an eye on terminal/console area. 
+
+- Obtain feedback.
+
+- Maintain product backlog and prioritise items/adapt to change
+Future implementations/scalability and performance optimisation.
+</details>
+
+## EPICS and User Stories
+
+<details>
+
+Based on the MVT model above, the following EPICS and user stories were created.
+
+## Epics:
+
+***User Authentication and Registration:***
+Covering network setup up, user registration, login, and logout functionality.
+
+***User Profiles and Feeds:***
+This epic covers user profiles, creating, editing and deleting
+
+***Photo Management:***
+How users will add, edit and delete locations.
+
+***Location Detail Page:***
+This focuses on the detailed view of a specific location, including comments and likes.
+
+***User Connections:***
+The structure for following and displaying the latest activity of followed users.
+
+***Social Interaction:***
+Creating a structure for liking, commenting, and sharing locations.
+
+## Admin
+
+***Manage Accounts:***   As an administrator, I want to be able to manage user accounts, including creating, editing, and deactivating them if necessary so that my records are kept up to date.
+
+***Register to add photos:***
+ As Admin, I want users to register before being able to book addd a new photo.
+
+***Email notifications:***
+As a admin I want to set up a system so users can reset their password if they can not log in.
+
+***Create, Read, Update and Delete***
+As admin I want to be able to create, read, update and delete photos and profiles so that the admin area is kept up to date.
+
+## User
+
+***Registration and Log-In***
+As a user, I want to be able to register an account, so I can participate in Our Spot and immediately log-in.
+
+***log-In/log out***
+As a user, I want to log in and out of my account so that I can access the platform securely.
+
+***Create, Edit, cancel and delete photos:***
+As a user I want to be able to create, edit, and delete my photos so that I can stay in control of the information I share.
+
+***View User Photos:***
+As a user, I want to be able to view the photos of other users and like them [ANY OTHER ACTIVITY - COMMENT OR SAVE] As a user, I want to view detailed information about a spot when I click on it.
+
+***View User Activity***
+As a user, I want to follow other users and see their latest activity on my feed.
+As a user, I want to see who is following me and whom I'm following on my profile.
+
+***Create, Edit, cancel and delete profile:***
+As a user I want to be able to create, edit, and delete my profile so that I have an accurate record of all my personal information and activity.
+
+***View User Profile:***
+As a user, I want to be able to view my profile and latest activity so that I can keep my information up to date.
+
+***View Other Profiles:***
+As a user I want to be able to view the profiles of other users so that I can follow their activity.
+
+</details>
+
+
+**Plain Text Code Block:**
+
+```text
+function fibonacci(num, memo) {
+  memo = memo || {};
+
+  if (memo[num]) return memo[num];
+  if (num <= 1) return 1;
+
+  return memo[num] = fibonacci(num - 1, memo) + fibonacci(num - 2, memo);
+}
+```
+
