@@ -4,18 +4,52 @@
 {% block title %}Location Detail {{ object.title }}{% endblock title %}
 <!-- Code to list details of a location added by user that others can like-->
 {% block content %}
-
-        <div>
+    <div class="container">
+        <div class="photo-container">
         <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 100%; height: auto;">
         </div>
-        <div>
-            <h1>{{ location.title }}</h1>
-            <p>Posted by {{location.user}} on {{location.posted_date}}</p>
-            
-            <p>{{location.description}}</p>
-            
+    </div>
 
-    <!-- Code For Like Button taken from I think therefore I blog walkthrough -->
+    <!-- Code for Report Photo Link-->   
+   
+<div>
+    <br>
+    <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" class="text-right">Report Profile</a>
+</div>
+
+<!-- Report Profile Modal -->
+<div class="modal fade" id="report-modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Report Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" id="close-modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>To report this profile to the Admin team, click here:</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="submit-report" data-dismiss="modal">Report</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add this element for the report success message -->
+<p id="report-success-message"></p>
+
+<!-- Photo details -->
+
+    <div>
+        <h1>{{ location.title }}</h1>
+        <p>Posted by {{location.user}} on {{location.posted_date}}</p>
+    
+        <p>{{location.description}}</p>
+    </div>
+
+<!-- Code For Like Button taken from I think therefore I blog walkthrough -->
 
 <div>
     <strong>
@@ -48,5 +82,5 @@
     <a href="{% url 'delete_location' slug=location.slug %}" class="button2">Delete</a>
     </div>
 {% endif %}
-    
+    <script src="{% static 'js/report.js' %}"></script>
 {% endblock content %}
