@@ -4,17 +4,17 @@
 {% load thumbnail %}
 
 {% block title %}People{% endblock %}
-
+<!-- Contains code that shows a list of members/users -->
 {% block content %}
 <h1>People</h1>
 <div id="people-list">
 {% for user in users %}
-<div class = "user">
-<a href = "{{ user.get_absolute_url }}">
-<img src = "{{ user.profile.photo.url }}" class = "user-detail">
+<div class="user">
+<a href= "{{ user.get_absolute_url }}">
+<img src= "{{ user.profile.photo.url }}" class = "user-detail">
 </a>
 <div class = "info">
-<a href = "{{ user.get_absolute_url }}" class = "title">
+<a href= "{{ user.get_absolute_url }}" class = "title">
 {{user.get_full_name}}
 </a>
 </div>

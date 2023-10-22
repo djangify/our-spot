@@ -5,9 +5,7 @@ from django.contrib.auth import get_user_model
 from django_resized import ResizedImageField
 
 
-"""
-Database model for users profile
-"""
+# Database model for users profile
 
 
 class Profile(models.Model):

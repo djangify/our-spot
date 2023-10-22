@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Location
 
+# Displays elements in admin to add location
+
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):

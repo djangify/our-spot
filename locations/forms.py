@@ -1,9 +1,10 @@
 from django import forms
 from .models import Location
 
+# Display form for users to add a location
+
 
 class LocationForm(forms.ModelForm):
-    """Form to create a spot"""
 
     class Meta:
         model = Location

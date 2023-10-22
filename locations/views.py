@@ -21,9 +21,10 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 
+# View all images
+
 
 class Locations(ListView):
-    """View all images"""
 
     template_name = "locations/locations.html"
     model = Location
@@ -43,8 +44,10 @@ class Locations(ListView):
         return location
 
 
+# View a single location
+
+
 class LocationDetail(DetailView):
-    """View a single location"""
 
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
@@ -62,9 +65,10 @@ class LocationDetail(DetailView):
             },
         )
 
+# Add location view
+
 
 class AddLocation(LoginRequiredMixin, CreateView):
-    """Add location view"""
 
     template_name = "locations/add_location.html"
     model = Location
@@ -76,8 +80,10 @@ class AddLocation(LoginRequiredMixin, CreateView):
         return super(AddLocation, self).form_valid(form)
 
 
+# Edit a location
+
+
 class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """Edit a location"""
 
     template_name = "locations/edit_location.html"
     model = Location
@@ -87,9 +93,10 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user == self.get_object().user
 
+# Delete an Image
+
 
 class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    """Delete an Image"""
 
     model = Location
     success_url = "/locations/"
@@ -97,9 +104,10 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         return self.request.user == self.get_object().user
 
+# View user images in dashboard
+
 
 class LocationImage(LoginRequiredMixin, TemplateView):
-    """View user images in dashboard"""
 
     template_name = "account/dashboard.html"
 
@@ -115,9 +123,10 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         context["locations"] = locations
         return context
 
+# Like Button
+
 
 class LikeLocationView(LoginRequiredMixin, View):
-    """Like Button"""
 
     def post(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)

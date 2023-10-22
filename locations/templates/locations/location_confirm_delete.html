@@ -1,7 +1,12 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}Confirm Deletion Request{% endblock %}
+
+{% block content %}
 
 <h1>Confirm Your Deletion Request</h1>
-
+<!-- Message to user to confirm they want to delete a location-->
 {% block title %}Delete Spot: {{ object.title }}{% endblock title %}
 
 <div>

@@ -1,74 +1,72 @@
 {% extends "base.html" %}
 {% load static %}
 
-
+<!-- Dashboard area - users taken here after log in-->
 {% block content %}
-<div class = "container">
-<h1>Welcome to your dashboard, {{request.user.first_name}}!</h1>
+<div class="container">
+    <h1>Welcome to your dashboard, {{request.user.first_name}}!</h1>
 
 
-<div id="image-list">
-<h6><a href="{{ user.get_absolute_url }}" class = "button2">View Your Profile
-</a>
-<a href="{% url 'edit' %}" class = "button2">SETUP/Edit Your Profile</a>
-<a href="{% url 'password_change' %}" class = "button2">Change Your
-Password</a></h6>
-</div>
+    <div id="image-list">
+        <h6><a href="{{ user.get_absolute_url }}" class="button2">View Your Profile
+            </a>
+            <a href="{% url 'edit' %}" class="button2">SETUP/Edit Your Profile</a>
+            <a href="{% url 'password_change' %}" class="button2">Change Your
+                Password</a>
+        </h6>
+    </div>
+    <!-- Shows the total number of locations added by user. Uses infinite scroll-->
+    <h2> You have shared {{locations.count | default_if_none:"0"}} spot(s). </h2>
+    <div class="row infinite-container">
+        {% for location in page_obj %}
+        <div class="infinite-item">
+            <div id="image-list">
+                <p><img src="{{location.image.url}}" class="image-detail"></p>
+                <h4>{{location.title}} | Posted on {{location.posted_date}}
+                </h4>
+                <p>{{location.description | truncatechars:280}}</p>
 
-<h2> You have shared {{locations.count | default_if_none: "0"}} spot(s). </h2>
-<div class = "row infinite-container">
-{% for location in page_obj %}
-<div class = "infinite-item">
-<div id = "image-list">
-<p><img src = "{{location.image.url}}" class = "image-detail"></p>
-<h4>{{location.title}} | Posted on {{location.posted_date}}
-</h4>
-<p>{{location.description | truncatechars: 280}}</p>
+                <ul>
+                    <a href="{% url 'location_detail' slug=location.slug %}" class="button2">View</a>
+                    <a href="{% url 'edit_location' slug=location.slug %}" class="button2">Edit</a>
+                    <a href="{% url 'delete_location' slug=location.slug %}" class="button2">Delete</a>
+                </ul>
 
-<ul>
-<a href="{% url 'location_detail' slug = location.slug %}"
-class = "button2">View</a>
-<a href = "{% url 'edit_location' slug = location.slug %}"
-class = "button2">Edit</a>
-<a href = "{% url 'delete_location' slug = location.slug %}"
-class = "button2">Delete</a>
-</ul>
-
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
+<!-- Script for infinite scroll-->
+<div class="d-flex d-none position-fixed" style="top:35vh;left:46vw">
+    <button class="btn btn-primary loading">
+        <span class="spinner-border spinner-border-sm"></span>
+        Please wait...
+    </button>
 </div>
-</div>
-
-{% endfor %}
-</div>
-<div class = "d-flex d-none position-fixed" style="top:35vh;left:46vw">
-<button class = "btn btn-primary loading">
-<span class = "spinner-border spinner-border-sm"></span>
-Please wait...
-</button>
-</div>
-<div class = "row">
-<div class = "col-12">
-{% if page_obj.has_next %}
-<a class = "infinite-more-link" href="?page={{ page_obj.next_page_number }}">
-next</a>
-{% endif %}
-</div>
+<div class="row">
+    <div class="col-12">
+        {% if page_obj.has_next %}
+        <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">
+            next</a>
+        {% endif %}
+    </div>
 </div>
 
 <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/infinite.min.js' %}"></script>
 
 <script>
-var infinite = new Waypoint.Infinite({
+    var infinite = new Waypoint.Infinite({
         element: $('.infinite-container')[0],
 
         offset: 'bottom-in-view',
 
-        onBeforePageLoad: function(){
-            $('.loading').show()
+        onBeforePageLoad: function () {
+            $('.loading').show();
         },
-        onAfterPageLoad: function(){
-            $('.loading').hide()
+        onAfterPageLoad: function () {
+            $('.loading').hide();
         }
 
     })

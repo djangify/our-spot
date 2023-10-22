@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% load thumbnail %}
-
+<!-- Contains code that is added to each users profile-->
 {% block title %}{{user.get_full_name}}{% endblock %}
 
 {% block content %}
 
 <h1>{{user.get_full_name}}</h1>
 
-<div class = "profile-info">
-<img src = "{{ user.profile.photo.url }}" class = "user-detail">
+<div class="profile-info"> 
+<img src="{{ user.profile.photo.url }}" class="user-detail">
 </div>
 {% with total_followers=user.followers.count %}
-<span class = "count">
-<span class = "total">{{total_followers}}</span>
-follower{{total_followers | pluralize}}
+<span class="count">
+<span class="total">{{total_followers}}</span>
+follower{{total_followers|pluralize}}
 </span>
-<a href="#" data-id = "{{ user.id }}" data-action =
+<a href="#" data-id="{{ user.id }}" data-action=
 "{% if request.user in user.followers.all %}un{% endif %}follow"
 cla="follow button">
 {% if request.user not in user.followers.all %}
@@ -25,20 +25,20 @@ Unfollow
 {% endif %}
 </a>
 {% endwith %}
-
-<div class = "container">
+<!-- List of users added locations are included -->
+<div class="container">
 <h2>Recent Spots</h2>
-<div class = "row infinite-container">
+<div class="row infinite-container">
 {% for location in locations %}
-<div class = "infinite-item">
-<a href= "{{ location.get_absolute_url }}" class = "image-detail"
-aria-label = "Click to view {{ location.title }}">
-<img src = "{{ location.image.url }}" alt = "{{ location.image_alt }}"
-style = "max-width: 75%; height: auto;">
+<div class="infinite-item">
+<a href="{{ location.get_absolute_url }}" class="image-detail"
+aria-label="Click to view {{ location.title }}">
+<img src="{{ location.image.url }}" alt="{{ location.image_alt }}"
+style="max-width: 75%; height: auto;">
 </a>
 <br>
 <h3>{{location.title}}</h3>
-<p> {{location.description | truncatechars: 100}} </p>
+<p>{{location.description|truncatechars:100}}</p>
 </div>
 </a>
 {% endfor %}

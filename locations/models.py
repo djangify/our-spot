@@ -18,11 +18,10 @@ LOCATION_TYPES = (
     ("oceanic", "Oceanic"),
 )
 
+# A model to create and manage shared locations
+
 
 class Location(models.Model):
-    """
-    A model to create and manage shared locations
-    """
 
     user = models.ForeignKey(
         User, related_name="location_owner", on_delete=models.CASCADE
@@ -52,6 +51,8 @@ class Location(models.Model):
             self.slug = slugify(self.title)
 
         super(Location, self).save(*args, **kwargs)
+
+# A model for Like button
 
 
 class Like(models.Model):

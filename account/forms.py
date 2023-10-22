@@ -2,10 +2,14 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
 
+# Form to Log In
+
 
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+# Form to Register
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -30,6 +34,8 @@ class UserRegistrationForm(forms.ModelForm):
                 raise forms.ValidationError("Email already in use.")
         return data
 
+# Edit registration details
+
 
 class UserEditForm(forms.ModelForm):
     class Meta:
@@ -42,6 +48,8 @@ class UserEditForm(forms.ModelForm):
         if qs.exists():
             raise forms.ValidationError("Email already in use.")
         return data
+
+# Edit Profile Form
 
 
 class ProfileEditForm(forms.ModelForm):

@@ -15,7 +15,7 @@ class Index(ListView):
     def get_queryset(self):
         return self.model.objects.all()[:7]
 
-# Tells user how many uploads they have and lists them
+# Tells user how many uploads they have  
 
 
 class HomePageImage(TemplateView):
