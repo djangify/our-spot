@@ -18,8 +18,8 @@ closeBtn.addEventListener("click", function() {
 });
 
 // Handle the reporting process when the "Report" button is clicked
-submitReportBtn.addEventListener("click", function() {
-    reportSuccessMessage.textContent = "Thank you for working towards keeping the community safe. Admin will review this and get in touch with the person involved.";
+submitReportBtn.addEventListener("click", function () {
+    reportSuccessMessage.textContent = "Report received. Admin will review and follow up.";
 });
 
 // Close the report modal when the background is clicked
