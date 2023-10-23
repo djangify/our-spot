@@ -100,16 +100,16 @@ WSGI_APPLICATION = "ourspot.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'locations',
-        'USER': 'locations',
-        'PASSWORD': 'Th340fus',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'locations',
+#         'USER': 'locations',
+#         'PASSWORD': 'Th340fus',
+#     }
+# }
 
-# DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
