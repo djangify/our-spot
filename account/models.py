@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django_resized import ResizedImageField
+from cloudinary.models import CloudinaryField
 
 
 # Database model for users profile
@@ -11,13 +11,7 @@ from django_resized import ResizedImageField
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
-    photo = ResizedImageField(
-        size=[300, 300],
-        quality=75,
-        upload_to="account/",
-        force_format="WEBP",
-        blank=True,
-    )
+    photo = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
         return f'Profile of {self.user.username}'
