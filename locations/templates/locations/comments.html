@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+
 {% load static %}
 
 {% block title %}Comments{% endblock title %}
@@ -22,9 +22,9 @@
         <button type="submit">Add Comment</button>
     </form>
 </div>
-
+ 
 <!-- Add tags section -->
-<div>
+<!-- <div>
     <h2>Tags</h2>
     <ul>
         {% for tag in tags %}
@@ -32,13 +32,13 @@
         {% empty %}
             <li>No tags yet.</li>
         {% endfor %}
-    </ul>
+    </ul> -->
 
-    <form method="post" action="">
+    <!-- <form method="post" action="">
         {% csrf_token %}
         {{ tag_form.as_p }}
         <button type="submit">Add Tag</button>
     </form>
-</div>
+</div> -->
 
 {% endblock content %}

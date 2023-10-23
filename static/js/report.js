@@ -19,7 +19,7 @@ closeBtn.addEventListener("click", function() {
 
 // Handle the reporting process when the "Report" button is clicked
 submitReportBtn.addEventListener("click", function () {
-    reportSuccessMessage.textContent = "Report received. Admin will review and follow up.";
+    reportSuccessMessage.textContent = "REPORT RECEIVED: Admin will review and follow up.";
 });
 
 // Close the report modal when the background is clicked
