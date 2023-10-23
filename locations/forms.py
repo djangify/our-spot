@@ -1,3 +1,4 @@
+from .models import Comment, Tag
 from django import forms
 from .models import Location
 
@@ -27,3 +28,17 @@ class LocationForm(forms.ModelForm):
             "image_alt": "Describe Image",
             "location_types": "Choose Location",
         }
+
+# forms.py
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['text']
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['name']

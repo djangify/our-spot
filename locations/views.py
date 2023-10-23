@@ -12,14 +12,15 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Location, Like
-from .forms import LocationForm
+from .forms import LocationForm, CommentForm, TagForm
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from django.urls import reverse
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
+from .models import Location
+
 
 # View all images
 
@@ -44,26 +45,44 @@ class Locations(ListView):
         return location
 
 
-# View a single location
+# View a single location. Includes comment and tag submission
 
 
 class LocationDetail(DetailView):
+    model = Location
+    template_name = "locations/location_detail.html"
+    context_object_name = "location"
 
-    def get(self, request, slug, *args, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = self.object.comments.all()
+        context['tags'] = self.object.tags.all()
+        context['comment_form'] = CommentForm()
+        context['tag_form'] = TagForm()
+        return context
+
+    # Handle comment form submission
+    def post(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
-        # liked = False
-        # if request.user.is_authenticated and
-        # location.likes.filter(id=request.user.id).exists():
-        #     liked = True
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.location = location
+            new_comment.save()
+            # Redirect to the same location detail page after adding a comment
+            return self.get(request, slug=slug)
 
-        return render(
-            request,
-            "locations/location_detail.html",
-            {
-                "location": location,
-                # "liked": liked
-            },
-        )
+        # Handle tag form submission (you can do the same as above)
+
+        return render(request, self.template_name, {
+            'location': location,
+            'comments': location.comments.all(),
+            'tags': location.tags.all(),
+            'comment_form': comment_form,
+            'tag_form': tag_form,
+        })
+
 
 # Add location view
 
@@ -137,3 +156,4 @@ class LikeLocationView(LoginRequiredMixin, View):
             like.delete()
 
         return HttpResponseRedirect(reverse('location_detail', args=[slug]))
+

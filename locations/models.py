@@ -52,7 +52,7 @@ class Location(models.Model):
 
         super(Location, self).save(*args, **kwargs)
 
-# A model for Like button
+# Like button
 
 
 class Like(models.Model):
@@ -61,3 +61,18 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user.username} likes {self.location.title}"
+
+# Comments box
+
+
+class Comment(models.Model):
+    location = models.ForeignKey(
+        Location, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Tag(models.Model):
+    location = models.ManyToManyField(Location, related_name='tags')
+    name = models.CharField(max_length=255)

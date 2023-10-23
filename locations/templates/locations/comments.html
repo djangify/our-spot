@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Comments{% endblock title %}
+
+{% block content %}
+
+<!-- Add comments section -->
+<div>
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.user.username }}: {{ comment.text }}</li>
+        {% empty %}
+            <li>No comments yet.</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Add Comment</button>
+    </form>
+</div>
+
+<!-- Add tags section -->
+<div>
+    <h2>Tags</h2>
+    <ul>
+        {% for tag in tags %}
+            <li>{{ tag.name }}</li>
+        {% empty %}
+            <li>No tags yet.</li>
+        {% endfor %}
+    </ul>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ tag_form.as_p }}
+        <button type="submit">Add Tag</button>
+    </form>
+</div>
+
+{% endblock content %}
