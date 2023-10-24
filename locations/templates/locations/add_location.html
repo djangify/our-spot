@@ -4,10 +4,11 @@
 {% block title %}Add Location{% endblock title %}
 
 {% block content %}
+<div class="container">
 <!-- Users can add new locations-->
 <h1>Add Your Spot</h1>
 
-<div class="container">
+
     <form method="POST" enctype="multipart/form-data" class="p-2 form">
         {% csrf_token %}
         {{ form.media }}

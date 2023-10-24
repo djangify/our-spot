@@ -17,14 +17,9 @@
         <div id="header">
         <a href="{% url 'home' %}"> <span class="logo">Our Spot</a></span>
 
-
-
         <!-- Navigation bar -->
         {% if request.user.is_authenticated %}
-        <!-- <input type="checkbox" id="nav-toggle" name="nav-toggle" />
-        <label for="nav-toggle" class="nav-toggle-label">
-            <i class="fa-solid fa-bars"></i>
-        </label> -->
+   
         <nav>
             <ul class="menu">
                 <li {% if section == "dashboard" %}class="selected" {% endif %}>

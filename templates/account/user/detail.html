@@ -23,20 +23,25 @@
 <!--Follow button / number of followers-->
 
     {% with total_followers=user.followers.count %}
-    <span class="count">
-    <span class="total">{{total_followers}}</span>
+    <!-- <span class="count"> -->
+    <!-- <span class="total"> -->
+        <div class="m-3 p-3 rounded-pill border border-5">
+            {{total_followers}}</span>
     follower{{total_followers|pluralize}}
-    </span>
+        </div>
 
     <a href="#" data-id="{{ user.id }}" data-action=
     "{% if request.user in user.followers.all %}un{% endif %}follow"
     cla="follow button">
     {% if request.user not in user.followers.all %}
+    <div class="btn btn-outline-primary">
     Follow
+    </div>
     {% else %}
         Unfollow
         {% endif %}
     </a>
+
 {% endwith %}
 
 

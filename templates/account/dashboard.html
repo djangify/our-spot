@@ -3,7 +3,7 @@
 
 <!-- Dashboard area - users taken here after log in-->
 {% block content %}
-<div class="container">
+<!-- <div class="container"> -->
     <h1>Welcome to your dashboard, {{request.user.first_name}}!</h1>
 
 
@@ -36,7 +36,7 @@
         </div>
     </div>
     {% endfor %}
-</div>
+<!-- </div> -->
 <!-- Script for infinite scroll-->
 <div class="d-flex d-none position-fixed" style="top:35vh;left:46vw">
     <button class="btn btn-primary loading">
