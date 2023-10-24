@@ -3,23 +3,25 @@
 
 {% block title %}Locations{% endblock title %}
 <!-- Code to list all the locations added by all users-->
-{% block content %}
-<div class="container">
-<h1>Recent Spots</h1>
-<div class="row infinite-container">
 
-    {% for location in locations %}
-    <div class="infinite-item">
-        <a href="{{ location.get_absolute_url }}" class="image-detail" aria-label="Click to view {{ location.title }}">
-        <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 75%; height: auto;">
-        </a>
-        <br>
-        <h3>{{location.title}}</h3>
-        <p>{{location.description|truncatechars:100}}</p>
+{% block content %}
+
+<div class="container my-5">
+    <h1>Recent Spots</h1>
+    <div class="row infinite-container">
+
+        {% for location in locations %}
+        <div class="infinite-item">
+            <a href="{{ location.get_absolute_url }}"  aria-label="Click to view {{ location.title }}">
+            <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 75%; height: auto;">
+            </a>
             
+            <h3>{{location.title}}</h3>
+            <p>{{location.description|truncatechars:100}}</p>
+                
+        </div>
+        </a>
     </div>
-    </a>
-</div>
     {% endfor %}
 </div>
 

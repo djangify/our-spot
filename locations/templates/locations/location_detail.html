@@ -3,88 +3,94 @@
 
 {% block title %}Location Detail {{ object.title }}{% endblock title %}
 <!-- Code to list details of a location added by user that others can like-->
+
 {% block content %}
-    <div class="container">
+<div class="container my-5">
         <div class="photo-container">
         <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 100%; height: auto;">
         </div>
-    </div>
+    
 
     <!-- Code for Report Photo Link-->   
    
-<div>
-    <br>
-    <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" class="text-right">Report Profile</a>
-</div>
+    <div>
+        <br>
+        <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" class="text-end">Report Photo</a>
+    </div>
 
-<!-- Report Profile Modal -->
-<div class="modal fade" id="report-modal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Report Profile</h5>
-                <button type="button" class="close" data-dismiss="modal" id="close-modal">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>To report this profile to the Admin team, click here:</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="submit-report" data-dismiss="modal">Report</button>
+    <!-- Report Profile Modal -->
+        <div class="modal fade" id="report-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Report Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" id="close-modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>To report this profile to the Admin team, click here:</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="submit-report" data-dismiss="modal">Report</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Add this element for the report success message -->
-<p id="report-success-message"></p>
+        <!-- Add this element for the report success message -->
+        <p id="report-success-message"></p>
 
-<!-- Photo details -->
+    <!-- Photo details -->
+
+        <div>
+            <h1>{{ location.title }}</h1>
+            <p>Posted by {{location.user}} on {{location.posted_date}}</p>
+        
+            <p>{{location.description}}</p>
+        </div>
+
+    <!-- Code For Like Button taken from I think therefore I blog walkthrough -->
 
     <div>
-        <h1>{{ location.title }}</h1>
-        <p>Posted by {{location.user}} on {{location.posted_date}}</p>
-    
-        <p>{{location.description}}</p>
-    </div>
-
-<!-- Code For Like Button taken from I think therefore I blog walkthrough -->
-
-<div>
-    <strong>
-        {% if user.is_authenticated %}
-        <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
-            {% csrf_token %}
-            {% if request.user in location.like_set.all %}
-            <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
-                    class="fa-duotone fa-heart"></i></button>
+        <strong>
+            {% if user.is_authenticated %}
+            <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
+                {% csrf_token %}
+                {% if request.user in location.like_set.all %}
+                <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
+                        class="fa-duotone fa-heart"></i></button>
+                {% else %}
+                <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
+                        class="fa-regular fa-heart"></i></button>
+                {% endif %}
+            </form>
             {% else %}
-            <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
-                    class="fa-regular fa-heart"></i></button>
+            <span class="text-secondary"><i class="far fa-heart"></i></span>
             {% endif %}
-        </form>
-        {% else %}
-        <span class="text-secondary"><i class="far fa-heart"></i></span>
-        {% endif %}
-        <span class="text-secondary">{{ location.like_set.count }} </span>
-    </strong>
-</div>
-    <br>
+            <span class="text-secondary">{{ location.like_set.count }} </span>
+        </strong>
+    </div>
+        <br>
 
-<!-- Code to include comment box and tags -->
+    <!-- Code to include comment box and tags -->
 
-    {% include 'locations/comments.html' %}
+        {% include 'locations/comments.html' %}
 
-<!-- Code for edit and delete image button -->
+    <!-- Code for edit and delete image button -->
+        <div class="container my-5 my-3">
             
-{% if request.user == location.user %}
-    <div class="button2">
-    <a href="{% url 'edit_location' slug=location.slug %}" class="button2">Edit</a>
-    </div>
-    <div class="button2">
-    <a href="{% url 'delete_location' slug=location.slug %}" class="button2">Delete</a>
-    </div>
-{% endif %}
-    <script src="{% static 'js/report.js' %}"></script>
-{% endblock content %}
+            {% if request.user == location.user %}
+            <p class="m-3 p-3 border-start border-danger"> Edit or Delete This Photo</p>
+            <div class="btn btn-outline-dark ms-4 mx-2 px-3">
+            <a href="{% url 'edit_location' slug=location.slug %}">Edit</a>
+            </div>
+            <div class="btn btn-outline-dark mx-3 px-3">
+            <a href="{% url 'delete_location' slug=location.slug %}">Delete</a>
+            </div>
+            
+        </div>
+</div>
+    {% endif %}
+        <script src="{% static 'js/report.js' %}"></script>
+    {% endblock content %}

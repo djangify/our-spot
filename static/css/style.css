@@ -137,14 +137,14 @@ a.button {
     text-transform: uppercase;
 }
 
-.button2 {
+/* .button2 {
     background-color: #F2F2F2;
     color: #333;
     display: inline-block;
     margin: 2px 1px;
     cursor: pointer;
     padding: 5px 20px;
-}
+} */
 
 .errorlist {
     color: #cc0033;
@@ -285,19 +285,19 @@ a.follow {
 
 
 /* users */
-/* #people-list img {
-    width: 180px; */
-    /* height: 180px; */
-    /* border-radius: 50%;
+ /* #people-list img {
+    width: 180px; 
+    height: 180px; 
+    border-radius: 50%;
     margin-bottom: 20px;
-}
-
-#people-list .user {
-    width: 180px;
-    float: left; */
-    /* overflow: auto; */
-    /* padding: 10px;
 } */
+
+/* #people-list .user {
+    width: 180px;
+    float: left;
+    overflow: auto;
+    padding: 10px;
+}  */
 
 /* #people-list .info {
     text-align: center;
@@ -312,22 +312,19 @@ img.user-detail {
     float: left;
     overflow: auto;
     margin-right: 20px;
-}
-
-.image-container {
-    margin-top: 40px;
 } */
 
-
-
+/* .image-container {
+    margin-top: 40px;
+} */
 
 
 /* Media query for screens wider than 768px */
 
 
-/* @media (min-width: 768px) {
-    img {
+@media (min-width: 768px) {
+    image {
         max-width: 50%;
         height: auto;
     }
-} */
+}

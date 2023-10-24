@@ -3,40 +3,40 @@
 
 <!-- Dashboard area - users taken here after log in-->
 {% block content %}
-<!-- <div class="container"> -->
+<div class="container my-5">
     <h1>Welcome to your dashboard, {{request.user.first_name}}!</h1>
 
-
-    <div id="image-list">
-        <h6><a href="{{ user.get_absolute_url }}" class="button2">View Your Profile
+    <div>
+        <ul>
+            <a href="{{ user.get_absolute_url }}" class="btn btn-outline-dark">View Your Profile
             </a>
-            <a href="{% url 'edit' %}" class="button2">SETUP/Edit Your Profile</a>
-            <a href="{% url 'password_change' %}" class="button2">Change Your
+            <a href="{% url 'edit' %}" class="btn btn-outline-dark">SETUP/Edit Your Profile</a>
+            <a href="{% url 'password_change' %}" class="btn btn-outline-dark">Change Your
                 Password</a>
-        </h6>
+        </ul>
     </div>
+
+    <h2 class="display-6"> You have shared {{locations.count | default_if_none:"0"}} spot(s). </h2>
+
     <!-- Shows the total number of locations added by user. Uses infinite scroll-->
-    <h2> You have shared {{locations.count | default_if_none:"0"}} spot(s). </h2>
+    
     <div class="row infinite-container">
-        {% for location in page_obj %}
+         {% for location in page_obj %}
         <div class="infinite-item">
-            <div id="image-list">
-                <p><img src="{{location.image.url}}" class="image-detail"></p>
-                <h4>{{location.title}} | Posted on {{location.posted_date}}
-                </h4>
-                <p>{{location.description | truncatechars:280}}</p>
-
-                <ul>
-                    <a href="{% url 'location_detail' slug=location.slug %}" class="button2">View</a>
-                    <a href="{% url 'edit_location' slug=location.slug %}" class="button2">Edit</a>
-                    <a href="{% url 'delete_location' slug=location.slug %}" class="button2">Delete</a>
-                </ul>
-
+            <p><img src="{{location.image.url}}" alt="{{ location.image_alt }}" class="img-fluid"></p>
+            {{location.title}} | Posted on {{location.posted_date}}
+        
+            <p>{{location.description | truncatechars:280}}</p>
+            <div class="container py-3">
+                    <a href="{% url 'location_detail' slug=location.slug %}" class="btn btn-outline-dark">View</a>
+                    <a href="{% url 'edit_location' slug=location.slug %}" class="btn btn-outline-dark">Edit</a>
+                    <a href="{% url 'delete_location' slug=location.slug %}" class="btn btn-outline-dark">Delete</a>
             </div>
         </div>
     </div>
-    {% endfor %}
-<!-- </div> -->
+        {% endfor %}
+</div>
+
 <!-- Script for infinite scroll-->
 <div class="d-flex d-none position-fixed" style="top:35vh;left:46vw">
     <button class="btn btn-primary loading">

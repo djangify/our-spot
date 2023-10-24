@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 <!-- Code for page shown once user has registered successfully-->
+
 {% block title %}Welcome {{new_user.first_name}}{% endblock %}
 
-{% block content %}
-<h1>Welcome {{new_user.first_name}}!</h1>
-<p>
-Your account has been successfully created.
-Now you can <a href = "{% url 'login' %}"> log in </a>.
-</p>
-{% endblock %}
+    {% block content %}
+<div class="container my-5">
+    <h1>Welcome {{new_user.first_name}}!</h1>
+    <p>
+    Your account has been successfully created.
+    Now you can <a href = "{% url 'login' %}"> log in </a>.
+    </p>
+    {% endblock %}
+</div>

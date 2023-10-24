@@ -4,17 +4,18 @@
 {% block title %}Confirm Deletion Request{% endblock %}
 
 {% block content %}
+<div class="container my-5">
+    <h1>Confirm Your Deletion Request</h1>
+    <!-- Message to user to confirm they want to delete a location-->
 
-<h1>Confirm Your Deletion Request</h1>
-<!-- Message to user to confirm they want to delete a location-->
-{% block title %}Delete Spot: {{ object.title }}{% endblock title %}
+    <p>Delete Spot: {{ object.title }}</p>
 
-<div>
-  <form method="post">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{object.title}}"?</p>
-    <input type="submit" value="Confirm" />
-  </form>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{object.title}}"?</p>
+            <input type="submit" value="Confirm" />
+        </form>
+    </div>
 </div>
-
 {% endblock content %}

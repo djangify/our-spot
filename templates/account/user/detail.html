@@ -6,26 +6,26 @@
 {% block title %}{{user.get_full_name}}{% endblock %}
 
 {% block content %}
+<div class="container my-5">
+    <h1>{{user.get_full_name}}</h1>
 
-<h1>{{user.get_full_name}}</h1>
+    <div class="rounded d-block">
+        <img src="{{ user.profile.photo.url }}" alt="{{ profile.photo_alt }}">
+    </div>
 
-<div class="photo-container">
-    <img src="{{ user.profile.photo.url }}">
-</div>
+    <!--Link to report a profile-->
 
-<!--Link to report a profile-->
-
-<div>
-    <br>
-    <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" class="text-right">Report Profile</a>
-</div>
+    <div>
+        <br>
+        <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" class="text-right">Report Profile</a>
+    </div>
 
 <!--Follow button / number of followers-->
 
     {% with total_followers=user.followers.count %}
     <!-- <span class="count"> -->
     <!-- <span class="total"> -->
-        <div class="m-3 p-3 rounded-pill border border-5">
+        <div class="p-3 rounded-pill border border-5 btn btn-sm">
             {{total_followers}}</span>
     follower{{total_followers|pluralize}}
         </div>
@@ -34,14 +34,14 @@
     "{% if request.user in user.followers.all %}un{% endif %}follow"
     cla="follow button">
     {% if request.user not in user.followers.all %}
-    <div class="btn btn-outline-primary">
+    <div class="m-3 p-3 rounded-pill border border-5 btn btn-sm">
     Follow
     </div>
     {% else %}
         Unfollow
         {% endif %}
     </a>
-
+</div>
 {% endwith %}
 
 

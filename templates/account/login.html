@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 
-<!-- Code for log-in page-->
-{% block title %} Log-In {% endblock %}
+<!-- Code for log-in page - is this extra???? The title on this one is
+You can log-in here so you know which one is being used.-->
 
-{% block content %}
-<div class="container">
-    <h1> Log-In </h1>
-    <form method="post">
-    {{form.as_p}} {% csrf_token %}
-    <p><input type = "submit" value= "Log in" /></p>
-    </form>
+{% block title %} Log-In {% endblock %}
+<div class="container my-5">
+    {% block content %}
+    <div class="container">
+        <h1> You Can Log-In Here</h1>
+        <form method="post">
+        {{form.as_p}} {% csrf_token %}
+        <p><input type = "submit" value= "Log in" /></p>
+        </form>
+    </div>
 </div>
 {% endblock %}
