@@ -9,11 +9,11 @@
             <!-- Navigation bar -->
                     {% if request.user.is_authenticated %}
             <!-- Add the toggler button for small screens -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"> -->
+                <!-- <span class="navbar-toggler-icon"></span>
+            </button> -->
             
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- <div class="collapse navbar-collapse" id="navbarNav"> -->
                 <ul class="navbar-nav">
                     <li class="list-inline-item {% if section == 'dashboard' %}selected{% endif %}">
                         <a href="{% url 'dashboard' %}">My dashboard</a>
