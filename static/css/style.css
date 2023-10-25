@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: helvetica, sans-serif;
+    font-family: Muli, sans-serif;
 } 
 
  
@@ -12,7 +12,7 @@ p {
 }
 
 a {
-    color: #ac6076;
+    color: #28a745;
     text-decoration: none;
 }
 
@@ -20,17 +20,17 @@ a:hover {
     color: #ac6076;
 }
 
-h1,
+/* h1,
 h2,
-h3, */
+h3, 
 h4,
 h5,
 h6 {
     font-family: 'Muli', sans-serif;
     font-weight: normal;
-}
+} */
 
-h1 {
+/* h1 {
     border-bottom: 1px solid #bbb;
     padding: 0 0 10px 0;
     margin: 10px 0 20px 0;
@@ -42,7 +42,19 @@ h2 {
 
 ol {
     line-height: 1.5;
-} 
+}  */
+/* Navigation bar and logo*/
+
+.logo {
+    font-family: 'Muli', sans-serif;
+    float: left;
+    color: #262626;
+    font-size: large;
+    font-weight: bolder;
+    margin-right: 10%;
+    text-decoration: none;
+}
+
 
 #header {
     padding: 10px 100px;
@@ -52,14 +64,7 @@ ol {
     overflow: auto;
 }
 
-#header .logo {
-    font-family: 'Muli', sans-serif;
-    float: left;
-    color: #262626;
-    font-size: large;
-    /* font-weight: bolder; */
-    margin-right: 10%;
-}
+
 
  #header ul.menu {
     list-style: none;
@@ -75,7 +80,7 @@ ol {
 
 #header ul.menu li.selected a,
 #header ul.menu li.selected a:hover {
-    color: #ac6076;
+    color: #28a745;
     font-weight: bold;
 }
 
@@ -84,13 +89,13 @@ ol {
 }
 
 #header a:hover {
-    color: #894c5e;
+    color: #28a745;
 }
 
 #header .user {
     float: right;
     padding-top: 4px;
-}
+} 
 
 
 /* #content {

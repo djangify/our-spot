@@ -1,52 +1,45 @@
+{% extends "base.html" %}
 {% load static %}
-<!-- Header html and css-->
-{% block extra_css %}
 
-<!-- Bootstrap CSS link -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
-    integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-<!-- Font Awesome link -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-<!-- css style link -->
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
+<header id="header">
+    <div class="container py-3">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <a href="{% url 'home' %}" class="logo">Our Spot</a>
 
-<header class ="site">
-        <!-- Logo Text -->
-        <div id="header">
-        <a href="{% url 'home' %}"> <span class="logo">Our Spot</a></span>
+            <!-- Navigation bar -->
+                    {% if request.user.is_authenticated %}
+            <!-- Add the toggler button for small screens -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="list-inline-item {% if section == 'dashboard' %}selected{% endif %}">
+                        <a href="{% url 'dashboard' %}">My dashboard</a>
+                    </li>
+                    <li class="list-inline-item {% if section == 'locations' %}selected{% endif %}">
+                        <a href="{% url 'locations' %}">New Spots</a>
+                    </li>
+                    <li class="list-inline-item {% if section == 'add_location' %}selected{% endif %}">
+                        <a href="{% url 'add_location' %}">Add A Spot</a>
+                    </li>
+                    <li class="list-inline-item {% if section == 'people' %}selected{% endif %}">
+                        <a href="{% url 'user_list' %}">People</a>
+                    </li>
+                </ul>
+                    {% endif%}
 
-        <!-- Navigation bar -->
-        {% if request.user.is_authenticated %}
-   
-        <nav>
-            <ul class="menu">
-                <li {% if section == "dashboard" %}class="selected" {% endif %}>
-                    <a href="{% url 'dashboard' %}">My dashboard</a>
-                </li>
-                <li {% if section == "locations" %}class="selected" {% endif %}>
-                    <a href="{% url 'locations' %}">New Spots</a>
-                </li>
-                <li {% if section == "add_location" %}class="selected" {% endif %}>
-                    <a href="{% url 'add_location' %}">Add A Spot</a>
-                </li>
-                <li {% if section == "people" %}class="selected" {% endif %}>
-                    <a href="{% url 'user_list' %}">People</a>
-                </li>
-            </ul>
+                <span class="user">
+                    {% if request.user.is_authenticated %}
+                    Hello {{ request.user.first_name|default:request.user.username }},
+                    <a href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                    <a href="{% url 'login' %}">Log-in</a>
+                    {% endif %}
+                </span>
+            </div>
         </nav>
-        {% endif %}
-
-        <!-- Login and Logout Section -->
-        <span class="user">
-            {% if request.user.is_authenticated %}
-            Hello {{ request.user.first_name|default:request.user.username }},
-            <a href="{% url 'logout' %}">Logout</a>
-            {% else %}
-            <a href="{% url 'login' %}">Log-in</a>
-            {% endif %}
-        </span>
     </div>
 
     <!-- Messages shown to users -->
@@ -61,4 +54,6 @@
     </ul>
     {% endif %}
 
+
+    
 </header>
