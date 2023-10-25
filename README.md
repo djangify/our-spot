@@ -1,8 +1,43 @@
 NEED A README AND A TESTING.MD
 
+Project Purpose 
+
+Project Objectives and Outcomes
+  - Model
+  - Agile Terminologies
+
+EPICS and User Stories
+
 # Our Spot Social Network
 
 A network of people who love to share photos of their favourite spots around the world.
+
+## Project Purpose:
+
+This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
+
+## Project Objectives and Outcomes
+<details>
+Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing the site also provides an opportunity to connect with other members and fosters friendship.
+
+The key objectives of the project include:
+
+- Providing a user-centric experience that encourages sharing and interaction through an intuitive easy to use interface.
+
+- Offering a dedicated space for anyone looking to contribute photos of their favourite spot including local parks, open spaces and hangouts, with an opportunity to share what there is to do and why they love it.
+
+- An opportunity for people to engage and interact with each other through comments, fostering connecting and opening dialogue. Profiles are provided for each member that can be followed by other members.
+
+- Building a database-backed MVC web application that lets users store and manipulate data records including the ability to create, edit and delete. 
+
+- Giving users the ability to initiate and control their actions while providing immediate and complete feedback on data processes.
+
+- A place where administrators of the project have a panel that allows them to monitor users and the information they share as well as the comments they make, to ensure the community is kept safe and the environment is not abused.
+
+The end result has been a user-friendly photo sharing network that has been encouraged and informed through user research and engagement.
+
+</details>
+
 
 ## Model Views Template (MVC) for scheduler
 

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
 from django.utils.text import slugify
+from django_resized import ResizedImageField
 
 
 # Choice Fields
@@ -69,7 +70,13 @@ class Comment(models.Model):
     location = models.ForeignKey(
         Location, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    photo = CloudinaryField('image', default='placeholder')
+    photo = ResizedImageField(
+        size=[40, 40],
+        quality=75,
+        upload_to="account/",
+        force_format="WEBP",
+        blank=False,
+    )
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

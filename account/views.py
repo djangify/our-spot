@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
@@ -135,19 +136,7 @@ def user_profile(request, username):
 @login_required
 def follow(request):
     if request.method == 'POST':
-        follower = request.POST['follower']
-        user = request.POST['user']
-
-        if FollowersCount.objects.filter(follower=follower, user=user).first():
-            delete_follower = FollowersCount.objects.get(
-                follower=follower, user=user)
-            delete_follower.delete()
-            return redirect('/detail/'+user)
-        else:
-            new_follower = FollowersCount.objects.create(
-                follower=follower, user=user)
-            new_follower.save()
-            return redirect('/detail/'+user)
+        from .models import FollowersCount
     else:
         return redirect('/')
 
@@ -158,19 +147,24 @@ def follow(request):
 @login_required
 def user_follow(request):
     user_id = request.POST.get('id')
-    action = request.POST.get('action')
-    if user_id and action:
-        try:
-            user = User.objects.get(id=user_id)
-            if action == 'follow':
-                Contact.objects.get_or_create(
-                    user_from=request.user,
-                    user_to=user)
-                create_action(request.user, 'is following', user)
-            else:
-                Contact.objects.filter(user_from=request.user,
-                                       user_to=user).delete()
-            return JsonResponse({'status': 'ok'})
-        except User.DoesNotExist:
-            return JsonResponse({'status': 'error'})
+    from django.contrib.contenttypes.models import ContentType
+    from django.utils import timezone
+    from .models import Action
+
+    def create_action(user, verb, target=None):
+        now = timezone.now()
+        last_minute = now - timezone.timedelta(seconds=60)
+        similar_actions = Action.objects.filter(user_id=user.id,
+                                                verb=verb,
+                                                created__gte=last_minute)
+        if target:
+            target_ct = ContentType.objects.get_for_model(target)
+            similar_actions = similar_actions.filter(target_ct=target_ct,
+                                                     target_id=target.id)
+        if not similar_actions:
+            # no existing actions found
+            action = Action(user=user, verb=verb, target=target)
+            action.save()
+            return True
+        return False
     return JsonResponse({'status': 'error'})

@@ -65,16 +65,19 @@ class LocationDetail(DetailView):
     def post(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
         comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
+        tag_form = TagForm(request.POST) # Define tag_form
+        if comment_form.is_valid() and tag_form.is_valid(): # Check if both forms are valid
             new_comment = comment_form.save(commit=False)
             new_comment.user = request.user
             new_comment.location = location
             new_comment.save()
-            # Redirect to the same location detail page after adding a comment
+            new_tag = tag_form.save(commit=False)
+            new_tag.location = location
+            new_tag.save()
+            # Redirect to the same location detail page after adding a comment and tag
             return self.get(request, slug=slug)
 
-        # Handle tag form submission (you can do the same as above)
-
+        # Pass tag_form to the context dictionary
         return render(request, self.template_name, {
             'location': location,
             'comments': location.comments.all(),
