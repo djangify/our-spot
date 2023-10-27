@@ -17,6 +17,8 @@ A network of people who love to share photos of their favourite spots around the
 
 This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
 
+This is the first working draft/prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data
+
 ## Project Objectives and Outcomes
 
 <details>
@@ -224,6 +226,7 @@ Wireframes HERE
 ## Database structure
 
 <details>
+
 Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. This mainly happened if I changed and then went to migrate a models.py file.
 
 I contacted Tutor support for help recusing my database the second time but unfortunately it wasn't possible. They managed to re-create my site over at GitPod so it was mainly a Codeanywhere issue. I had to delete my workspace and create a new one, which also meant I had to reinstall everything in my requirements.txt file.
@@ -237,6 +240,7 @@ Image of database
 ## CRUD functionality
 
 <details>
+
 The ability to create, read, update and delete data has been created using the following:
 
 **_Users:_**
@@ -259,11 +263,13 @@ A central location where the site can be managed including the ability to create
 - locations/photos added by members
 - profiles
 - comments
+
 </details>
 
 ## Authentication and Authorisation
 
 <details>
+
 Authorisation is only available to registered users so the site is hidden away and register details available on the homepage with a login link in the navigation bar. If a non-member clicks the log-in link they are invited to register.
 
 Email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy.
@@ -352,9 +358,17 @@ There is a follow button on the profile of each member so users can follow each 
 
 PHOTO OF FOLLOW BUTTON
 
-## Future Updates
+## Placeholders and Future Updates
 
-As a social network there were a number of features that could be included and may be added at a later date. Future features include:
+The network includes a few placeholders that were adding so show additional features that will be included. These are:
+
+_Report a photo or profile_ - The button under photos and profiles can be clicked to report a photo/profile to Admin. This currently works on the network but is not connected to an email system right now.
+
+_Email password_ - If a member is unable to log-in because they have forgotten their password the ability to complete the "forgotten password" form is available but is not currently a working system.
+
+As a social network there were a number of features that will be added at a later date. Future features include:
+
+- Email authentication - the ability to sign up using email and receive notifications via email.
 
 - The ability to search for images based on tags
 

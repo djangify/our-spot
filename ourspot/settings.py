@@ -34,7 +34,7 @@ DEBUG = True
 THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-todiane-our-spot-kex8vtu8fi.us2.codeanyapp.com",
+    "8000-todiane-our-spot-qjxsvmg25n.us2.codeanyapp.com",
     "ourspot-d2a3c52401dc.herokuapp.com",
 
 ]
@@ -103,9 +103,7 @@ WSGI_APPLICATION = "ourspot.wsgi.application"
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'locations',
-#         'USER': 'locations',
-#         'PASSWORD': 'Th340fus',
+# 
 #     }
 # }
 
@@ -167,8 +165,7 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
-# EMAIL BACKEND
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # RETURNS THE USER DETAIL URL FOR GIVEN USER
 ABSOLUTE_URL_OVERRIDES = {
