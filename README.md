@@ -1,13 +1,36 @@
 NEED A README AND A TESTING.MD
 
-Project Purpose
+## Table of Content
 
-Project Objectives and Outcomes
+[Project Purpose](#project-purpose)
 
-- Model
-- Agile Terminologies
+[Project Objectives and Outcomes](#project-objectives-and-outcomes)
 
-EPICS and User Stories
+[Model Views Template (mvc)](#model-views-template-mvc)
+
+[Agile Terminologies](#agile-terminologies)
+
+[Target Audience](#target-audience)
+
+[Research](#research)
+
+[User features and design](#user-features-and-design)
+
+[Epics and user stories](#epics-and-user-stories)
+
+[Site Structure](#site-structure)
+
+[Database Structure](#database-structure)
+
+[Placeholders and future updates](#placeholders-and-future-updates)
+
+[Testing](#testing)
+
+[Deployment](#deployment)
+
+[Technologies used](#technologies-used)
+
+[Acknowledgements](#acknowledgements)
 
 # Our Spot Social Network
 
@@ -42,9 +65,10 @@ The end result has been a user-friendly photo sharing network that has been enco
 
 </details>
 
-## Model Views Template (MVC) for social network
+## Model Views Template (MVC)
 
 <details>
+
 I used MVT to help define the project's requirements, features, and structure by considering the following questions
 
 **Model :**
@@ -126,7 +150,7 @@ As a result of the focus group the emphasis was on keeping the site simple (e.g.
 
 </details>
 
-## User Features / Design
+## User Features and Design
 
 <details>
 
@@ -149,6 +173,8 @@ As a result of the focus groups it was agreed that as a member of the network us
 This research fed into the MVC and user stories.
 
 </details>
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## EPICS and User Stories
 
@@ -222,9 +248,9 @@ As a user I want to be able to view the profiles of other users so that I can fo
 
 </details>
 
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
 # Site Structure
-
-
 
 When designing the structure of the site I kept my focus on the need to create a web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. 
 
@@ -261,8 +287,6 @@ Messages are used to ensure that any changes to the data are notified to the use
 
 ## Database structure
 
-
-
 Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. This mainly happened if I changed and then went to migrate a models.py file.
 
 I contacted Tutor support for help recusing my database the second time but unfortunately it wasn't possible. They managed to re-create my site over at GitPod so it was mainly a Codeanywhere issue. I had to delete my workspace and create a new one, which also meant I had to reinstall everything in my requirements.txt file.
@@ -273,11 +297,13 @@ The first time it happened I had added several user profiles to give me insights
 
 </details>
 
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
 ## CRUD functionality
 
 <details>
 
-The ability to create, read, update and delete data has been created using the following:
+The ability to create, read, update and delete data has been added using the following:
 
 **_Users:_**
 
@@ -301,6 +327,7 @@ A central location where the site can be managed including the ability to create
 - comments
 
 </details>
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Authentication and Authorisation
 
@@ -321,6 +348,8 @@ IMAGE OF LOGIN PAGE FOR NEW USERS
 IMAGE OF LOGIN PAGE
 
 IMAGE OF DASHBOARD
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Password Management
 
@@ -396,6 +425,8 @@ There is a follow button on the profile of each member so users can follow each 
 
 PHOTO OF FOLLOW BUTTON
 
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
 ## Placeholders and Future Updates
 
 The network includes a few placeholders that were adding so show additional features that will be included. These are:
@@ -416,6 +447,8 @@ As a social network there were a number of features that will be added at a late
 
 - A feed that shows user activity and trending images
 
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
 ## Testing
 
 Please see separate Testing MD HERE include INFORMATION ON BUGS on this page.
@@ -423,6 +456,8 @@ Please see separate Testing MD HERE include INFORMATION ON BUGS on this page.
 ## Deployment
 
 Deployment took place immediately after installing Django and Heroku was set to manual deployment for much of the project.
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Technologies Used
 
@@ -465,6 +500,8 @@ Deployment took place immediately after installing Django and Heroku was set to 
 - Tomi (link to video)
 
 - Infinite Scroll (link)
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Acknowledgements
 
