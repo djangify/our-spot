@@ -42,7 +42,7 @@ The end result has been a user-friendly photo sharing network that has been enco
 
 </details>
 
-## Model Views Template (MVC) for scheduler
+## Model Views Template (MVC) for social network
 
 <details>
 I used MVT to help define the project's requirements, features, and structure by considering the following questions
@@ -99,7 +99,9 @@ These questions lay the groundwork for creating user stories, developing the dat
 - Obtain feedback.
 
 - Maintain product backlog and prioritise items/adapt to change
+
 Future implementations/scalability and performance optimisation.
+
 </details>
 
 ## Target Audience
@@ -115,6 +117,7 @@ Photographers and travellers who love to share some of their favourite spots aro
 ## Research
 
 <details>
+
 This project came about as a result of an online workshop with adult education participants. Talk turned to weekend activities and a discussion was had about finding a network where the emphasis wasn't on highlighting what people had but instead focused on where people went (activities and experiences) and what they liked to do - simple, mainly free things that can be enjoyed alone or with family/friends/loved ones.
 
 After hearing a Willow Smith song called Our Spot I undertook a focus group to find out what people would enjoy doing on a social network that offered an opportunity to simply share their favourite places to go and meet up.
@@ -126,6 +129,7 @@ As a result of the focus group the emphasis was on keeping the site simple (e.g.
 ## User Features / Design
 
 <details>
+
 As a result of the focus groups it was agreed that as a member of the network users will enjoy:
 
 - A network that focuses on the importance of spending time outside
@@ -155,7 +159,8 @@ Based on the MVT model above, the following EPICS and user stories were created 
 ## EPICS:
 
 <details>
-A total of six EPICS were created and organised into sprints.
+
+A total of six EPICS were created to complete the first phase and organised into sprints.
 
 **_User Authentication and Registration:_**
 Covering network setup up, user registration, login, and logout functionality.
@@ -219,13 +224,44 @@ As a user I want to be able to view the profiles of other users so that I can fo
 
 # Site Structure
 
-When designing the structure of the site I kept my focus on the need to create a web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. The most important feature was the ability for users to interact with this interface and manipulate the data through CRUD capabilities, while providing clear updates on any changes made.
 
-Wireframes HERE
+
+When designing the structure of the site I kept my focus on the need to create a web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. 
+
+![Homepage wireframe](readme/wireframes/wf-homepage.png)
+
+In order to log-in users must add a user and password. Email is optional at this point but will be mandatory in the future.
+
+![register and success login](readme/wireframes/wf-register.png)
+
+As long as the minimum requirements are met users are informed of their registration success and invited to immediately login.
+
+Once logged-in users are met with their dashboard
+
+![Dashboard wireframe](readme/wireframes/wf-dashboard.png)
+
+Other options available are to see images added by other uses and to addd their own images
+
+![Locations](readme/wireframes/wf-locations.png)
+
+
+![Add Location](readme/wireframes/wf-add-location.png)
+
+Important features to include was the ability for users to interact with this interface and manipulate the data through CRUD capabilities, while providing clear updates on any changes made.
+
+![Profile](readme/wireframes/wf-profile.png)
+
+Users can update their passwords, edit and delete their locations and comments (see images below for actual screenshots)
+
+Messages are used to ensure that any changes to the data are notified to the user.
+
+# IMAGE OF SUCCESS YOU HAVE UPDATED YOUR PROFILE
+
+
 
 ## Database structure
 
-<details>
+
 
 Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. This mainly happened if I changed and then went to migrate a models.py file.
 
@@ -233,7 +269,7 @@ I contacted Tutor support for help recusing my database the second time but unfo
 
 The first time it happened I had added several user profiles to give me insights into how the images were behaving once uploaded. After the second database crash I decided to only include two users with three photos each until the site was complete. I then added additional users.
 
-Image of database
+# Image of database
 
 </details>
 
@@ -289,7 +325,9 @@ IMAGE OF DASHBOARD
 ## Password Management
 
 INFORMATION ON RESETTING PASSWORD
-can be done inside the site (photo)
+In the first phase of this project restting a password can be done inside the members area (photo)
+
+In the next phase the ability to use a password reset email will be included.
 
 </details>
 
