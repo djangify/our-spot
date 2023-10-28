@@ -98,10 +98,6 @@ ol {
 } 
 
 
-/* #content {
-    padding: 30px 90px;
-} */
-
 
 
 /* forms */
@@ -142,14 +138,6 @@ a.button {
     text-transform: uppercase;
 }
 
-/* .button2 {
-    background-color: #F2F2F2;
-    color: #333;
-    display: inline-block;
-    margin: 2px 1px;
-    cursor: pointer;
-    padding: 5px 20px;
-} */
 
 .errorlist {
     color: #cc0033;
@@ -232,6 +220,13 @@ ul.messages li a.close {
 }
 
 /* images */
+
+.avatar-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover; 
+}
+
 
 /* .image-preview,
 .image-detail {

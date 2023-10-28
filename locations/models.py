@@ -75,7 +75,7 @@ class Comment(models.Model):
         quality=75,
         upload_to="account/",
         force_format="WEBP",
-        blank=False,
+        blank=True,
     )
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

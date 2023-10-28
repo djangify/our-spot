@@ -126,7 +126,7 @@ def user_profile(request, username):
 
     context = {
         'user': user,
-        # Add other user-related data to the context as needed
+        
     }
 
 

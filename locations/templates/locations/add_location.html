@@ -4,19 +4,19 @@
 {% block title %}Add Location{% endblock title %}
 
 {% block content %}
-<div class="container">
-<!-- Users can add new locations-->
-<h1>Add Your Spot</h1>
+<div class="container my-5">
+    <!-- Users can add new locations-->
+    <h1>Add Your Spot</h1>
 
 
-    <form method="POST" enctype="multipart/form-data" class="p-2 form">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form.as_p }}
-        <div>
-            <p><input type="submit" value="Create Location"></p>
-        </div>
-    </form>
+        <form method="POST" enctype="multipart/form-data" class="p-2 form">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <div>
+                <p><input type="submit" value="Create Location"></p>
+            </div>
+        </form>
 </div>
  
 {% endblock content %}

@@ -13,12 +13,15 @@
     {% for user in users %}
     <p>
         <div>
-            <a href= "{{ user.get_absolute_url }}" class = "text-center">{{user.get_full_name}}
-                <img src="{{ user.profile.photo.url }}" class="rounded d-block" alt="{{ profile.photo_alt }}">
+            <a href="{{ user.get_absolute_url }}" class="text-center">{{ user.get_full_name }}
+                {% if user.profile.photo %}
+                    <img src="{{ user.profile.photo.url }}" class="rounded d-block" alt="{{ user.profile.photo_alt }}">
+                {% else %}
+                    <img src="{% static 'images/blankavatar.png' %}" class="rounded d-block avatar-image" alt="Default Avatar">
+                {% endif %}
             </a>
-        </p>
         </div>
-    
-    {% endfor %}
+    </p>
+{% endfor %}
 </div>
     {% endblock %}
