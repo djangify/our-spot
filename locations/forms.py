@@ -1,4 +1,4 @@
-from .models import Comment, Tag
+from .models import Comment
 from django import forms
 from .models import Location
 
@@ -37,8 +37,3 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['text']
 
-
-class TagForm(forms.ModelForm):
-    class Meta:
-        model = Tag
-        fields = ['name']

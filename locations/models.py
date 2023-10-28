@@ -70,16 +70,11 @@ class Comment(models.Model):
     location = models.ForeignKey(
         Location, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    photo = ResizedImageField(
-        size=[40, 40],
-        quality=75,
-        upload_to="account/",
-        force_format="WEBP",
-        blank=True,
-    )
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+            return f"{self.user.username}'s comment on {self.location.name}"
 
 class Tag(models.Model):
     location = models.ManyToManyField(Location, related_name='tags')

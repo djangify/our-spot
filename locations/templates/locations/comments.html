@@ -1,44 +1,33 @@
 
 {% load static %}
 
-{% block title %}Comments{% endblock title %}
-
 {% block content %}
 
 <!-- Add comments section -->
 <div>
-    <h2>Comments</h2>
-    <ul>
-        {% for comment in comments %}
-            <li>{{ comment.user.username }}: {{ comment.text }}</li>
-        {% empty %}
-            <li>No comments yet.</li>
-        {% endfor %}
-    </ul>
-
-    <form method="post" action="">
+    <form method="post" action="{% url 'add_comment' location.id %}">
         {% csrf_token %}
-        {{ comment_form.as_p }}
-        <button type="submit">Add Comment</button>
+        <div class="form-group">
+            <label for="{{ form.text.id_for_label }}">Comment:</label>
+            <textarea name="{{ form.text.name }}" id="{{ form.text.id_for_label }}" class="form-control">{{ form.text.value }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-dark mx-3 px-3">Submit</button>
     </form>
+    
+    {% for comment in location.comments.all %}
+        <div>
+            <strong>{{ comment.user.username }}</strong>
+            <p>{{ comment.text }}</p>
+            <small>{{ comment.created_at }}</small>
+            {% if comment.user == request.user %}
+                <a href="{% url 'edit_comment' comment.id %}" class="btn btn-outline-dark mx-3 px-3">Edit</a>
+                <a href="{% url 'delete_comment' comment.id %}" class="btn btn-outline-dark mx-3 px-3">Delete</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+    
 </div>
  
-<!-- Add tags section -->
-<!-- <div>
-    <h2>Tags</h2>
-    <ul>
-        {% for tag in tags %}
-            <li>{{ tag.name }}</li>
-        {% empty %}
-            <li>No tags yet.</li>
-        {% endfor %}
-    </ul> -->
 
-    <!-- <form method="post" action="">
-        {% csrf_token %}
-        {{ tag_form.as_p }}
-        <button type="submit">Add Tag</button>
-    </form>
-</div> -->
 
 {% endblock content %}

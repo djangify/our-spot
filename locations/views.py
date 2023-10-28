@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Location, Like
-from .forms import LocationForm, CommentForm, TagForm
+from .forms import LocationForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
@@ -49,42 +49,20 @@ class Locations(ListView):
 
 
 class LocationDetail(DetailView):
-    model = Location
-    template_name = "locations/location_detail.html"
-    context_object_name = "location"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['comments'] = self.object.comments.all()
-        context['tags'] = self.object.tags.all()
-        context['comment_form'] = CommentForm()
-        context['tag_form'] = TagForm()
-        return context
-
-    # Handle comment form submission
-    def post(self, request, slug, *args, **kwargs):
+    """View a single location"""
+    def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
-        comment_form = CommentForm(request.POST)
-        tag_form = TagForm(request.POST) # Define tag_form
-        if comment_form.is_valid() and tag_form.is_valid(): # Check if both forms are valid
-            new_comment = comment_form.save(commit=False)
-            new_comment.user = request.user
-            new_comment.location = location
-            new_comment.save()
-            new_tag = tag_form.save(commit=False)
-            new_tag.location = location
-            new_tag.save()
-            # Redirect to the same location detail page after adding a comment and tag
-            return self.get(request, slug=slug)
-
-        # Pass tag_form to the context dictionary
-        return render(request, self.template_name, {
-            'location': location,
-            'comments': location.comments.all(),
-            'tags': location.tags.all(),
-            'comment_form': comment_form,
-            'tag_form': tag_form,
-        })
+        # liked = False
+        # if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
+        #     liked = True
+        return render(
+            request,
+            "locations/location_detail.html",
+            {
+                "location": location,
+                # "liked": liked
+            },
+        )
 
 
 # Add location view
@@ -160,3 +138,38 @@ class LikeLocationView(LoginRequiredMixin, View):
 
         return HttpResponseRedirect(reverse('location_detail', args=[slug]))
 
+# comments - add, edit and delete
+
+def add_comment(request, location_id):
+    location = get_object_or_404(Location, id=location_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.location = location
+            comment.user = request.user
+            comment.photo = request.user.profile.photo  # Assuming the user's profile has a photo field
+            comment.save()
+            return redirect('location_detail', location_id=location.id)
+    else:
+        form = CommentForm()
+    return render(request, 'locations/comments.html', {'form': form})
+
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('location_detail', location_id=comment.location.id)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'locations/location_edit.html', {'form': form})
+
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.method == 'POST':
+        location_id = comment.location.id
+        comment.delete()
+        return redirect('location_detail', location_id=location_id)
+    return render(request, 'locations/location_confirm_delete.html', {'object': comment})
