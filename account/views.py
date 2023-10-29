@@ -11,7 +11,6 @@ from django.views.decorators.http import require_POST
 from .forms import LoginForm, UserRegistrationForm, \
     UserEditForm, ProfileEditForm
 from .models import Profile
-from .models import Contact
 from locations.models import Location
 
 
@@ -142,29 +141,23 @@ def follow(request):
 
 # Using The Follow Button
 
-
-@require_POST
 @login_required
 def user_follow(request):
     user_id = request.POST.get('id')
-    from django.contrib.contenttypes.models import ContentType
-    from django.utils import timezone
-    from .models import Action
+    action = request.POST.get('action')
 
-    def create_action(user, verb, target=None):
-        now = timezone.now()
-        last_minute = now - timezone.timedelta(seconds=60)
-        similar_actions = Action.objects.filter(user_id=user.id,
-                                                verb=verb,
-                                                created__gte=last_minute)
-        if target:
-            target_ct = ContentType.objects.get_for_model(target)
-            similar_actions = similar_actions.filter(target_ct=target_ct,
-                                                     target_id=target.id)
-        if not similar_actions:
-            # no existing actions found
-            action = Action(user=user, verb=verb, target=target)
-            action.save()
-            return True
-        return False
+    if user_id and action:
+        try:
+            target_user = User.objects.get(id=user_id)
+            profile = request.user.profile
+
+            if action == 'follow':
+                profile.follow(target_user)
+            else:
+                profile.unfollow(target_user)
+
+            return JsonResponse({'status': 'ok'})
+        except User.DoesNotExist:
+            return JsonResponse({'status': 'error'})
+
     return JsonResponse({'status': 'error'})

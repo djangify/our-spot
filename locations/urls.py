@@ -21,7 +21,4 @@ urlpatterns = [
     path("account/dashboard/", LocationImage.as_view(), name="dashboard"),
     path('like/<slug:slug>/', views.LikeLocationView.as_view(),
          name='like_location'),
-     path('add_comment/<int:location_id>/', views.add_comment, name='add_comment'),
-    path('edit_comment/<int:comment_id>/', views.edit_comment, name='edit_comment'),
-    path('delete_comment/<int:comment_id>/', views.delete_comment, name='delete_comment'),
 ]

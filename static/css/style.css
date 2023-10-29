@@ -221,14 +221,14 @@ ul.messages li a.close {
 
 /* images */
 
-.avatar-image {
+/* .avatar-image {
     width: 300px;
     height: 300px;
     object-fit: cover; 
 }
 
 
-/* .image-preview,
+ .image-preview,
 .image-detail {
     max-width: 300px;
     float: left;
@@ -242,14 +242,14 @@ ul.messages li a.close {
 .image-info div {
     padding: 20px 0;
     overflow: auto;
-}
+} */
 
 .count {
     color: #aaa;
     border: 3px solid #bbb;
     border-radius: 26px;
     padding: 10px 20px;
-    margin: 20px 10px 0;
+    margin: 10px 10px 0;
 }
 
 a.follow {
@@ -257,6 +257,7 @@ a.follow {
     margin-top: -8px;
 }
 
+/* 
 #image-list {
     overflow: hidden;
 }
@@ -281,7 +282,7 @@ a.follow {
 
 #image-list .info a {
     color: #333;
-} */
+} */ 
 
 
 /* users */

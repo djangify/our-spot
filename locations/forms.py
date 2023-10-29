@@ -1,4 +1,3 @@
-from .models import Comment
 from django import forms
 from .models import Location
 
@@ -29,11 +28,5 @@ class LocationForm(forms.ModelForm):
             "location_types": "Choose Location",
         }
 
-# forms.py
 
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ['text']
 

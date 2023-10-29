@@ -34,7 +34,7 @@ DEBUG = True
 THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-todiane-ourspot-b8hsk4jly7b.ws-eu105.gitpod.io",
+    "8000-todiane-ourspot-romy4o147dw.ws-eu105.gitpod.io",
     "ourspot-d2a3c52401dc.herokuapp.com",
 
 ]

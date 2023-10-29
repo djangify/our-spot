@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Location, Like
-from .forms import LocationForm, CommentForm
+from .forms import LocationForm
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
@@ -137,39 +137,3 @@ class LikeLocationView(LoginRequiredMixin, View):
             like.delete()
 
         return HttpResponseRedirect(reverse('location_detail', args=[slug]))
-
-# comments - add, edit and delete
-
-def add_comment(request, location_id):
-    location = get_object_or_404(Location, id=location_id)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.location = location
-            comment.user = request.user
-            comment.photo = request.user.profile.photo  # Assuming the user's profile has a photo field
-            comment.save()
-            return redirect('location_detail', location_id=location.id)
-    else:
-        form = CommentForm()
-    return render(request, 'locations/comments.html', {'form': form})
-
-def edit_comment(request, comment_id):
-    comment = get_object_or_404(Comment, id=comment_id)
-    if request.method == 'POST':
-        form = CommentForm(request.POST, instance=comment)
-        if form.is_valid():
-            form.save()
-            return redirect('location_detail', location_id=comment.location.id)
-    else:
-        form = CommentForm(instance=comment)
-    return render(request, 'locations/location_edit.html', {'form': form})
-
-def delete_comment(request, comment_id):
-    comment = get_object_or_404(Comment, id=comment_id)
-    if request.method == 'POST':
-        location_id = comment.location.id
-        comment.delete()
-        return redirect('location_detail', location_id=location_id)
-    return render(request, 'locations/location_confirm_delete.html', {'object': comment})

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.urls import reverse
 from django.utils.text import slugify
-from django_resized import ResizedImageField
 
 
 # Choice Fields
@@ -63,19 +62,3 @@ class Like(models.Model):
     def __str__(self):
         return f"{self.user.username} likes {self.location.title}"
 
-# Comments box
-
-
-class Comment(models.Model):
-    location = models.ForeignKey(
-        Location, on_delete=models.CASCADE, related_name='comments')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-            return f"{self.user.username}'s comment on {self.location.name}"
-
-class Tag(models.Model):
-    location = models.ManyToManyField(Location, related_name='tags')
-    name = models.CharField(max_length=255)
