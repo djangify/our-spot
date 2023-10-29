@@ -7,7 +7,6 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0014_remove_user_following'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('account', '0003_alter_profile_photo'),
     ]

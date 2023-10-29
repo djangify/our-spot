@@ -10,7 +10,6 @@ from django_resized import ResizedImageField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    following = models.ManyToManyField(User, related_name='followers', blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
     photo = ResizedImageField(
         size=[300, 300],
@@ -20,16 +19,10 @@ class Profile(models.Model):
         blank=False,
     )
 
+class FollowersCount(models.Model):
+    follower = models.CharField(max_length=1000)
+    user = models.CharField(max_length=1000)
+
     def __str__(self):
-        return f'Profile of {self.user.username}'
-
-    def follow(self, user_to_follow):
-            if user_to_follow != self.user:
-                self.following.add(user_to_follow)
-
-    def unfollow(self, user_to_unfollow):
-        self.following.remove(user_to_unfollow)
-
-    def is_following(self, user):
-        return self.following.filter(id=user.id).exists()
+        return self.user
 
