@@ -364,6 +364,8 @@ In the next phase the ability to use a password reset email will be included.
 
 A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. Unregistered and logged out users only see the ability to log in.
 
+No footer has been included because this is a social network and they don't usually contain a footer - instead users are kept scrolling using infinite scroll.
+
 PHOTO
 
 ## Dashboard

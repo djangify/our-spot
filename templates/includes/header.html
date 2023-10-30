@@ -1,45 +1,52 @@
 {% load static %}
 
-{% block extra_css %}
-
-<!-- css style link -->
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
-
-        <header class ="site">
-        <div id="header">
-        <a href="{% url 'home' %}"> <span class="logo">Our Spot</a></span>
-
-
-        {% if request.user.is_authenticated %}
-        <nav>
-            <ul class="menu">
-                <li {% if section == "dashboard" %}class="selected" {% endif %}>
-                    <a href="{% url 'dashboard' %}">My dashboard</a>
-                </li>
-                <li {% if section == "locations" %}class="selected" {% endif %}>
-                    <a href="{% url 'locations' %}">New Spots</a>
-                </li>
-                <li {% if section == "add_location" %}class="selected" {% endif %}>
-                    <a href="{% url 'add_location' %}">Add A Spot</a>
-                </li>
-                <li {% if section == "people" %}class="selected" {% endif %}>
-                    <a href="{% url 'user_list' %}">People</a>
-                </li>
+<header>
+  {% with request.resolver_match.url_name as url_name %}
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+        <!-- Logo -->
+          <a class="navbar-brand" href="#">Our Spot</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Navigation items -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2">
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'locations' %}active{% endif %}" href="{% url 'locations' %}">locations</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'add_location' %}active{% endif %}" href="{% url 'add_location' %}">New Spot</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'accounts_logout' %}active{% endif %}" href="/account/logout/">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'accounts_signup' %}active{% endif %}" href="/account/register/">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'accounts_login' %}active{% endif %}" href="/account/login/">Login</a>
+              </li>
+              {% endif %}
             </ul>
-        </nav>
-        {% endif %}
+            <!-- Form for search bar -->
+            <form class="d-flex" role="search" method="GET" action="{% url 'locations' %}">
+                <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+              </form>
+          </div>
+        </div>
+      </nav>
+  {% endwith %}
 
-        <!-- Login and Logout Section -->
-        <span class="user">
-            {% if request.user.is_authenticated %}
-            Hello {{ request.user.first_name|default:request.user.username }},
-            <a href="{% url 'logout' %}">Logout</a>
-            {% else %}
-            <a href="{% url 'login' %}">Log-in</a>
-            {% endif %}
-        </span>
-    </div>
 
     <!-- Messages shown to users -->
     {% if messages %}
