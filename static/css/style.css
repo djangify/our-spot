@@ -5,42 +5,7 @@ body {
     padding: 0;
     font-family: Muli, sans-serif;
 }
- 
-.profile-edit-btn {
-    font-size: 1.4rem;
-    line-height: 1.8;
-    border: 0.1rem solid #dbdbdb;
-    border-radius: 0.3rem;
-    padding: 0 2.4rem;
-    margin-left: 2rem;
-}
 
-.profile-settings-btn {
-    font-size: 2rem;
-    margin-left: 1rem;
-}
-
-.profile-stats {
-    margin-top: 2.3rem;
-}
-
-.profile-stats li {
-    display: inline-block;
-    font-size: 1.6rem;
-    line-height: 1.5;
-    margin-right: 4rem;
-    cursor: pointer;
-}
-
-.profile-stats li:last-of-type {
-    margin-right: 0;
-}
-
-.profile-stat-count{
-    font-weight: 600;
-}
-
- 
 p {
     line-height: 1.8;
 }
@@ -54,29 +19,17 @@ a:hover {
     color: #ac6076;
 }
 
-/* h1,
-h2,
-h3, 
-h4,
-h5,
-h6 {
-    font-family: 'Muli', sans-serif;
-    font-weight: normal;
-} */
-
-/* h1 {
+h1 {
     border-bottom: 1px solid #bbb;
     padding: 0 0 10px 0;
     margin: 10px 0 20px 0;
 }
 
-h2 {
-    margin: 30px 0 20px;
-}
-
 ol {
     line-height: 1.5;
 }  */
+
+
 /* Navigation bar and logo*/
 
 .logo {
@@ -130,8 +83,6 @@ ol {
     float: right;
     padding-top: 4px;
 } 
-
-
 
 
 /* forms */
@@ -253,30 +204,44 @@ ul.messages li a.close {
     float: left;
 }
 
-/* images */
-
-/* .avatar-image {
-    width: 300px;
-    height: 300px;
-    object-fit: cover; 
+/*followers/count followers*/
+.profile-edit-btn {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.3rem;
+    padding: 0 2.4rem;
+    margin-left: 2rem;
 }
 
+.profile-settings-btn {
+    font-size: 2rem;
+    margin-left: 1rem;
+}
 
- .image-preview,
-.image-detail {
-    max-width: 300px;
+.profile-stats {
+    margin-top: 2.3rem;
     float: left;
-    margin: 0 20px 20px 0;
+    width: calc(66.666% - 2rem);
 }
 
-.image-detail {
-    margin-top: 20px;
+.profile-stats li {
+    display: inline-block;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-right: 4rem;
+    cursor: pointer;
 }
 
-.image-info div {
-    padding: 20px 0;
-    overflow: auto;
-} */
+.profile-stats li:last-of-type {
+    margin-right: 0;
+}
+
+.profile-stat-count{
+    font-weight: 400;
+}
+
+
 
 /* .count {
     color: #aaa;
@@ -291,74 +256,12 @@ a.follow {
     margin-top: -8px;
 } */
 
-/* 
-#image-list {
-    overflow: hidden;
-}
 
-#image-list .image {
-    float: left;
-    width: 220px;
-    height: 300px;
-    margin: 0 10px 10px 10px;
-    border-top: 8px solid #12c064;
-    background: #eee;
-}
-
-#image-list img {
-    width: 220px;
-    height: 220px;
-}
-
-#image-list .info {
-    padding: 10px;
-}
-
-#image-list .info a {
-    color: #333;
-} */ 
+/* Media query for screens wider than 950px */
 
 
-/* users */
- /* #people-list img {
-    width: 180px; 
-    height: 180px; 
-    border-radius: 50%;
-    margin-bottom: 20px;
-} */
-
-/* #people-list .user {
-    width: 180px;
-    float: left;
-    overflow: auto;
-    padding: 10px;
-}  */
-
-/* #people-list .info {
-    text-align: center;
-}
-
-img.user-detail {
-    border-radius: 50%;
-    float: left;
-}
-
-.profile-info {
-    float: left;
-    overflow: auto;
-    margin-right: 20px;
-} */
-
-/* .image-container {
-    margin-top: 40px;
-} */
-
-
-/* Media query for screens wider than 768px */
-
-
-@media (min-width: 768px) {
-    image {
+@media (min-width: 951px) {
+    .img-fluid {
         max-width: 50%;
         height: auto;
     }
