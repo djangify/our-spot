@@ -22,32 +22,16 @@
             <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" class="text-right">Report Profile</a>
         </div>
         <br>
-        
-       <!--Follow button / number of followers-->
+        <h3> I have shared {{locations.count | default_if_none:"0"}} spot(s). </h3>
+        {% for location in locations %}
+       <p> <a href="{{ location.get_absolute_url }}"  aria-label="Click to view {{ location.title }}"></p>
+        <p><img src="{{location.image.url}}" alt="{{ location.image_alt }}" class="img-fluid"></p>
+        <p>{{location.title}} | Posted on {{location.posted_date}}</p>
+    </a>
+        <p>{{location.description | truncatechars:280}}</p>
+        {% endfor %}
 
-<form action="/users/{{current_user}}/followers_count" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="user" value="{{current_user}}" readonly/>
-    <input type="hidden" name="follower" value="{{user.username}}" readonly/>
-    
-    {% if follow_button_value == 'follow' %}
-        <input type="hidden" name="value" value="follow" readonly/>
-        <button class="btn btn-outline-success" type="submit">
-            Follow
-        </button>
-    {% else %}
-        <input type="hidden" name="value" value="unfollow" readonly/>
-        <button class="btn btn-outline-danger" type="submit">
-            Unfollow
-        </button>
-    {% endif %}
-</form>
-<div class="profile-stats">
-    <ul>
-        <li><span class="profile-stat-count">{{user_followers}}</span> followers</li>
-        <li><span class="profile-stat-count">{{user_following}}</span> following</li>
-    </ul>
-</div>
+
 
         <!-- Report Profile Modal -->
         <div class="modal fade" id="report-modal">
@@ -73,6 +57,32 @@
         <p id="report-success-message"></p>
     </div>
 
+
+    <!--Follow button / number of followers-->
+
+<!-- <form action="/users/{{current_user}}/followers_count" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="user" value="{{current_user}}" readonly/>
+    <input type="hidden" name="follower" value="{{user.username}}" readonly/>
+    
+    {% if follow_button_value == 'follow' %}
+        <input type="hidden" name="value" value="follow" readonly/>
+        <button class="btn btn-outline-success" type="submit">
+            Follow
+        </button>
+    {% else %}
+        <input type="hidden" name="value" value="unfollow" readonly/>
+        <button class="btn btn-outline-danger" type="submit">
+            Unfollow
+        </button>
+    {% endif %}
+</form>
+<div class="profile-stats">
+    <ul>
+        <li><span class="profile-stat-count">{{user_followers}}</span> followers</li>
+        <li><span class="profile-stat-count">{{user_following}}</span> following</li>
+    </ul>
+</div> -->
 {% endblock %}
 
 

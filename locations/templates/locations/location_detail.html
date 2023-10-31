@@ -6,6 +6,7 @@
 
 {% block content %}
 <div class="container my-5">
+    <h1>{{ location.title }}</h1>
         <div class="photo-container">
         <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 100%; height: auto;">
         </div>
@@ -44,7 +45,7 @@
     <!-- Photo details -->
 
         <div>
-            <h1>{{ location.title }}</h1>
+            <h4>{{ location.title }}</h4>
             <p>Posted by {{location.user}} on {{location.posted_date}}</p>
         
             <p>{{location.description}}</p>

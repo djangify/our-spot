@@ -18,7 +18,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User, auth
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-from django.core.paginator import Paginator
 from .models import Location
 
 
@@ -30,7 +29,6 @@ class Locations(ListView):
     template_name = "locations/locations.html"
     model = Location
     context_object_name = "locations"
-    paginate_by = 2
 
     def get_queryset(self, **kwargs):
         query = self.request.GET.get("q")
@@ -45,7 +43,7 @@ class Locations(ListView):
         return location
 
 
-# View a single location. Includes comment and tag submission
+# View a single location. 
 
 
 class LocationDetail(DetailView):
@@ -115,11 +113,6 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         current_user = self.request.user
         locations = Location.objects.filter(user=current_user)
-        paginator = Paginator(locations, 2)
-
-        page_number = self.request.GET.get('page')
-        page_obj = paginator.get_page(page_number)
-        context['page_obj'] = page_obj
         context["locations"] = locations
         return context
 

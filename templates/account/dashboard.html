@@ -18,56 +18,21 @@
     <br>
     <h2 class="display-6"> You have shared {{locations.count | default_if_none:"0"}} spot(s). </h2>
 
-    <!-- Shows the total number of locations added by user. Uses infinite scroll-->
+    <!-- Shows the total number of locations added by user.-->
     
-    <div class="row infinite-container">
-         {% for location in page_obj %}
-        <div class="infinite-item">
-            <p><img src="{{location.image.url}}" alt="{{ location.image_alt }}" class="img-fluid"></p>
-            {{location.title}} | Posted on {{location.posted_date}}
-        
-            <p>{{location.description | truncatechars:280}}</p>
-            <div class="container py-3">
-                    <a href="{% url 'location_detail' slug=location.slug %}" class="btn btn-outline-dark">View</a>
-                    <a href="{% url 'edit_location' slug=location.slug %}" class="btn btn-outline-dark">Edit</a>
-                    <a href="{% url 'delete_location' slug=location.slug %}" class="btn btn-outline-dark">Delete</a>
-            </div>
+  
+        {% for location in locations %}
+        <p> <a href="{{ location.get_absolute_url }}"  aria-label="Click to view {{ location.title }}"></p>
+        <p><img src="{{location.image.url}}" alt="{{ location.image_alt }}" class="img-fluid"></p>
+        <p>{{location.title}} | Posted on {{location.posted_date}}</p> </a>
+    
+        <p>{{location.description | truncatechars:280}}</p>
+        <div class="container py-3">
+                <a href="{% url 'location_detail' slug=location.slug %}" class="btn btn-outline-dark">View</a>
+                <a href="{% url 'edit_location' slug=location.slug %}" class="btn btn-outline-dark">Edit</a>
+                <a href="{% url 'delete_location' slug=location.slug %}" class="btn btn-outline-dark">Delete</a>
         </div>
-    </div>
+
         {% endfor %}
-
-
-<!-- Script for infinite scroll-->
-<div class="d-flex d-none position-fixed" style="top:35vh;left:46vw">
-    <button class="btn btn-primary loading">
-        <span class="spinner-border spinner-border-sm"></span>
-        Please wait...
-    </button>
-</div>
-    <div class="container my-5">
-            {% if page_obj.has_next %}
-            <a class="btn btn-outline-success" href="?page={{ page_obj.next_page_number }}">
-                CLICK to see more</a>
-            {% endif %}
     </div>
-
-<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-<script src="{% static 'js/infinite.min.js' %}"></script>
-
-<script>
-    var infinite = new Waypoint.Infinite({
-        element: $('.infinite-container')[0],
-
-        offset: 'bottom-in-view',
-
-        onBeforePageLoad: function () {
-            $('.loading').show();
-        },
-        onAfterPageLoad: function () {
-            $('.loading').hide();
-        }
-
-    })
-</script>
-
 {% endblock %}

@@ -3,7 +3,7 @@
 <header>
   {% with request.resolver_match.url_name as url_name %}
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
+        <div class="container-fluid px-5">
         <!-- Logo -->
           <a class="navbar-brand" href="#">Our Spot</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,23 +12,26 @@
           <!-- Navigation items -->
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2">
-              <li class="nav-item">
-                <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
-              </li>
               {% if request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'locations' %}active{% endif %}" href="{% url 'locations' %}">locations</a>
+                <a class="nav-link {% if url_name == 'locations' %}active{% endif %}" href="{% url 'locations' %}">Locations</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if url_name == 'add_location' %}active{% endif %}" href="{% url 'add_location' %}">New Spot</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link {% if url_name == 'people' %}active{% endif %}" href="{% url 'user_list' %}">Members</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link {% if url_name == 'accounts_logout' %}active{% endif %}" href="/account/logout/">Logout</a>
               </li>
               {% else %}
+              <li class="nav-item">
+                <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link {% if url_name == 'accounts_signup' %}active{% endif %}" href="/account/register/">Register</a>
               </li>

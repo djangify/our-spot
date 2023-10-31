@@ -34,7 +34,7 @@ NEED A README AND A TESTING.MD
 
 # Our Spot Social Network
 
-A network of people who love to share photos of their favourite spots around the world.
+A network of people who love to share photos of their favourite spots around the world. Currently the site being presented is a minimum viable product (mvp) for project 4. It is not the final network but includes enough functionality to meet the project purpose and to present to a group of potential users.
 
 ## Project Purpose:
 
@@ -45,7 +45,7 @@ This is the first working draft/prototype of the final project and I will comple
 ## Project Objectives and Outcomes
 
 <details>
-Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing the site also provides an opportunity to connect with other members and fosters friendship.
+Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing photos, the site will also provide an opportunity to connect with other members and fosters friendship.
 
 The key objectives of the project include:
 
@@ -287,7 +287,7 @@ Messages are used to ensure that any changes to the data are notified to the use
 
 ## Database structure
 
-Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. This mainly happened if I changed and then went to migrate a models.py file.
+The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. This mainly happened if I changed and then went to migrate a models.py file.
 
 I contacted Tutor support for help recusing my database the second time but unfortunately it wasn't possible. They managed to re-create my site over at GitPod so it was mainly a Codeanywhere issue. I had to delete my workspace and create a new one, which also meant I had to reinstall everything in my requirements.txt file.
 

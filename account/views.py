@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .forms import LoginForm, UserRegistrationForm, \
     UserEditForm, ProfileEditForm
-from .models import Profile, FollowersCount
+from .models import Profile
 from locations.models import Location
 
 
@@ -132,40 +132,40 @@ def user_profile(request, username):
 # User follow count system
 
 
-def follow(request):
-    current_user = request.GET.get('user')
-    logged_in_user = request.user.username
-    user_followers = len(FollowersCount.objects.filter(user=current_user))
-    user_following = len(FollowersCount.objects.filter(follower=current_user))
-    user_followers0 = FollowersCount.objects.filter(user=current_user)
-    user_followers1 = []
-    for i in user_followers0:
-        user_followers0 = i.follower
-        user_followers1.append(user_followers0)
-    if logged_in_user in user_followers1:
-        follow_button_value = 'unfollow'
-    else:
-        follow_button_value = 'follow'
+# def follow(request):
+#     current_user = request.GET.get('user')
+#     logged_in_user = request.user.username
+#     user_followers = len(FollowersCount.objects.filter(user=current_user))
+#     user_following = len(FollowersCount.objects.filter(follower=current_user))
+#     user_followers0 = FollowersCount.objects.filter(user=current_user)
+#     user_followers1 = []
+#     for i in user_followers0:
+#         user_followers0 = i.follower
+#         user_followers1.append(user_followers0)
+#     if logged_in_user in user_followers1:
+#         follow_button_value = 'unfollow'
+#     else:
+#         follow_button_value = 'follow'
 
-    print(user_followers)
-    return render(request, 'account/user/detail.html', {
-        'current_user': current_user,
-        'user_followers': user_followers,
-        'user_following': user_following,
-        'follow_button_value': follow_button_value
-    })
+#     print(user_followers)
+#     return render(request, 'account/user/detail.html', {
+#         'current_user': current_user,
+#         'user_followers': user_followers,
+#         'user_following': user_following,
+#         'follow_button_value': follow_button_value
+#     })
 
-def followers_count(request):
-    if request.method == 'POST':
-        value = request.POST['value']
-        user = request.POST['user']
-        follower = request.POST['follower']
-        if value == 'follow':
-            followers_cnt = FollowersCount.objects.create(follower=follower, user=user)
-            followers_cnt.save()
-        else:
-            followers_cnt = FollowersCount.objects.get(follower=follower, user=user)
-            followers_cnt.delete()
+# def followers_count(request):
+#     if request.method == 'POST':
+#         value = request.POST['value']
+#         user = request.POST['user']
+#         follower = request.POST['follower']
+#         if value == 'follow':
+#             followers_cnt = FollowersCount.objects.create(follower=follower, user=user)
+#             followers_cnt.save()
+#         else:
+#             followers_cnt = FollowersCount.objects.get(follower=follower, user=user)
+#             followers_cnt.delete()
         
-        return redirect('/?user='+user)
+#         return redirect('/?user='+user)
 
