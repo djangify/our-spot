@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 
-# Choice Fields
+# Choice Fields to save locations under
 
 LOCATION_TYPES = (
     ("africa", "Africa"),
@@ -18,11 +18,9 @@ LOCATION_TYPES = (
     ("oceanic", "Oceanic"),
 )
 
-# A model to create and manage shared locations
-
 
 class Location(models.Model):
-
+    """Creates and manages shared locations"""
     user = models.ForeignKey(
         User, related_name="location_owner", on_delete=models.CASCADE
     )
@@ -52,10 +50,9 @@ class Location(models.Model):
 
         super(Location, self).save(*args, **kwargs)
 
-# Like button
-
 
 class Like(models.Model):
+    """Like button appears under each image"""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 

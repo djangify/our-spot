@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'home',
     'locations',
     'account',
     'easy_thumbnails',

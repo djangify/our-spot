@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
 
-# User can login using email (if supplied) or username
-
 
 class EmailAuthBackend:
-
+    """User can log-in using email or username"""
     def authenticate(self, request, username=None, password=None):
         try:
             user = User.objects.get(email=username)

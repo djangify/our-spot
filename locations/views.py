@@ -1,3 +1,11 @@
+# Core Django imports
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.models import User, auth
+from django.db.models import Q
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views.generic import (
     CreateView,
     ListView,
@@ -8,24 +16,18 @@ from django.views.generic import (
     View,
 )
 
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.db.models import Q
-from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Location, Like
+# Imports from apps
 from .forms import LocationForm
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User, auth
-from django.urls import reverse
-from django.http import HttpResponseRedirect
-from .models import Location
+from .models import Location, Like
 
 
-# View all images
+class Index(TemplateView):
+    """HomePage/Index"""
+    template_name = "locations/index.html"
 
 
 class Locations(ListView):
-
+    """View images uploaded by users"""
     template_name = "locations/locations.html"
     model = Location
     context_object_name = "locations"
@@ -43,31 +45,21 @@ class Locations(ListView):
         return location
 
 
-# View a single location. 
-
-
 class LocationDetail(DetailView):
     """View a single location"""
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
-        # liked = False
-        # if request.user.is_authenticated and location.likes.filter(id=request.user.id).exists():
-        #     liked = True
         return render(
             request,
             "locations/location_detail.html",
             {
                 "location": location,
-                # "liked": liked
             },
         )
 
 
-# Add location view
-
-
 class AddLocation(LoginRequiredMixin, CreateView):
-
+    """User can add a new location/spot"""
     template_name = "locations/add_location.html"
     model = Location
     form_class = LocationForm
@@ -78,11 +70,8 @@ class AddLocation(LoginRequiredMixin, CreateView):
         return super(AddLocation, self).form_valid(form)
 
 
-# Edit a location
-
-
 class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-
+    """User can edit any image/description they add"""
     template_name = "locations/edit_location.html"
     model = Location
     form_class = LocationForm
@@ -91,22 +80,18 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         return self.request.user == self.get_object().user
 
-# Delete an Image
-
 
 class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-
+    """User can delete any image/description they add"""
     model = Location
     success_url = "/locations/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
 
-# View user images in dashboard
-
 
 class LocationImage(LoginRequiredMixin, TemplateView):
-
+    """User will see images they upload in their dashboard"""
     template_name = "account/dashboard.html"
 
     def get_context_data(self, **kwargs):
@@ -116,11 +101,9 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         context["locations"] = locations
         return context
 
-# Like Button
-
 
 class LikeLocationView(LoginRequiredMixin, View):
-
+    """Button users use to like photos"""
     def post(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
         like, created = Like.objects.get_or_create(

@@ -2,17 +2,15 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
 
-# Form to Log In
-
 
 class LoginForm(forms.Form):
+    """Form users use to login"""
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-# Form to Register
-
 
 class UserRegistrationForm(forms.ModelForm):
+    """User registration form"""
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repeat password",
                                 widget=forms.PasswordInput)
@@ -34,10 +32,9 @@ class UserRegistrationForm(forms.ModelForm):
                 raise forms.ValidationError("Email already in use.")
         return data
 
-# Edit registration details
-
 
 class UserEditForm(forms.ModelForm):
+    """User can edit registration details"""
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email"]
@@ -49,10 +46,9 @@ class UserEditForm(forms.ModelForm):
             raise forms.ValidationError("Email already in use.")
         return data
 
-# Edit Profile Form
-
 
 class ProfileEditForm(forms.ModelForm):
+    """User can edit profile form"""
     class Meta:
         model = Profile
         fields = ["date_of_birth", "photo"]

@@ -7,10 +7,12 @@ from .views import (
     EditLocation,
     LocationImage,
     LikeLocationView,
+    Index
 )
 from . import views
 
 urlpatterns = [
+    path('', Index.as_view(), name="home"),
     path("", Locations.as_view(), name="locations"),
     path("add/", AddLocation.as_view(), name="add_location"),
     path('<slug:slug>/', views.LocationDetail.as_view(),
