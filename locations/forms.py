@@ -1,11 +1,9 @@
 from django import forms
-from .models import Location
-
-# Display form for users to add a location
+from .models import Location, Comment
 
 
 class LocationForm(forms.ModelForm):
-
+    """Display form for users to add a location"""
     class Meta:
         model = Location
         fields = [
@@ -29,4 +27,8 @@ class LocationForm(forms.ModelForm):
         }
 
 
-
+class CommentForm(forms.ModelForm):
+    """Display comment form for users to add comments"""
+    class Meta:
+        model = Comment
+        fields = ['text']

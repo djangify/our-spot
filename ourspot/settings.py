@@ -47,6 +47,13 @@ CSRF_TRUSTED_ORIGINS = [
 # SITE ID
 SITE_ID = 1
 
+# LOGIN URLS
+LOGIN_REDIRECT_URL = "dashboard"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -63,6 +70,7 @@ INSTALLED_APPS = [
     'account',
     'easy_thumbnails',
     'djrichtextfield',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -159,10 +167,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# LOGIN URLS
-LOGIN_REDIRECT_URL = "dashboard"
-LOGIN_URL = "login"
-LOGOUT_URL = "logout"
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 

@@ -18,7 +18,8 @@ from django.views.generic import (
 
 # Imports from apps
 from .forms import LocationForm
-from .models import Location, Like
+from .models import Location, Like, Comment
+from .forms import CommentForm
 
 
 class Index(TemplateView):
@@ -47,15 +48,19 @@ class Locations(ListView):
 
 class LocationDetail(DetailView):
     """View a single location"""
+
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
+        form = CommentForm()
         return render(
             request,
             "locations/location_detail.html",
             {
                 "location": location,
+                "form": form
             },
         )
+
 
 
 class AddLocation(LoginRequiredMixin, CreateView):
@@ -113,3 +118,47 @@ class LikeLocationView(LoginRequiredMixin, View):
             like.delete()
 
         return HttpResponseRedirect(reverse('location_detail', args=[slug]))
+
+# Comments Section
+
+
+@login_required
+def add_comment(request, slug):
+    location = get_object_or_404(Location, slug=slug)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.location = location
+            comment.save()
+            return redirect('location_detail', slug=slug)
+    else:
+        form = CommentForm()
+    return render(request, 'locations/add_comment.html', {'form': form})
+
+
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.user != comment.user:
+        return redirect('location_detail', slug=comment.location.slug)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('location_detail', slug=comment.location.slug)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'locations/edit_comment.html', {'form': form, 'object': comment})
+    
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    if request.user != comment.user:
+        return redirect('location_detail', slug=comment.location.slug)
+    if request.method == "POST":
+        comment.delete()
+        return redirect('location_detail', slug=comment.location.slug)
+    return render(request, 'locations/delete_comment.html', {'comment': comment})

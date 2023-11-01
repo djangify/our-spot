@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<div class="container my-5">
+    <h1>Comments</h1>
+    <form method="POST" action="{% url 'add_comment' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form | crispy }}
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-success">Add Comment</button>
+            <a href="{% url 'index' %}" class="btn btn-outline-dark">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

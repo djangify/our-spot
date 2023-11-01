@@ -20,8 +20,8 @@ from locations.views import Index
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", Index.as_view(), name="home"),
     path("account/", include("account.urls")),
     path("locations/", include("locations.urls")),
+    path("", Index.as_view(), name="home"),
     
 ]

@@ -59,3 +59,13 @@ class Like(models.Model):
     def __str__(self):
         return f"{self.user.username} likes {self.location.title}"
 
+class Comment(models.Model):
+    """Model for comments section"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.text[:40]}"
