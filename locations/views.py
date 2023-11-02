@@ -68,7 +68,7 @@ class AddLocation(LoginRequiredMixin, CreateView):
     template_name = "locations/add_location.html"
     model = Location
     form_class = LocationForm
-    success_url = "/locations/"
+    success_url = "/locations/locations/"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -80,7 +80,7 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "locations/edit_location.html"
     model = Location
     form_class = LocationForm
-    success_url = "/locations/"
+    success_url = "/locations/locations/"
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -89,7 +89,7 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """User can delete any image/description they add"""
     model = Location
-    success_url = "/locations/"
+    success_url = "/locations/locations"
 
     def test_func(self):
         return self.request.user == self.get_object().user

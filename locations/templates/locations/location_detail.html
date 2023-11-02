@@ -6,20 +6,23 @@
 
 {% block content %}
 <div class="container my-5">
-    <h1>{{ location.title }}</h1>
-        <div class="photo-container">
-        <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 100%; height: auto;">
-        </div>
-    
+    <figure class="figure">
+        <h1>{{ location.title }}</h1>
+            <div class="photo-container">
+            <img src="{{ location.image.url }}" class="figure-img img-fluid rounded"
+                     alt="{{ location.image_alt }}">
+            </div>
+        
 
-    <!-- Code for Report Photo Link-->   
+        <!-- Code for Report Photo Link-->   
    
-    <div>
-        <br>
-        <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" class="text-end">Report Photo</a>
-    </div>
+        <div>
+            <br>
+            <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" 
+                            class="text-end">Report Photo</a>
+        </div>
 
-    <!-- Report Profile Modal -->
+        <!-- Report Profile Modal -->
         <div class="modal fade" id="report-modal">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -42,75 +45,80 @@
         <!-- Add this element for the report success message -->
         <p id="report-success-message"></p>
 
-    <!-- Photo details -->
+        <!-- Photo details -->
 
-        <div>
+        <!-- <figcaption class="figure-caption"> -->
             <h4>{{ location.title }}</h4>
             <p>Posted by {{location.user}} on {{location.posted_date}}</p>
         
             <p>{{location.description}}</p>
-        </div>
+        <!-- </figcaption> -->
+    </figure>
 
-    <!-- Code For Like Button taken from I think therefore I blog walkthrough -->
+        <!-- Like Button code from I think therefore I blog walkthrough -->
 
-    <div>
-        <strong>
-            {% if user.is_authenticated %}
-            <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
-                {% csrf_token %}
-                {% if request.user in location.like_set.all %}
-                <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
-                        class="fa-duotone fa-heart"></i></button>
+        <div>
+            <strong>
+                {% if user.is_authenticated %}
+                <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
+                    {% csrf_token %}
+                    {% if request.user in location.like_set.all %}
+                    <button type="submit" name="location_id" value="{{ location.slug }}" 
+                                  class="btn-like"><i class="fa-duotone fa-heart"></i></button>
+                    {% else %}
+                    <button type="submit" name="location_id" value="{{ location.slug }}" 
+                                class="btn-like"><i class="fa-regular fa-heart"></i></button>
+                    {% endif %}
+                </form>
                 {% else %}
-                <button type="submit" name="location_id" value="{{ location.slug }}" class="btn-like"><i
-                        class="fa-regular fa-heart"></i></button>
+                <span class="text-secondary"><i class="far fa-heart"></i></span>
                 {% endif %}
-            </form>
-            {% else %}
-            <span class="text-secondary"><i class="far fa-heart"></i></span>
-            {% endif %}
-            <span class="text-secondary">{{ location.like_set.count }} </span>
-        </strong>
-    </div>
-        <br>
+                <span class="text-secondary">{{ location.like_set.count }} </span>
+            </strong>
+        </div>
+            <br>
 
         <!-- Display comments -->
-    <div class="comments">
-        {% for comment in location.comment_set.all %}
-        <div class="comment">
-            <strong>{{ comment.user.username }}</strong>
-            <p>{{ comment.text }}</p>
-            {% if request.user == comment.user %}
-            <a href="{% url 'edit_comment' comment.id %}">Edit</a>
-            <a href="{% url 'delete_comment' comment.id %}">Delete</a>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-
-    <!-- Add a comment -->
-    {% if user.is_authenticated %}
-    <form action="{% url 'add_comment' location.slug %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Comment</button>
-    </form>
-    {% endif %}
-
-
-    <!-- Code for button to edit and delete THE PHOTO/LOCATION  -->
-        <div class="container my-5 my-3">
+        <div class="comments">
+            <h4>Comments</h4>
+            {% for comment in location.comment_set.all %}
+            <div class="comment">
             
-            {% if request.user == location.user %}
-            <p class="m-3 p-3 border-start border-danger"> Edit or Delete This Photo</p>
-            <div class="btn btn-outline-dark ms-4 mx-2 px-3">
-            <a href="{% url 'edit_location' slug=location.slug %}">Edit</a>
+                <strong>{{ comment.user.username }}</strong>
+                <p>{{ comment.text }}</p>
+                {% if request.user == comment.user %}
+                <a href="{% url 'edit_comment' comment.id %}">Edit</a>
+                <a href="{% url 'delete_comment' comment.id %}">Delete</a>
+                {% endif %}
             </div>
-            <div class="btn btn-outline-dark mx-3 px-3">
-            <a href="{% url 'delete_location' slug=location.slug %}">Delete</a>
-            </div>
-            
+            {% endfor %}
         </div>
+
+        <!-- Add a comment -->
+        {% if user.is_authenticated %}
+        <form action="{% url 'add_comment' location.slug %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Comment</button>
+        </form>
+        {% endif %}
+
+        <div class="d-grid gap-5">
+            <div class="p-4 bg-white"></div>
+        </div>
+        <!-- Code for button to edit and delete THE PHOTO/LOCATION  -->
+            <div class="container my-5 my-3">
+                
+                {% if request.user == location.user %}
+                <p class="m-3 p-3 border-start border-danger">You can edit or delete your photo here {{request.user.first_name}}</p>
+                <div class="btn btn-outline-dark ms-4 mx-2 px-3">
+                <a href="{% url 'edit_location' slug=location.slug %}">Edit</a>
+                </div>
+                <div class="btn btn-outline-dark mx-3 px-3">
+                <a href="{% url 'delete_location' slug=location.slug %}">Delete</a>
+                </div>
+                
+            </div>
 </div>
     {% endif %}
         <script src="{% static 'js/report.js' %}"></script>

@@ -5,23 +5,24 @@
 
 {% block title %}Members{% endblock %}
 
-<!-- Contains code that shows a list of members/users -->
-
 {% block content %}
 <div class="container my-5">
     <h1>Members</h1>
-    {% for user in users %}
-    <p>
-        <div>
-            <a href="{{ user.get_absolute_url }}" class="text-center">{{ user.get_full_name }}
-                {% if user.profile.photo %}
-                    <img src="{{ user.profile.photo.url }}" class="rounded d-block" alt="{{ user.profile.photo_alt }}">
-                {% else %}
-                    <img src="{% static 'images/blankavatar.png' %}" class="rounded d-block" alt="Default Avatar" style="width: 250px; height: 300px; object-fit: cover;">
-                {% endif %}
-            </a>
-        </div>
-    </p>
-{% endfor %}
+    <div class="row">
+        {% for user in users %}
+            <div class="col-md-3 mb-3">
+                <div class="card h-100"> 
+                    <a href="{{ user.get_absolute_url }}" class="text-center">
+                        <div class="card-img-top" style="background-image: url('{% if user.profile.photo %}{{ user.profile.photo.url }}{% else %}{% static 'images/blankavatar.png' %}{% endif %}'); background-size: cover; background-position: center; height: 300px;"></div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ user.get_full_name }}</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No members found.</p>
+        {% endfor %}
+    </div>
 </div>
-    {% endblock %}
+{% endblock %}

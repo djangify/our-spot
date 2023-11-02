@@ -2,23 +2,28 @@
 {% load static %}
 
 {% block title %}Locations{% endblock title %}
+
 <!-- Code to list all the locations added by all users-->
 
 {% block content %}
-
 <div class="container my-5">
     <h1>Recent Spots</h1>
-
-    {% for location in locations %}
-    <h3>{{location.title}}</h3>
-        <a href="{{ location.get_absolute_url }}"  aria-label="Click to view {{ location.title }}">
-        <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" style="max-width: 75%; height: auto;">
-        </a>
-        <br>
-        <p>{{location.description|truncatechars:130}}</p>
-    
-
-    {% endfor %}
-
+    <div class="row"> 
+        {% for location in locations %}
+            <div class="col-md-6 mb-4"> 
+                <div class="card h-100"> 
+                    <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
+                        <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" class="card-img-top img-fluid">
+                    </a>  
+                    
+                    <div class="card-body"> 
+                        <h3 class="card-title">{{ location.title }}</h3>
+                    
+                        <p class="card-text">{{ location.description|truncatechars:150 }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div> 
 </div>
 {% endblock %}

@@ -6,7 +6,7 @@
 
 {% load crispy_forms_tags %}
 <div class="container my-5">
-    <h1>Comments</h1>
+
     <form method="POST" action="{% url 'add_comment' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
