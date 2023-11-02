@@ -1,4 +1,6 @@
-NEED A README AND A TESTING.MD
+# Our Spot Social Network
+![temporary homepage](readme/wireframes/rm-homepage.png)
+
 
 ## Table of Content
 
@@ -6,19 +8,19 @@ NEED A README AND A TESTING.MD
 
 [Project Objectives and Outcomes](#project-objectives-and-outcomes)
 
-[Model Views Template (mvc)](#model-views-template-mvc)
+[Model Views Template (mvt)](#model-views-template-mvt)
 
 [Agile Terminologies](#agile-terminologies)
 
 [Target Audience](#target-audience)
-
-[Research](#research)
 
 [User features and design](#user-features-and-design)
 
 [Epics and user stories](#epics-and-user-stories)
 
 [Site Structure](#site-structure)
+
+# SITE COLOURS AND FONTS
 
 [Database Structure](#database-structure)
 
@@ -32,20 +34,24 @@ NEED A README AND A TESTING.MD
 
 [Acknowledgements](#acknowledgements)
 
-# Our Spot Social Network
 
-A network of people who love to share photos of their favourite spots around the world. Currently the site being presented is a minimum viable product (mvp) for project 4. It is not the final network but includes enough functionality to meet the project purpose and to present to a group of potential users.
+## Overview
+A network of people who love to share photos of their favourite spots around the world. Currently the site being presented is a ***minimum viable product (mvp)*** - ***Phase One*** of Two phases. It is not the final network but includes enough functionality and business logic to meet the CI project 4 purpose.
+
+The fully deployed project can be [accessed here.](
+https://ourspot-d2a3c52401dc.herokuapp.com/)
+Use Ctrl (or Cmd) + click to open in new window
 
 ## Project Purpose:
 
 This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
 
-This is the first working draft/prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data
+This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data
 
 ## Project Objectives and Outcomes
 
 <details>
-Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing photos, the site will also provide an opportunity to connect with other members and fosters friendship.
+Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing photos, the site will also provide an opportunity to connect with other members and foster friendships.
 
 The key objectives of the project include:
 
@@ -53,19 +59,19 @@ The key objectives of the project include:
 
 - Offering a dedicated space for anyone looking to contribute photos of their favourite spot including local parks, open spaces and hangouts, with an opportunity to share what there is to do and why they love it.
 
-- An opportunity for people to engage and interact with each other through comments, fostering connecting and opening dialogue. Profiles are provided for each member that can be followed by other members.
+- An opportunity for people to engage and interact with each other through comments, fostering connecting and opening dialogue. Profiles are provided for each member.
 
-- Building a database-backed MVC web application that lets users store and manipulate data records including the ability to create, edit and delete.
+- Building a database-backed model-view-template (MVT) web application that lets users store and manipulate data records including the ability to create, edit and delete.
 
 - Giving users the ability to initiate and control their actions while providing immediate and complete feedback on data processes.
 
 - A place where administrators of the project have a panel that allows them to monitor users and the information they share as well as the comments they make, to ensure the community is kept safe and the environment is not abused.
 
-The end result has been a user-friendly photo sharing network that has been encouraged and informed through user research and engagement.
+The end result has been a user-friendly photo sharing network that has been encouraged and informed through user engagement.
 
 </details>
 
-## Model Views Template (MVC)
+## Model Views Template (MVT)
 
 <details>
 
@@ -138,18 +144,6 @@ People looking to share the places they love to visit as well as people looking 
 
 Photographers and travellers who love to share some of their favourite spots around the world.
 
-## Research
-
-<details>
-
-This project came about as a result of an online workshop with adult education participants. Talk turned to weekend activities and a discussion was had about finding a network where the emphasis wasn't on highlighting what people had but instead focused on where people went (activities and experiences) and what they liked to do - simple, mainly free things that can be enjoyed alone or with family/friends/loved ones.
-
-After hearing a Willow Smith song called Our Spot I undertook a focus group to find out what people would enjoy doing on a social network that offered an opportunity to simply share their favourite places to go and meet up.
-
-As a result of the focus group the emphasis was on keeping the site simple (e.g. photos only) and encouraging people to share where they go, what they enjoy doing and why its their favourite spot. I arranged a couple of small focus groups before planning on the design of the site (which changed a few times) and starting the project.
-
-</details>
-
 ## User Features and Design
 
 <details>
@@ -170,7 +164,7 @@ As a result of the focus groups it was agreed that as a member of the network us
 
 - Simplicity in registering, using and interacting were the main priorities
 
-This research fed into the MVC and user stories.
+This research fed into the MVT and user stories.
 
 </details>
 
@@ -186,12 +180,12 @@ Based on the MVT model above, the following EPICS and user stories were created 
 
 <details>
 
-A total of six EPICS were created to complete the first phase and organised into sprints.
+A total of five EPICS were created to complete the first phase and organised into sprints.
 
 **_User Authentication and Registration:_**
 Covering network setup up, user registration, login, and logout functionality.
 
-**_User Profiles and Feeds:_**
+**_User Profiles:_**
 This epic covers user profiles, creating, editing and deleting
 
 **_Photo Management:_**
@@ -203,8 +197,6 @@ This focuses on the detailed view of a specific location, including comments and
 **_User Connections:_**
 The structure for following and displaying the latest activity of followed users.
 
-**_Social Interaction:_**
-Creating a structure for liking, commenting, and sharing locations.
 
 ## Admin
 
@@ -213,11 +205,11 @@ Creating a structure for liking, commenting, and sharing locations.
 **_Register to add photos:_**
 As Admin, I want users to register before being able to book addd a new photo.
 
-**_Email notifications:_**
-As a admin I want to set up a system so users can reset their password if they can not log in.
+**_Password Change:_**
+As a admin I want to set up a system so users can change their password when they are logged in.
 
 **_Create, Read, Update and Delete_**
-As admin I want to be able to create, read, update and delete photos and profiles so that the admin area is kept up to date.
+As admin I want to be able to create, read, update and delete photos, comments and profiles so that the admin area is kept up to date.
 
 ## User
 
@@ -231,11 +223,10 @@ As a user, I want to log in and out of my account so that I can access the platf
 As a user I want to be able to create, edit, and delete my photos so that I can stay in control of the information I share.
 
 **_View User Photos:_**
-As a user, I want to be able to view the photos of other users and like them [ANY OTHER ACTIVITY - COMMENT OR SAVE] As a user, I want to view detailed information about a spot when I click on it.
+As a user, I want to be able to view the photos of other users and like/comment on them. 
 
-**_View User Activity_**
-As a user, I want to follow other users and see their latest activity on my feed.
-As a user, I want to see who is following me and whom I'm following on my profile.
+**_View Photo Information_**
+As a user, I want to view detailed information about a spot when I click on it.
 
 **_Create, Edit, cancel and delete profile:_**
 As a user I want to be able to create, edit, and delete my profile so that I have an accurate record of all my personal information and activity.
@@ -245,6 +236,9 @@ As a user, I want to be able to view my profile and latest activity so that I ca
 
 **_View Other Profiles:_**
 As a user I want to be able to view the profiles of other users so that I can follow their activity.
+
+**_Search Facilities:_**
+As a user I want to be able to search for different photos available based on their location.
 
 </details>
 
@@ -256,7 +250,7 @@ When designing the structure of the site I kept my focus on the need to create a
 
 ![Homepage wireframe](readme/wireframes/wf-homepage.png)
 
-In order to log-in users must add a user and password. Email is optional at this point but will be mandatory in the future.
+In order to log-in users must add a username and password. Email is optional in Phase One, although it helps to add an email - even a fake one - so you can login using username or email. In Phase Two when email authentication is included this will change.
 
 ![register and success login](readme/wireframes/wf-register.png)
 
@@ -281,17 +275,12 @@ Users can update their passwords, edit and delete their locations and comments (
 
 Messages are used to ensure that any changes to the data are notified to the user.
 
-# IMAGE OF SUCCESS YOU HAVE UPDATED YOUR PROFILE
-
-
+![success](readme/images/rm-success-message.png)
 
 ## Database structure
 
-The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. This mainly happened if I changed and then went to migrate a models.py file.
-
-I contacted Tutor support for help recusing my database the second time but unfortunately it wasn't possible. They managed to re-create my site over at GitPod so it was mainly a Codeanywhere issue. I had to delete my workspace and create a new one, which also meant I had to reinstall everything in my requirements.txt file.
-
-The first time it happened I had added several user profiles to give me insights into how the images were behaving once uploaded. After the second database crash I decided to only include two users with three photos each until the site was complete. I then added additional users.
+The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. 
+After the second data crash I moved over to GitPod.
 
 # Image of database
 
@@ -307,15 +296,30 @@ The ability to create, read, update and delete data has been added using the fol
 
 **_Users:_**
 
-- A dashboard where members can read about their latest uploads as well as gain access to view, edit and delete them.
+A dashboard where members can view a list of their latest uploads as well as gain access to view, edit and delete them.
 
-- A page dedicated to creating new uploads with a simple interface.
+![dashboard](readme/images/rm-dashboard.png)
 
-- Pages where users can edit and delete any information they have uploaded.
 
-- The ability to follow users and like the photos of other members.
+A page dedicated to creating new uploads with a simple interface.
 
-- The ability to create and delete comments.
+![add spot](readme/images/rm-addspot.png)
+
+Pages where users can edit/change their information
+
+![edit profile](readme/images/rm-profile.png)
+
+![password](readme/images/rm-password.png)
+
+The ability to like the photos of other members and add a comment.
+
+![comment and like](readme/images/rm-comment.png)
+
+The ability to edit and delete comments.
+
+![edit comment](readme/images/rm-edit-comment.png)
+
+![delete comment](readme/images/rm-delete-comment.png)
 
 **_Admin:_**
 
@@ -326,35 +330,54 @@ A central location where the site can be managed including the ability to create
 - profiles
 - comments
 
+![admin](readme/images/rm-admin.png)
+
 </details>
+
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Authentication and Authorisation
 
 <details>
 
-Authorisation is only available to registered users so the site is hidden away and register details available on the homepage with a login link in the navigation bar. If a non-member clicks the log-in link they are invited to register.
+Authorisation is only available to registered users so the site is hidden away and register details available on the homepage with a login link in the navigation bar. 
 
-Email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy.
+![logged out navbar](readme/images/rm-loggedout-navbar.png)
 
-Once registered a new users is invited to log-in and will be taken straight to the dashboard where they can update their profile and/or add a new location photo.
+In Phase One, email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy.
+Users can register using lowercase or uppercase text.
+![registration](readme/images/rm-register.png)
 
-Image OF HOMEPAGE
 
-IMAGE OF REGISTRATION PAGE
+Once registered a new users is invited to log-in. If they included their name when registering it will appear with the welcome message.
 
-IMAGE OF LOGIN PAGE FOR NEW USERS
+![welcome no name](readme/images/rm-welcome.png)
 
-IMAGE OF LOGIN PAGE
 
-IMAGE OF DASHBOARD
+![welcome with name](readme/images/rm-welcome-name.png)
+
+
+New members are then taken to the dashboard area where they can update their profile and/or add a new location photo.
+
+![dashboard with name](readme/images/rm-dashboard-empty.png)
+
+![dashboard no name](readme/images/rm-dashboard-noname.png)
+
+
+Once inside members who want to add information to their profile will only be able to do so if they include an email address. The Admin area has been setup to make email a requirement of members, however madeup email addresses can be used.
+
+![profile email](readme/images/rm-false-email.png)
+
+
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Password Management
 
 INFORMATION ON RESETTING PASSWORD
-In the first phase of this project restting a password can be done inside the members area (photo)
+In the first phase of this project restting a password can be done inside the members area.
+
+![password](readme/images/rm-password.png)
 
 In the next phase the ability to use a password reset email will be included.
 
@@ -362,70 +385,79 @@ In the next phase the ability to use a password reset email will be included.
 
 ## Navigation
 
-A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. Unregistered and logged out users only see the ability to log in.
+A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. Unregistered and logged out users only see the ability to register and log in.
 
-No footer has been included because this is a social network and they don't usually contain a footer - instead users are kept scrolling using infinite scroll.
+![navbar](readme/images/rm-loggedout-navbar.png)
 
-PHOTO
+***No footer has been included*** because this is a social network and they don't usually contain a footer - instead users are kept scrolling using infinite scroll, which will be added in Phase Two.
+
 
 ## Dashboard
 
 After logging in users are taken to their dashboard where they are presented with a list of their recent uploads.
 They also have the ability to view and edit their profile
 
-PHOTO OF DASHBOARD
+![dashboard tilly](readme/images/rm-dashboard-tilly.png)
 
 ## Recently added
 
 This page contains the photos of all members and infinite scroll has been used so that members can scroll down and look through the photos.
 
-PHOTO OF PAGE
+![new locations](readme/images/rm-new-spots.png)
 
 When a user clicks on a photo they are taken to a display page. If they are the owner of the photo they have the ability to edit and delete the photo. If they are not users can comment and like the photo.
+
+![display location](readme/images/rm-location-post.png)
 
 ## Add New Spot
 
 This area has been kept fairly simple. Users can add a title, description (up to 500 words), photo and to ensure the alt feature is added users are encouraged to describe their photo.
 
-PHOTO OF ADD NEW SPOT
+![add spot](readme/images/rm-addspot.png)
 
 ## Edit, Delete Spot
 
 The ability to edit or delete any photo uploaded by a user is available on their dashboard and also shows up on locations they have added.
 
-PHOTO OF LOCATION_DETAIL.HTML PAGE
+![edit spot](readme/images/rm-location--editpost.png)
+
+![edit spot](readme/images/rm-edit-location.png)
+
+![delete spot](readme/images/rm-delete-location.png)
+
 
 ## Likes and Comments
 
 The ability to like and comment on a photo is available to all users. The ability to delete a comment has also been included
 
-PHOTO OF LIKE AND COMMENT AND DELETE
+![comment](readme/images/rm-comment.png)
 
 ## Report profile and/or photo
 
 There is a link available for members who want to report a profile or photo. A pop up box appears and once submit is pressed a message confirming that Admin will take a look is shown.
 
-PHOTO OF REPORT LINK
+![comment](readme/images/rm-report-photo.png)
 
-PHOTO OF MESSAGE
+
+![comment](readme/images/rm-report-photo-box.png)
+
+# PHOTO OF success MESSAGE
 
 ## List of Members
 
 This page contains a list of profile photos with the name of the user. This can be clicked and a full profile appears.
 
-LIST OF MEMBERS
+![members list](readme/images/rm-members-list.png)
 
 ## User Profile
 
-Each member is provided with a profile however adding a photo is optional.
+Each member is provided with a profile however adding a photo is optional. When you visit a profile you will see any locations that have been added by that user.
 
-PHOTO OF PROFILE
+![profile no photo](readme/images/rm-member-no-photo.png)
 
-## Follow A Member
+![profile with photo](readme/images/rm-profile-with-photo.png)
 
-There is a follow button on the profile of each member so users can follow each other.
 
-PHOTO OF FOLLOW BUTTON
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
@@ -433,21 +465,23 @@ PHOTO OF FOLLOW BUTTON
 
 The network includes a few placeholders that were adding so show additional features that will be included. These are:
 
-_Report a photo or profile_ - The button under photos and profiles can be clicked to report a photo/profile to Admin. This currently works on the network but is not connected to an email system right now.
+_Report a photo or profile_ - The button under photos and profiles can be clicked to report a photo/profile to Admin. This currently works on the network but is not connected to an email system.
 
 _Email password_ - If a member is unable to log-in because they have forgotten their password the ability to complete the "forgotten password" form is available but is not currently a working system.
 
 As a social network there were a number of features that will be added at a later date. Future features include:
 
-- Email authentication - the ability to sign up using email and receive notifications via email.
+- Email authentication - the ability to sign up using email to verify your account and receive notifications via email.
 
-- The ability to search for images based on tags
+- The ability to search for images based on tags.
 
-- Album creation so photos can be saved into specific albums, e.g. parks, holiday etc
+- Album creation so photos can be saved into specific albums, e.g. parks, holiday etc.
 
-- Personalised recommendations - users receive recommendations for new spots based on previous uploads
+- Personalised recommendations - users receive recommendations for new spots based on previous uploads.
 
-- A feed that shows user activity and trending images
+- A feed that shows user activity and trending images.
+
+- The ability to follow members and get updated when they post.
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
@@ -481,33 +515,42 @@ Deployment took place immediately after installing Django and Heroku was set to 
 - Heroku
 - Cloudinary
 - CodeAnywhere
+- GitPod
 - Visual Studio Code
 - Google Developer Tools
 
 **_Additional Resources_**
 
-- Beautifier.io - to reform JavaScript - https://beautifier.io/
-- Images - my own plus Pexel
+- Images - Although member names have been made up images have been supplied by potential members. I have also supplied my own images and additional images were sourced via Pexel.com
 - Favicon
+- Canva
 - DrawSQL -
 - Changing images to webp
 - Balsamiq for wireframes
+- [Diffchecker to check code](https://www.diffchecker.com/text-compare/ )
 
 ## Resources Used
 
-- Django 4 by Example book
+Use Ctrl (or Cmd) + click to open in new window
 
-- Daisy (link to video)
+- [Django 4 by Example book - for initial idea](https://www.packtpub.com/product/django-4-by-example-fourth-edition/)
 
-- Tomi (link to video)
+- [Daisy Mc YouTube - CRUD functionality](https://www.youtube.com/watch?v=sBjbty691eI&list=PLXuTq6OsqZjbCSfiLNb2f1FOs8viArjWy)
 
-- Infinite Scroll (link)
+- [Tomi/Free Code Camp - Build a social media app](https://www.youtube.com/watch?v=xSUm6iMtREA&t=13188s)
+
+- [Slackoverflow forum](https://stackoverflow.com/questions/2315187/allowing-users-to-delete-their-own-comments-in-django) for answers when stuck.
+
+- [Django Packages](https://djangopackages.org/)
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Acknowledgements
 
-- Research and focus group participants
-- Daisy
+- Participants who answered questions, tested the site by registering and adding images.
 
-- Slack community and Tutor support
+- Forum over at [DjangoProject](https://forum.djangoproject.com/) - especially Ken
+
+- Daisy who's [YouTube videos](https://www.youtube.com/watch?v=sBjbty691eI&list=PLXuTq6OsqZjbCSfiLNb2f1FOs8viArjWy) helped me create the CRUD functionality of this site and who also helped me personally.
+
+- Slack community and Tutor support.

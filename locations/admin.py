@@ -9,6 +9,7 @@ class LocationAdmin(admin.ModelAdmin):
         "slug",
         "description",
         "image",
+        "posted_date"
     )
     list_filter = ("location_types",)
     prepopulated_fields = {'slug': ('title',)}

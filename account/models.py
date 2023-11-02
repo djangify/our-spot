@@ -8,7 +8,6 @@ from django_resized import ResizedImageField
 class Profile(models.Model):
     """Database model for users profile"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    following = models.ManyToManyField(User, related_name='followers')
     date_of_birth = models.DateField(blank=True, null=True)
     photo = ResizedImageField(
         size=[300, 300],
