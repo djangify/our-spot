@@ -37,6 +37,7 @@
 
 
 ## Overview
+
 Our Spot is a mobile-first developed social network created for people who love to share photos of their favourite spots around the world. Currently the site being presented is a ***minimum viable product (mvp)*** - ***Phase One*** of Two phases. It is not the final network but includes enough functionality and business logic to meet the CI project 4 purpose.
 
 The fully deployed project can be [accessed here.](
@@ -45,14 +46,21 @@ Use Ctrl (or Cmd) + click to open in new window
 
 ## Project Purpose:
 
+<details>
+
 This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
 
-This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data
+This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.
+
+</details>
 
 ## Project Objectives and Outcomes
 
 <details>
-Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing photos, the site will also provide an opportunity to connect with other members and foster friendships.
+
+Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. 
+
+By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing photos, the site will also provide an opportunity to connect with other members and foster friendships.
 
 The key objectives of the project include:
 
@@ -177,13 +185,13 @@ This research fed into the MVT and user stories.
 
 ## EPICS and User Stories
 
+<details>
+
 Based on the MVT model above, the following EPICS and user stories were created to support project development.
 
 [View my GitHub Project Board Here](https://github.com/users/todiane/projects/8/views/1?layout=board)
 
 ## EPICS:
-
-<details>
 
 A total of five EPICS were created to complete the first phase and organised into sprints.
 
@@ -267,7 +275,7 @@ Once logged-in users are met with their dashboard
 
 ![Dashboard wireframe](readme/wireframes/wf-dashboard.png)
 
-Other options available are to see images added by other uses and to addd their own images
+Other options available are to see images added by other uses (locations tab) and to addd their own images (new spot tab).
 
 ![Locations](readme/wireframes/wf-locations.png)
 
@@ -288,16 +296,23 @@ Messages are used to ensure that any changes to the data are notified to the use
 
 ## Site Colours and Font
 
+<details>
+
 The font used for the site is a Google Font called [Mulish](https://fonts.google.com/specimen/Mulish?query=muli)
 
-<img src="readme/images/palette.png" width="80%"><br><br>
+<img src="readme/images/palette.png" width="90%"><br><br>
+
+</details>
 
 ## Database structure
 
-The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. 
-After the second data crash I moved over to GitPod.
+<details>
 
-# Image of database 
+The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. After the second data crash I moved over to GitPod.
+
+Once users register a file is created that stores their username and password plus any additional information provided. Users are then allocated a profile and have the ability to upload photos based on a location. These locations can be liked and commented upon by other users.
+
+<img src="readme/images/database.png" width="90%"><br><br>
 
 </details>
 
@@ -318,7 +333,7 @@ A dashboard where members can view a list of their latest uploads as well as gai
 ![dashboard](readme/images/rm-dashboard.png)
 
 
-A page dedicated to creating new uploads with a simple interface.
+A page dedicated to creating new uploads with a simple interface. Users can add their description and photo as well as selecting the region of their location. When using the search function users are then able to search by country.
 
 <img src="readme/images/rm-addspot.png" width="70%"><br><br>
 
@@ -399,6 +414,7 @@ In the next phase the ability to use a password reset email will be included.
 </details>
 
 ## Navigation
+
 <details>
 
 A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. Unregistered and logged out users only see the ability to register and log in.
@@ -429,21 +445,21 @@ When a user clicks on a photo they are taken to a display page. If they are the 
 
 This area has been kept fairly simple. Users can add a title, description (up to 500 words), photo and to ensure the alt feature is added users are encouraged to describe their photo.
 
-<img src="readme/images/rm-addspot.png" width="70%"><br><br>
+<img src="readme/images/rm-addspot.png" width="70%"><br>
 
 ## Edit, Delete Spot
 
 The ability to edit or delete any photo uploaded by a user is available on their dashboard and also shows up on locations they have added.
 
-<img src="readme/images/rm-location--editpost.png" width="70%"><br><br>
+<img src="readme/images/rm-location--editpost.png" width="70%"><br>
 
 Edit Location
 
-<img src="readme/images/rm-edit-location.png" width="70%"><br><br>
+<img src="readme/images/rm-edit-location.png" width="70%"><br>
 
 Delete Location
 
-<img src="readme/images/rm-delete-location.png" width="70%"><br><br>
+<img src="readme/images/rm-delete-location.png" width="70%"><br>
 
 
 ## Likes and Comments
@@ -475,16 +491,19 @@ This page contains a list of profile photos with the name of the user. This can 
 
 Each member is provided with a profile however adding a photo is optional. When you visit a profile you will see any locations that have been added by that user.
 
-<img src="readme/images/rm-member-no-photo.png" width="70%"><br><br>
-<img src="readme/images/rm-profile-with-photo.png" width="70%"><br><br>
+<img src="readme/images/rm-member-no-photo.png" width="70%"><br>
+<img src="readme/images/rm-profile-with-photo.png" width="70%"><br>
 
 </details>
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Placeholders and Future Updates
+
 <details>
+
 The network includes a few placeholders that were adding so show additional features that will be included. These are:
+<br>
 
 _Report a photo or profile_ - The button under photos and profiles can be clicked to report a photo/profile to Admin. This currently works on the network but is not connected to an email system.
 
@@ -513,9 +532,11 @@ As a social network there were a number of features that will be added at a late
 Please see my separate [Testing MD page HERE](/TESTING.md) that includes information on testing, viability and bugs.
 
 ## Deployment
-<details>
-Deployment took place immediately after installing Django.
 
+<details>
+
+Deployment took place immediately after installing Django.
+<br>
 ***Deploy To Heroku***
 
 First create A Pipfile in your project terminal.
@@ -560,12 +581,17 @@ Chose from HTTPS, SSH and GitClub CLI format and copy (preferably HTTPS)
 In your IDE open Git Bash
 Enter the command git clone followed by the copied URL
 Your clone was created
+
 </details>
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Technologies Used
+
 <details>
+
+Use Ctrl (or Cmd) + click to open in new window
+
 **_Core Resources:_**
 
 - [Django](https://www.djangoproject.com/) - Framework
@@ -586,6 +612,7 @@ Your clone was created
 - [GitPod](https://gitpod.com)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Google Developer Tools](https://developer.chrome.com/docs/devtools/)
+- [Google Fonts](https://fonts.google.com/specimen/Mulish?query=muli)
 
 **_Additional Resources_**
 
@@ -595,10 +622,13 @@ Your clone was created
 - [PNG to WEBP converter](https://www.freeconvert.com/png-to-webp) - Changing images to webp
 - [Balsamiq](https://balsamiq.com/) for wireframes
 - [Diffchecker to check code](https://www.diffchecker.com/text-compare/ )
+
 </details>
 
 ## Resources Used
+
 <details>
+
 Use Ctrl (or Cmd) + click to open in new window
 
 - [Django 4 by Example book - for initial idea](https://www.packtpub.com/product/django-4-by-example-fourth-edition/)
@@ -623,3 +653,6 @@ Use Ctrl (or Cmd) + click to open in new window
 - Daisy who's [YouTube videos](https://www.youtube.com/watch?v=sBjbty691eI&list=PLXuTq6OsqZjbCSfiLNb2f1FOs8viArjWy) helped me create the CRUD functionality of this site and who also helped me personally.
 
 - Slack community and Tutor support.
+
+<br>
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
