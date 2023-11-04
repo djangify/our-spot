@@ -1,5 +1,5 @@
 # Our Spot Social Network
-![temporary homepage](readme/wireframes/rm-homepage.png)
+![temporary homepage](readme/images/rm-homepage.png)
 
 
 ## Table of Content
@@ -75,10 +75,10 @@ Use Ctrl (or Cmd) + click to open in new window
 ## Project Purpose:
 
 <details>
-<br>
-| Project 4  | Prototype |
-| ------------- | ------------- |
-| This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._  | This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.  |
+
+This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
+
+This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.
 
 
 </details>
@@ -891,13 +891,29 @@ Use Ctrl (or Cmd) + click to open in new window.
 
 ## Retrospective
 
-At the end of a hackathon we are encouraged to include a retrospective review of working on a project, so I wanted to include one for my project four.
+<details>
 
-# reflect on what went well and what could be improved for the next iteration.
+A retrospective review is an important part of Agile to ensure continuous progress. We are often encouraged to add a retrospective review in our hackathon presentation, so I thought I would add one here for this project.
+
+***_What worked well for me?_***
+- I enjoyed using Django and can see the potential in including it as part of my developer stack.
+- The fact that I was determined to complete it! This is not the first version of this project. I actually started and abandoned one project and then started and deleted a social network, before finally sticking with this version.
 
 
-There were a few challenges with the database which meant I had to reset it and start again. After the second data crash I moved over to GitPod.
+***_What did not work well for me?_***
 
-The main reason I included a Stage Two into this project was to give me an opportunity to build upon my knowledge and skillset. I don't have all the knowledge I need to complete this social network but I am keen to learn how to implement them as I learn more.
+- There were a few challenges with the database which meant I had to reset it and start again. After the second data crash I moved over to GitPod. The main cause was me changing my model and having to make migrations. Spending more time planning my models will avoid this in the future.
+
+- I struggled to add some components to the site like the comments section. Looking through my commits there are times when I added comments and then completely removed them before finally trying again, this time successfully.
+
+***_What actions can I take to improve my process going forward?_***
+
+- Stick to the plan! It is very easy to forget the plan that is in place and to start adding extras functionalities that cause more work. For example I spent a whole day adding infinite scroll to the network. When I went to tick it off my list at the end of the day I realised it wasn't even on my list of things to do. To make matters worse I eventually decided to remove infinite scroll when it stopped working and include it in Stage Two.
+
+- The main reason I included a Stage Two into this project was to give me an opportunity to build upon my knowledge and skillset. I don't have all the knowledge and/or skills I need to complete this social network but I am keen to learn how to implement them as I learn more.
+
+</details>
+
+Developer: Diane Corriette - [GitHub](https://github.com/todiane) & [LinkedIn](https://www.linkedin.com/in/todianedev/)
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>

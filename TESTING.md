@@ -1,5 +1,5 @@
 # Our Spot Social Network
-![temporary homepage](readme/wireframes/rm-homepage.png)
+![temporary homepage](readme/images/rm-homepage.png)
 
 ## Testing Page
 
