@@ -1,5 +1,5 @@
 {% extends "base.html" %}{% load static %}
-
+{% load crispy_forms_tags %}
 {% block title %}Your Account Details{% endblock %}
 
 <!-- Page where users can add their photo/edit user information-->
@@ -11,10 +11,10 @@
     <p>You can add a profile photo and/or
     edit your account details using the following form: </p>
         <form method="post" enctype="multipart/form-data">
-        {{user_form.as_p}}
-        {{profile_form.as_p}}
-        {% csrf_token %}
-        <p><input type = "submit" value = "Save changes"></p>
+            {{ user_form|crispy }}
+            {{ profile_form|crispy }}
+            {% csrf_token %}
+        <p> <button type="submit" class="btn btn-primary mt-2">Save changes</button></p>
         </form>
 </div>
 {% endblock %}

@@ -35,6 +35,8 @@
 
 [Acknowledgements](#acknowledgements)
 
+[Retrospective](#retrospective)
+
 
 ## Overview
 
@@ -257,7 +259,7 @@ As a user I want to be able to search for different photos available based on th
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
-# Site Structure
+## Site Structure
 
 <details>
 
@@ -308,11 +310,25 @@ The font used for the site is a Google Font called [Mulish](https://fonts.google
 
 <details>
 
-The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure. There were a few challenges with the database which meant I had to reset it and start again. After the second data crash I moved over to GitPod.
+The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure which is hosted at ElephantSQL. 
+
+This database schema defines the structure and relationships for this application, including users, user profiles, locations, comments and likes.
 
 Once users register a file is created that stores their username and password plus any additional information provided. Users are then allocated a profile and have the ability to upload photos based on a location. These locations can be liked and commented upon by other users.
 
-<img src="readme/images/database.png" width="90%"><br><br>
+Below is the entity relationship diagram for Our Spot.
+
+<img src="readme/images/rm-database.png" width="90%"><br><br>
+
+***User*** includes username, first and last name, email and password. The username is a one-to-one field, while the other fields are textFields.
+
+***User profile*** extends the details provided in the user section and also includes a date of birth dateField and a photo imageField.
+
+***Locations*** includes a charField title, slugField slug for the url, a charfield for description & image alt, cloudinary for image and a tuple for the location types. The posted date uses the datetime field.
+
+***Like***. A foreign key is used for a user to like a location and for the location itself.
+
+***Comment***. as the user is already logged-in, only the comment box text field is needed along with a datetime field for created and updated. The user and location are both foreign keys.
 
 </details>
 
@@ -378,27 +394,35 @@ Authorisation is only available to registered users so the site is hidden away a
 
 In Phase One, email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy.
 Users can register using lowercase or uppercase text.
-![registration](readme/images/rm-register.png)
 
+<img src="readme/images/rm-register.png" width="80%"><br><br>
 
-Once registered a new users is invited to log-in. If they included their name when registering it will appear with the welcome message.
+If a new user tries to register using an email address already in the system an error message will appear.
 
-![welcome no name](readme/images/rm-welcome.png)
+<img src="readme/images/rm-email-error.png" width="80%"><br><br>
 
+Once registered a new users is invited to log-in. 
+If they included their name when registering it will appear with the welcome message.
 
-![welcome with name](readme/images/rm-welcome-name.png)
+<img src="readme/images/rm-welcome.png" width="80%"><br><br>
 
+<img src="readme/images/rm-welcome-name.png" width="80%"><br><br>
+
+Users can log-in using an email address or username. 
+
+<img src="readme/images/rm-login-page.png" width="80%"><br><br>
 
 New members are then taken to the dashboard area where they can update their profile and/or add a new location photo.
 
-![dashboard with name](readme/images/rm-dashboard-empty.png)
+<img src="readme/images/rm-dashboard-empty.png" width="80%"><br><br>
 
-![dashboard no name](readme/images/rm-dashboard-noname.png)
+The dashboard area will show a first name if one was provided during the registration process (image above), otherwise it will be left blank.
 
+<img src="readme/images/rm-dashboard-noname.png" width="80%"><br><br>
 
-Once inside members who want to add information to their profile will only be able to do so if they include an email address. The Admin area has been setup to make email a requirement of members, however madeup email addresses can be used.
+Once inside members who want to add information to their profile will only be able to do so if they include an email address. The Admin area has been setup to make email a requirement of members, however madeup email addresses can be used as authentication via email will not take place until Stage Two.
 
-![profile email](readme/images/rm-false-email.png)
+<img src="readme/images/rm-false-email.png" width="80%"><br><br>
 
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
@@ -407,7 +431,7 @@ Once inside members who want to add information to their profile will only be ab
 
 In the first phase of this project the ability to change a members password is available inside the members area.
 
-![password](readme/images/rm-password.png)
+<img src="readme/images/rm-password.png" width="80%"><br><br>
 
 In the next phase the ability to use a password reset email will be included.
 
@@ -439,27 +463,28 @@ This page contains the photos of all members and infinite scroll has been used s
 
 When a user clicks on a photo they are taken to a display page. If they are the owner of the photo they have the ability to edit and delete the photo. If they are not users can comment and like the photo.
 
-![display location](readme/images/rm-location-post.png)
+<img src="readme/images/rm-location-post.png" width="80%"><br>
+
 
 ## Add New Spot
 
 This area has been kept fairly simple. Users can add a title, description (up to 500 words), photo and to ensure the alt feature is added users are encouraged to describe their photo.
 
-<img src="readme/images/rm-addspot.png" width="70%"><br>
+<img src="readme/images/rm-addspot.png" width="80%"><br>
 
 ## Edit, Delete Spot
 
 The ability to edit or delete any photo uploaded by a user is available on their dashboard and also shows up on locations they have added.
 
-<img src="readme/images/rm-location--editpost.png" width="70%"><br>
+<img src="readme/images/rm-location--editpost.png" width="80%"><br>
 
 Edit Location
 
-<img src="readme/images/rm-edit-location.png" width="70%"><br>
+<img src="readme/images/rm-edit-location.png" width="80%"><br>
 
 Delete Location
 
-<img src="readme/images/rm-delete-location.png" width="70%"><br>
+<img src="readme/images/rm-delete-location.png" width="80%"><br>
 
 
 ## Likes and Comments
@@ -474,7 +499,7 @@ There is a link available for members who want to report a profile or photo. A p
 
 ![comment](readme/images/rm-report-photo.png)
 
-Message box that appears
+Message box that appears - this is currently a [placeholder](#placeholders-and-future-updates) only function
 
 ![comment](readme/images/rm-report-photo-box.png)
 
@@ -502,7 +527,11 @@ Each member is provided with a profile however adding a photo is optional. When 
 
 <details>
 
-The network includes a few placeholders that were adding so show additional features that will be included. These are:
+Included in the [Github Project Board](https://github.com/users/todiane/projects/8/views/1?layout=board) are user stories under the column "Stage Two" which represents upcoming iterations. This backlog includes user stories created for an upcoming development phase. 
+
+This phase provides an opportunity for me to respond to user feedback. It also allows for ongoing refinements and improvements that will evolve based on user input and needs. This highlights the adatability and scalability of the project.
+
+This means that the network includes a few placeholders that were adding to highlight some of these additional features to be included in Stage Two. These are:
 <br>
 
 _Report a photo or profile_ - The button under photos and profiles can be clicked to report a photo/profile to Admin. This currently works on the network but is not connected to an email system.
@@ -537,6 +566,77 @@ Please see my separate [Testing MD page HERE](/TESTING.md) that includes informa
 
 Deployment took place immediately after installing Django.
 <br>
+
+
+#### Installing libraries
+
+The following steps outline all libraries needed for successful deployment on Heroku. All neccessary-requirements and settings updates will not be discussed in this section as they are assumed as logical follow-up steps to installments. For a full explanation of how to install these libraries, refer to the links provided in [Technologies Used](#technologies-used).
+
+- Install **Gunicorn** (server used to run Django on Heroku): ``pip3 install django gunicorn``
+- Install **pyscopg2** (connects to PostgreSQL): ``pip 3 install dj_database_url pyscopg2``
+- Install **Cloudinary** (host static files and images): ``pip3 install dj3-Cloudinary-storage``
+
+
+#### Create a PostgreSQL database using ElephantSQL
+
+This is necessary to create a database that can be accessed by Heroku. The database provided by Django can not be accessed by the deployed Heroku app.
+
+- Log into ElephantSQL and go to Dashboard
+- Click **Create New Instance**
+- Set up a plan by providing a Name (project name) and select a Plan (for this project the free plan "Tiny Turtle" was chosen). Tags are optional.
+- Click **Select Region** and choose appropriate Datacenter
+- Click **Review**, check all details and click **Create Instance**
+- Return to Dashboard on click on the name of the newly created instance
+- Copy the database URL from the details section
+
+#### Hiding sensitive information
+
+- Create ``env.py`` file and ensure it is included in the ``.gitignore`` file
+- Add ``import os`` to env.py file and set environment variable **DATABASE_URL** to the URL copied from ElephantSQL (``os.environ["DATABASE_URL"]="<copiedURL>"``)
+- Below, set **SECRET_KEY** variable (``os.environ["SECRET_KEY"]="mysecretkey"``, but create a more secure password.)
+
+
+#### Update Settings
+
+- Add the following code at the top of ``settings.py`` to connect the Django project to env.py:
+    ````
+      import os
+      import dj_database_url
+      if os.path.isfile('env.py'):
+          import env
+    ````
+- Remove the insecure secret key provided by Django in settings.py and refer to a variable in env.py instead (``SECRET_KEY = os.environ.get('SECRET_KEY')``)
+
+- To connect to the new database, replace the provided **DATABASE** variable with 
+    ````
+    DATABASES = {
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+    ````
+- Save and migrate all changes made
+
+
+#### Connect to Cloudinary
+
+- In the Cloudinary dashboard, copy **API Environment variable**
+- In ``env.py`` file, add new variable ``os.environ["CLOUDINARY_URL"] = "<copied_variable"`` and remove ``CLOUDINARY_URL=`` from the variable string
+- Add same variable value as new Heroku config var named **CLOUDINARY_URL**
+- In ``settings.py``, in ``INSTALLED_APPS`` list, above ``django.contrib.staticfiles`` add ``cloudinary_storage``, below add ``cloudinary``
+- To define Cloudinary as static file storage add the following to settings.py
+    ````
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    ````
+
+#### Allow Heroku as host
+
+- In ``settings.py`` add
+    ````
+    ALLOWED_HOSTS = ['app-name.herokuapp.com', 'localhost']
+    ````
+
+
 ***Deploy To Heroku***
 
 First create A Pipfile in your project terminal.
@@ -563,6 +663,11 @@ In the terminal enter the command  pip3 freeze > requirements.txt, and a file wi
 - For the very first deployment select manual deploy and wait as Heroku builds the logs. Once complete click on the button to view the app.
 
 - After the initial deployment you can then enable automatic deployment.
+
+
+***DEBUG Status***
+
+- For the final deployment to Heroku once the project is complete and ***before*** submission of the project to Code Institute, ensure DEBUG is changed from True to ***False***.
 
 
 ***Fork the repository***
@@ -603,6 +708,8 @@ Use Ctrl (or Cmd) + click to open in new window
 - JavaScript & JQuery
 - Postgresql (via ElephantSQL)
 
+<br>
+
 **_Project Resources_**
 
 - [ElephantSQL](https://www.elephantsql.com/)
@@ -614,22 +721,51 @@ Use Ctrl (or Cmd) + click to open in new window
 - [Google Developer Tools](https://developer.chrome.com/docs/devtools/)
 - [Google Fonts](https://fonts.google.com/specimen/Mulish?query=muli)
 
+<br>
+
+**_Libraries and Requirements_**
+
+The following libaries are included in my requirements.txt file:
+
+- asgiref==3.7.2
+- cloudinary==1.36.0
+- dj-database-url==0.5.0
+- dj3-cloudinary-storage==0.0.6
+- Django==3.2.22
+- django-crispy-forms==1.14.0
+- django-resized==1.0.2
+- django-richtextfield==1.6.1
+- easy-thumbnails==2.8.5
+- gunicorn==21.2.0
+- lazy-object-proxy==1.9.0
+- Pillow==10.1.0
+- psycopg2==2.9.9
+- pytz==2023.3.post1
+- sqlparse==0.4.4
+- urllib3==1.26.15
+
+<br>
+
 **_Additional Resources_**
 
-- Images - Although member profile names and photos are made up and not real many of the images have been supplied by potential members. I have also supplied my own images and additional images were sourced via Pexel.com
+- Images - Although member profile names and photos are made up and not real many of the images have been supplied by actual members. I have also supplied my own images and additional images were sourced via [Pexel.com](https://pexel.com)
 - [Favicon Generator](https://realfavicongenerator.net/)
 - [Canva](https://www.canva.com/en_gb/)
+- [Font Awesome](https://www.fontawesome.com) - for icons used
 - [PNG to WEBP converter](https://www.freeconvert.com/png-to-webp) - Changing images to webp
 - [Balsamiq](https://balsamiq.com/) for wireframes
+- [Miro](https://miro.com/index/) - for database schema
 - [Diffchecker to check code](https://www.diffchecker.com/text-compare/ )
+- [Django Auto Slug](https://pypi.org/project/django-autoslug-field/) - to change default django url from numerical into a more SEO friendly title based url.
 
 </details>
 
 ## Resources Used
 
 <details>
-
-Use Ctrl (or Cmd) + click to open in new window
+This list contains resources I have used to help me start, create and manage this project.
+Use Ctrl (or Cmd) + click to open in new window.
+<br>
 
 - [Django 4 by Example book - for initial idea](https://www.packtpub.com/product/django-4-by-example-fourth-edition/)
 
@@ -639,7 +775,16 @@ Use Ctrl (or Cmd) + click to open in new window
 
 - [Slackoverflow forum](https://stackoverflow.com/questions/2315187/allowing-users-to-delete-their-own-comments-in-django) for answers when stuck.
 
-- [Django Packages](https://djangopackages.org/)
+- [Django Packages](https://djangopackages.org/) to find answers from the official Django documentation.
+
+- [Two Scoops of Django 3](https://sadegh-khan.ir/wp-content/uploads/2021/07/Daniel-Feldroy-Audrey-Feldroy-Two-Scoops-of-Django-3.x_-Best-Practices-for-the-Django-Web-Framework-2017-Two-Scoops-Presssadegh-khan-ir.pdf) - helped with layout of views.py file
+
+- [Code Institute Walk Through Project](https://github.com/Code-Institute-Solutions/Django3blog) The project I Think Therefore I blog was used to help with setting up Django, adding the Like button and comments plus other parts of this project.
+
+- [Bootstrap 5 Crash Course](https://www.youtube.com/watch?v=O_9u1P5YjVc&list=PL4cUxeGkcC9joIM91nLzd_qaH_AimmdAR)
+
+- [Mozilla mdn web docs](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing) - for support with testing
+
 </details>
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
@@ -650,9 +795,24 @@ Use Ctrl (or Cmd) + click to open in new window
 
 - Forum over at [DjangoProject](https://forum.djangoproject.com/) - especially Ken
 
-- Daisy who's [YouTube videos](https://www.youtube.com/watch?v=sBjbty691eI&list=PLXuTq6OsqZjbCSfiLNb2f1FOs8viArjWy) helped me create the CRUD functionality of this site and who also helped me personally.
+- Daisy Mc - thanks to her [YouTube videos](https://www.youtube.com/watch?v=sBjbty691eI&list=PLXuTq6OsqZjbCSfiLNb2f1FOs8viArjWy) that helped me create the CRUD functionality of this site and who also for her personal help.
 
-- Slack community and Tutor support.
+- Slack community and Tutor support who played their part in helping me find answers.
+
+- My Mentor [Andre](https://github.com/dreaquil) - who continually pushes me to be a better developer and in this project pulled me back from biting off more than I could chew!
 
 <br>
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
+## Retrospective
+
+At the end of a hackathon we are encouraged to include a retrospective review of working on a project, so I wanted to include one for my project four.
+
+# reflect on what went well and what could be improved for the next iteration.
+
+
+There were a few challenges with the database which meant I had to reset it and start again. After the second data crash I moved over to GitPod.
+
+The main reason I included a Stage Two into this project was to give me an opportunity to build upon my knowledge and skillset. I don't have all the knowledge I need to complete this social network but I am keen to learn how to implement them as I learn more.
+
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>

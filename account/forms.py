@@ -11,8 +11,11 @@ class LoginForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     """User registration form"""
-    password = forms.CharField(label="Password", widget=forms.PasswordInput)
+    password = forms.CharField(label="Password", 
+                               help_text='Your password must contain at least 8 characters, cannot be entirely numeric, and must not be too common.',
+                               widget=forms.PasswordInput)
     password2 = forms.CharField(label="Repeat password",
+                                help_text='Enter the same password as before, for verification.',
                                 widget=forms.PasswordInput)
 
     class Meta:

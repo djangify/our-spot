@@ -9,21 +9,23 @@ class LocationForm(forms.ModelForm):
         fields = [
             "title",
             "description",
+            "location_types",
             "image",
             "image_alt",
-            "location_types",
         ]
 
-        widget = {
-            "description": forms.Textarea(attrs={"rows": 7}),
+        widgets = {
+            "title": forms.Textarea(attrs={'cols': 70, 'rows': 1}),
+            "description": forms.Textarea(attrs={'cols': 70, 'rows': 20}),
+            
         }
 
         labels = {
             "title": "Give Your Spot A Title",
             "description": "Description of Your Spot",
+            "location_types" :  "Choose Location",
             "image": "Location Image",
-            "image_alt": "Describe Image",
-            "location_types": "Choose Location",
+            "image_alt": "Describe Image",  
         }
 
 

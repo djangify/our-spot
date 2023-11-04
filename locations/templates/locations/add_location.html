@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block title %}Add Location{% endblock title %}
 
@@ -8,15 +9,13 @@
     <!-- Users can add new locations-->
     <h1>Add Your Spot</h1>
 
-
-        <form method="POST" enctype="multipart/form-data" class="p-2 form">
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <div>
-                <p><input type="submit" value="Create Location"></p>
-            </div>
-        </form>
+    <form method="POST" enctype="multipart/form-data" class="p-2 form">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}  
+        <div class="mb-5">
+            <p> <button type="submit" class="btn btn-outline-dark">Create Location</button></p>
+        </div>
+    </form>
 </div>
- 
 {% endblock content %}
