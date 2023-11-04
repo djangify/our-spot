@@ -4,26 +4,52 @@
 
 ## Table of Content
 
-[Project Purpose](#project-purpose)
+[Overview](#overview)
 
-[Project Objectives and Outcomes](#project-objectives-and-outcomes)
++ [Project Purpose](#project-purpose)
+
++ [Project Objectives and Outcomes](#project-objectives-and-outcomes)
+
++ [Target Audience](#target-audience)
 
 [Model Views Template (mvt)](#model-views-template-mvt)
 
 + [Agile Terminologies](#agile-terminologies)
 
-+ [Target Audience](#target-audience)
-
-[User features and design](#user-features-and-design)
-
-[Epics and user stories](#epics-and-user-stories)
+[Database Structure](#database-structure)
 
 [Site Structure](#site-structure)
 
++ [User features and design](#user-features-and-design)
+
++ [Epics and user stories](#epics-and-user-stories)
+    + [Epics](#epics)
+    + [Admin](#admin)
+    + [User](#user)
+
++ [Authentication and Authorisation](#authentication-and-authorisation)
+
++ [Navigation](#navigation)
+
++ [Dashboard](#dashboard)
+
++ [Recently Added](#recently-added)
+
++ [Add New Spot](#add-new-spot)
+
++ [Edit and Delete Spot](#edit-and-delete-spot)
+
++ [Likes and Comments](#likes-and-comments)
+
++ [Report Profile and Photo](#report-profile-and-photo)
+
++ [List of Members](#list-of-members)
+
++ [User Profiles](#user-profile)
+
 + [Site Colours and Font](#site-colours-and-font)
 
-
-[Database Structure](#database-structure)
+[CRUD Functionality](#crud-functionality)
 
 [Placeholders and future updates](#placeholders-and-future-updates)
 
@@ -49,10 +75,11 @@ Use Ctrl (or Cmd) + click to open in new window
 ## Project Purpose:
 
 <details>
+<br>
+| Project 4  | Prototype |
+| ------------- | ------------- |
+| This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._  | This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.  |
 
-This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
-
-This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.
 
 </details>
 
@@ -79,6 +106,23 @@ The key objectives of the project include:
 - A place where administrators of the project have a panel that allows them to monitor users and the information they share as well as the comments they make, to ensure the community is kept safe and the environment is not abused.
 
 The end result has been a user-friendly photo sharing network that has been encouraged and informed through user engagement.
+
+</details>
+
+## Target Audience
+
+<details>
+
+The Our Spot social network has been designed for:
+
+| Enthusiastic  | People |
+| ------------- | ------------- |
+| Nature lovers who enjoy being outside and who appreciate the health benefits of spending time in nature.  | Photographers and travellers who love to share some of their favourite spots around the world.  |
+| Adults looking to share the places they love to visit. | Adults looking for places to visit with friends/family or alone.  |
+
+The network is for adults looking to share and find places to go for something to do on a romantic date or a place to go to enjoy solitude.
+
+
 
 </details>
 
@@ -141,21 +185,74 @@ These questions lay the groundwork for creating user stories, developing the dat
 
 - Maintain product backlog and prioritise items/adapt to change
 
-Future implementations/scalability and performance optimisation.
+- Future implementations/scalability and performance optimisation.
 
 </details>
 
-## Target Audience
+
+## Database structure
 
 <details>
 
-The Our Spot social network has been designed for:
+The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure which is hosted at ElephantSQL. 
 
-Nature lovers who enjoy being outside and who appreciate the health benefits of spending time in nature.
+This database schema defines the structure and relationships for this application. I used business logic in the design of the database by ensuring there are clear relationships between each model - e.g. User, Locations, Comment, Like, user profile. There is a method to count likes, to add users, to allow users to edit and update their profile etc.
 
-People looking to share the places they love to visit as well as people looking for places to visit, whether that is for something to do on a romantic date or a place to go to enjoy solitude.
+Once users register a file is created that stores their username and password plus any additional information provided. Users are then allocated a profile and have the ability to upload photos based on a location. These locations can be liked and commented upon by other users.
 
-Photographers and travellers who love to share some of their favourite spots around the world.
+Below is the entity relationship diagram for Our Spot.
+
+<img src="readme/images/rm-database.png" width="90%"><br><br>
+
+***User*** includes username, first and last name, email and password. The username is a one-to-one field, while the other fields are textFields.
+
+***User profile*** extends the details provided in the user section and also includes a date of birth dateField and a photo imageField.
+
+***Locations*** includes a charField title, slugField slug for the url, a charfield for description & image alt, cloudinary for image and a tuple for the location types. The posted date uses the datetime field.
+
+***Like***. A foreign key is used for a user to like a location and for the location itself.
+
+***Comment***. as the user is already logged-in, only the comment box text field is needed along with a datetime field for created and updated. The user and location are both foreign keys.
+
+</details>
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
+## Site Structure
+
+<details>
+
+When designing the structure of the site I kept my focus on the need to create a web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. 
+
+
+![Homepage wireframe](readme/wireframes/wf-homepage.png)
+
+In order to log-in users must add a username and password. Email is optional in Phase One, although it helps to add an email - even a fake one - so you can login using username or email. In Phase Two when email authentication is included this will change.
+
+![register and success login](readme/wireframes/wf-register.png)
+
+As long as the minimum requirements are met users are informed of their registration success and invited to immediately login.
+
+Once logged-in users are met with their dashboard
+
+![Dashboard wireframe](readme/wireframes/wf-dashboard.png)
+
+Other options available are to see images added by other uses (locations tab) and to addd their own images (new spot tab).
+
+![Locations](readme/wireframes/wf-locations.png)
+
+
+![Add Location](readme/wireframes/wf-add-location.png)
+
+Important features to include was the ability for users to interact with this interface and manipulate the data through CRUD capabilities, while providing clear updates on any changes made.
+
+![Profile](readme/wireframes/wf-profile.png)
+
+Users can update their passwords, edit and delete their locations and comments (see images below for actual screenshots)
+
+Messages are used to ensure that any changes to the data are notified to the user.
+
+![success](readme/images/rm-success-message.png)
 
 </details>
 
@@ -193,9 +290,13 @@ Based on the MVT model above, the following EPICS and user stories were created 
 
 [View my GitHub Project Board Here](https://github.com/users/todiane/projects/8/views/1?layout=board)
 
-## EPICS:
+</details>
 
-A total of five EPICS were created to complete the first phase and organised into sprints.
+### Epics:
+
+<details>
+
+A total of five EPICS were created to complete the first phase and organised into sprints. 
 
 **_User Authentication and Registration:_**
 Covering network setup up, role allocation, user registration, login, and logout functionality.
@@ -212,8 +313,11 @@ This focuses on the detailed view of a specific location, including comments and
 **_User Connections:_**
 The structure for following and displaying the latest activity of followed users.
 
+</details>
 
-## Admin
+### Admin
+
+<details>
 
 **_Manage Accounts:_** As an administrator, I want to be able to manage user accounts, including creating, editing, and deactivating them if necessary so that my records are kept up to date.
 
@@ -226,7 +330,11 @@ As a admin I want to set up a system so users can change their password when the
 **_Create, Read, Update and Delete_**
 As admin I want to be able to create, read, update and delete photos, comments and profiles so that the admin area is kept up to date.
 
-## User
+</details>
+
+### User
+
+<details>
 
 **_Registration and Log-In_**
 As a user, I want to be able to register an account, so I can participate in Our Spot and immediately log-in.
@@ -259,42 +367,181 @@ As a user I want to be able to search for different photos available based on th
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
-## Site Structure
+
+
+## Authentication and Authorisation
 
 <details>
 
-When designing the structure of the site I kept my focus on the need to create a web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. 
+Authorisation is only available to registered users so the site is hidden away and register details available on the homepage with a login link in the navigation bar. 
 
-![Homepage wireframe](readme/wireframes/wf-homepage.png)
+![logged out navbar](readme/images/rm-loggedout-navbar.png)
 
-In order to log-in users must add a username and password. Email is optional in Phase One, although it helps to add an email - even a fake one - so you can login using username or email. In Phase Two when email authentication is included this will change.
+In Phase One, email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy.
 
-![register and success login](readme/wireframes/wf-register.png)
+Business logic was used in the creation of the registation and log-in forms by ensuring that incoming data is validated against my business rules. e.g. users can create usernames using lowercase or uppercase text, they can log in with an email address or user name, an email address can only be used once to create an account etc
 
-As long as the minimum requirements are met users are informed of their registration success and invited to immediately login.
+<img src="readme/images/rm-register.png" width="80%"><br><br>
 
-Once logged-in users are met with their dashboard
+If a new user tries to register using an email address already in the system an error message will appear.
 
-![Dashboard wireframe](readme/wireframes/wf-dashboard.png)
+<img src="readme/images/rm-email-error.png" width="80%"><br><br>
 
-Other options available are to see images added by other uses (locations tab) and to addd their own images (new spot tab).
+Once registered a new user is invited to log-in. 
+If they included their name when registering it will appear with the welcome message.
 
-![Locations](readme/wireframes/wf-locations.png)
+<img src="readme/images/rm-welcome.png" width="80%"><br><br>
+
+<img src="readme/images/rm-welcome-name.png" width="80%"><br><br>
+
+Users can log-in using an email address or username. 
+
+<img src="readme/images/rm-login-page.png" width="80%"><br><br>
+
+New members are then taken to the dashboard area where they can update their profile and/or add a new location photo.
+
+<img src="readme/images/rm-dashboard-empty.png" width="80%"><br><br>
+
+The dashboard area will show a first name if one was provided during the registration process (image above), otherwise it will be left blank.
+
+<img src="readme/images/rm-dashboard-noname.png" width="80%"><br><br>
+
+Once inside members who want to add information to their profile will only be able to do so if they include an email address. The Admin area has been setup to make email a requirement of members, however madeup email addresses can be used as authentication via email will not take place until Stage Two.
+
+<img src="readme/images/rm-false-email.png" width="80%"><br><br>
 
 
-![Add Location](readme/wireframes/wf-add-location.png)
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
-Important features to include was the ability for users to interact with this interface and manipulate the data through CRUD capabilities, while providing clear updates on any changes made.
+***Password Management***
 
-![Profile](readme/wireframes/wf-profile.png)
+In the first phase of this project the ability to change a members password is available inside the members area.
 
-Users can update their passwords, edit and delete their locations and comments (see images below for actual screenshots)
+<img src="readme/images/rm-password.png" width="80%"><br><br>
 
-Messages are used to ensure that any changes to the data are notified to the user.
-
-![success](readme/images/rm-success-message.png)
+In the next phase the ability to use a password reset email will be included.
 
 </details>
+
+## Navigation
+
+<details>
+
+A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. Unregistered and logged out users only see the ability to register and log in.
+
+![navbar](readme/images/rm-loggedout-navbar.png)
+
+***No footer has been included*** because this is a social network and they don't usually contain a footer - instead users are kept scrolling using infinite scroll, which will be added in Phase Two.
+
+</details>
+
+## Dashboard
+
+<details>
+
+After logging in users are taken to their dashboard where they are presented with a list of their recent uploads.
+They also have the ability to view and edit their profile
+
+![dashboard tilly](readme/images/rm-dashboard-tilly.png)
+
+</details>
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
+## Recently added
+
+<details>
+
+This page contains the photos of all members and infinite scroll has been used so that members can scroll down and look through the photos.
+
+![new locations](readme/images/rm-new-spots.png)
+
+When a user clicks on a photo they are taken to a display page. If they are the owner of the photo they have the ability to edit and delete the photo. If they are not users can comment and like the photo.
+
+<img src="readme/images/rm-location-post.png" width="80%"><br>
+
+
+</details>
+
+## Add New Spot
+
+<details>
+
+This area has been kept fairly simple. Users can add a title, description (up to 500 words), photo and to ensure the alt feature is added users are encouraged to describe their photo.
+
+<img src="readme/images/rm-addspot.png" width="80%"><br>
+
+</details>
+
+## Edit and Delete Spot
+
+<details>
+
+The ability to edit or delete any photo uploaded by a user is available on their dashboard and also shows up on locations they have added.
+
+<img src="readme/images/rm-location--editpost.png" width="80%"><br>
+
+Edit Location
+
+<img src="readme/images/rm-edit-location.png" width="80%"><br>
+
+Delete Location
+
+<img src="readme/images/rm-delete-location.png" width="80%"><br>
+
+
+</details>
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
+## Likes and Comments
+
+<details>
+
+The ability to like and comment on a photo is available to all users. The ability to delete a comment has also been included
+
+![comment](readme/images/rm-comment.png)
+
+</details>
+
+## Report profile and photo
+
+<details>
+
+There is a link available for members who want to report a profile or photo. A pop up box appears inviting them to submit their report to Admin.
+
+![comment](readme/images/rm-report-photo.png)
+
+Message box that appears - this is currently a [placeholder](#placeholders-and-future-updates) only function
+
+![comment](readme/images/rm-report-photo-box.png)
+
+</details>
+
+## List of Members
+
+<details>
+
+This page contains a list of profile photos with the name of the user. This can be clicked and a full profile appears.
+
+![members list](readme/images/rm-members-list.png)
+
+</details>
+
+
+## User Profile
+
+<details>
+
+Each member is provided with a profile however adding a photo is optional. When you visit a profile you will see any locations that have been added by that user.
+
+<img src="readme/images/rm-member-no-photo.png" width="70%"><br>
+<img src="readme/images/rm-profile-with-photo.png" width="70%"><br>
+
+</details>
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
 
 ## Site Colours and Font
 
@@ -306,33 +553,9 @@ The font used for the site is a Google Font called [Mulish](https://fonts.google
 
 </details>
 
-## Database structure
-
-<details>
-
-The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure which is hosted at ElephantSQL. 
-
-This database schema defines the structure and relationships for this application, including users, user profiles, locations, comments and likes.
-
-Once users register a file is created that stores their username and password plus any additional information provided. Users are then allocated a profile and have the ability to upload photos based on a location. These locations can be liked and commented upon by other users.
-
-Below is the entity relationship diagram for Our Spot.
-
-<img src="readme/images/rm-database.png" width="90%"><br><br>
-
-***User*** includes username, first and last name, email and password. The username is a one-to-one field, while the other fields are textFields.
-
-***User profile*** extends the details provided in the user section and also includes a date of birth dateField and a photo imageField.
-
-***Locations*** includes a charField title, slugField slug for the url, a charfield for description & image alt, cloudinary for image and a tuple for the location types. The posted date uses the datetime field.
-
-***Like***. A foreign key is used for a user to like a location and for the location itself.
-
-***Comment***. as the user is already logged-in, only the comment box text field is needed along with a datetime field for created and updated. The user and location are both foreign keys.
-
-</details>
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
 
 ## CRUD functionality
 
@@ -384,144 +607,6 @@ A central location where the site can be managed including the ability to create
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
-## Authentication and Authorisation
-
-<details>
-
-Authorisation is only available to registered users so the site is hidden away and register details available on the homepage with a login link in the navigation bar. 
-
-![logged out navbar](readme/images/rm-loggedout-navbar.png)
-
-In Phase One, email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy.
-Users can register using lowercase or uppercase text.
-
-<img src="readme/images/rm-register.png" width="80%"><br><br>
-
-If a new user tries to register using an email address already in the system an error message will appear.
-
-<img src="readme/images/rm-email-error.png" width="80%"><br><br>
-
-Once registered a new users is invited to log-in. 
-If they included their name when registering it will appear with the welcome message.
-
-<img src="readme/images/rm-welcome.png" width="80%"><br><br>
-
-<img src="readme/images/rm-welcome-name.png" width="80%"><br><br>
-
-Users can log-in using an email address or username. 
-
-<img src="readme/images/rm-login-page.png" width="80%"><br><br>
-
-New members are then taken to the dashboard area where they can update their profile and/or add a new location photo.
-
-<img src="readme/images/rm-dashboard-empty.png" width="80%"><br><br>
-
-The dashboard area will show a first name if one was provided during the registration process (image above), otherwise it will be left blank.
-
-<img src="readme/images/rm-dashboard-noname.png" width="80%"><br><br>
-
-Once inside members who want to add information to their profile will only be able to do so if they include an email address. The Admin area has been setup to make email a requirement of members, however madeup email addresses can be used as authentication via email will not take place until Stage Two.
-
-<img src="readme/images/rm-false-email.png" width="80%"><br><br>
-
-
-<p align="right">(<a href="#table-of-content">back to top</a>)</p>
-
-***Password Management***
-
-In the first phase of this project the ability to change a members password is available inside the members area.
-
-<img src="readme/images/rm-password.png" width="80%"><br><br>
-
-In the next phase the ability to use a password reset email will be included.
-
-</details>
-
-## Navigation
-
-<details>
-
-A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. Unregistered and logged out users only see the ability to register and log in.
-
-![navbar](readme/images/rm-loggedout-navbar.png)
-
-***No footer has been included*** because this is a social network and they don't usually contain a footer - instead users are kept scrolling using infinite scroll, which will be added in Phase Two.
-
-
-## Dashboard
-
-After logging in users are taken to their dashboard where they are presented with a list of their recent uploads.
-They also have the ability to view and edit their profile
-
-![dashboard tilly](readme/images/rm-dashboard-tilly.png)
-
-## Recently added
-
-This page contains the photos of all members and infinite scroll has been used so that members can scroll down and look through the photos.
-
-![new locations](readme/images/rm-new-spots.png)
-
-When a user clicks on a photo they are taken to a display page. If they are the owner of the photo they have the ability to edit and delete the photo. If they are not users can comment and like the photo.
-
-<img src="readme/images/rm-location-post.png" width="80%"><br>
-
-
-## Add New Spot
-
-This area has been kept fairly simple. Users can add a title, description (up to 500 words), photo and to ensure the alt feature is added users are encouraged to describe their photo.
-
-<img src="readme/images/rm-addspot.png" width="80%"><br>
-
-## Edit, Delete Spot
-
-The ability to edit or delete any photo uploaded by a user is available on their dashboard and also shows up on locations they have added.
-
-<img src="readme/images/rm-location--editpost.png" width="80%"><br>
-
-Edit Location
-
-<img src="readme/images/rm-edit-location.png" width="80%"><br>
-
-Delete Location
-
-<img src="readme/images/rm-delete-location.png" width="80%"><br>
-
-
-## Likes and Comments
-
-The ability to like and comment on a photo is available to all users. The ability to delete a comment has also been included
-
-![comment](readme/images/rm-comment.png)
-
-## Report profile and/or photo
-
-There is a link available for members who want to report a profile or photo. A pop up box appears inviting them to submit their report to Admin.
-
-![comment](readme/images/rm-report-photo.png)
-
-Message box that appears - this is currently a [placeholder](#placeholders-and-future-updates) only function
-
-![comment](readme/images/rm-report-photo-box.png)
-
-
-
-## List of Members
-
-This page contains a list of profile photos with the name of the user. This can be clicked and a full profile appears.
-
-![members list](readme/images/rm-members-list.png)
-
-
-## User Profile
-
-Each member is provided with a profile however adding a photo is optional. When you visit a profile you will see any locations that have been added by that user.
-
-<img src="readme/images/rm-member-no-photo.png" width="70%"><br>
-<img src="readme/images/rm-profile-with-photo.png" width="70%"><br>
-
-</details>
-
-<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Placeholders and Future Updates
 

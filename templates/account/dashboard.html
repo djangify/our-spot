@@ -9,9 +9,9 @@
     
     <div>
         <ul>
-            <a href="{{ user.get_absolute_url }}" class="btn btn-outline-dark">View Profile</a>
-            <a href="{% url 'edit' %}" class="btn btn-outline-dark">SETUP/Edit Profile</a>
-            <a href="{% url 'password_change' %}" class="btn btn-outline-dark">Change Password</a>
+            <a href="{{ user.get_absolute_url }}" class="btn btn-outline-secondary">View Profile</a>
+            <a href="{% url 'edit' %}" class="btn btn-outline-secondary">SETUP/Edit Profile</a>
+            <a href="{% url 'password_change' %}" class="btn btn-outline-secondary">Change Password</a>
         </ul>
     </div>
     <br>
@@ -32,9 +32,9 @@
                         <p class="card-text">{{ location.description | truncatechars:280 }}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="{% url 'location_detail' slug=location.slug %}" class="btn btn-outline-dark">View</a>
+                        <a href="{% url 'location_detail' slug=location.slug %}" class="btn btn-outline-success">View</a>
                         <a href="{% url 'edit_location' slug=location.slug %}" class="btn btn-outline-dark">Edit</a>
-                        <a href="{% url 'delete_location' slug=location.slug %}" class="btn btn-outline-dark">Delete</a>
+                        <a href="{% url 'delete_location' slug=location.slug %}" class="btn btn-outline-danger">Delete</a>
                     </div>
                 </div>
             </div>
