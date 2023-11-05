@@ -7,6 +7,7 @@ from django_resized import ResizedImageField
 
 class Profile(models.Model):
     """Database model for users profile"""
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
     photo = ResizedImageField(
@@ -19,4 +20,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-

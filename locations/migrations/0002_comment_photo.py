@@ -5,15 +5,16 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('locations', '0001_initial'),
+        ("locations", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='comment',
-            name='photo',
-            field=cloudinary.models.CloudinaryField(default='placeholder', max_length=255, verbose_name='image'),
+            model_name="comment",
+            name="photo",
+            field=cloudinary.models.CloudinaryField(
+                default="placeholder", max_length=255, verbose_name="image"
+            ),
         ),
     ]

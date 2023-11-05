@@ -11,9 +11,8 @@
             <div class="photo-container">
                 <img src="{{ location.image.url }}" class="figure-img img-fluid rounded w-50" alt="{{ location.image_alt }}">
 
-
-            <!-- Code for user to edit/delete their photo--> 
             </div>
+            <!-- Code for user to edit/delete their photo--> 
             {% if request.user == location.user %}
             <figcaption class="figure-caption">You can edit or delete this photo here {{request.user.first_name}}.
                 <a href="{% url 'edit_location' slug=location.slug %}">Edit</a>  |
@@ -25,9 +24,9 @@
         <!-- Code for any user to Report Photo -->   
    
         <div>
-            <br>
-            <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" 
-                            class="text-end">Report Photo</a>
+        <br>
+        <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" 
+                        class="text-end">Report Photo</a>
         </div>
 
         <!-- Report Profile Modal -->
@@ -55,32 +54,32 @@
 
         <!-- Photo details -->
 
-            <h4>{{ location.title }}</h4>
-            <p>Posted by <a href="{% url 'user_detail' username=location.user %}">{{location.user}}</a> on {{location.posted_date}}</p>
-            <p>{{location.description}}</p>
+        <h4>{{ location.title }}</h4>
+        <p>Posted by <a href="{% url 'user_detail' username=location.user %}">{{location.user}}</a> on {{location.posted_date}}</p>
+        <p>{{location.description}}</p>
     
     </figure>
 
         <!-- Like Button code from I think therefore I blog walkthrough -->
 
         <div>
-            <strong>
-                {% if user.is_authenticated %}
-                <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
-                    {% csrf_token %}
-                    {% if request.user in location.like_set.all %}
-                    <button type="submit" name="location_id" value="{{ location.slug }}" 
-                                  class="btn-like"><i class="fa-duotone fa-heart"></i></button>
-                    {% else %}
-                    <button type="submit" name="location_id" value="{{ location.slug }}" 
-                                class="btn-like"><i class="fa-regular fa-heart"></i></button>
-                    {% endif %}
-                </form>
+        <strong>
+            {% if user.is_authenticated %}
+            <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
+                {% csrf_token %}
+                {% if request.user in location.like_set.all %}
+                <button type="submit" name="location_id" value="{{ location.slug }}" 
+                                class="btn-like"><i class="fa-duotone fa-heart"></i></button>
                 {% else %}
-                <span class="text-secondary"><i class="far fa-heart"></i></span>
+                <button type="submit" name="location_id" value="{{ location.slug }}" 
+                            class="btn-like"><i class="fa-regular fa-heart"></i></button>
                 {% endif %}
-                <span class="text-secondary">{{ location.like_set.count }} </span>
-            </strong>
+            </form>
+            {% else %}
+            <span class="text-secondary"><i class="far fa-heart"></i></span>
+            {% endif %}
+            <span class="text-secondary">{{ location.like_set.count }} </span>
+        </strong>
         </div>
             <br>
 

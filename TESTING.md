@@ -36,15 +36,30 @@ Search bar in navagation area tested. Searched using countries e.g. Scotland, lo
 
 Testing complete functionality of the site. This includes:
 
-![tests](readme/tests/rm-manualtests.png)<br>
-![tests 1](readme/tests/rm-manualtests1.png)<br>
-![tests 2](readme/tests/rm-manualtests2.png)<br><br>
+![tests](readme/tests/rm-manualtests.png)
+![tests 1](readme/tests/rm-manualtests1.png)
+![tests 2](readme/tests/rm-manualtests2.png)<br>
+
+ ## Python 
+
+ Reformatting was performed on the python files using the code formatter [Black](https://github.com/psf/black)
+ and the Code Institute [Python Linter](https://pep8ci.herokuapp.com/) was used to highlight coding errors.
+
+## CSS and JavaScript Tests
+
+ [CSS validation service](https://jigsaw.w3.org/css-validator/) - css code validated
+
+ ![css](readme/tests/rm-css-validation.png)<br><br>
+
+ [JSHint](https://jshint.com/) - no errors shown
+
+ ![js test](readme/tests/rm-jshint.png)<br><br>
 
 ## Bugs
 
 ***Known Bugs***
 
-- Like button does not turn from shade to light when users click on it.
+- Like button does not turn from light to dark when users click on it.
 
 - Users taken to the top of the page when they like, edit or delete a comment rather than staying in the location of the like/comment area.
 
@@ -75,7 +90,7 @@ html tested using W3C Markup Validation Service https://validator.w3.org/
  # IMAGE
 
 
-Code Institute Python Linter - https://pep8ci.herokuapp.com/
+
 ## Accessibility
 
 ## Best Practices
@@ -95,13 +110,5 @@ A favicon has been added and shows up in the browser
  A robots.txt file has been added to allow search engines to crawl the network.
  
 
-## CSS and JavaScript Tests
 
- [CSS validation service](https://jigsaw.w3.org/css-validator/) - css code validated
-
- ![css](readme/tests/rm-css-validation.png)<br><br>
-
- [JSHint](https://jshint.com/) - no errors shown
-
- ![js test](readme/tests/rm-jshint.png)<br><br>
 

@@ -31,18 +31,15 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-THUMBNAIL_DEBUG = True
 
 ALLOWED_HOSTS = [
     "8000-todiane-ourspot-33aqvwz1p1f.ws-eu105.gitpod.io",
     "ourspot-d2a3c52401dc.herokuapp.com",
-
 ]
 
 
 # CSRF_TRUSTED
-CSRF_TRUSTED_ORIGINS = [
-    "https://8000-todiane-our-spot-7f88vi944l.us2.codeanyapp.com/"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-todiane-our-spot-7f88vi944l.us2.codeanyapp.com/"]
 
 # SITE ID
 SITE_ID = 1
@@ -52,25 +49,25 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.sites',
-    'cloudinary_storage',
-    'django.contrib.staticfiles',
-    'cloudinary',
-    'locations',
-    'account',
-    'easy_thumbnails',
-    'djrichtextfield',
-    'crispy_forms',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.sites",
+    "cloudinary_storage",
+    "django.contrib.staticfiles",
+    "cloudinary",
+    "locations",
+    "account",
+    "easy_thumbnails",
+    "djrichtextfield",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -110,7 +107,7 @@ WSGI_APPLICATION = "ourspot.wsgi.application"
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-# 
+#
 #     }
 # }
 
@@ -168,17 +165,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # RETURNS THE USER DETAIL URL FOR GIVEN USER
 ABSOLUTE_URL_OVERRIDES = {
-    'auth.user': lambda u: reverse_lazy('user_detail',
-                                        args=[u.username])
+    "auth.user": lambda u: reverse_lazy("user_detail", args=[u.username])
 }
 
-# LET USERS LOGIN USING EMAIL OR USER NAME
+# LETS USERS LOGIN USING EMAIL OR USER NAME
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'account.authentication.EmailAuthBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "account.authentication.EmailAuthBackend",
 ]

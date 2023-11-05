@@ -4,20 +4,19 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-      ('locations', '0004_alter_comment_photo'),
+        ("locations", "0004_alter_comment_photo"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='tag',
-            name='location',
+            model_name="tag",
+            name="location",
         ),
         migrations.DeleteModel(
-            name='Comment',
+            name="Comment",
         ),
         migrations.DeleteModel(
-            name='Tag',
+            name="Tag",
         ),
     ]

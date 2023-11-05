@@ -5,15 +5,22 @@ import django_resized.forms
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('locations', '0002_comment_photo'),
+        ("locations", "0002_comment_photo"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='comment',
-            name='photo',
-            field=django_resized.forms.ResizedImageField(crop=None, force_format='WEBP', keep_meta=True, quality=75, scale=None, size=[40, 40], upload_to='account/'),
+            model_name="comment",
+            name="photo",
+            field=django_resized.forms.ResizedImageField(
+                crop=None,
+                force_format="WEBP",
+                keep_meta=True,
+                quality=75,
+                scale=None,
+                size=[40, 40],
+                upload_to="account/",
+            ),
         ),
     ]

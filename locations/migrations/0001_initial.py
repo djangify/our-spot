@@ -7,7 +7,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -16,46 +15,136 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Location',
+            name="Location",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=300)),
-                ('slug', models.SlugField(max_length=200, unique=True)),
-                ('description', models.CharField(max_length=500)),
-                ('image', cloudinary.models.CloudinaryField(default='placeholder', max_length=255, verbose_name='image')),
-                ('image_alt', models.CharField(max_length=100)),
-                ('location_types', models.CharField(choices=[('africa', 'Africa'), ('america', 'America'), ('asia', 'Asia'), ('caribbean', 'Caribbean'), ('europe', 'Europe'), ('great_britain', 'Great Britain'), ('middle_east', 'Middle East'), ('oceanic', 'Oceanic')], default='Africa', max_length=50)),
-                ('posted_date', models.DateTimeField(auto_now=True)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='location_owner', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=300)),
+                ("slug", models.SlugField(max_length=200, unique=True)),
+                ("description", models.CharField(max_length=500)),
+                (
+                    "image",
+                    cloudinary.models.CloudinaryField(
+                        default="placeholder", max_length=255, verbose_name="image"
+                    ),
+                ),
+                ("image_alt", models.CharField(max_length=100)),
+                (
+                    "location_types",
+                    models.CharField(
+                        choices=[
+                            ("africa", "Africa"),
+                            ("america", "America"),
+                            ("asia", "Asia"),
+                            ("caribbean", "Caribbean"),
+                            ("europe", "Europe"),
+                            ("great_britain", "Great Britain"),
+                            ("middle_east", "Middle East"),
+                            ("oceanic", "Oceanic"),
+                        ],
+                        default="Africa",
+                        max_length=50,
+                    ),
+                ),
+                ("posted_date", models.DateTimeField(auto_now=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="location_owner",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-posted_date'],
+                "ordering": ["-posted_date"],
             },
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('location', models.ManyToManyField(related_name='tags', to='locations.Location')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                (
+                    "location",
+                    models.ManyToManyField(
+                        related_name="tags", to="locations.Location"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Like',
+            name="Like",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('location', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='locations.location')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "location",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="locations.location",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.TextField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('location', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='locations.location')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("text", models.TextField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "location",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comments",
+                        to="locations.location",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

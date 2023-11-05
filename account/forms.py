@@ -5,18 +5,24 @@ from .models import Profile
 
 class LoginForm(forms.Form):
     """Form users use to login"""
+
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
 
 class UserRegistrationForm(forms.ModelForm):
     """User registration form"""
-    password = forms.CharField(label="Password", 
-                               help_text='Your password must contain at least 8 characters, cannot be entirely numeric, and must not be too common.',
-                               widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Repeat password",
-                                help_text='Enter the same password as before, for verification.',
-                                widget=forms.PasswordInput)
+
+    password = forms.CharField(
+        label="Password",
+        help_text="Your password must contain at least 8 characters, cannot be entirely numeric, and must not be too common.",
+        widget=forms.PasswordInput,
+    )
+    password2 = forms.CharField(
+        label="Repeat password",
+        help_text="Enter the same password as before, for verification.",
+        widget=forms.PasswordInput,
+    )
 
     class Meta:
         model = User
@@ -38,6 +44,7 @@ class UserRegistrationForm(forms.ModelForm):
 
 class UserEditForm(forms.ModelForm):
     """User can edit registration details"""
+
     class Meta:
         model = User
         fields = ["first_name", "last_name", "email"]
@@ -52,6 +59,7 @@ class UserEditForm(forms.ModelForm):
 
 class ProfileEditForm(forms.ModelForm):
     """User can edit profile form"""
+
     class Meta:
         model = Profile
         fields = ["date_of_birth", "photo"]

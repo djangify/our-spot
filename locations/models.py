@@ -21,13 +21,14 @@ LOCATION_TYPES = (
 
 class Location(models.Model):
     """Creates and manages shared locations"""
+
     user = models.ForeignKey(
         User, related_name="location_owner", on_delete=models.CASCADE
     )
     title = models.CharField(max_length=300, null=False, blank=False)
     slug = models.SlugField(max_length=200, null=False, unique=True)
     description = models.CharField(max_length=500, null=False, blank=False)
-    image = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField("image", default="placeholder")
     image_alt = models.CharField(max_length=100, null=False, blank=False)
     location_types = models.CharField(
         max_length=50, choices=LOCATION_TYPES, default="Africa"
@@ -53,14 +54,17 @@ class Location(models.Model):
 
 class Like(models.Model):
     """Like button appears under each image"""
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.user.username} likes {self.location.title}"
 
+
 class Comment(models.Model):
     """Model for comments section"""
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     text = models.TextField()

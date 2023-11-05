@@ -23,5 +23,4 @@ urlpatterns = [
     path("account/", include("account.urls")),
     path("locations/", include("locations.urls")),
     path("", Index.as_view(), name="home"),
-    
 ]
