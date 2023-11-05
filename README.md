@@ -57,7 +57,9 @@
 
 [Deployment](#deployment)
 
-[Technologies used](#technologies-used)
+[Technologies Used](#technologies-used)
+
+[Resources Used](#resources-used)
 
 [Acknowledgements](#acknowledgements)
 
@@ -79,6 +81,8 @@ Use Ctrl (or Cmd) + click to open in new window
 This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
 
 This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.
+
+_When talking about access for superusers and members the term users will be used, otherwise the term members will be used. Of course some superusers are also members!_
 
 
 </details>
@@ -136,21 +140,21 @@ I used MVT to help define the project's requirements, features, and structure by
 
 - What data do we need to store in the database for this network? E.g. username, password, photo etc
 - What are the attributes of a User profile for the members?
-- What information should be associated with a location (or spot) shared by users.
-- What profile is needed to represent users and their attributes?
+- What information should be associated with a location (or spot) shared by members.
+- What profile is needed to represent members and their attributes?
 
 **View :**
 
-- What should users see when they first visit the website (homepage)?
-- How do we display the latest locations shared by all users and by the user alone.
-- What views or pages are needed for users to register and log in?
-- How should the process to add new locations be structured in terms of user interactions and views?
-- What information should be displayed on a users profile page?
+- What should members and non-members see when they first visit the website (homepage)?
+- How do we display the latest locations shared by all members and by an individual member.
+- What views or pages are needed for members to register and log in?
+- How should the process to add new locations be structured in terms of member interactions and views?
+- What information should be displayed on a members profile page?
 
 **Template :**
 
 - What should the HTML structure of the site look like? What is the layout for the pages?
-- What should the structure and design of the user registration and login forms look like?
+- What should the structure and design of the member registration and login forms look like?
 - What does the users template to add, edit and delete locations look like? How should they be structured?
 - What should these templates include?
 - What should the format and style of a users profile page look like?
@@ -171,20 +175,15 @@ These questions lay the groundwork for creating user stories, developing the dat
 
 <details>
 
+My aim throughout this project was to focus my working time using agile terminologies:
+
 - Create backlog
-
 - Divide work into sprints
-
 - Create subset sprints
-
 - Review work - completed yesterday, to do today, any challenges
-
 - Testing - developer tool, (print) command, keep an eye on terminal/console area.
-
 - Obtain feedback.
-
 - Maintain product backlog and prioritise items/adapt to change
-
 - Future implementations/scalability and performance optimisation.
 
 </details>
@@ -222,7 +221,7 @@ Below is the entity relationship diagram for Our Spot.
 
 <details>
 
-When designing the structure of the site I kept my focus on the need to create a web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. 
+When designing the structure of the site I kept my focus on the need to create a mobile first web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. 
 
 
 ![Homepage wireframe](readme/wireframes/wf-homepage.png)
@@ -308,10 +307,10 @@ This epic covers user profiles, creating, editing and deleting
 How users will add, edit and delete locations.
 
 **_Location Detail Page:_**
-This focuses on the detailed view of a specific location, including comments and likes.
+This focuses on the detailed view of a specific location and what will be shown.
 
 **_User Connections:_**
-The structure for following and displaying the latest activity of followed users.
+The structure for liking locations and adding, editing and deleting comments.
 
 </details>
 
@@ -322,7 +321,7 @@ The structure for following and displaying the latest activity of followed users
 **_Manage Accounts:_** As an administrator, I want to be able to manage user accounts, including creating, editing, and deactivating them if necessary so that my records are kept up to date.
 
 **_Register to add photos:_**
-As Admin, I want users to register before being able to book addd a new photo.
+As Admin, I want users to register before being able to look at or add a new photo.
 
 **_Password Change:_**
 As a admin I want to set up a system so users can change their password when they are logged in.
@@ -339,10 +338,10 @@ As admin I want to be able to create, read, update and delete photos, comments a
 **_Registration and Log-In_**
 As a user, I want to be able to register an account, so I can participate in Our Spot and immediately log-in.
 
-**_log-In/log out_**
+**_log-In/Log Out_**
 As a user, I want to log in and out of my account so that I can access the platform securely.
 
-**_Create, Edit, cancel and delete photos:_**
+**_Create, Edit, Cancel and Delete Photos:_**
 As a user I want to be able to create, edit, and delete my photos so that I can stay in control of the information I share.
 
 **_View User Photos:_**
@@ -406,7 +405,7 @@ The dashboard area will show a first name if one was provided during the registr
 
 <img src="readme/images/rm-dashboard-noname.png" width="80%"><br><br>
 
-Once inside members who want to add information to their profile will only be able to do so if they include an email address. The Admin area has been setup to make email a requirement of members, however madeup email addresses can be used as authentication via email will not take place until Stage Two.
+Once inside users who want to add information to their profile will only be able to do so if they include an email address. The Admin area has been setup to make email a requirement of members, however madeup email addresses can be used as authentication via email will not take place until Stage Two.
 
 <img src="readme/images/rm-false-email.png" width="80%"><br><br>
 
@@ -415,7 +414,7 @@ Once inside members who want to add information to their profile will only be ab
 
 ***Password Management***
 
-In the first phase of this project the ability to change a members password is available inside the members area.
+In the first phase of this project the ability to change a users password is available inside the members area.
 
 <img src="readme/images/rm-password.png" width="80%"><br><br>
 
@@ -452,7 +451,7 @@ They also have the ability to view and edit their profile
 
 <details>
 
-This page contains the photos of all members and infinite scroll has been used so that members can scroll down and look through the photos.
+This page contains the photos of all users added to the site. Users can click on the photo to view it.
 
 ![new locations](readme/images/rm-new-spots.png)
 
@@ -502,13 +501,15 @@ The ability to like and comment on a photo is available to all users. The abilit
 
 ![comment](readme/images/rm-comment.png)
 
+There is a link back to the profile of any user who leaves a comment (see [user profile](#user-profile) information below for image)
+
 </details>
 
 ## Report profile and photo
 
 <details>
 
-There is a link available for members who want to report a profile or photo. A pop up box appears inviting them to submit their report to Admin.
+There is a link available for users who want to report a profile or photo. A pop up box appears inviting them to submit their report to Admin.
 
 ![comment](readme/images/rm-report-photo.png)
 
@@ -533,10 +534,21 @@ This page contains a list of profile photos with the name of the user. This can 
 
 <details>
 
-Each member is provided with a profile however adding a photo is optional. When you visit a profile you will see any locations that have been added by that user.
+Each user is provided with a profile however adding a photo is optional. When you visit a profile you will see any locations that have been added by that user.
 
-<img src="readme/images/rm-member-no-photo.png" width="70%"><br>
-<img src="readme/images/rm-profile-with-photo.png" width="70%"><br>
+<img src="readme/images/rm-member-no-photo.png" width="70%"><br><br>
+<img src="readme/images/rm-profile-with-photo.png" width="70%"><br><br>
+
+The user profile is linked to any location they add or comment they make so users can click the link to visit their profile
+
+<img src="readme/images/rm-link-profile.png" width="70%"><br><br>
+
+<img src="readme/images/rm-comments-link.png" width="70%"><br><br>
+
+
+While members can edit their profile they cannot delete it. There is a message shown that let's them know they can contact admin to delete their account.
+
+<img src="readme/images/rm-admin-delete-profile.png" width="70%"><br><br>
 
 </details>
 
@@ -561,7 +573,9 @@ The font used for the site is a Google Font called [Mulish](https://fonts.google
 
 <details>
 
-The ability to create, read, update and delete data has been added. The site provides role-based access to admin who are superusers and have full access to all data and users who are limited to access made available by admin.
+The ability to create, read, update and delete data has been added. The site provides role-based access to admin who are superusers and have full access to all data and members who are limited to access made available by admin. 
+
+_REMINDER: When talking about access for superusers and members the term users will be used otherwise the term members is used. Of course some superusers are also members!_
 
 Users are able to manipulate the data model using the following:
 
@@ -582,8 +596,9 @@ Pages where users can edit/change their information
 <img src="readme/images/rm-profile.png" width="70%"><br><br>
 <img src="readme/images/rm-password.png" width="70%"><br><br>
 
+The members ability to delete and close their account has not been included in phase one. However, a message is shown to inform them that they can contact Admin if they want their details removed.
 
-The ability to like the photos of other members and add a comment.
+The ability to like the photos of other users and add a comment.
 <img src="readme/images/rm-comment.png" width="70%"><br><br>
 
 The ability to edit and delete comments.
@@ -614,7 +629,7 @@ A central location where the site can be managed including the ability to create
 
 Included in the [Github Project Board](https://github.com/users/todiane/projects/8/views/1?layout=board) are user stories under the column "Stage Two" which represents upcoming iterations. This backlog includes user stories created for an upcoming development phase. 
 
-This phase provides an opportunity for me to respond to user feedback. It also allows for ongoing refinements and improvements that will evolve based on user input and needs. This highlights the adatability and scalability of the project.
+This phase provides an opportunity for me to respond to member feedback. It also allows for ongoing refinements and improvements that will evolve based on user input and needs. This highlights the adatability and scalability of the project.
 
 This means that the network includes a few placeholders that were adding to highlight some of these additional features to be included in Stage Two. These are:
 <br>
@@ -631,9 +646,9 @@ As a social network there were a number of features that will be added at a late
 
 - Album creation so photos can be saved into specific albums, e.g. parks, holiday etc.
 
-- Personalised recommendations - users receive recommendations for new spots based on previous uploads.
+- Personalised recommendations - members receive recommendations for new spots based on previous uploads.
 
-- A feed that shows user activity and trending images.
+- A feed that shows member activity and trending images.
 
 - The ability to follow members and get updated when they post.
 
@@ -911,6 +926,8 @@ A retrospective review is an important part of Agile to ensure continuous progre
 - Stick to the plan! It is very easy to forget the plan that is in place and to start adding extras functionalities that cause more work. For example I spent a whole day adding infinite scroll to the network. When I went to tick it off my list at the end of the day I realised it wasn't even on my list of things to do. To make matters worse I eventually decided to remove infinite scroll when it stopped working and include it in Stage Two.
 
 - The main reason I included a Stage Two into this project was to give me an opportunity to build upon my knowledge and skillset. I don't have all the knowledge and/or skills I need to complete this social network but I am keen to learn how to implement them as I learn more.
+
+While I was tempted to continually add things or try to fix these that weren't quite right, I had to conintually bring myself back to the main focus of Project 4, the dataset and the ability for members to use and query the dataset.
 
 </details>
 

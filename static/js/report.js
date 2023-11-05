@@ -3,6 +3,8 @@ const reportModal = document.getElementById("report-modal");
 const closeBtn = document.getElementById("close-modal");
 const submitReportBtn = document.getElementById("submit-report");
 const reportSuccessMessage = document.getElementById("report-success-message");
+
+
 // Show the report modal when the "Report Photo" link is clicked
 reportLink.addEventListener("click", function (event) {
     event.preventDefault();

@@ -56,8 +56,7 @@
         <!-- Photo details -->
 
             <h4>{{ location.title }}</h4>
-            <p>Posted by {{location.user}} on {{location.posted_date}}</p>
-        
+            <p>Posted by <a href="{% url 'user_detail' username=location.user %}">{{location.user}}</a> on {{location.posted_date}}</p>
             <p>{{location.description}}</p>
     
     </figure>
@@ -91,7 +90,8 @@
             {% for comment in location.comment_set.all %}
             <div class="comment">
             
-                <strong>{{ comment.user.username }}</strong>
+                <!-- Link to the user's profile -->
+                <strong><a href="{% url 'user_detail' username=comment.user.username %}">{{ comment.user.username }}</a></strong>
                 <p>{{ comment.text }}</p>
                 {% if request.user == comment.user %}
                 <a href="{% url 'edit_comment' comment.id %}">You can Edit</a>  or  

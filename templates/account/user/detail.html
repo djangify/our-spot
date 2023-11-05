@@ -6,8 +6,17 @@
 
 {% block content %}
 <div class="container my-5">
+
     <h1>{{ user.get_full_name }}</h1>
 
+        <!-- Message for logged in user to delete account -->
+        {% if request.user.is_authenticated and request.user == user %}
+        <div class="alert alert-dark" role="alert">
+            If you want to delete your profile/account please contact Admin admin@ourspot.com
+        </div>
+        {% endif %}
+
+    <!-- Profile Photo -->
     <div class="rounded d-block">
         {% if user.profile.photo %}
             <img src="{{ user.profile.photo.url }}" alt="{{ user.profile.photo_alt }}" class="img-fluid rounded d-block" style="width: 200px; height: 200px; object-fit: cover;">
@@ -66,31 +75,6 @@
     </div>
 
 
-    <!--Follow button / number of followers-->
-
-<!-- <form action="/users/{{current_user}}/followers_count" method="POST">
-    {% csrf_token %}
-    <input type="hidden" name="user" value="{{current_user}}" readonly/>
-    <input type="hidden" name="follower" value="{{user.username}}" readonly/>
-    
-    {% if follow_button_value == 'follow' %}
-        <input type="hidden" name="value" value="follow" readonly/>
-        <button class="btn btn-outline-success" type="submit">
-            Follow
-        </button>
-    {% else %}
-        <input type="hidden" name="value" value="unfollow" readonly/>
-        <button class="btn btn-outline-danger" type="submit">
-            Unfollow
-        </button>
-    {% endif %}
-</form>
-<div class="profile-stats">
-    <ul>
-        <li><span class="profile-stat-count">{{user_followers}}</span> followers</li>
-        <li><span class="profile-stat-count">{{user_following}}</span> following</li>
-    </ul>
-</div> -->
 {% endblock %}
 
 
