@@ -820,6 +820,7 @@ Use Ctrl (or Cmd) + click to open in new window
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Google Developer Tools](https://developer.chrome.com/docs/devtools/)
 - [Google Fonts](https://fonts.google.com/specimen/Mulish?query=muli)
+- [Black](https://github.com/psf/black)
 
 <br>
 

@@ -1,29 +1,28 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block title %}Home{% endblock title %} 
+
+
 {% block content %}
+  <!-- Home Page background image-->
+  <body background="{% static 'images/hp-park.webp' %}"></body>
+
 <!-- Home Page information-->
-
-<div class="has-bg-image" style="background-image: url({% static 'images/hp-park.webp' %});
-           background-size: cover; height: 100vh">
-
-  <div class="card-img-overlay mt-5">
-    <div class="col-md-4 offset-md-4 m-5 p-3 shadow-lg bg-white lead text-center">
-        <h1 class="display-4">Discover Locations</h1>
-        <h2 class="display-6">Welcome to our one-stop hub for sharing our spot.</h2>
-        Got a location you love to be at with a friend, loved one or family? Share
-        it here. Find places worth visiting. Our spot is your spot.
-    
-            <!-- <div class="button2"> -->
-            <div class="container py-3">
-                <a class="btn btn-outline-success btn-lg" href="{% url 'register' %}" 
-                role="button">Register Here</a>
-            </div>
-              <div class="container py-3">
-                <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" 
-                role="button">Log-In Here</a>
-              </div>
+<div class="container-fluid mt-3">
+  <div class="justify-content-center align-items-center">
+    <div class="col-md-6 shadow-lg bg-white lead text-center">
+      <h1 class="display-4">Discover Locations</h1>
+      <h2 class="display-6">Welcome to our one-stop hub for sharing our spot.</h2>
+      <p>Got a location you love to be at with a friend, loved one or family? Share it here. Find places worth visiting. Our spot is your spot.</p>
+      <div class="py-3">
+        <a class="btn btn-outline-success btn-lg" href="{% url 'register' %}" role="button">Register Here</a>
+      </div>
+      <div class="py-3">
+        <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" role="button">Log-In Here</a>
+      </div>
     </div>
   </div>
+</div>
+
   {% endblock content %}
 </div>

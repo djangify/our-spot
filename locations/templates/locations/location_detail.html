@@ -64,17 +64,17 @@
 
         <div>
         <strong>
-            {% if user.is_authenticated %}
-            <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
-                {% csrf_token %}
-                {% if request.user in location.like_set.all %}
-                <button type="submit" name="location_id" value="{{ location.slug }}" 
-                                class="btn-like"><i class="fa-duotone fa-heart"></i></button>
-                {% else %}
-                <button type="submit" name="location_id" value="{{ location.slug }}" 
-                            class="btn-like"><i class="fa-regular fa-heart"></i></button>
-                {% endif %}
-            </form>
+        {% if user.is_authenticated %}
+        <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
+        {% csrf_token %}
+        {% if request.user in location.like_set.all %}
+        <button type="submit" name="location_id" value="{{ location.slug }}" 
+                        class="btn-like"><i class="fa-duotone fa-heart"></i></button>
+        {% else %}
+        <button type="submit" name="location_id" value="{{ location.slug }}" 
+                    class="btn-like"><i class="fa-regular fa-heart"></i></button>
+            {% endif %}
+        </form>
             {% else %}
             <span class="text-secondary"><i class="far fa-heart"></i></span>
             {% endif %}

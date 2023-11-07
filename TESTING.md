@@ -36,9 +36,9 @@ Search bar in navagation area tested. Searched using countries e.g. Scotland, lo
 
 Testing complete functionality of the site. This includes:
 
-![tests](readme/tests/rm-manualtests.png)
-![tests 1](readme/tests/rm-manualtests1.png)
-![tests 2](readme/tests/rm-manualtests2.png)<br>
+<img src="readme/tests/rm-manualtests.png" width="90%">
+<img src="readme/tests/rm-manualtests1.png" width="90%">
+<img src="readme/tests/rm-manualtests2.png" width="90%"><br><br>
 
  ## Python 
 
@@ -79,21 +79,18 @@ Unfixed Bugs
 1. 
 
 
-# project 3 you added ability for search engines
 
-## Performance
+## Performance and accessibility
 
+The Lighthouse Chrome DevTools Performance test showed a 92% performance and 100% accessibility score. 
 
-The Lighthouse Chrome DevTools Performance test showed  TEST AND IMAGE
+<img src="readme/tests/rm-lighthouse.png" width="70%"><br><br>
+
 
 html tested using W3C Markup Validation Service https://validator.w3.org/
  # IMAGE
 
 
-
-## Accessibility
-
-## Best Practices
 
   ***404 error page***
 
