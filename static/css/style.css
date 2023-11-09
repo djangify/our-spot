@@ -32,15 +32,19 @@ a:hover {
     color: #28a745;
 }
 
+/* page titles */
+
 h1 {
     border-bottom: 1px solid #bbb;
     padding: 0 0 10px 0;
     margin: 10px 0 20px 0;
 }
 
+/* images on recent locations page */
+
 .card-img-top {
     width: 100%;
-    height: 17vw;
+    height: 300px;
     object-fit: cover;
 }
 
@@ -159,12 +163,15 @@ ul.messages li a.close {
     text-shadow: none;
 }
 
-@media (max-width: 991px) {
-    .navbar-toggler.collapsed + .card-img-overlay .card-content {
-      margin-top: 0;
+/* media query for dashboard buttons */
+
+@media (max-width: 475px) {
+    .list-inline {
+      flex-direction: column;
+      align-items: center; 
     }
-  
-    .navbar-toggler:not(.collapsed) + .card-img-overlay .card-content {
-      margin-top: 100px; 
+    
+    .list-inline-item {
+      margin: 10px 0;
     }
   }

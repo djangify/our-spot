@@ -19,10 +19,10 @@
             <a href="{% url 'password_change' %}" class="btn btn-outline-secondary">Change Password</a>
           </li>
         </ul>
-      </div>
-    <br>
+    </div>
+    
     <h2 class="display-6">You have shared {{ locations.count | default_if_none:"0" }} spot(s)</h2>
-
+    <br>
     <!-- Shows the total number of locations added by user.-->
     <div class="row">
         {% for location in locations %}
@@ -30,10 +30,10 @@
                 <div class="card h-100">
                     <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
                         <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" class="card-img-top img-fluid">
-                    
-                        <div class="card-body">
-                        <h3 class="card-title">{{ location.title }}</h3>
                     </a>
+                    
+                    <div class="card-body">
+                        <h3 class="card-title">{{ location.title }}</h3>
                         <p class="card-text">Posted on {{ location.posted_date }}</p>
                         <p class="card-text">{{ location.description | truncatechars:280 }}</p>
                     </div>

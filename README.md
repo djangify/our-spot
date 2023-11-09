@@ -68,7 +68,9 @@
 
 ## Overview
 
-Our Spot is a mobile-first developed social network created for people who love to share photos of their favourite spots around the world. Currently the site being presented is a ***minimum viable product (mvp)*** - ***Phase One*** of Two phases. It is not the final network but includes enough functionality and business logic to meet the CI project 4 purpose.
+Our Spot is a mobile-first developed photo sharing platform created for people who love to share photos of their favourite spots around the world. By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. 
+
+Currently the site being presented is a ***minimum viable product (mvp)*** - ***Phase One*** of Two phases. It is not the final platform but includes enough functionality and business logic to meet the CI project 4 purpose.
 
 The fully deployed project can be [accessed here.](
 https://ourspot-d2a3c52401dc.herokuapp.com/)
@@ -82,6 +84,8 @@ This project has been built to fit into the Code Institute project 4 criteria, t
 
 This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.
 
+The platform has been created with a strong emphasis on user experience (UX) and user interface (UI) ensuring that usability, accessibility and information architecture have not only been considered but implemented to guarantee an enjoyable user experience.
+
 _When talking about access for superusers and members the term users will be used, otherwise the term members will be used. Of course some superusers are also members!_
 
 
@@ -91,19 +95,17 @@ _When talking about access for superusers and members the term users will be use
 
 <details>
 
-Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. Places they go to for fun with friends/loved ones or for peace and space away from the world. 
-
-By sharing individually we collectively build a resource of wonderful spaces to enjoy at a local and global level. As well as sharing photos, the site will also provide an opportunity to connect with other members and foster friendships.
+Our Spot is a web application made using Django. It's main aim is to provide a space where people can go to share their favourite places around the world. As well as sharing photos, the site will also provide an opportunity to connect with other members and foster friendships.
 
 The key objectives of the project include:
 
-- Providing a user-centric experience that encourages sharing and interaction through an intuitive easy to use interface.
+- Focusing on user centered design and providing an experience that encourages sharing and interaction through an intuitive easy to use interface.
 
 - Offering a dedicated space for anyone looking to contribute photos of their favourite spot including local parks, open spaces and hangouts, with an opportunity to share what there is to do and why they love it.
 
-- An opportunity for people to engage and interact with each other through comments, fostering connecting and opening dialogue. Profiles are provided for each member.
+- An opportunity for people to engage and interact with each other through comments, fostering connecting and opening dialogue. Profiles are also provided for each member.
 
-- Building a database-backed model-view-template (MVT) web application that lets users store and manipulate data records including the ability to create, edit and delete.
+- Building a database-backed model-view-template (MVT) web application that lets users store and manipulate data records including the ability to create, read, edit and delete.
 
 - Giving users the ability to initiate and control their actions while providing immediate and complete feedback on data.processes.
 
@@ -113,11 +115,13 @@ The end result has been a user-friendly photo sharing network that has been enco
 
 </details>
 
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
 ## Target Audience
 
 <details>
 
-The Our Spot social network has been designed for:
+The Our Spot platform has been designed for:
 
 | Enthusiastic  | People |
 | ------------- | ------------- |
@@ -142,6 +146,7 @@ I used MVT to help define the project's requirements, features, and structure by
 - What are the attributes of a User profile for the members?
 - What information should be associated with a location (or spot) shared by members.
 - What profile is needed to represent members and their attributes?
+- How do we ensure that user experience is developed in a way that will enhance the effectiveness and enjoyment of the platform?
 
 **View :**
 
@@ -151,6 +156,7 @@ I used MVT to help define the project's requirements, features, and structure by
 - How should the process to add new locations be structured in terms of member interactions and views?
 - What information should be displayed on a members profile page?
 
+
 **Template :**
 
 - What should the HTML structure of the site look like? What is the layout for the pages?
@@ -158,6 +164,7 @@ I used MVT to help define the project's requirements, features, and structure by
 - What does the users template to add, edit and delete locations look like? How should they be structured?
 - What should these templates include?
 - What should the format and style of a users profile page look like?
+- How do we ensure that both load time and responsiveness are taken into consideration when building the project?
 
 **Authorization :**
 
@@ -186,8 +193,14 @@ My aim throughout this project was to focus my working time using agile terminol
 - Maintain product backlog and prioritise items/adapt to change
 - Future implementations/scalability and performance optimisation.
 
+The GitHub project area was used to manage this process.
+
+[View my GitHub Project Board Here](https://github.com/users/todiane/projects/8/views/1?layout=board)
+
 </details>
 
+
+<p align="right">(<a href="#table-of-content">back to top</a>)</p>
 
 ## Database structure
 
@@ -221,8 +234,9 @@ Below is the entity relationship diagram for Our Spot.
 
 <details>
 
-When designing the structure of the site I kept my focus on the need to create a mobile first web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. 
+When designing the structure of the site I kept my focus on the need to create a mobile first web-based application that has both a user interface (front end) and server-side logic database (back end) stored in a central location. My focus influenced my prototypes which are shown as wireframes below:
 
+***Home/Index Page***
 
 ![Homepage wireframe](readme/wireframes/wf-homepage.png)
 
@@ -232,11 +246,11 @@ In order to log-in users must add a username and password. Email is optional in 
 
 As long as the minimum requirements are met users are informed of their registration success and invited to immediately login.
 
-Once logged-in users are met with their dashboard
+Once logged-in users are met with their dashboard. The visual hierarcy of the platform has been set up so that users naturally flow from one area to another, starting with the dashboard where all visitors are taken to when they first log-in.
 
 ![Dashboard wireframe](readme/wireframes/wf-dashboard.png)
 
-Other options available are to see images added by other uses (locations tab) and to addd their own images (new spot tab).
+Once inside, other options available are to see images added by other uses (locations tab) and to addd their own images (new spot tab).
 
 ![Locations](readme/wireframes/wf-locations.png)
 
@@ -247,7 +261,7 @@ Important features to include was the ability for users to interact with this in
 
 ![Profile](readme/wireframes/wf-profile.png)
 
-Users can update their passwords, edit and delete their locations and comments (see images below for actual screenshots)
+Users can update their passwords, edit and delete their locations and comments (see images below for actual screenshots) as well as editing their profile information.
 
 Messages are used to ensure that any changes to the data are notified to the user.
 
@@ -259,21 +273,21 @@ Messages are used to ensure that any changes to the data are notified to the use
 
 <details>
 
-As a member of the network users will enjoy:
+As a member of the platform users will enjoy:
 
-- A network that focuses on the importance of spending time outside
+- A platform that focuses on the importance of spending time outside.
 
-- The opportunity for users to share their experiences and activities through photographs
+- The opportunity for users to share their experiences and activities through photographs.
 
-- An opportunity to interact with other members through comments and the follow system
+- An opportunity to interact with other members through comments and the follow system.
 
-- A user-friendly dashboard that provides access to all parts of the network easily
+- A user-friendly dashboard that provides access to all parts of the network easily.
 
-- A user-friendly system/user journey for adding, commenting on and liking photos
+- A user-friendly system/user journey for adding, commenting on and liking photos.
 
-- A user-friendly design that works across all devices
+- A user-friendly design that works across all devices.
 
-- Simplicity in registering, using and interacting were the main priorities
+- Simplicity in registering, using and interacting were the main priorities to ensure user enjoyment.
 
 This research fed into the MVT and user stories.
 
@@ -301,10 +315,10 @@ A total of five EPICS were created to complete the first phase and organised int
 Covering network setup up, role allocation, user registration, login, and logout functionality.
 
 **_User Profiles:_**
-This epic covers user profiles, creating, editing and deleting
+This epic covers user profiles, creating, editing and deleting.
 
 **_Photo Management:_**
-How users will add, edit and delete locations.
+How users will add, edit and delete photos and any additional information added with the photo, e.g. description.
 
 **_Location Detail Page:_**
 This focuses on the detailed view of a specific location and what will be shown.
@@ -324,7 +338,7 @@ The structure for liking locations and adding, editing and deleting comments.
 As Admin, I want users to register before being able to look at or add a new photo.
 
 **_Password Change:_**
-As a admin I want to set up a system so users can change their password when they are logged in.
+As admin I want to set up a system so users can change their password when they are logged in.
 
 **_Create, Read, Update and Delete_**
 As admin I want to be able to create, read, update and delete photos, comments and profiles so that the admin area is kept up to date.
@@ -342,7 +356,7 @@ As a user, I want to be able to register an account, so I can participate in Our
 As a user, I want to log in and out of my account so that I can access the platform securely.
 
 **_Create, Edit, Cancel and Delete Photos:_**
-As a user I want to be able to create, edit, and delete my photos so that I can stay in control of the information I share.
+As a user I want to be able to create, edit, and delete my photos and any other information added so that I can stay in control of the information I share.
 
 **_View User Photos:_**
 As a user, I want to be able to view the photos of other users and like/comment on them. 
@@ -357,7 +371,7 @@ As a user I want to be able to create, edit, and delete my profile so that I hav
 As a user, I want to be able to view my profile and latest activity so that I can keep my information up to date.
 
 **_View Other Profiles:_**
-As a user I want to be able to view the profiles of other users so that I can follow their activity.
+As a user I want to be able to view the profiles of other users so that I can look through (and in Stage Two follow) their activity.
 
 **_Search Facilities:_**
 As a user I want to be able to search for different photos available based on their location.
@@ -426,11 +440,21 @@ In the next phase the ability to use a password reset email will be included.
 
 <details>
 
-A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. Unregistered and logged out users only see the ability to register and log in.
+A simple navigation was created using Bootstrap Navbar. Only logged-in users can see the pages available. 
 
 ![navbar](readme/images/rm-loggedout-navbar.png)
 
-***No footer has been included*** because this is a social network and they don't usually contain a footer - instead users are kept scrolling using infinite scroll, which will be added in Phase Two.
+Unregistered and logged out users only see the ability to register and log in. 
+
+The search facility is available to unregistered and logged out users, however, if they click on a link to view a profile they are invited to log-in. Whilst unregistered members can read any comments made they are unable to leave a comment.
+
+<img src="readme/images/rm-unregistered.png" width="80%"><br><br>
+
+I wanted a way for unregistered users to see what is available on the platform. Depending on user feedback in Stage Two this may change and a blog added instead.
+
+
+
+***No footer has been included*** because this is a social network type platform and they don't usually contain a footer - instead users are kept scrolling through content.
 
 </details>
 
@@ -586,7 +610,7 @@ A dashboard where members can view a list of their latest uploads as well as gai
 ![dashboard](readme/images/rm-dashboard.png)
 
 
-A page dedicated to creating new uploads with a simple interface. Users can add their description and photo as well as selecting the region of their location. When using the search function users are then able to search by country.
+A page dedicated to creating new uploads with a simple interface. Members can add their description and photo as well as selecting the region of their location. When using the search function users are then able to search by country as well as other keywords.
 
 <img src="readme/images/rm-addspot.png" width="70%"><br><br>
 
@@ -598,10 +622,10 @@ Pages where users can edit/change their information
 
 The members ability to delete and close their account has not been included in phase one. However, a message is shown to inform them that they can contact Admin if they want their details removed.
 
-The ability to like the photos of other users and add a comment.
+The ability to like the photos of other members and add a comment.
 <img src="readme/images/rm-comment.png" width="70%"><br><br>
 
-The ability to edit and delete comments.
+The ability for users to edit and delete comments.
 
 <img src="readme/images/rm-edit-comment.png" width="70%"><br><br>
 <img src="readme/images/rm-delete-comment.png" width="70%"><br><br>
@@ -638,11 +662,11 @@ _Report a photo or profile_ - The button under photos and profiles can be clicke
 
 _Email password_ - If a member is unable to log-in because they have forgotten their password the ability to complete the "forgotten password" form is available but is not currently a working system.
 
-As a social network there were a number of features that will be added at a later date. Future features include:
+Additional features to be included are:
 
 - Email authentication - the ability to sign up using email to verify your account and receive notifications via email.
 
-- The ability to search for images based on tags.
+- The ability to search for images based on tags and a stronger search facility overall.
 
 - Album creation so photos can be saved into specific albums, e.g. parks, holiday etc.
 
@@ -918,17 +942,17 @@ A retrospective review is an important part of Agile to ensure continuous progre
 
 ***_What did not work well for me?_***
 
-- There were a few challenges with the database which meant I had to reset it and start again. After the second data crash I moved over to GitPod. The main cause was me changing my model and having to make migrations. Spending more time planning my models will avoid this in the future.
+- There were a few challenges with the database which meant I had to reset it and start again. After the second data crash I moved over from Codeanywhere to GitPod after a recommendation from tutor support. The main cause of the crash happened when I changed my location app model and tried to migrate the changes. Spending more time planning my models will avoid the need to make changes in the future.
 
-- I struggled to add some components to the site like the comments section. Looking through my commits there are times when I added comments and then completely removed them before finally trying again, this time successfully.
+- I struggled to add some components to the site like the comments section. Looking through my commits there are times when I added comments and then completely removed them before finally trying again, this time successfully. I also struggled to include a follow system for members. My lack of exerience using Django made this difficult.
 
 ***_What actions can I take to improve my process going forward?_***
 
-- Stick to the plan! It is very easy to forget the plan that is in place and to start adding extras functionalities that cause more work. For example I spent a whole day adding infinite scroll to the network. When I went to tick it off my list at the end of the day I realised it wasn't even on my list of things to do. To make matters worse I eventually decided to remove infinite scroll when it stopped working and include it in Stage Two.
+- Stick to the plan! It is very easy to forget the plan that is in place and to start adding extras functionalities that cause more work. For example I spent a whole day adding infinite scroll to the network. When I went to tick it off my todo list at the end of the day I realised it wasn't even on my list of things to do. To make matters worse I eventually decided to remove infinite scroll when it stopped working and include it in Stage Two.
 
-- The main reason I included a Stage Two into this project was to give me an opportunity to build upon my knowledge and skillset. I don't have all the knowledge and/or skills I need to complete this social network but I am keen to learn how to implement them as I learn more.
+- The main reason I included a Stage Two into this project was to give me an opportunity to build upon my knowledge and skillset. I don't have all the knowledge and/or skills I need to complete this platform but I am keen to learn how to implement them as I learn more about Django.
 
-While I was tempted to continually add things or try to fix these that weren't quite right, I had to conintually bring myself back to the main focus of Project 4, the dataset and the ability for members to use and query the dataset.
+- While I was tempted to continually add things or try to fix things that weren't quite right, I had to conintually bring myself back to the main focus of Project 4, the dataset and the ability for members to use and query the dataset.
 
 </details>
 
