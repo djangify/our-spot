@@ -30,11 +30,11 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "ourspot-d2a3c52401dc.herokuapp.com",
-    "localhost",
+    "8000-todiane-ourspot-33aqvwz1p1f.ws-eu106.gitpod.io",
 ]
 
 

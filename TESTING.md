@@ -67,11 +67,7 @@ Testing complete functionality of the site. This includes:
 
 ***Known Bugs***
 
-- Like button does not turn from light to dark when users click on it.
-
 - Users taken to the top of the page when they like, edit or delete a comment rather than staying in the location of the like/comment area.
-
-- JavaScript for report photo feature showing an error message when viewing the page using Chrome Developer tools.
 
 - When a user edits their location the date and time are also edited to the current date and time, rather than staying at the original date and time.
 

@@ -28,7 +28,7 @@ class Location(models.Model):
     title = models.CharField(max_length=300, null=False, blank=False)
     slug = models.SlugField(max_length=200, null=False, unique=True)
     description = models.CharField(max_length=500, null=False, blank=False)
-    image = CloudinaryField("image", default="placeholder")
+    image = CloudinaryField("image", blank=False)
     image_alt = models.CharField(max_length=100, null=False, blank=False)
     location_types = models.CharField(
         max_length=50, choices=LOCATION_TYPES, default="Africa"
@@ -56,7 +56,7 @@ class Like(models.Model):
     """Like button appears under each image"""
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='likes', null=True)
 
     def __str__(self):
         return f"{self.user.username} likes {self.location.title}"

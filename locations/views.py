@@ -54,13 +54,28 @@ class LocationDetail(DetailView):
     def get(self, request, slug, *args, **kwargs):
         location = get_object_or_404(Location, slug=slug)
         form = CommentForm()
+        liked = False
+        if location.likes.filter(id=request.user.id).exists():
+            liked = True
         return render(
             request,
             "locations/location_detail.html",
-            {"location": location, "form": form},
+            {"location": location, "form": form, "liked": liked},  
         )
 
+class LikeLocationView(LoginRequiredMixin, View):
+    """Button users use to like photos"""
 
+    def post(self, request, slug, *args, **kwargs):
+        location = get_object_or_404(Location, slug=slug)
+        like, created = Like.objects.get_or_create(user=request.user, location=location)
+
+        if not created:
+            like.delete()
+
+        return HttpResponseRedirect(reverse("location_detail", args=[slug]))
+
+        
 class AddLocation(LoginRequiredMixin, CreateView):
     """User can add a new location/spot"""
 
@@ -109,17 +124,6 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         return context
 
 
-class LikeLocationView(LoginRequiredMixin, View):
-    """Button users use to like photos"""
-
-    def post(self, request, slug, *args, **kwargs):
-        location = get_object_or_404(Location, slug=slug)
-        like, created = Like.objects.get_or_create(user=request.user, location=location)
-
-        if not created:
-            like.delete()
-
-        return HttpResponseRedirect(reverse("location_detail", args=[slug]))
 
 
 # Comments Section

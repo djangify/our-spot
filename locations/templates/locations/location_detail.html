@@ -8,9 +8,8 @@
 <div class="container my-5">
     <figure class="figure">
         <h1>{{ location.title }}</h1>
-            <div class="photo-container">
+            <div class="photo-container center-photo">
                 <img src="{{ location.image.url }}" class="figure-img img-fluid rounded w-50" alt="{{ location.image_alt }}">
-
             </div>
             <!-- Code for user to edit/delete their photo--> 
             {% if request.user == location.user %}
@@ -23,8 +22,7 @@
 
         <!-- Code for any user to Report Photo -->   
    
-        <div>
-        <br>
+        <div class="text-center">
         <a href="#" id="report-link" data-toggle="modal" data-target="#report-modal" 
                         class="text-end">Report Photo</a>
         </div>
@@ -52,6 +50,8 @@
         <!-- Add this element for the report success message -->
         <p id="report-success-message"></p>
 
+
+
         <!-- Photo details -->
 
         <h4>{{ location.title }}</h4>
@@ -65,20 +65,24 @@
         <div>
         <strong>
         {% if user.is_authenticated %}
+        <h1>authenticated</h1>
         <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
-        {% csrf_token %}
-        {% if request.user in location.like_set.all %}
-        <button type="submit" name="location_id" value="{{ location.slug }}" 
-                        class="btn-like"><i class="fa-duotone fa-heart"></i></button>
-        {% else %}
-        <button type="submit" name="location_id" value="{{ location.slug }}" 
-                    class="btn-like"><i class="fa-regular fa-heart"></i></button>
+            {% csrf_token %}
+            {% if liked %}
+            <h1>You liked this</h1>
+            <button type="submit" name="location_id" value="{{ location.slug }}" 
+                            class="btn-like"><i class="fas fa-heart"></i></button>
+            {% else %}
+            <h1>You didnt like this</h1>
+            <button type="submit" name="location_id" value="{{ location.slug }}" 
+                        class="btn-like"><i class="far fa-heart"></i></button>
             {% endif %}
         </form>
-            {% else %}
+        {% else %}
             <span class="text-secondary"><i class="far fa-heart"></i></span>
-            {% endif %}
-            <span class="text-secondary">{{ location.like_set.count }} </span>
+        {% endif %}
+        <span class="text-secondary">{{ location.likes.count }} </span>
+            
         </strong>
         </div>
             <br>
@@ -89,14 +93,14 @@
             {% for comment in location.comment_set.all %}
             <div class="comment">
             
-                <!-- Link to the user's profile -->
-                <strong><a href="{% url 'user_detail' username=comment.user.username %}">{{ comment.user.username }}</a></strong>
-                <p>{{ comment.text }}</p>
-                {% if request.user == comment.user %}
-                <a href="{% url 'edit_comment' comment.id %}">You can Edit</a>  or  
-                <a href="{% url 'delete_comment' comment.id %}">Delete your comment</a>
-                {{request.user.first_name}}
-                {% endif %}
+            <!-- Link to the user's profile -->
+            <strong><a href="{% url 'user_detail' username=comment.user.username %}">{{ comment.user.username }}</a></strong>
+            <p>{{ comment.text }}</p>
+            {% if request.user == comment.user %}
+            <a href="{% url 'edit_comment' comment.id %}">You can Edit</a>  or  
+            <a href="{% url 'delete_comment' comment.id %}">Delete your comment</a>
+            {{request.user.first_name}}
+            {% endif %}
             </div>
             {% endfor %}
         </div>
@@ -111,6 +115,9 @@
         </form>
         {% endif %}
 </div>
-   
-        <script src="{% static 'js/report.js' %}"></script>
+
+<!-- javascript for report modal -->
+
+<script src="{% static 'js/report.js' %}"></script>
+
     {% endblock content %}
