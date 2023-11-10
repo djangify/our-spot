@@ -1,5 +1,5 @@
-# Our Spot Social Network
-![homepage](readme/images/rm-homepage.png)
+# Our Spot Photo Sharing Platform
+![homepage](readme/images/rm-homepage.webp)
 
 ## Testing Page
 

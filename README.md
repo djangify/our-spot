@@ -1,5 +1,5 @@
-# Our Spot Social Network
-![temporary homepage](readme/images/rm-homepage.png)
+# Our Spot Photo Sharing Platform
+![homepage](readme/images/rm-homepage.webp)
 
 
 ## Table of Content
@@ -82,7 +82,7 @@ Use Ctrl (or Cmd) + click to open in new window
 
 This project has been built to fit into the Code Institute project 4 criteria, the aim of which is to _build a Full-Stack web application that controls a centrally-owned dataset. An authentication mechanism should be used to provide role-based access to the site's data or other activities._
 
-This is the first working prototype of the final project and I will complete this social network once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.
+This is the first working prototype of the final project and I will complete this platform once my course has finished. The project includes placeholders in some areas, but all aspects of the project criteria have been covered including implementing a data model, application features and business logic to manage, query and manipulate data.
 
 The platform has been created with a strong emphasis on user experience (UX) and user interface (UI) ensuring that usability, accessibility and information architecture have not only been considered but implemented to guarantee an enjoyable user experience.
 
