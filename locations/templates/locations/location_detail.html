@@ -65,15 +65,12 @@
         <div>
         <strong>
         {% if user.is_authenticated %}
-        <h1>authenticated</h1>
         <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
             {% csrf_token %}
             {% if liked %}
-            <h1>You liked this</h1>
             <button type="submit" name="location_id" value="{{ location.slug }}" 
                             class="btn-like"><i class="fas fa-heart"></i></button>
             {% else %}
-            <h1>You didnt like this</h1>
             <button type="submit" name="location_id" value="{{ location.slug }}" 
                         class="btn-like"><i class="far fa-heart"></i></button>
             {% endif %}
