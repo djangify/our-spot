@@ -640,7 +640,11 @@ A central location where the site can be managed including the ability to create
 - profiles
 - comments
 
-![admin](readme/images/rm-admin.png)
+<img src="readme/images/rm-admin.png" width="80%"><br><br>
+
+<img src="readme/images/rm-admin-delete-comments.png" width="80%"><br><br>
+
+<img src="readme/images/rm-admin-delete-locations.png" width="80%"><br><br>
 
 </details>
 
