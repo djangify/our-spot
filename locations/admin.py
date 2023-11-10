@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Location, Comment, Like
+from .models import Location, Comment
 
 
 @admin.register(Location)  # displays location elements in admin area
@@ -19,4 +19,3 @@ class CommentAdmin(admin.ModelAdmin):
     )
     list_filter = ("user", "location", "created_at")
 
-admin.site.register(Like)

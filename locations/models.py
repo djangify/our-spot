@@ -34,9 +34,13 @@ class Location(models.Model):
         max_length=50, choices=LOCATION_TYPES, default="Africa"
     )
     posted_date = models.DateTimeField(auto_now=True)
+    likes = models.ManyToManyField(User, related_name="location_likes", blank=True)
 
     class Meta:
         ordering = ["-posted_date"]
+    
+    def number_of_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return str(self.title)
@@ -50,16 +54,6 @@ class Location(models.Model):
             self.slug = slugify(self.title)
 
         super(Location, self).save(*args, **kwargs)
-
-
-class Like(models.Model):
-    """Like button appears under each image"""
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='likes', null=True)
-
-    def __str__(self):
-        return f"{self.user.username} likes {self.location.title}"
 
 
 class Comment(models.Model):

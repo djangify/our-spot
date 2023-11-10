@@ -65,7 +65,7 @@
         <div>
         <strong>
         {% if user.is_authenticated %}
-        <form class="d-inline" action="{% url 'like_location' location.slug %}" method="POST">
+        <form class="d-inline" action="{% url 'like_location' location.slug %}" method="post">
             {% csrf_token %}
             {% if liked %}
             <button type="submit" name="location_id" value="{{ location.slug }}" 

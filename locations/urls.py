@@ -6,7 +6,7 @@ from .views import (
     DeleteLocation,
     EditLocation,
     LocationImage,
-    LikeLocationView,
+    LocationLike,
     Index,
 )
 from . import views
@@ -19,7 +19,7 @@ urlpatterns = [
          name="delete_location"),
     path("edit/<slug:slug>/", EditLocation.as_view(), name="edit_location"),
     path("account/dashboard/", LocationImage.as_view(), name="dashboard"),
-    path("like/<slug:slug>/", views.LikeLocationView.as_view(),
+    path("like/<slug:slug>/", views.LocationLike.as_view(),
          name="like_location"),
     path("location/<slug:slug>/add_comment/", views.add_comment,
          name="add_comment"),

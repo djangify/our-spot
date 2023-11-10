@@ -94,6 +94,6 @@ A favicon has been added and shows up in the browser
 
 ## Restrospective
 
-I struggle with the testing aspect of projects outside of manual testing and in my next project I hope to include more test driven data from the start. I need to improve my knowledge in this area and in creating tests using the Django test.py files.
+I struggle with the testing aspect of projects outside of manual testing and in my next project I hope to include more test driven data from the start. I need to improve my knowledge in this area and in creating tests using the Django test.py files. My debugging skills also need to be improved.
 
-Overall, I am happy with the number of tests I performed to ensure the first stage of this project - which as stated is a minimum viable product - is user-centered and working well. Being a user has helped me see what is needed from a members perspective and having a few actual members on the platform and gaining their feedback when it comes to testing has also been invaluable.
+Overall, I am happy with the number of tests I performed to ensure the first stage of this project - which as stated is a minimum viable product - is user-centered and working well. Being a user has helped me see what is needed from a members perspective and having a few actual members looking at the platform and gaining their feedback when it comes to testing has also been invaluable.

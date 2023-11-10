@@ -18,7 +18,7 @@ from django.views.generic import (
 
 # Imports from apps
 from .forms import LocationForm
-from .models import Location, Like, Comment
+from .models import Location, Comment
 from .forms import CommentForm
 
 
@@ -63,15 +63,15 @@ class LocationDetail(DetailView):
             {"location": location, "form": form, "liked": liked},  
         )
 
-class LikeLocationView(LoginRequiredMixin, View):
-    """Button users use to like photos"""
 
-    def post(self, request, slug, *args, **kwargs):
+class LocationLike(View):
+    def post(self, request, slug):
         location = get_object_or_404(Location, slug=slug)
-        like, created = Like.objects.get_or_create(user=request.user, location=location)
 
-        if not created:
-            like.delete()
+        if location.likes.filter(id=request.user.id).exists():
+            location.likes.remove(request.user)
+        else:
+            location.likes.add(request.user)
 
         return HttpResponseRedirect(reverse("location_detail", args=[slug]))
 
