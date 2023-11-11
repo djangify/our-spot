@@ -107,7 +107,7 @@ The key objectives of the project include:
 
 - Building a database-backed model-view-template (MVT) web application that lets users store and manipulate data records including the ability to create, read, edit and delete.
 
-- Giving users the ability to initiate and control their actions while providing immediate and complete feedback on data.processes.
+- Giving users the ability to initiate and control their actions while providing immediate and complete feedback on data processes.
 
 - A place where administrators of the project have a panel that allows them to monitor users and the information they share as well as the comments they make, to ensure the community is kept safe and the environment is not abused.
 
@@ -161,7 +161,7 @@ I used MVT to help define the project's requirements, features, and structure by
 
 - What should the HTML structure of the site look like? What is the layout for the pages?
 - What should the structure and design of the member registration and login forms look like?
-- What does the users template to add, edit and delete locations look like? How should they be structured?
+- What does the users template to view, add, edit and delete locations look like? How should they be structured?
 - What should these templates include?
 - What should the format and style of a users profile page look like?
 - How do we ensure that both load time and responsiveness are taken into consideration when building the project?
@@ -208,7 +208,7 @@ The GitHub project area was used to manage this process.
 
 The site contains a usable database that stores data in a consistent and well-organised manner. Postresql was used to create the data structure which is hosted at ElephantSQL. 
 
-This database schema defines the structure and relationships for this application. I used business logic in the design of the database by ensuring there are clear relationships between each model - e.g. User, Locations, Comment, Like, user profile. There is a method to count likes, to add users, to allow users to edit and update their profile etc.
+This database schema defines the structure and relationships for this application. I used business logic in the design of the database by ensuring there are clear relationships between each model - e.g. User, Locations, Comment, Like, User Profile. There is a method to count likes, to add users, to allow users to edit and update their profile etc.
 
 Once users register a file is created that stores their username and password plus any additional information provided. Users are then allocated a profile and have the ability to upload photos based on a location. These locations can be liked and commented upon by other users.
 
@@ -218,11 +218,11 @@ Below is the entity relationship diagram for Our Spot.
 
 ***User*** includes username, first and last name, email and password. The username is a one-to-one field, while the other fields are textFields.
 
-***User profile*** extends the details provided in the user section and also includes a date of birth dateField and a photo imageField.
+***User Profile*** extends the details provided in the user section and also includes a date of birth dateField and a photo imageField.
 
 ***Locations*** includes a charField title, slugField slug for the url, a charfield for description & image alt, cloudinary for image and a tuple for the location types. The posted date uses the datetime field.
 
-***Like***. A foreign key is used for a user to like a location and for the location itself.
+***Like***. A Many-To-Many field is used for a user to like a location.
 
 ***Comment***. as the user is already logged-in, only the comment box text field is needed along with a datetime field for created and updated. The user and location are both foreign keys.
 
@@ -238,9 +238,9 @@ When designing the structure of the site I kept my focus on the need to create a
 
 ***Home/Index Page***
 
-![Homepage wireframe](readme/wireframes/wf-homepage.png)
+<img src="readme/wireframes/wf-homepage.png" width="80%"><br>
 
-In order to log-in users must add a username and password. Email is optional in Phase One, although it helps to add an email - even a fake one - so you can login using username or email. In Phase Two when email authentication is included this will change.
+In order to log-in users must add a username and password. Email is optional in Phase One, although it helps to add an email - even a fake one - so you can login using username or email. 
 
 ![register and success login](readme/wireframes/wf-register.png)
 
@@ -248,9 +248,9 @@ As long as the minimum requirements are met users are informed of their registra
 
 Once logged-in users are met with their dashboard. The visual hierarcy of the platform has been set up so that users naturally flow from one area to another, starting with the dashboard where all visitors are taken to when they first log-in.
 
-![Dashboard wireframe](readme/wireframes/wf-dashboard.png)
+<img src="readme/wireframes/wf-dashboard.png" width="80%"><br>
 
-Once inside, other options available are to see images added by other uses (locations tab) and to addd their own images (new spot tab).
+Once inside, other options available are to see images added by other uses (locations tab) and to add their own images (new spot tab).
 
 ![Locations](readme/wireframes/wf-locations.png)
 
@@ -273,15 +273,14 @@ Messages are used to ensure that any changes to the data are notified to the use
 
 <details>
 
-As a member of the platform users will enjoy:
 
-- A platform that focuses on the importance of spending time outside.
+As a member of the platform users will enjoy:
 
 - The opportunity for users to share their experiences and activities through photographs.
 
-- An opportunity to interact with other members through comments and the follow system.
+- An opportunity to interact with other members through comments.
 
-- A user-friendly dashboard that provides access to all parts of the network easily.
+- A user-friendly dashboard that provides access to all parts of the platform easily.
 
 - A user-friendly system/user journey for adding, commenting on and liking photos.
 
@@ -289,7 +288,7 @@ As a member of the platform users will enjoy:
 
 - Simplicity in registering, using and interacting were the main priorities to ensure user enjoyment.
 
-This research fed into the MVT and user stories.
+These ideas fed into the user stories.
 
 </details>
 
@@ -338,7 +337,7 @@ The structure for liking locations and adding, editing and deleting comments.
 As Admin, I want users to register before being able to look at or add a new photo.
 
 **_Password Change:_**
-As admin I want to set up a system so users can change their password when they are logged in.
+As admin I want to set up a system so users can change their password when they are logged in and to be able to contact Admin to change it if they are not logged in.
 
 **_Create, Read, Update and Delete_**
 As admin I want to be able to create, read, update and delete photos, comments and profiles so that the admin area is kept up to date.
@@ -359,22 +358,22 @@ As a user, I want to log in and out of my account so that I can access the platf
 As a user I want to be able to create, edit, and delete my photos and any other information added so that I can stay in control of the information I share.
 
 **_View User Photos:_**
-As a user, I want to be able to view the photos of other users and like/comment on them. 
+As a user, I want to be able to view the photos of other users so I can decided whether I want to like and/or leave a comment. 
 
 **_View Photo Information_**
-As a user, I want to view detailed information about a spot when I click on it.
+As a user, I want to view detailed information about a spot when I click on it so that I can see all the information provided.
 
 **_Create, Edit, cancel and delete profile:_**
 As a user I want to be able to create, edit, and delete my profile so that I have an accurate record of all my personal information and activity.
 
 **_View User Profile:_**
-As a user, I want to be able to view my profile and latest activity so that I can keep my information up to date.
+As a user, I want to be able to view my profile and my latest activity/uploads so that I can keep my information up to date.
 
 **_View Other Profiles:_**
-As a user I want to be able to view the profiles of other users so that I can look through (and in Stage Two follow) their activity.
+As a user I want to be able to view the profiles of other users so that I can look through their activity.
 
 **_Search Facilities:_**
-As a user I want to be able to search for different photos available based on their location.
+As a user I want to be able to search for different photos available based on their location so that I can find a location or specific image.
 
 </details>
 
@@ -521,7 +520,7 @@ Delete Location
 
 <details>
 
-The ability to like and comment on a photo is available to all users. The ability to delete a comment has also been included
+The ability to like and comment on a photo is available to all users. The ability to edit and delete a comment has also been included
 
 ![comment](readme/images/rm-comment.png)
 
@@ -533,13 +532,12 @@ There is a link back to the profile of any user who leaves a comment (see [user 
 
 <details>
 
-There is a link available for users who want to report a profile or photo. A pop up box appears inviting them to submit their report to Admin.
+There is a link available for users who want to report a profile or photo. In Stage Two a pop up box will appear inviting them to submit their report to Admin. 
 
 ![comment](readme/images/rm-report-photo.png)
 
 Message box that appears - this is currently a [placeholder](#placeholders-and-future-updates) only function
 
-![comment](readme/images/rm-report-photo-box.png)
 
 </details>
 
@@ -657,14 +655,14 @@ A central location where the site can be managed including the ability to create
 
 Included in the [Github Project Board](https://github.com/users/todiane/projects/8/views/1?layout=board) are user stories under the column "Stage Two" which represents upcoming iterations. This backlog includes user stories created for an upcoming development phase. 
 
-This phase provides an opportunity for me to respond to member feedback. It also allows for ongoing refinements and improvements that will evolve based on user input and needs. This highlights the adatability and scalability of the project.
+The second phase provides an opportunity for me to respond to member feedback. It also allows for ongoing refinements and improvements that will evolve based on user input and needs. This highlights the adatability and scalability of the project.
 
-This means that the network includes a few placeholders that were adding to highlight some of these additional features to be included in Stage Two. These are:
+As this is not the final project, the platform includes a couple of placeholders that were adding to highlight some of these additional features. These are:
 <br>
 
-_Report a photo or profile_ - The button under photos and profiles can be clicked to report a photo/profile to Admin. This currently works on the network but is not connected to an email system.
+_Report a photo or profile_ - The button under photos and profiles is shown for example purposes only but will become a working facility in the next phase. 
 
-_Email password_ - If a member is unable to log-in because they have forgotten their password the ability to complete the "forgotten password" form is available but is not currently a working system.
+_Email password_ - If a member is unable to log-in because they have forgotten their password the ability to complete the "forgotten password" form is not available but will become available.
 
 Additional features to be included are:
 

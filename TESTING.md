@@ -34,9 +34,9 @@ Search bar in navagation has been tested. Searched using countries e.g. Scotland
 
 Testing complete functionality of the site. This includes:
 
-<img src="readme/tests/rm-manualtests.png" width="90%">
-<img src="readme/tests/rm-manualtests1.png" width="90%">
-<img src="readme/tests/rm-manualtests2.png" width="90%"><br><br>
+<img src="readme/tests/rm-manualtests.png">
+<img src="readme/tests/rm-manualtests1.png">
+<img src="readme/tests/rm-manualtests2.png"><br><br>
 
  ## Python 
 
@@ -57,7 +57,7 @@ Testing complete functionality of the site. This includes:
 
  ## HTML Testing
 
- There were a few lines of code that were left over the 79 characters usually expected because errors happened when they were changed. Below is one example:
+ There were a line of code that has been left over the 79 characters usually expected because errors happened when they were changed.
  
  List.html page - line 16 - linter highlights 6 problems. When attempts were made to make changes to this line, including making it shorter, the images disappeared so it was left in place. CSS was included to avoid conflict with images on the location page using the same Bootstrap class.
 
@@ -67,7 +67,9 @@ Testing complete functionality of the site. This includes:
 
 ***Known Bugs***
 
-- Users taken to the top of the page when they like, edit or delete a comment rather than staying in the location of the like/comment area.
+- Users sometimes taken to the top of the page when they like, edit or delete a comment rather than staying in the location of the like/comment area.
+
+- The 'report photo' and 'report profile' modal has stopped working but is not an essential component of project 4 or Stage One so will be fixed during Stage Two.
 
 - When a user edits their location the date and time are also edited to the current date and time, rather than staying at the original date and time.
 
@@ -94,6 +96,6 @@ A favicon has been added and shows up in the browser
 
 ## Restrospective
 
-I struggle with the testing aspect of projects outside of manual testing and in my next project I hope to include more test driven data from the start. I need to improve my knowledge in this area and in creating tests using the Django test.py files. My debugging skills also need to be improved.
-
 Overall, I am happy with the number of tests I performed to ensure the first stage of this project - which as stated is a minimum viable product - is user-centered and working well. Being a user has helped me see what is needed from a members perspective and having a few actual members looking at the platform and gaining their feedback when it comes to testing has also been invaluable.
+
+I need to improve my knowledge of testing aspect of projects outside of manual testing and in my next project I hope to include more test driven data from the start. I also need to improve my knowledge of creating tests using the Django test.py files along with my debugging skills.

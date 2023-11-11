@@ -10,13 +10,12 @@
     <h1>Recent Spots</h1>
     <div class="row"> 
         {% for location in locations %}
-            <div class="col-md-6 mb-4"> 
+            <div class="col-md-3 mb-4"> 
                 <div class="card h-100"> 
                     <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
                         <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" class="card-img-top img-fluid"></a>
                         <div class="card-body"> 
-                        <h3 class="card-title">{{ location.title }}</h3>
-                        <p class="card-text">{{ location.description|truncatechars:150 }}</p>
+                        <p class="card-title">{{ location.title }}</p>
                     </div>
                 </div>
             </div>

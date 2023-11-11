@@ -65,6 +65,7 @@ class LocationDetail(DetailView):
 
 
 class LocationLike(View):
+    """Like button"""
     def post(self, request, slug):
         location = get_object_or_404(Location, slug=slug)
 
@@ -126,7 +127,7 @@ class LocationImage(LoginRequiredMixin, TemplateView):
 
 
 
-# Comments Section
+# Comments Section - add, edit and delete
 
 
 @login_required
