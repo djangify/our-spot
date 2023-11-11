@@ -13,7 +13,7 @@
             </div>
             <!-- Code for user to edit/delete their photo--> 
             {% if request.user == location.user %}
-            <figcaption class="figure-caption">You can edit or delete this photo here {{request.user.first_name}}.
+            <figcaption class="figure-caption text-center">You can edit or delete this photo here {{request.user.first_name}}.
                 <a href="{% url 'edit_location' slug=location.slug %}">Edit</a>  |
 
                 <a href="{% url 'delete_location' slug=location.slug %}">Delete</a>
@@ -53,8 +53,6 @@
 
 
         <!-- Photo details -->
-
-        <h4>{{ location.title }}</h4>
         <p>Posted by <a href="{% url 'user_detail' username=location.user %}">{{location.user}}</a> on {{location.posted_date}}</p>
         <p>{{location.description}}</p>
     
