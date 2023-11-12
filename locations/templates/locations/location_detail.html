@@ -6,10 +6,9 @@
 
 {% block content %}
 <div class="container my-5">
-    <figure class="figure">
         <h1>{{ location.title }}</h1>
             <div class="photo-container center-photo">
-                <img src="{{ location.image.url }}" class="figure-img img-fluid rounded w-50" alt="{{ location.image_alt }}">
+                <img src="{{ location.image.url }}" class="figure-img rounded w-100" alt="{{ location.image_alt }}">
             </div>
             <!-- Code for user to edit/delete their photo--> 
             {% if request.user == location.user %}
@@ -50,16 +49,11 @@
         <!-- Add this element for the report success message -->
         <p id="report-success-message"></p>
 
-
-
         <!-- Photo details -->
         <p>Posted by <a href="{% url 'user_detail' username=location.user %}">{{location.user}}</a> on {{location.posted_date}}</p>
         <p>{{location.description}}</p>
-    
-    </figure>
 
         <!-- Like Button code from I think therefore I blog walkthrough -->
-
         <div>
         <strong>
         {% if user.is_authenticated %}

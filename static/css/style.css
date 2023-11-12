@@ -189,3 +189,16 @@ ul.messages li a.close {
       margin: 10px 0;
     }
   }
+
+/* media query for location_detail.html - screens 900px and larger */
+@media (min-width: 900px) {
+    .figure-img {
+        width: 80% !important; 
+    }
+}
+
+@media (min-width: 1200px) {
+    .figure-img {
+        width: 60% !important; 
+    }
+}
