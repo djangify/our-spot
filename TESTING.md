@@ -98,8 +98,35 @@ Search bar in navagation has been tested. Searched using countries e.g. Scotland
 - Go to the validator.w3.org service and select the "validate by direct input" tab
 - Paste the code into the box provided and click the CHECK button
 
+<br>
 
- <img src="readme/tests/rm-validator-noerrors.png" width="90%">
+ <img src="readme/tests/rm-validator-noerrors.png" width="90%"><br>
+ 
+ <br>
+
+I also tested each individual link (examples below)
+
+
+
+Testing dashboard area with link (also added code into direct input)<br>
+
+ <img src="readme/tests/rm-test-dashboard.png" width="90%"><br>
+
+ Testing locations area with link (also added code into direct input)<br>
+
+ <img src="readme/tests/fm-test-locations.png" width="90%"><br>
+
+ Testing display location area with link (also added code into direct input)<br>
+
+ <img src="readme/tests/rm-test-displaylocation.png" width="90%"><br>
+
+ Testing add new location area with link (also added code into direct input)<br>
+
+ <img src="readme/tests/fm-test-addlocation.png" width="90%"><br>
+
+ Testing members area with link (also added code into direct input)<br>
+
+ <img src="readme/tests/rm-test-editlocation.png" width="90%"><br>
 
  </details>
 
