@@ -52,7 +52,8 @@ h1 {
 
 .background-image-container {
     
-    background-image: url('https://res.cloudinary.com/dka7n7ady/image/upload/v1698239029/static/images/hp-park.473b3d5222b0.webp'); 
+    /* background-image: url('https://res.cloudinary.com/dka7n7ady/image/upload/v1698239029/static/images/hp-park.473b3d5222b0.webp');  */
+    background-image: url('{% static "/images/hp-park.473b3d5222b0.webp" %}');
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
