@@ -4,6 +4,7 @@ body {
     font-family: Mulish, sans-serif;
     background-size: cover;
     min-height: 100vh;
+    background-color: #FCFCFC;
 }
 
 
@@ -40,12 +41,36 @@ h1 {
     margin: 10px 0 20px 0;
 }
 
-/* HomePage Image */
+/* HomePage */
+
+/* Box with text */
 
 .col-md-6 {
     border-radius: 1rem;
     opacity: .9;
 }
+
+.background-image-container {
+    
+    background-image: url('/static/images/hp-park.webp'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Sticky Footer on homepage only */
+
+.Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    
+  }
+  
+  .Site-content {
+    flex: 1;
+  }
+
 
 /* Images on recent locations page */
 

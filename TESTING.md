@@ -14,8 +14,9 @@ Flake8 is installed and being used to ensure [PEP8 python standard](https://peps
 Developer: Diane Corriette - [GitHub](https://github.com/todiane) & [LinkedIn](https://www.linkedin.com/in/todianedev/)
 
 
-***Browser Testing***
+## Browser Testing
 
+<details>
 Layout: The layout and appearance of the site has been tested for consistency throughout browsers. Browers tested include the main four:
 
 - Chrome
@@ -25,8 +26,20 @@ Layout: The layout and appearance of the site has been tested for consistency th
 
 Website looks and functions as intended on all browsers.
 
+| Test | Screenshot View | 
+|:---|:---: |
+| 1700 px Desktop |  ![Desktop](readme/tests/rm-desktop.png)  |
+| Laptop  |  ![Laptop](readme/tests/rm-laptop.png)  |
+| iPad Air - Tablet |  ![iPad](readme/tests/rm-ipad-air.png)  |
+| Mobile - Pixel 7  |  ![Mobile](readme/tests/rm-pixel7.png)  |
 
-***Search Testing***
+
+</details>
+<br>
+
+## Search Testing
+
+<details>
 
 Search bar in navagation has been tested. Searched using countries e.g. Scotland, local areas e.g. Staffordshire. Searches using words such as "swim" or "walk" also show results. More specific search targetting is needed to improve this facility. If no locations are found when using the search facility nothing is shown. To improve user experience a message stating that nothing has been found needs to be included. This is will added in Stage Two.
 
@@ -38,14 +51,24 @@ Testing complete functionality of the site. This includes:
 <img src="readme/tests/rm-manualtests1.png">
 <img src="readme/tests/rm-manualtests2.png"><br><br>
 
- ## Python 
+</details>
+
+ ## Python, CSS, JavaScript and HTML Tests
+
+ <details> 
+
+<br>
+
+***python***
 
  Reformatting was performed on the python files using the code formatter [Black](https://github.com/psf/black)
  and the Code Institute [Python Linter](https://pep8ci.herokuapp.com/) was used to highlight coding errors.
 
  <img src="readme/tests/rm-ci-linter.png" width="90%">
 
-## CSS and JavaScript Tests
+<br>
+
+***CSS and JavaScript Tests***
 
  [CSS validation service](https://jigsaw.w3.org/css-validator/) - css code validated
 
@@ -55,15 +78,32 @@ Testing complete functionality of the site. This includes:
 
  ![js test](readme/tests/rm-jshint.png)<br><br>
 
- ## HTML Testing
 
- There were a line of code that has been left over the 79 characters usually expected because errors happened when they were changed.
+ ***HTML Testing***
+
+ There is a line of code that has been left over the 79 characters usually expected because errors happened when it was changed.
  
  List.html page - line 16 - linter highlights 6 problems. When attempts were made to make changes to this line, including making it shorter, the images disappeared so it was left in place. CSS was included to avoid conflict with images on the location page using the same Bootstrap class.
 
  All html pages were tested using the [W3C Markup Validation](https://validator.w3.org/ ) Service.
 
+ To ensure all code was validated accurately, the 'view page source' command in Google Chrome was used as follows:
+
+- On each page of the deployed application right-click anywhere on the page and select View Page Source.
+- Copy the entire "compiled" code 
+- Got to the validator.w3.org service and select the "validate by direct input" tab
+- Paste the code into the box provided and click the CHECK button
+
+
+ <img src="readme/tests/rm-validator-noerrors.png" width="90%">
+
+ </details>
+
+<br>
+
 ## Bugs
+
+<details>
 
 ***Known Bugs***
 
@@ -75,8 +115,13 @@ Testing complete functionality of the site. This includes:
 
 - In the profile area an email is required to save any profile updates. Members can register without email but cannot update their profile without one so initially made up emails have been used.
 
+</details>
 
 ## Performance and accessibility
+
+ <details> 
+
+<br>
 
 The Lighthouse Chrome DevTools Performance test showed a 92% performance and 100% accessibility score. 
 
@@ -93,6 +138,7 @@ A favicon has been added and shows up in the browser
 
  A robots.txt file has been added to allow search engines to crawl the network.
  
+ </details>
 
 ## Restrospective
 

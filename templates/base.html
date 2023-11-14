@@ -1,4 +1,5 @@
 {% load static %}
+
 <!-- Code to appear on all pages-->
 <!DOCTYPE html>
 <html lang="en">
@@ -40,10 +41,13 @@
 
     <title>Our Spot Social Network - {% block title %} {% endblock %}</title>
 </head>
-<body>
+<body class="Site">
+    
+    <!-- Include the navigation bar -->
     {% include 'includes/header.html' %}
     {% block content %}
     {% endblock %}
+
 
     {% block onload_js %}
     <!-- Bootstrap JavaScript link -->

@@ -2,27 +2,29 @@
 {% load static %} 
 {% block title %}Our Spot Photo Sharing Platform{% endblock title %} 
 
-
 {% block content %}
-  <!-- Home Pages background image-->
-  <body background="{% static 'images/hp-park.webp' %}"></body>
+<!-- Home Pages background image-->
+<div class="background-image-container"></div>
+
 
 <!-- Home Page information-->
-<div class="container-fluid mt-3">
-  <div class="justify-content-center align-items-center">
-    <div class="col-md-6 shadow-lg bg-white lead text-center px-3 pt-3">
-      <h2 class="display-4">Photo Sharing Platform</h2>
-      <h2 class="display-6">Welcome to our one-stop hub for sharing our spot.</h2>
-      <p>Got a location you love to be at with family, a loved one or friend? Share your photos here. Find places worth visiting. Our spot is your spot.</p>
-      <div class="py-3">
-        <a class="btn btn-outline-success btn-lg" href="{% url 'register' %}" role="button">Register Here</a>
-      </div>
-      <div class="py-3">
-        <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" role="button">Log-In Here</a>
+  <div class="container-fluid mt-3 Site-content">
+    <div class="justify-content-center align-items-center">
+      <div class="col-md-6 shadow-lg bg-white lead text-center px-3 pt-3">
+        <h2 class="display-4">Photo Sharing Platform</h2>
+        <h2 class="display-6">Welcome to our one-stop hub for sharing our spot.</h2>
+        <p>Got a location you love to be at with family, a loved one or friend? Share your photos here. Find places worth visiting. Our spot is your spot.</p>
+        <div class="py-3">
+          <a class="btn btn-outline-success btn-lg" href="{% url 'register' %}" role="button">Register Here</a>
+        </div>
+        <div class="py-3">
+          <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" role="button">Log-In Here</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
+<br>
+  {% include 'includes/footer.html' %}
   {% endblock content %}
-</div>
+
+ 

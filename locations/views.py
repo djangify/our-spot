@@ -29,7 +29,7 @@ class Index(TemplateView):
 
 
 class Locations(ListView):
-    """View images uploaded by users"""
+    """View images uploaded by users."""
 
     template_name = "locations/locations.html"
     model = Location

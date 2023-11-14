@@ -452,8 +452,10 @@ The search facility is available to unregistered and logged out users, however, 
 I wanted a way for unregistered users to see what is available on the platform. Depending on user feedback in Stage Two this may change and a blog added instead.
 
 
+## Footer
+A footer has been included on the homepage in line with project requirements, however as this is a social network platform and a footer is not usually visable, it has been added to the homepage only.  Once infinite scroll is added and a "back to top" button users will be able to use that to scroll through content.
 
-***No footer has been included*** because this is a social network type platform and they don't usually contain a footer - instead users are kept scrolling through content.
+<img src="readme/images/rm-footer.png" width="80%"><br><br>
 
 </details>
 
@@ -581,7 +583,7 @@ While members can edit their profile they cannot delete it. There is a message s
 
 <details>
 
-The font used for the site is a Google Font called [Mulish](https://fonts.google.com/specimen/Mulish?query=muli)
+The font used for the site is a Google Font called [Mulish](https://fonts.google.com/specimen/Mulish?query=muli) and the background colour is #FCFCFC.
 
 <img src="readme/images/palette.png" width="90%"><br><br>
 
@@ -903,6 +905,8 @@ Use Ctrl (or Cmd) + click to open in new window.
 - [Slackoverflow forum](https://stackoverflow.com/questions/2315187/allowing-users-to-delete-their-own-comments-in-django) for answers when stuck.
 
 - [Django Packages](https://djangopackages.org/) to find answers from the official Django documentation.
+
+- [Sticky Footer](https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/) code to add to homepage
 
 - [Two Scoops of Django 3](https://sadegh-khan.ir/wp-content/uploads/2021/07/Daniel-Feldroy-Audrey-Feldroy-Two-Scoops-of-Django-3.x_-Best-Practices-for-the-Django-Web-Framework-2017-Two-Scoops-Presssadegh-khan-ir.pdf) - helped with layout of views.py file
 
