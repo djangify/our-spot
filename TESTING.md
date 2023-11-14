@@ -74,6 +74,8 @@ Testing complete functionality of the site. This includes:
 
  ![css](readme/tests/rm-css-validation.png)<br><br>
 
+ [Black](https://github.com/psf/black) was used to remodel format in Django
+
  [JSHint](https://jshint.com/) - no errors shown
 
  ![js test](readme/tests/rm-jshint.png)<br><br>
@@ -91,7 +93,7 @@ Testing complete functionality of the site. This includes:
 
 - On each page of the deployed application right-click anywhere on the page and select View Page Source.
 - Copy the entire "compiled" code 
-- Got to the validator.w3.org service and select the "validate by direct input" tab
+- Go to the validator.w3.org service and select the "validate by direct input" tab
 - Paste the code into the box provided and click the CHECK button
 
 

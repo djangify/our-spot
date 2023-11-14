@@ -56,18 +56,20 @@ h1 {
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
+    height: 90vh;
+    width: 100%;
 }
 
 /* Sticky Footer on homepage only */
 
-.Site {
+.site {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     
   }
   
-  .Site-content {
+  .site-content {
     flex: 1;
   }
 
