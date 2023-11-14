@@ -103,13 +103,13 @@ The key objectives of the project include:
 
 - Offering a dedicated space for anyone looking to contribute photos of their favourite spot including local parks, open spaces and hangouts, with an opportunity to share what there is to do and why they love it.
 
-- An opportunity for people to engage and interact with each other through comments, fostering connecting and opening dialogue. Profiles are also provided for each member.
+- An opportunity for people to engage and interact with each other through likes and comments, fostering connection and opening dialogue. Profiles are provided for each member.
 
 - Building a database-backed model-view-template (MVT) web application that lets users store and manipulate data records including the ability to create, read, edit and delete.
 
 - Giving users the ability to initiate and control their actions while providing immediate and complete feedback on data processes.
 
-- A place where administrators of the project have a panel that allows them to monitor users and the information they share as well as the comments they make, to ensure the community is kept safe and the environment is not abused.
+- A place where administrators of the project have a panel that allows them to monitor members and the information they share as well as the comments they make, to ensure the community is kept safe and the environment is not abused.
 
 The end result has been a user-friendly photo sharing network that has been encouraged and informed through user engagement.
 
@@ -128,7 +128,7 @@ The Our Spot platform has been designed for:
 | Nature lovers who enjoy being outside and who appreciate the health benefits of spending time in nature.  | Photographers and travellers who love to share some of their favourite spots around the world.  |
 | Adults looking to share the places they love to visit. | Adults looking for places to visit with friends/family or alone.  |
 
-The network is for adults looking to share and find places to go for something to do on a romantic date or a place to go to enjoy solitude.
+The network is for adults looking to share and/or find places to visit.
 
 
 
@@ -389,7 +389,7 @@ Authorisation is only available to registered users so the site is hidden away a
 
 ![logged out navbar](readme/images/rm-loggedout-navbar.png)
 
-In Phase One, email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy.
+In Phase One, email requirement is not necessary to become a member. Only user name and password are essential items, making registration quick and easy. As per the "I Think Therefore I Blog" instructions - ACCOUNT_EMAIL_VERIFICATION = "none" - has been added to the settings file.
 
 Business logic was used in the creation of the registation and log-in forms by ensuring that incoming data is validated against my business rules. e.g. users can create usernames using lowercase or uppercase text, they can log in with an email address or user name, an email address can only be used once to create an account etc
 
@@ -453,7 +453,7 @@ I wanted a way for unregistered users to see what is available on the platform. 
 
 
 ## Footer
-A footer has been included on the homepage in line with project requirements, however as this is a social network platform and a footer is not usually visable, it has been added to the homepage only.  Once infinite scroll is added and a "back to top" button users will be able to use that to scroll through content.
+A footer has been included on the homepage in line with project requirements, however as this is a social network platform and a footer is not usually visable, it has been added to the homepage only.  
 
 <img src="readme/images/rm-footer.png" width="80%"><br><br>
 
@@ -664,7 +664,7 @@ As this is not the final project, the platform includes a couple of placeholders
 
 _Report a photo or profile_ - The button under photos and profiles is shown for example purposes only but will become a working facility in the next phase. 
 
-_Email password_ - If a member is unable to log-in because they have forgotten their password the ability to complete the "forgotten password" form is not available but will become available.
+_Email password_ - If a member is unable to log-in because they have forgotten their password the ability to complete the "forgotten password" form is not available and members are presented with a message to contact Admin.
 
 Additional features to be included are:
 
@@ -677,6 +677,8 @@ Additional features to be included are:
 - Personalised recommendations - members receive recommendations for new spots based on previous uploads.
 
 - A feed that shows member activity and trending images.
+
+- Infinite scroll added to the dashboard, locations and members pages.
 
 - The ability to follow members and get updated when they post.
 
@@ -906,7 +908,7 @@ Use Ctrl (or Cmd) + click to open in new window.
 
 - [Django Packages](https://djangopackages.org/) to find answers from the official Django documentation.
 
-- [Sticky Footer](https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/) code to add to homepage
+- Idea for [footer styling](https://github.com/luandretta/network/tree/main) and Bootstrap. Used [sticky footer instructions](https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/) from Philip Walton.
 
 - [Two Scoops of Django 3](https://sadegh-khan.ir/wp-content/uploads/2021/07/Daniel-Feldroy-Audrey-Feldroy-Two-Scoops-of-Django-3.x_-Best-Practices-for-the-Django-Web-Framework-2017-Two-Scoops-Presssadegh-khan-ir.pdf) - helped with layout of views.py file
 

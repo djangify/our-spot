@@ -37,19 +37,21 @@ Website looks and functions as intended on all browsers.
 </details>
 <br>
 
-## Search Testing
+## Functionality Testing
 
 <details>
 
-Search bar in navagation has been tested. Searched using countries e.g. Scotland, local areas e.g. Staffordshire. Searches using words such as "swim" or "walk" also show results. More specific search targetting is needed to improve this facility. If no locations are found when using the search facility nothing is shown. To improve user experience a message stating that nothing has been found needs to be included. This is will added in Stage Two.
-
-***Functionality:***
-
-Testing complete functionality of the site. This includes:
+I tested the complete functionality of the site. This includes:
 
 <img src="readme/tests/rm-manualtests.png">
 <img src="readme/tests/rm-manualtests1.png">
 <img src="readme/tests/rm-manualtests2.png"><br><br>
+
+***Search functionality***
+
+Search bar in navagation has been tested. Searched using countries e.g. Scotland, local areas e.g. Staffordshire. Searches using words such as "swim" or "walk" also show results. More specific search targetting is needed to improve this facility. If no locations are found when using the search facility nothing is shown. To improve user experience a message stating that nothing has been found needs to be included. This is will added in Stage Two.
+
+<br>
 
 </details>
 
@@ -92,7 +94,7 @@ Testing complete functionality of the site. This includes:
  To ensure all code was validated accurately, the 'view page source' command in Google Chrome was used as follows:
 
 - On each page of the deployed application right-click anywhere on the page and select View Page Source.
-- Copy the entire "compiled" code 
+- Copy the entire code 
 - Go to the validator.w3.org service and select the "validate by direct input" tab
 - Paste the code into the box provided and click the CHECK button
 
