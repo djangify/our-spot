@@ -146,6 +146,8 @@ Testing dashboard area with link (also added code into direct input)<br>
 
 - In the profile area an email is required to save any profile updates. Members can register without email but cannot update their profile without one so initially made up emails have been used.
 
+- After final deployment of the site to Heroku I asked for peer feedback and was told that a 500 error came up when the "add new spot" feature was used. As I was on my mobile at the time I logged in and tried to add a new spot and received a 500 error. I logged on to my pc and noticed my post was in the admin area even after the area. Plus the post appeared in the "new locations" section. I added two more test location photos on my PC and they both worked ok. I then went back to my mobile, registered as a new member (Sally Smith) and added a new spot, that worked okay as well. I removed all the test posts but left the member profile. The site has been okay since then but I wanted to document this in case it happens again.
+
 </details>
 
 ## Performance and accessibility
