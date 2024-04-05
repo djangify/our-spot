@@ -24,14 +24,15 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "ourspot-d2a3c52401dc.herokuapp.com",
-    "8000-todiane-ourspot-ahqfdu0jwad.ws-eu110.gitpod.io",
+    "8000-todiane-ourspot-uzr98szf2yu.ws-eu110.gitpod.io",
     "localhost",
 ]
 
 
 # CSRF_TRUSTED
-CSRF_TRUSTED_ORIGINS = ["https://ourspot-d2a3c52401dc.herokuapp.com/",
-"https://8000-todiane-ourspot-ahqfdu0jwad.ws-eu110.gitpod.io/",
+CSRF_TRUSTED_ORIGINS = [
+    "https://ourspot-d2a3c52401dc.herokuapp.com/",
+    "https://8000-todiane-ourspot-uzr98szf2yu.ws-eu110.gitpod.io/",
 ]
 
 # SITE ID
