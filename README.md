@@ -65,6 +65,8 @@
 
 [Retrospective](#retrospective)
 
+[2024](#2024-updates)
+
 
 ## Overview
 
@@ -964,6 +966,18 @@ A retrospective review is an important part of Agile to ensure continuous progre
 
 </details>
 
+<br><br>
+
+# 2024 Updates
+
+Now that my course is complete (March 2024) I have decided to update this site and include some of the features listed in the [Placeholders and future updates](#placeholders-and-future-updates) section.
+<br>
+4 April 2024 - I closed the registration page. This will reopen once authentication has been included.
+<br>
+5 April 2024 - I updated Django, Python and other resources plus dependencies being used.
+
+
+<br>
 Developer: Diane Corriette - [GitHub](https://github.com/todiane) & [LinkedIn](https://www.linkedin.com/in/todianedev/)
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
