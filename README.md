@@ -978,6 +978,6 @@ Now that my course is complete (March 2024) I have decided to update this site a
 
 
 <br>
-Developer: Diane Corriette - [GitHub](https://github.com/todiane) & [LinkedIn](https://www.linkedin.com/in/todianedev/)
+Developer: Diane Corriette - [GitHub](https://github.com/todiane) & [Website](https://djangify.up.railway.app/)
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
