@@ -75,7 +75,7 @@ Our Spot is a mobile-first developed photo sharing platform created for people w
 Currently the site being presented is a ***minimum viable product (mvp)*** - ***Phase One*** of Two phases. It is not the final platform but includes enough functionality and business logic to meet the CI project 4 purpose.
 
 The fully deployed project can be [accessed here.](
-https://ourspot-d2a3c52401dc.herokuapp.com/)
+https://ourspot.up.railway.app/)
 Use Ctrl (or Cmd) + click to open in new window
 
 ## Project Purpose:
@@ -702,16 +702,16 @@ Deployment took place immediately after installing Django.
 
 #### Installing libraries
 
-The following steps outline all libraries needed for successful deployment on Heroku. All neccessary-requirements and settings updates will not be discussed in this section as they are assumed as logical follow-up steps to installments. For a full explanation of how to install these libraries, refer to the links provided in [Technologies Used](#technologies-used).
+The following steps outline all libraries needed for successful deployment on Railway. All neccessary-requirements and settings updates will not be discussed in this section as they are assumed as logical follow-up steps to installments. For a full explanation of how to install these libraries, refer to the links provided in [Technologies Used](#technologies-used).
 
-- Install **Gunicorn** (server used to run Django on Heroku): ``pip3 install django gunicorn``
+- Install **Gunicorn** (server used to run Django on Railway): ``pip3 install django gunicorn``
 - Install **pyscopg2** (connects to PostgreSQL): ``pip 3 install dj_database_url pyscopg2``
 - Install **Cloudinary** (host static files and images): ``pip3 install dj3-Cloudinary-storage``
 
 
 #### Create a PostgreSQL database using ElephantSQL
 
-This is necessary to create a database that can be accessed by Heroku. The database provided by Django can not be accessed by the deployed Heroku app.
+This is necessary to create a database that can be accessed by Railway. The database provided by Django can not be accessed by the deployed Railway app.
 
 - Log into ElephantSQL and go to Dashboard
 - Click **Create New Instance**
@@ -752,7 +752,7 @@ This is necessary to create a database that can be accessed by Heroku. The datab
 
 - In the Cloudinary dashboard, copy **API Environment variable**
 - In ``env.py`` file, add new variable ``os.environ["CLOUDINARY_URL"] = "<copied_variable"`` and remove ``CLOUDINARY_URL=`` from the variable string
-- Add same variable value as new Heroku config var named **CLOUDINARY_URL**
+- Add same variable value as new Railway config var named **CLOUDINARY_URL**
 - In ``settings.py``, in ``INSTALLED_APPS`` list, above ``django.contrib.staticfiles`` add ``cloudinary_storage``, below add ``cloudinary``
 - To define Cloudinary as static file storage add the following to settings.py
     ````
@@ -761,25 +761,25 @@ This is necessary to create a database that can be accessed by Heroku. The datab
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     ````
 
-#### Allow Heroku as host
+#### Allow Railway as host
 
 - In ``settings.py`` add
     ````
-    ALLOWED_HOSTS = ['app-name.herokuapp.com', 'localhost']
+    ALLOWED_HOSTS = ['app-name.up.railway.app', 'localhost']
     ````
 
 
-***Deploy To Heroku***
+***Deploy To Railway***
 
 First create A Pipfile in your project terminal.
 
 In the terminal enter the command  pip3 freeze > requirements.txt, and a file with all requirements will be created.
 
 
-***Setting up Heroku***
+***Setting up Railway***
 
-- Go to the Heroku website (https://www.heroku.com/)
-- Login to Heroku and choose Create App.
+- Go to the Railway website (https://www.Railway.com/)
+- Login to Railway and choose Create App.
 - Click New and Create a new app.
 - Choose a name and select your location.
 - Navigate to the Deploy tab.
@@ -788,18 +788,18 @@ In the terminal enter the command  pip3 freeze > requirements.txt, and a file wi
 - Reveal Config Vars and add your Cloudinary, Database URL (from ElephantSQL) and Secret key, plus PORT 8000.
 
 
-***Deployment on Heroku***
+***Deployment on Railway***
 
 - Go to the Deploy tab.
 
-- For the very first deployment select manual deploy and wait as Heroku builds the logs. Once complete click on the button to view the app.
+- For the very first deployment select manual deploy and wait as Railway builds the logs. Once complete click on the button to view the app.
 
 - After the initial deployment you can then enable automatic deployment.
 
 
 ***DEBUG Status***
 
-- For the final deployment to Heroku once the project is complete and ***before*** submission of the project to Code Institute, ensure DEBUG is changed from True to ***False***.
+- For the final deployment to Railway once the project is complete and ***before*** submission of the project to Code Institute, ensure DEBUG is changed from True to ***False***.
 
 
 ***Fork the repository***
@@ -845,7 +845,7 @@ Use Ctrl (or Cmd) + click to open in new window
 **_Project Resources_**
 
 - [ElephantSQL](https://www.elephantsql.com/)
-- [Heroku](https://heroku.com)
+- [Railway](https://railway.com)
 - [Cloudinary](https://cloudinary.com)
 - [CodeAnywhere](https://codeanywhere.com)
 - [GitPod](https://gitpod.com)

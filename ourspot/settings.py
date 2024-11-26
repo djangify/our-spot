@@ -1,12 +1,20 @@
+"""
+Settings configuration for the OurSpot project.
 
+This module contains the settings for the Django application, including
+database configuration, URL settings, and other project-specific settings.
+"""
 
 from pathlib import Path
 import os
 import dj_database_url
 from django.urls import reverse_lazy
 
-if os.path.isfile("env.py"):
-    import env
+from dotenv import load_dotenv
+
+
+load_dotenv()
+my_variable = os.environ.get('MY_VARIABLE')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,17 +30,18 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+
 ALLOWED_HOSTS = [
-    "ourspot-d2a3c52401dc.herokuapp.com",
-    "8000-todiane-ourspot-uzr98szf2yu.ws-eu110.gitpod.io",
-    "localhost",
+    'ourspot.up.railway.app',
+    '8000-todiane-ourspot-uzr98szf2yu.ws-eu110.gitpod.io'
+    'localhost', '127.0.0.1', '0.0.0.0'
+
 ]
 
 
 # CSRF_TRUSTED
 CSRF_TRUSTED_ORIGINS = [
-    "https://ourspot-d2a3c52401dc.herokuapp.com/",
-    "https://8000-todiane-ourspot-uzr98szf2yu.ws-eu110.gitpod.io/",
+    "https://ourspot.up.railway.app"
 ]
 
 # SITE ID
