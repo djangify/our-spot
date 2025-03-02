@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 from django.urls import reverse
 from django.utils.text import slugify
 
@@ -28,7 +27,7 @@ class Location(models.Model):
     title = models.CharField(max_length=300, null=False, blank=False)
     slug = models.SlugField(max_length=200, null=False, unique=True)
     description = models.CharField(max_length=500, null=False, blank=False)
-    image = CloudinaryField("image", blank=False)
+    image = models.ImageField(upload_to='locations/', blank=False)
     image_alt = models.CharField(max_length=100, null=False, blank=False)
     location_types = models.CharField(
         max_length=50, choices=LOCATION_TYPES, default="Africa"

@@ -1,10 +1,3 @@
-"""
-Settings configuration for the OurSpot project.
-
-This module contains the settings for the Django application, including
-database configuration, URL settings, and other project-specific settings.
-"""
-
 from pathlib import Path
 import os
 import dj_database_url
@@ -33,7 +26,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'ourspot.up.railway.app',
-    '8000-todiane-ourspot-uzr98szf2yu.ws-eu110.gitpod.io'
     'localhost', '127.0.0.1', '0.0.0.0'
 
 ]
@@ -53,8 +45,16 @@ LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
+# Database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # Application definition
 
@@ -65,9 +65,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.sites",
-    "cloudinary_storage",
     "django.contrib.staticfiles",
-    "cloudinary",
     "locations",
     "account",
     "easy_thumbnails",
@@ -107,18 +105,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "ourspot.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -154,15 +140,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-MEDIA_URL = "media/"
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_URL = "/static/"
-STATICFILES_STORAGE = "cloudinary_storage.storage.StaticHashedCloudinaryStorage"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
