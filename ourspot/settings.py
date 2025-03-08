@@ -1,7 +1,13 @@
 from pathlib import Path
 import os
-import dj_database_url
 from django.urls import reverse_lazy
+import environ
+import pymysql 
+
+pymysql.install_as_MySQLdb()
+
+# Initialize environment variables
+env = environ.Env()
 
 from dotenv import load_dotenv
 
@@ -12,10 +18,6 @@ my_variable = os.environ.get('MY_VARIABLE')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
@@ -23,17 +25,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-ALLOWED_HOSTS = [
-    'ourspot.up.railway.app',
-    'localhost', '127.0.0.1', '0.0.0.0'
-
-]
-
-
-# CSRF_TRUSTED
 CSRF_TRUSTED_ORIGINS = [
-    "https://ourspot.up.railway.app"
+    "http://localhost",
+    "http://127.0.0.1",
 ]
 
 # SITE ID
@@ -44,13 +40,23 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
-
 # Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": env("DATABASE_NAME"),
+        "USER": env("DATABASE_USER"),
+        "PASSWORD": env("DATABASE_PASSWORD"),
+        "HOST": env("DATABASE_HOST", default="127.0.0.1"),
+        "PORT": env("DATABASE_PORT", default="3306"),
+        "OPTIONS": {
+            "charset": "utf8mb4",
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+            "use_unicode": True,
+            "connect_timeout": 10,
+            "autocommit": True,
+        },
+    },
 }
 
 # Application definition
@@ -101,10 +107,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ourspot.wsgi.application"
 
-
 # Password validation
-# https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation."
@@ -121,21 +124,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/4.2/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
+# Media and Static files (CSS, JavaScript, Images)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -144,12 +139,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 # Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
@@ -159,7 +150,6 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 
 # LETS USERS LOGIN USING EMAIL OR USER NAME
-
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "account.authentication.EmailAuthBackend",

@@ -11,6 +11,8 @@ from .views import (
 )
 from . import views
 
+app_name = 'locations'
+
 urlpatterns = [
     path("", Index.as_view(), name="home"),
     path("locations/", Locations.as_view(), name="locations"),
