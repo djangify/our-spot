@@ -1,32 +1,50 @@
 {% extends "base.html" %} 
 {% load static %} 
 
-{% block title%}Log-In{% endblock %}
-
-<!-- Code for page where users log in -->
-
+{% block title %}Log-In{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-<h1>Log-In</h1>
+<div class="flex justify-center items-center min-h-[80vh]">
+  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-6 text-center">Log-In</h1>
+    
+    <p class="mb-4 text-center">
+      Use the log-in form to enter. If you don't have an account
+      <a href="{% url 'account:register' %}" class="text-blue-600 hover:underline">Register Here</a>.
+    </p>
 
-{% if form.errors %}
-<p>Your username and/or password didn't match. Please try again.</p>
-{% else %}
-<p>
-  Use the log-in form to enter. If you don't have an account
-  <a href='{% url "account:register" %}'>Register Here</a>.
-</p>
-{% endif %}
-
-<div class="login-form">
-  <form action='{% url "account:login" %}' method="post">
-    {{ form.as_p }} {% csrf_token %}
-    <input type="hidden" name="next" value="{{ next }}">
-    <p><input type="submit" value="Log-in"></p>
-  </form>
-  <br>
-  <p> Having trouble getting in? Contact admin@ourspot.com</p>
-</div>
+    <form method="post" action="{% url 'account:login' %}" class="space-y-4">
+      {% csrf_token %}
+      
+      <div>
+        <label for="id_username" class="block text-gray-700 mb-2">Username</label>
+        <input type="text" name="username" id="id_username" class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+      </div>
+      
+      <div>
+        <label for="id_password" class="block text-gray-700 mb-2">Password</label>
+        <input type="password" name="password" id="id_password" class="w-full p-2 border border-gray-300 rounded bg-gray-100">
+      </div>
+      
+      <input type="hidden" name="next" value="{{ next }}">
+      
+      <!-- This places the button below the inputs -->
+      <div class="pt-2">
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Log In
+        </button>
+      </div>
+      
+      <div class="text-center">
+        <a href="{% url 'account:password_reset' %}" class="text-pink-600 text-sm hover:underline">
+          Forgot Password?
+        </a>
+      </div>
+    </form>
+    
+    <div class="mt-6 text-center text-sm text-gray-600">
+      Having trouble getting in? Contact admin@djangify.com
+    </div>
+  </div>
 </div>
 {% endblock %}

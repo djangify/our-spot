@@ -12,7 +12,7 @@ body {
 
 h1,
 h2,
-h3, 
+h3,
 h4,
 h5,
 h6 {
@@ -25,12 +25,11 @@ p {
 }
 
 a {
-    color:  #ac6076;
-    text-decoration: none;
+    color: #045858 text-decoration: none;
 }
 
 a:hover {
-    color: #28a745;
+    color: #057171;
 }
 
 /* page titles */
@@ -51,9 +50,9 @@ h1 {
 }
 
 .background-image-container {
-    
-    background-image: url('https://res.cloudinary.com/dka7n7ady/image/upload/v1698239029/static/images/hp-park.473b3d5222b0.webp'); 
-    background-size: cover; 
+
+    background-image: url('https://res.cloudinary.com/dka7n7ady/image/upload/v1698239029/static/images/hp-park.473b3d5222b0.webp');
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     height: 90vh;
@@ -66,12 +65,12 @@ h1 {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    
-  }
-  
-  .site-content {
+
+}
+
+.site-content {
     flex: 1;
-  }
+}
 
 
 /* Images on recent locations page */
@@ -111,7 +110,7 @@ textarea {
     clear: both;
     float: left;
     margin: 0 0 10px;
-    background:  #E6E6FA;
+    background: #E6E6FA;
     border: 0;
     padding: 6px 10px;
     font-size: 14px;
@@ -208,24 +207,24 @@ ul.messages li a.close {
 
 @media (max-width: 475px) {
     .list-inline {
-      flex-direction: column;
-      align-items: center; 
+        flex-direction: column;
+        align-items: center;
     }
-    
+
     .list-inline-item {
-      margin: 10px 0;
+        margin: 10px 0;
     }
-  }
+}
 
 /* media query for location_detail.html - screens 900px and larger */
 @media (min-width: 900px) {
     .figure-img {
-        width: 80% !important; 
+        width: 80% !important;
     }
 }
 
 @media (min-width: 1200px) {
     .figure-img {
-        width: 60% !important; 
+        width: 60% !important;
     }
 }

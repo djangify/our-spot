@@ -29,7 +29,7 @@
     href="{% static 'images/favicon-16x16.png' %}">
 
     {% block extra_css %}
-    <!-- Include your compiled Tailwind CSS -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
     <!-- Font Awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -42,7 +42,7 @@
 <body class="flex flex-col min-h-screen bg-gray-50">
     
     <!-- Include the navigation bar -->
-    {% include 'includes/header.html' %}
+    {% include 'includes/navbar.html' %}
     
     <main class="flex-grow">
         {% block content %}
