@@ -60,7 +60,6 @@ DATABASES = {
 }
 
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -73,7 +72,6 @@ INSTALLED_APPS = [
     "account",
     "easy_thumbnails",
     "djrichtextfield",
-    "crispy_forms",
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block title %}Edit Location{% endblock title %}
 
@@ -11,7 +10,7 @@
         <form method="POST" enctype="multipart/form-data" class="p-2 form">
             {% csrf_token %}
             {{ form.media }}
-            {{ form|crispy }}  
+            {{ form }}  
             <div class="mb-5">
                 <p> <button type="submit" class="btn btn-outline-dark">Save Changes</button></p>
             </div>

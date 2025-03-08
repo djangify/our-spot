@@ -1,6 +1,5 @@
 {% load static %}
 
-<!-- Code to appear on all pages-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,19 +29,28 @@
     href="{% static 'images/favicon-16x16.png' %}">
 
     {% block extra_css %}
-
-    <!-- css style link -->
+    <!-- Include your compiled Tailwind CSS -->
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
+    <!-- Font Awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Additional CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endblock %}
 
     <title>Our Spot Social Network - {% block title %} {% endblock %}</title>
 </head>
-<body class="site">
+<body class="flex flex-col min-h-screen bg-gray-50">
     
     <!-- Include the navigation bar -->
-    {% include 'includes/navbar.html' %}
-    {% block content %}
+    {% include 'includes/header.html' %}
     
+    <main class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% block onload_js %}
+    <!-- Any additional JS can go here -->
     {% endblock %}
 
 </body>
