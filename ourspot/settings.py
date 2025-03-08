@@ -23,7 +23,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -74,7 +74,6 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "djrichtextfield",
     "crispy_forms",
-    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [

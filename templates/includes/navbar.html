@@ -14,34 +14,34 @@
             <ul class="navbar-nav me-auto mb-2">
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a>
+                <a class="nav-link {% if url_name == 'dashboard' %}active{% endif %}" href="{% url 'account:dashboard' %}">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'locations' %}active{% endif %}" href="{% url 'locations' %}">Locations</a>
+                <a class="nav-link {% if url_name == 'locations' %}active{% endif %}" href="{% url 'locations:locations' %}">Locations</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'add_location' %}active{% endif %}" href="{% url 'add_location' %}">New Spot</a>
+                <a class="nav-link {% if url_name == 'add_location' %}active{% endif %}" href="{% url 'locations:add_location' %}">New Spot</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'people' %}active{% endif %}" href="{% url 'user_list' %}">Members</a>
+                <a class="nav-link {% if url_name == 'people' %}active{% endif %}" href="{% url 'account:user_list' %}">Members</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'accounts_logout' %}active{% endif %}" href="/account/logout/">Logout</a>
+                <a class="nav-link {% if url_name == 'accounts_logout' %}active{% endif %}" href="{% url 'account:logout' %}">Logout</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Home</a>
+                <a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page" href="{% url 'locations:home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'accounts_signup' %}active{% endif %}" href="/account/register/">Register</a>
+                <a class="nav-link {% if url_name == 'accounts_signup' %}active{% endif %}" href="{% url 'account:register' %}">Register</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if url_name == 'accounts_login' %}active{% endif %}" href="/account/login/">Login</a>
+                <a class="nav-link {% if url_name == 'accounts_login' %}active{% endif %}" href="{% url 'account:login' %}">Login</a>
               </li>
               {% endif %}
             </ul>
             <!-- Form for search bar -->
-            <form class="d-flex" role="search" method="GET" action="{% url 'locations' %}">
+            <form class="d-flex" role="search" method="GET" action="{% url 'locations:locations' %}">
                 <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
               </form>
