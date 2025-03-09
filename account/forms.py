@@ -56,10 +56,12 @@ class UserEditForm(forms.ModelForm):
             raise forms.ValidationError("Email already in use.")
         return data
 
-
 class ProfileEditForm(forms.ModelForm):
     """User can edit profile form"""
 
     class Meta:
         model = Profile
-        fields = ["date_of_birth", "photo"]
+        fields = ["date_of_birth", "photo", "about_me"]
+        widgets = {
+            'about_me': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Tell us a bit about yourself...'}),
+        }

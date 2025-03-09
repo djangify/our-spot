@@ -10,6 +10,12 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
+    about_me = models.TextField(
+        blank=True, 
+        null=True, 
+        max_length=300,
+        help_text="Write a brief introduction",
+    )
     photo = ResizedImageField(
         size=[300, 300],
         quality=75,
