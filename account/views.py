@@ -58,7 +58,17 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    return render(request, "account/dashboard.html", {"section": "dashboard"})
+    # Get locations for the current user
+    locations = Location.objects.filter(user=request.user)
+    return render(
+        request, 
+        "account/dashboard.html", 
+        {
+            "section": "dashboard",
+            "locations": locations,
+            "user": request.user 
+        }
+    )
 
 
 @login_required  # User can edit their profile image/account
