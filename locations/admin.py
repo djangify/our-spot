@@ -2,11 +2,12 @@ from django.contrib import admin
 from .models import Location, Comment
 
 
-@admin.register(Location)  # displays location elements in admin area
+@admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "description", "image", "posted_date")
     list_filter = ("location_types",)
     prepopulated_fields = {"slug": ("title",)}
+    fields = ("title", "slug", "description", "image", "image_alt", "location_types", "posted_date", "user", "likes")
 
 
 @admin.register(Comment)  # Displays comments in admin area

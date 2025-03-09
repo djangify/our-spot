@@ -32,7 +32,8 @@ class Location(models.Model):
     location_types = models.CharField(
         max_length=50, choices=LOCATION_TYPES, default="Africa"
     )
-    posted_date = models.DateTimeField(auto_now=True)
+    created_date = models.DateTimeField(auto_now_add=True) 
+    posted_date = models.DateTimeField(auto_now=False, auto_now_add=False)
     likes = models.ManyToManyField(User, related_name="location_likes", blank=True)
 
     class Meta:
