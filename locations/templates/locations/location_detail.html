@@ -3,7 +3,6 @@
 {% load widget_tweaks %} 
 
 {% block title %}Location Detail {{ object.title }}{% endblock title %}
-<!-- Code to list details of a location added by user that others can like-->
 
 {% block content %}
 <div class="max-w-4xl mx-auto px-4 py-8">
@@ -24,29 +23,8 @@
 
     <!-- Code for any user to Report Photo -->   
     <div class="text-center my-2">
-        <button id="report-link" class="text-gray-600 hover:text-gray-800 text-sm">Report Photo</button>
+        <button id="report-link" class="text-gray-600 hover:text-gray-800 text-sm cursor-pointer">Report Photo</button>
     </div>
-
-    <!-- Report Profile Modal -->
-    <div id="report-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-lg max-w-md w-full">
-            <div class="flex justify-between items-center p-4 border-b">
-                <h5 class="text-lg font-medium">Report Photo</h5>
-                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
-                    <span class="text-2xl">&times;</span>
-                </button>
-            </div>
-            <div class="p-4">
-                <p>To report this photo to the Admin team, click here:</p>
-            </div>
-            <div class="p-4 border-t flex justify-end">
-                <button id="submit-report" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Report</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add this element for the report success message -->
-    <p id="report-success-message" class="text-green-600 text-center"></p>
 
     <!-- Photo details -->
     <div class="my-4">
@@ -121,9 +99,33 @@
         </form>
     </div>
     {% endif %}
+
+    <!-- Report Photo Modal - Tailwind Implementation -->
+    <div id="report-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg max-w-md w-full mx-4 overflow-hidden" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center p-4 border-b border-gray-200">
+                <h5 class="text-lg font-medium text-blue-900">Report Photo</h5>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4">
+                <p class="text-gray-700">To report this photo to the Admin team, click the Report button below.</p>
+                <p class="mt-2 text-gray-600 text-sm">This will notify our moderation team who will review the photo.</p>
+            </div>
+            <div class="p-4 border-t border-gray-200 flex justify-end">
+                <button id="submit-report" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report success message -->
+    <p id="report-success-message" class="text-green-600 text-center mt-4"></p>
 </div>
 
-<!-- javascript for report modal -->
+<!-- JavaScript for the modal functionality -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const reportLink = document.getElementById('report-link');
@@ -136,10 +138,19 @@ document.addEventListener('DOMContentLoaded', function() {
         reportModal.classList.remove('hidden');
     });
     
+    // Close modal when clicking the close button
     closeModal.addEventListener('click', function() {
         reportModal.classList.add('hidden');
     });
     
+    // Close modal when clicking outside of it
+    reportModal.addEventListener('click', function(event) {
+        if (event.target === reportModal) {
+            reportModal.classList.add('hidden');
+        }
+    });
+    
+    // Handle form submission
     submitReport.addEventListener('click', function() {
         reportModal.classList.add('hidden');
         successMessage.textContent = 'Thank you for reporting this photo. Our admin team has been notified.';
@@ -149,5 +160,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 {% endblock content %}
