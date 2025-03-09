@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %} 
 
 {% block title %}Location Detail {{ object.title }}{% endblock title %}
 <!-- Code to list details of a location added by user that others can like-->
@@ -50,7 +51,7 @@
     <!-- Photo details -->
     <div class="my-4">
         <p class="text-gray-700">
-            Posted by <a href="{% url 'locations:user_detail' username=location.user %}" class="text-blue-600 hover:underline">{{location.user}}</a> 
+            Posted by <a href="{% url 'account:user_detail' username=location.user %}" class="text-blue-600 hover:underline">{{location.user}}</a> 
             on <span class="text-gray-600">{{location.posted_date}}</span>
         </p>
         <p class="mt-4">{{location.description}}</p>
@@ -85,7 +86,7 @@
         {% for comment in location.comment_set.all %}
         <div class="bg-gray-50 p-4 rounded-lg mb-4">
             <div class="flex justify-between">
-                <a href="{% url 'locations:user_detail' username=comment.user.username %}" class="font-medium text-blue-600 hover:underline">
+                <a href="{% url 'account:user_detail' username=comment.user.username %}" class="font-medium text-blue-600 hover:underline">
                     {{ comment.user.username }}
                 </a>
                 <span class="text-sm text-gray-500">{{ comment.created_at|date:"M d, Y" }}</span>
