@@ -3,9 +3,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from django.views.decorators.http import require_POST
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 # Imports from the current app
 from .forms import LoginForm, UserRegistrationForm, UserEditForm
@@ -109,3 +110,8 @@ def user_profile(request, username):
         "user": user,
     }
     return render(request, "account/user/detail.html", context)
+
+def logout_view(request):
+    """Custom logout view that works with any HTTP method"""
+    logout(request)
+    return redirect('home')  # Redirects to the homepage after logout

@@ -1,19 +1,53 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}Add Location{% endblock title %}
 
 {% block content %}
-<div class="container my-5">
+<div class="max-w-4xl mx-auto px-4 py-8">
     <!-- Users can add new locations-->
-    <h1>Add Your Spot</h1>
+    <h1 class="text-3xl font-bold mb-6">Add Your Spot</h1>
 
-    <form method="POST" enctype="multipart/form-data" class="p-2 form">
+    <form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
         {% csrf_token %}
         {{ form.media }}
-        {{ form }}  
-        <div class="mb-5">
-            <p> <button type="submit" class="btn btn-outline-dark">Create Location</button></p>
+        <div class="space-y-4">
+            {% for field in form %}
+                <div class="mb-4">
+                    <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                        {{ field.label }}{% if field.field.required %}<span class="text-red-500">*</span>{% endif %}
+                    </label>
+                    {% if field.field.widget.input_type == 'file' %}
+                        <div class="border border-gray-300 rounded p-4 bg-gray-50">
+                            {{ field }}
+                        </div>
+                    {% elif field.field.widget.input_type == 'select' %}
+                        <div class="border border-gray-300 rounded">
+                            {{ field }}
+                        </div>
+                    {% elif field.field.widget.input_type == 'textarea' %}
+                        <div class="w-full">
+                            {{ field|add_class:"w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" }}
+                        </div>
+                    {% else %}
+                        <div class="w-full">
+                            {{ field|add_class:"w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" }}
+                        </div>
+                    {% endif %}
+                    {% if field.help_text %}
+                        <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p class="mt-1 text-sm text-red-600">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="mt-6">
+            <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
+                Create Location
+            </button>
         </div>
     </form>
 </div>

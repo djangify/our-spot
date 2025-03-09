@@ -31,7 +31,7 @@
                         <a class="block hover:text-blue-600 {% if url_name == 'people' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:user_list' %}">Members</a>
                     </li>
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'accounts_logout' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:logout' %}">Logout</a>
+                        <a class="block hover:text-blue-600 {% if url_name == 'logout' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:logout' %}">Logout</a>
                     </li>
                     {% else %}
                     <li>

@@ -6,20 +6,57 @@
 <!-- Code to list all the locations added by all users-->
 
 {% block content %}
-<div class="container my-5">
-    <h1>Recent Spots</h1>
-    <div class="row"> 
+<div class="max-w-6xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Recent Spots</h1>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {% for location in locations %}
-            <div class="col-md-3 mb-4"> 
-                <div class="card h-100"> 
-                    <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
-                        <img src="{{ location.image.url }}" alt="{{ location.image_alt }}" class="card-img-top img-fluid"></a>
-                        <div class="card-body"> 
-                        <p class="card-title">{{ location.title }}</p>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+                <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
+                    <div class="aspect-w-16 aspect-h-12 overflow-hidden">
+                        <img src="{{ location.image.url }}" 
+                             alt="{{ location.image_alt }}" 
+                             class="w-full h-48 object-cover">
                     </div>
-                </div>
+                    <div class="p-4">
+                        <h2 class="text-lg font-medium text-gray-900 truncate">{{ location.title }}</h2>
+                        <p class="mt-1 text-sm text-gray-500">
+                            Posted by {{ location.user.get_full_name|default:location.user.username }}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <div class="col-span-full text-center py-12">
+                <p class="text-lg text-gray-600">No locations found.</p>
             </div>
         {% endfor %}
-    </div> 
+    </div>
+    
+    {% if is_paginated %}
+    <div class="mt-8 flex justify-center">
+        <nav class="inline-flex rounded-md shadow">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" 
+                   class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50">
+                    Previous
+                </a>
+            {% endif %}
+            
+            <span class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 
+                         {% if not page_obj.has_previous %}rounded-l-md{% endif %}
+                         {% if not page_obj.has_next %}rounded-r-md{% endif %}">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" 
+                   class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50">
+                    Next
+                </a>
+            {% endif %}
+        </nav>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

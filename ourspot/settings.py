@@ -38,6 +38,7 @@ SITE_ID = 1
 
 # LOGIN URLS
 LOGIN_REDIRECT_URL = "account:dashboard"
+LOGOUT_REDIRECT_URL = "home"  
 LOGIN_URL = "account:login"
 LOGOUT_URL = "account:logout"
 
@@ -73,6 +74,7 @@ INSTALLED_APPS = [
     "account",
     "easy_thumbnails",
     "djrichtextfield",
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [
