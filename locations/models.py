@@ -2,10 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
-
+from django.utils import timezone
 
 # Choice Fields to save locations under
-
 LOCATION_TYPES = (
     ("africa", "Africa"),
     ("america", "America"),
@@ -33,7 +32,7 @@ class Location(models.Model):
         max_length=50, choices=LOCATION_TYPES, default="Africa"
     )
     created_date = models.DateTimeField(auto_now_add=True) 
-    posted_date = models.DateTimeField(auto_now=False, auto_now_add=False)
+    posted_date = models.DateTimeField(default=timezone.now)
     likes = models.ManyToManyField(User, related_name="location_likes", blank=True)
 
     class Meta:
