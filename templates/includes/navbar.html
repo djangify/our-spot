@@ -38,12 +38,18 @@
                         <a class="block hover:text-blue-600 {% if url_name == 'home' %}text-blue-600 font-semibold{% endif %}" href="{% url 'home' %}">Home</a>
                     </li>
                     <li>
+                        <a class="block hover:text-blue-600 {% if url_name == 'blog:list' %}text-blue-600 font-semibold{% endif %}" href="{% url 'blog:list' %}">Blog</a>
+                    </li>
+                    
+                    <li>
                         <a class="block hover:text-blue-600 {% if url_name == 'accounts_signup' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:register' %}">Register</a>
                     </li>
                     <li>
                         <a class="block hover:text-blue-600 {% if url_name == 'accounts_login' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:login' %}">Login</a>
                     </li>
                     {% endif %}
+
+
                 </ul>
                 
                 <!-- Search form -->

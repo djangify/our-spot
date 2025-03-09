@@ -72,9 +72,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "locations",
     "account",
+    "blog",
     "easy_thumbnails",
     "djrichtextfield",
     "widget_tweaks",
+    "django_prose_editor",
 ]
 
 MIDDLEWARE = [

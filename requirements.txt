@@ -3,6 +3,7 @@ certifi==2025.1.31
 charset-normalizer==3.4.1
 Django==5.1
 django-environ==0.12.0
+django-prose-editor==3.1.2
 django-resized==1.0.3
 django-richtextfield==1.6.2
 django-widget-tweaks==1.5.0
