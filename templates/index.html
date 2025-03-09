@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Our Spot Photo Sharing Platform{% endblock title %} 
+
+{% block content %}
+<!-- Home Pages background image-->
+<div class="bg-cover bg-no-repeat bg-center h-[90vh] w-full" 
+     style="background-image: url('{% static 'images/bg-hero.webp' %}');">
+ <div class="absolute inset-0 flex items-center justify-center">
+  <!-- Content container with semi-transparent background -->
+    <div class="bg-white bg-opacity-30 p-8 rounded-lg shadow-lg max-w-2xl mx-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-2">Photo Sharing Platform</h2>
+      <h3 class="text-xl md:text-2xl mb-4">Welcome to our one-stop hub for sharing our spot.</h3>
+      
+      <p class="mb-6">Got a location you love to be at with family, a loved one or friend? Share your photos here. Find places worth visiting. Our spot is your spot.</p>
+      
+      <!-- Buttons side by side on larger screens, stacked on mobile -->
+      <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+        <a href="{% url 'account:register' %}" class="inline-block py-2 px-6 bg-transparent border border-gray-900 text-gray-600 hover:bg-green-900 hover:text-white rounded-md font-medium transition-colors">
+          Register Here
+        </a>
+        <a href="{% url 'account:login' %}" class="inline-block py-2 px-6 bg-gray-600 text-white hover:bg-gray-900 rounded-md font-medium transition-colors">
+          Log-In Here
+        </a>
+      </div>
+    </div>
+  </div>
+  
+</div>
+    {% include 'includes/footer.html' %}
+
+  {% endblock content %}

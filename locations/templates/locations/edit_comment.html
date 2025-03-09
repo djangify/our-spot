@@ -8,7 +8,7 @@
         {% csrf_token %}
         {{ form  }}
         <button type="submit" class="btn btn-outline-success">Save Changes</button>
-        <a href="{% url 'location_detail' object.location.slug %}" class="btn forum-btn-secondary text-bold">Cancel</a>
+        <a href="{% url 'locations:location_detail' object.location.slug %}" class="btn forum-btn-secondary text-bold">Cancel</a>
 
 
     </form>

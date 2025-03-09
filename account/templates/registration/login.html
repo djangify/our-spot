@@ -1,0 +1,59 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %}Log-In{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body p-4">
+          <h1 class="text-center mb-4">Log-In</h1>
+          
+          {% if form.errors %}
+          <div class="alert alert-danger">
+            Your username and/or password didn't match. Please try again.
+          </div>
+          {% endif %}
+          
+          <p class="text-center mb-4">
+            Use the log-in form to enter. If you don't have an account
+            <a href="{% url 'account:register' %}" class="text-primary">Register Here</a>.
+          </p>
+
+          <form method="post" class="mb-3">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+              <label for="id_username" class="form-label">Username</label>
+              <input type="text" name="username" id="id_username" class="form-control">
+            </div>
+            
+            <div class="mb-3">
+              <label for="id_password" class="form-label">Password</label>
+              <input type="password" name="password" id="id_password" class="form-control">
+            </div>
+            
+            <input type="hidden" name="next" value="{{ next }}">
+            
+            <div class="d-grid gap-2 mb-3">
+              <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
+            
+            <div class="text-center">
+              <a href="{% url 'account:password_reset' %}" class="text-muted small">
+                Forgot Password?
+              </a>
+            </div>
+          </form>
+          
+          <div class="text-center text-muted small">
+            Having trouble getting in? Contact admin@ourspot.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

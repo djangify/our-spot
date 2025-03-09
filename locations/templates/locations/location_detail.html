@@ -13,9 +13,9 @@
             <!-- Code for user to edit/delete their photo--> 
             {% if request.user == location.user %}
             <figcaption class="figure-caption text-center">You can edit or delete this photo here {{request.user.first_name}}.
-                <a href="{% url 'edit_location' slug=location.slug %}">Edit</a>  |
+                <a href="{% url 'locations:edit_location' slug=location.slug %}">Edit</a>  |
 
-                <a href="{% url 'delete_location' slug=location.slug %}">Delete</a>
+                <a href="{% url 'locations:delete_location' slug=location.slug %}">Delete</a>
             </figcaption>
             {% endif %}
 
@@ -50,14 +50,14 @@
         <p id="report-success-message"></p>
 
         <!-- Photo details -->
-        <p>Posted by <a href="{% url 'user_detail' username=location.user %}">{{location.user}}</a> on {{location.posted_date}}</p>
+        <p>Posted by <a href="{% url 'locations:user_detail' username=location.user %}">{{location.user}}</a> on {{location.posted_date}}</p>
         <p>{{location.description}}</p>
 
         <!-- Like Button code from I think therefore I blog walkthrough -->
         <div>
         <strong>
         {% if user.is_authenticated %}
-        <form class="d-inline" action="{% url 'like_location' location.slug %}" method="post">
+        <form class="d-inline" action="{% url 'locations:like_location' location.slug %}" method="post">
             {% csrf_token %}
             {% if liked %}
             <button type="submit" name="location_id" value="{{ location.slug }}" 
@@ -83,11 +83,11 @@
             <div class="comment">
             
             <!-- Link to the user's profile -->
-            <strong><a href="{% url 'user_detail' username=comment.user.username %}">{{ comment.user.username }}</a></strong>
+            <strong><a href="{% url 'locations:user_detail' username=comment.user.username %}">{{ comment.user.username }}</a></strong>
             <p>{{ comment.text }}</p>
             {% if request.user == comment.user %}
-            <a href="{% url 'edit_comment' comment.id %}">You can Edit</a>  or  
-            <a href="{% url 'delete_comment' comment.id %}">Delete your comment</a>
+            <a href="{% url 'locations:edit_comment' comment.id %}">You can Edit</a>  or  
+            <a href="{% url 'locations:delete_comment' comment.id %}">Delete your comment</a>
             {{request.user.first_name}}
             {% endif %}
             </div>
@@ -97,7 +97,7 @@
         <!-- Add a comment -->
         {% if user.is_authenticated %}
         <br>
-        <form action="{% url 'add_comment' location.slug %}" method="post">
+        <form action="{% url 'locations:add_comment' location.slug %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Add Comment</button>

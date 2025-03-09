@@ -124,11 +124,7 @@ class LocationImage(LoginRequiredMixin, TemplateView):
         context["locations"] = locations
         return context
 
-
-
-
 # Comments Section - add, edit and delete
-
 
 @login_required
 def add_comment(request, slug):

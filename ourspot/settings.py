@@ -25,20 +25,21 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:8000']
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost",
     "http://127.0.0.1",
+    "http://localhost:8000",
 ]
 
 # SITE ID
 SITE_ID = 1
 
 # LOGIN URLS
-LOGIN_REDIRECT_URL = "dashboard"
-LOGIN_URL = "login"
-LOGOUT_URL = "logout"
+LOGIN_REDIRECT_URL = "account:dashboard"
+LOGIN_URL = "account:login"
+LOGOUT_URL = "account:logout"
 
 # Database
 DATABASES = {
@@ -143,7 +144,7 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # RETURNS THE USER DETAIL URL FOR GIVEN USER
 ABSOLUTE_URL_OVERRIDES = {
-    "auth.user": lambda u: reverse_lazy("user_detail", args=[u.username])
+    "auth.user": lambda u: reverse_lazy("account:user_detail", args=[u.username])
 }
 
 # LETS USERS LOGIN USING EMAIL OR USER NAME
