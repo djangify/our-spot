@@ -35,7 +35,7 @@
                     </li>
                     {% else %}
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'home' %}text-blue-600 font-semibold{% endif %}" href="{% url 'locations:home' %}">Home</a>
+                        <a class="block hover:text-blue-600 {% if url_name == 'home' %}text-blue-600 font-semibold{% endif %}" href="{% url 'home' %}">Home</a>
                     </li>
                     <li>
                         <a class="block hover:text-blue-600 {% if url_name == 'accounts_signup' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:register' %}">Register</a>

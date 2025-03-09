@@ -25,7 +25,7 @@ from .forms import CommentForm
 class Index(TemplateView):
     """HomePage/Index"""
 
-    template_name = "locations/index.html"
+    template_name = "index.html"
 
 
 class Locations(ListView):
@@ -74,7 +74,7 @@ class LocationLike(View):
         else:
             location.likes.add(request.user)
 
-        return HttpResponseRedirect(reverse("location_detail", args=[slug]))
+        return HttpResponseRedirect(reverse("locations:location_detail", args=[slug]))
 
         
 class AddLocation(LoginRequiredMixin, CreateView):
@@ -136,7 +136,7 @@ def add_comment(request, slug):
             comment.user = request.user
             comment.location = location
             comment.save()
-            return redirect("location_detail", slug=slug)
+            return redirect("locations:location_detail", slug=slug)
     else:
         form = CommentForm()
     return render(request, "locations/add_comment.html", {"form": form})
@@ -146,12 +146,12 @@ def add_comment(request, slug):
 def edit_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     if request.user != comment.user:
-        return redirect("location_detail", slug=comment.location.slug)
+        return redirect("locations:location_detail", slug=comment.location.slug)
     if request.method == "POST":
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             form.save()
-            return redirect("location_detail", slug=comment.location.slug)
+            return redirect("locations:location_detail", slug=comment.location.slug)
     else:
         form = CommentForm(instance=comment)
     return render(
@@ -163,8 +163,8 @@ def edit_comment(request, comment_id):
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     if request.user != comment.user:
-        return redirect("location_detail", slug=comment.location.slug)
+        return redirect("locations:location_detail", slug=comment.location.slug)
     if request.method == "POST":
         comment.delete()
-        return redirect("location_detail", slug=comment.location.slug)
+        return redirect("locations:location_detail", slug=comment.location.slug)
     return render(request, "locations/delete_comment.html", {"comment": comment})
