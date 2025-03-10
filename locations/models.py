@@ -61,8 +61,16 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     text = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.user.username} - {self.text[:40]}"
+        
+    def save(self, *args, **kwargs):
+        # Only update the updated_at time if not explicitly set
+        if not self.id and not self.created_at:
+            self.created_at = timezone.now()
+        if not self.updated_at or self.updated_at == self.created_at:
+            self.updated_at = timezone.now()
+        super().save(*args, **kwargs)

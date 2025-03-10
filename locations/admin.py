@@ -10,13 +10,23 @@ class LocationAdmin(admin.ModelAdmin):
     fields = ("title", "slug", "description", "image", "image_alt", "location_types", "posted_date", "user", "likes")
 
 
-@admin.register(Comment)  # Displays comments in admin area
+@admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = (
         "user",
         "location",
         "text",
         "created_at",
+        "updated_at",
     )
     list_filter = ("user", "location", "created_at")
-
+    fields = ("user", "location", "text", "created_at", "updated_at")
+    readonly_fields = ()  
+    
+    # Allow changing dates in the admin panel
+    def get_readonly_fields(self, request, obj=None):
+        # If the user is a superuser, they can edit all fields
+        if request.user.is_superuser:
+            return []
+        # Otherwise, make dates read-only for regular admins
+        return ["created_at", "updated_at"]
