@@ -158,7 +158,7 @@ AUTHENTICATION_BACKENDS = [
     "account.authentication.EmailAuthBackend",
 ]
 
-# Add this somewhere in the file
+
 PROSE_EDITOR_CONFIG = {
     'toolbar': [
         'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
@@ -166,6 +166,20 @@ PROSE_EDITOR_CONFIG = {
         'blockquote', 'code',
         'link', 'image',
         'ul', 'ol',
+        'align', 
         'clean',
     ],
+    'modules': {
+        'toolbar': {
+            'container': [
+                [{ 'header': [1, 2, 3, 4, 5, 6, False] }],  
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'align': ['', 'center', 'right', 'justify'] }],  
+                ['blockquote', 'code-block'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                ['link', 'image'],
+                ['clean']
+            ]
+        }
+    }
 }

@@ -16,17 +16,17 @@
     <div class="w-full md:w-1/2 lg:w-2/5 flex items-center justify-center md:justify-start pl-4 md:pl-12 lg:pl-16">
       <!-- Content container with semi-transparent background -->
       <div class="bg-white bg-opacity-70 p-6 md:p-8 rounded-lg shadow-lg mx-4 text-center md:text-left">
-        <h2 class="text-2xl md:text-3xl font-bold mb-2">{{ home.heading|default:"Show Your Spot" }}</h2>
-        <h3 class="text-xl md:text-2xl mb-4">{{ home.subheading|default:"Every Spot Tells A Story" }}</h3>
+        <h1 class="text-2xl md:text-3xl font-bold mb-2">{{ home.heading|default:"Show Your Spot" }}</h1>
+        <h2 class="text-xl md:text-2xl mb-4">{{ home.subheading|default:"Every Spot Tells A Story" }}</h2>
         
         <p class="mb-6">{{ home.text|default:"Discover hidden gems and share your favorite places with the world. Whether it's a tranquil nature retreat, a cozy café, or a breathtaking viewpoint - every spot tells a story. Share yours today. Got a location you love to be at with family, a loved one or friend? Share your photos here. Find places worth visiting. Register below to get started." }}</p>
         
         <!-- Buttons side by side on larger screens, stacked on mobile -->
         <div class="flex flex-col sm:flex-row sm:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-          <a href="{% url 'account:register' %}" class="inline-block py-2 px-6 bg-transparent border border-gray-900 text-gray-600 hover:bg-green-900 hover:text-white rounded-md font-medium transition-colors">
+          <a href="{% url 'account:register' %}" class="inline-block py-2 px-6 bg-transparent border border-gray-900 hover:text-white hover:bg-gray-700 rounded-md font-medium transition-colors">
             {{ home.button1_text|default:"Register Here" }}
           </a>
-          <a href="{% url 'account:login' %}" class="inline-block py-2 px-6 bg-gray-600 text-white hover:bg-gray-900 rounded-md font-medium transition-colors">
+          <a href="{% url 'account:login' %}" class="inline-block py-2 px-6 bg-gray-200 text-white hover:bg-gray-700 rounded-md font-medium transition-colors">
             {{ home.button2_text|default:"Log-In Here" }}
           </a>
         </div>
@@ -54,7 +54,7 @@
 
 <!-- Main Content Section -->
 {% if home.main_content %}
-<section class="bg-white py-4 px-4 lg:py-20 lg:px-8">
+<section class="bg-white text-center py-4 px-4 lg:py-20 lg:px-8">
     <div class="container mx-auto px-4 max-w-screen-xl">
         <div class="prose prose-lg mx-auto">
             <div class="mb-12">
@@ -67,7 +67,7 @@
 
 <!-- Latest Spots Section -->
 {% if latest_locations %}
-<section class="bg-gray-100 py-12 px-4">
+<section class="bg-gray-50 py-12 px-4">
     <div class="container mx-auto max-w-screen-xl">
         <h2 class="text-3xl font-bold text-center mb-8">Latest Spots</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -93,7 +93,7 @@
             {% endfor %}
         </div>
         <div class="text-center mt-8">
-            <a href="{% url 'locations:locations' %}" class="inline-block py-3 px-6 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+            <a href="{% url 'locations:locations' %}" class="inline-block py-3 px-6 bg-gray-200 text-white hover:bg-gray-700 transition-colors">
                 Explore All Spots
             </a>
         </div>
@@ -143,7 +143,7 @@
             {% endfor %}
         </div>
         <div class="text-center mt-8">
-            <a href="{% url 'blog:category' slug='spot-highlights' %}" class="inline-block py-3 px-6 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+            <a href="{% url 'blog:category' slug='spot-highlights' %}" class="inline-block py-3 px-6 bg-gray-200 text-white hover:bg-gray-700 transition-colors">
                 View More Featured Spots
             </a>
         </div>

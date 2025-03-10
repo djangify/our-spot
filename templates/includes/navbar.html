@@ -23,33 +23,36 @@
                 <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
                     {% if request.user.is_authenticated %}
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'dashboard' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:dashboard' %}">Dashboard</a>
+                        <a class="block  {% if url_name == 'dashboard' %} font-semibold{% endif %}" href="{% url 'account:dashboard' %}">Dashboard</a>
                     </li>
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'locations' %}text-blue-600 font-semibold{% endif %}" href="{% url 'locations:locations' %}">Locations</a>
+                        <a class="block {% if url_name == 'locations' %} font-semibold{% endif %}" href="{% url 'locations:locations' %}">Locations</a>
                     </li>
                     <li>
                         <a class="block hover:text-blue-600 {% if url_name == 'add_location' %}text-blue-600 font-semibold{% endif %}" href="{% url 'locations:add_location' %}">New Spot</a>
                     </li>
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'people' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:user_list' %}">Members</a>
+                        <a class="block {% if url_name == 'people' %} font-semibold {% endif %}" href="{% url 'account:user_list' %}">Members</a>
                     </li>
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'logout' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:logout' %}">Logout</a>
+                        <a class="block {% if url_name == 'blog:list' %} font-semibold{% endif %}" href="{% url 'blog:list' %}">Blog</a>
+                    </li>
+                    <li>
+                        <a class="block {% if url_name == 'logout' %} font-semibold {% endif %}" href="{% url 'account:logout' %}">Logout</a>
                     </li>
                     {% else %}
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'core:home' %}text-blue-600 font-semibold{% endif %}" href="{% url 'core:home' %}">Home</a>
+                        <a class="block {% if url_name == 'core:home' %} font-semibold{% endif %}" href="{% url 'core:home' %}">Home</a>
                     </li>
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'blog:list' %}text-blue-600 font-semibold{% endif %}" href="{% url 'blog:list' %}">Blog</a>
+                        <a class="block {% if url_name == 'blog:list' %} font-semibold{% endif %}" href="{% url 'blog:list' %}">Blog</a>
                     </li>
                     
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'accounts_signup' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:register' %}">Register</a>
+                        <a class="block  {% if url_name == 'accounts_signup' %} font-semibold{% endif %}" href="{% url 'account:register' %}">Register</a>
                     </li>
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'accounts_login' %}text-blue-600 font-semibold{% endif %}" href="{% url 'account:login' %}">Login</a>
+                        <a class="blockhover:text-blue-600 {% if url_name == 'accounts_login' %} font-semibold{% endif %}" href="{% url 'account:login' %}">Login</a>
                     </li>
                     {% endif %}
 
