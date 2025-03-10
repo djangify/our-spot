@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.0.12",
+    "tailwindcss": "^4.0.12"
+  },
+  "scripts": {
+    "build": "tailwindcss -i static/src/input.css -o static/css/output.css",
+    "watch": "tailwindcss -i static/src/input.css -o static/css/output.css --watch"
+  },
+  "keywords": [
+    "show your spot",
+    "photo sharing",
+    "social network",
+    "photography"
+  ],
+  "author": "Diane Corriette",
+  "license": "ISC",
+  "description": "Show Your Spot Photo Sharing Network"
+}

@@ -16,3 +16,4 @@ staticfiles/
 static/
 media/
 Production/
+.htaccess
