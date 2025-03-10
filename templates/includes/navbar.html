@@ -2,10 +2,14 @@
 
 <header class="bg-white shadow-sm">
   {% with request.resolver_match.url_name as url_name %}
-    <nav class="container mx-auto px-4 py-3">
-        <div class="flex justify-between items-center">
-            <!-- Logo -->
-            <a class="text-xl font-bold text-gray-900" href="/">Show Your Spot</a>
+  <nav class="bg-white py-4 shadow-sm">
+    <div class="container mx-auto flex items-center justify-between px-4">
+      <div class="flex items-center">
+        <a href="{% url 'home' %}" class="flex items-center">
+          <img src="{% static 'images/showyourspotjpg-trans.jpg' %}" alt="Show Your Spot" class="h-8 w-auto mr-2">
+          <span class="text-lg font-medium text-gray-900">Show Your Spot</span>
+        </a>
+      </div>
             
             <!-- Mobile menu button -->
             <button id="mobile-menu-button" class="md:hidden focus:outline-none">
