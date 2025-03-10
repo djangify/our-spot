@@ -5,7 +5,7 @@
   <nav class="bg-white py-4 shadow-sm">
     <div class="container mx-auto flex items-center justify-between px-4">
       <div class="flex items-center">
-        <a href="{% url 'home' %}" class="flex items-center">
+        <a href="{% url 'core:home' %}" class="flex items-center">
           <img src="{% static 'images/showyourspotjpg-trans.jpg' %}" alt="Show Your Spot" class="h-8 w-auto mr-2">
           <span class="text-lg font-medium text-gray-900">Show Your Spot</span>
         </a>
@@ -39,7 +39,7 @@
                     </li>
                     {% else %}
                     <li>
-                        <a class="block hover:text-blue-600 {% if url_name == 'home' %}text-blue-600 font-semibold{% endif %}" href="{% url 'home' %}">Home</a>
+                        <a class="block hover:text-blue-600 {% if url_name == 'core:home' %}text-blue-600 font-semibold{% endif %}" href="{% url 'core:home' %}">Home</a>
                     </li>
                     <li>
                         <a class="block hover:text-blue-600 {% if url_name == 'blog:list' %}text-blue-600 font-semibold{% endif %}" href="{% url 'blog:list' %}">Blog</a>

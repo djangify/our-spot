@@ -38,7 +38,7 @@ SITE_ID = 1
 
 # LOGIN URLS
 LOGIN_REDIRECT_URL = "account:dashboard"
-LOGOUT_REDIRECT_URL = "home"  
+LOGOUT_REDIRECT_URL = "core:home"  
 LOGIN_URL = "account:login"
 LOGOUT_URL = "account:logout"
 
@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     "locations",
     "account",
     "blog",
+    "core",
     "easy_thumbnails",
     "djrichtextfield",
     "widget_tweaks",
@@ -156,3 +157,15 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "account.authentication.EmailAuthBackend",
 ]
+
+# Add this somewhere in the file
+PROSE_EDITOR_CONFIG = {
+    'toolbar': [
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'bold', 'italic', 'strike', 'underline',
+        'blockquote', 'code',
+        'link', 'image',
+        'ul', 'ol',
+        'clean',
+    ],
+}

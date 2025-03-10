@@ -1,16 +1,39 @@
 {% extends "base.html" %}
-{% block title %}Edit Comment{% endblock title %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Edit Your Comment{% endblock %}
+
 {% block content %}
-
-<div class="container my-5">
-    <h1>Edit Your Comment</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form  }}
-        <button type="submit" class="btn btn-outline-success">Save Changes</button>
-        <a href="{% url 'locations:location_detail' object.location.slug %}" class="btn forum-btn-secondary text-bold">Cancel</a>
-
-
-    </form>
+<div style="width: 100%; max-width: 600px; margin: 0 auto; padding: 20px;">
+    <div style="background-color: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden;">
+        <div style="background-color: #f9fafb; padding: 16px; border-bottom: 1px solid #e5e7eb;">
+            <h1 style="font-size: 20px; font-weight: 500; color: #111827; margin: 0;">Edit Your Comment</h1>
+        </div>
+        
+        <div style="padding: 16px;">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div style="margin-bottom: 20px;">
+                    <label for="{{ form.text.id_for_label }}" style="display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 8px;">
+                        Text
+                    </label>
+                    {% render_field form.text style="width: 100%; padding: 10px; background-color: #eff6ff; border: 1px solid #e5e7eb; border-radius: 6px; height: 120px; resize: vertical;" %}
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px;">
+                    <button type="button" onclick="window.history.back();" 
+                            style="padding: 8px 16px; background-color: white; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; font-weight: 500; color: #374151; cursor: pointer;">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            style="padding: 8px 16px; background-color: #2563eb; border: 1px solid transparent; border-radius: 6px; font-size: 14px; font-weight: 500; color: white; cursor: pointer;">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

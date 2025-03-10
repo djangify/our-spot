@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ page.meta_title|default:page.title }}{% endblock %}
+
+{% block meta %}
+{% if page.meta_description %}<meta name="description" content="{{ page.meta_description }}">{% endif %}
+{% if page.meta_keywords %}<meta name="keywords" content="{{ page.meta_keywords }}">{% endif %}
+{% endblock meta %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">{{ page.title }}</h1>
+    
+    <div class="prose prose-lg mx-auto">
+        {{ page.content|safe }}
+    </div>
+    
+    {% if page.second_content %}
+    <div class="mt-12 prose prose-lg mx-auto">
+        {{ page.second_content|safe }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

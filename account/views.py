@@ -124,4 +124,4 @@ def user_profile(request, username):
 def logout_view(request):
     """Custom logout view that works with any HTTP method"""
     logout(request)
-    return redirect('home')  # Redirects to the homepage after logout
+    return redirect('core:home')  # Redirects to the homepage after logout
