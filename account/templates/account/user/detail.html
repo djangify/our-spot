@@ -55,9 +55,10 @@
             {% for location in locations %}
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
-                    <img src="{{ location.image.url }}" 
-                         alt="{{ location.image_alt }}" 
-                         class="w-full h-48 object-cover">
+                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                    loading="lazy"
+                    alt="{{ location.image_alt }}" 
+                    class="img-fluid">
                 </a>
                 <div class="p-4">
                     <a href="{{ location.get_absolute_url }}" class="no-underline">
@@ -76,7 +77,7 @@
     </div>
 
     <!-- Report Profile Modal - Tailwind Implementation -->
-    <div id="report-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div id="report-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
         <div class="bg-white rounded-lg max-w-md w-full mx-4 overflow-hidden" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center p-4 border-b border-gray-200">
                 <h5 class="text-lg font-medium text-gray-900">Report Profile</h5>
@@ -102,37 +103,43 @@
 
 <!-- Add JavaScript for the modal functionality -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const reportLink = document.getElementById('report-link');
-    const reportModal = document.getElementById('report-modal');
-    const closeModal = document.getElementById('close-modal');
-    const submitReport = document.getElementById('submit-report');
-    const successMessage = document.getElementById('report-success-message');
-    
-    reportLink.addEventListener('click', function() {
-        reportModal.classList.remove('hidden');
-    });
-    
-    // Close modal when clicking the close button
-    closeModal.addEventListener('click', function() {
-        reportModal.classList.add('hidden');
-    });
-    
-    // Close modal when clicking outside of it
-    reportModal.addEventListener('click', function(event) {
-        if (event.target === reportModal) {
+    document.addEventListener('DOMContentLoaded', function() {
+        const reportLink = document.getElementById('report-link');
+        const reportModal = document.getElementById('report-modal');
+        const closeModal = document.getElementById('close-modal');
+        const submitReport = document.getElementById('submit-report');
+        const successMessage = document.getElementById('report-success-message');
+        
+        reportLink.addEventListener('click', function() {
+            reportModal.classList.remove('hidden');
+            reportModal.classList.add('flex', 'items-center', 'justify-center');
+        });
+        
+        // Close modal when clicking the close button
+        closeModal.addEventListener('click', function() {
             reportModal.classList.add('hidden');
-        }
+            reportModal.classList.remove('flex', 'items-center', 'justify-center');
+        });
+        
+        // Close modal when clicking outside of it
+        reportModal.addEventListener('click', function(event) {
+            if (event.target === reportModal) {
+                reportModal.classList.add('hidden');
+                reportModal.classList.remove('flex', 'items-center', 'justify-center');
+            }
+        });
+        
+        // Handle form submission
+        submitReport.addEventListener('click', function() {
+            reportModal.classList.add('hidden');
+            reportModal.classList.remove('flex', 'items-center', 'justify-center');
+            successMessage.textContent = 'Thank you for reporting this photo. Our admin team has been notified.';
+            setTimeout(() => {
+                successMessage.textContent = '';
+            }, 5000);
+        });
     });
-    
-    // Handle form submission
-    submitReport.addEventListener('click', function() {
-        reportModal.classList.add('hidden');
-        successMessage.textContent = 'Thank you for reporting this profile. Our admin team has been notified.';
-        setTimeout(() => {
-            successMessage.textContent = '';
-        }, 5000);
-    });
-});
+
+
 </script>
 {% endblock %}

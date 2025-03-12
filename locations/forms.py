@@ -1,7 +1,6 @@
 from django import forms
 from .models import Location, Comment
 
-
 class LocationForm(forms.ModelForm):
     """Display form for users to add a location"""
 
@@ -14,7 +13,7 @@ class LocationForm(forms.ModelForm):
             "image",
             "image_alt",
         ]
-
+        
         widgets = {
             "title": forms.Textarea(attrs={"cols": 70, "rows": 1}),
             "description": forms.Textarea(attrs={"cols": 70, "rows": 20}),

@@ -8,21 +8,20 @@
 <div class="max-w-6xl mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-6">Welcome to your dashboard {{ request.user.first_name }}</h1>
     
-    <div class="flex justify-center mb-8">
-        <div class="space-x-3">
-            <a href="{{ user.get_absolute_url }}" 
-               class="inline-block px-4 py-2 rounded font-medium text-gray-600 border border-gray-300 hover:bg-gray-600 hover:text-white transition-colors">
-                View Profile
-            </a>
-            <a href="{% url 'account:edit' %}" 
-               class="inline-block px-4 py-2 rounded font-medium text-gray-600 border border-gray-300 hover:bg-gray-600 hover:text-white transition-colors">
-                SETUP/Edit Profile
-            </a>
-            <a href="{% url 'account:password_change' %}" 
-               class="inline-block px-4 py-2 rounded font-medium text-gray-600 border border-gray-300 hover:bg-gray-600 hover:text-white transition-colors">
-                Change Password
-            </a>
-        </div>
+    <!-- Action buttons - responsive layout -->
+    <div class="flex flex-col sm:flex-row justify-center mb-8 space-y-3 sm:space-y-0 sm:space-x-3">
+        <a href="{{ user.get_absolute_url }}" 
+           class="inline-block px-4 py-2 rounded font-medium text-center text-gray-600 border border-gray-300 hover:bg-gray-600 hover:text-white transition-colors">
+            View Profile
+        </a>
+        <a href="{% url 'account:edit' %}" 
+           class="inline-block px-4 py-2 rounded font-medium text-center text-gray-600 border border-gray-300 hover:bg-gray-600 hover:text-white transition-colors">
+            SETUP/Edit Profile
+        </a>
+        <a href="{% url 'account:password_change' %}" 
+           class="inline-block px-4 py-2 rounded font-medium text-center text-gray-600 border border-gray-300 hover:bg-gray-600 hover:text-white transition-colors">
+            Change Password
+        </a>
     </div>
     
     <h2 class="text-2xl font-semibold mb-6">You have shared {{ locations.count | default_if_none:"0" }} spot(s)</h2>
@@ -31,19 +30,22 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {% for location in locations %}
             <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
-                <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
-                    <img src="{{ location.image.url }}" 
-                        alt="{{ location.image_alt }}" 
-                        class="w-full h-64 object-cover">
+                <!-- Image container with fixed aspect ratio -->
+                <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}" class="relative block h-64">
+                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                    loading="lazy"
+                    alt="{{ location.image_alt }}" 
+                    class="w-full h-full object-cover">
                 </a>
                 
                 <div class="p-4 flex-grow">
-                    <h3 class="text-xl font-medium mb-2">{{ location.title }}</h3>
+                    <h3 class="text-xl font-lg mb-2">{{ location.title }}</h3>
                     <p class="text-sm text-gray-500 mb-2">Posted on {{ location.posted_date|date:"F d, Y" }}</p>
                     <p class="text-gray-700">{{ location.description | truncatechars:280 }}</p>
                 </div>
                 
-                <div class="px-4 py-3 bg-gray-50 border-t flex space-x-2 mt-auto">
+                <!-- Responsive action buttons -->
+                <div class="px-4 py-3 bg-gray-50 border-t flex flex-wrap gap-2 mt-auto">
                     <a href="{% url 'locations:location_detail' slug=location.slug %}" 
                     class="px-3 py-1 rounded text-sm font-medium text-green-600 border border-green-600 hover:bg-green-600 hover:text-white transition-colors">
                         View
@@ -53,7 +55,7 @@
                         Edit
                     </a>
                     <a href="{% url 'locations:delete_location' slug=location.slug %}" 
-                    class="px-3 py-1 rounded text-sm font-medium bg-red-600 border border-red-600 hover:bg-red-600 hover:text-white transition-colors">
+                    class="px-3 py-1 rounded text-sm font-medium text-white bg-red-600 border border-red-600 hover:bg-red-700 transition-colors">
                         Delete
                     </a>
                 </div>

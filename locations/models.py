@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.text import slugify
 from django.utils import timezone
+from django_resized import ResizedImageField
 
 # Choice Fields to save locations under
 LOCATION_TYPES = (
@@ -16,7 +17,6 @@ LOCATION_TYPES = (
     ("oceanic", "Oceanic"),
 )
 
-
 class Location(models.Model):
     """Creates and manages shared locations"""
 
@@ -26,7 +26,22 @@ class Location(models.Model):
     title = models.CharField(max_length=300, null=False, blank=False)
     slug = models.SlugField(max_length=200, null=False, unique=True)
     description = models.CharField(max_length=500, null=False, blank=False)
-    image = models.ImageField(upload_to='locations/', blank=False)
+
+    image = ResizedImageField(
+        size=[1200, 900],
+        quality=75,
+        upload_to='locations/',
+        blank=False,
+        force_format='WEBP'
+    )
+    thumbnail = ResizedImageField(
+        size=[400, 300],
+        quality=75,
+        upload_to='locations/thumbnails/',
+        blank=True,
+        null=True,
+        force_format='WEBP'
+    )
     image_alt = models.CharField(max_length=100, null=False, blank=False)
     location_types = models.CharField(
         max_length=50, choices=LOCATION_TYPES, default="Africa"
