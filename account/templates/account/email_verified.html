@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Email Verified{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center py-12">
+  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-6 text-center">Email Verified</h1>
+    
+    <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm text-green-700">
+            Your email has been successfully verified!
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <p class="mb-6 text-gray-700">
+      Thank you for verifying your email address. Your account is now active and you can log in.
+    </p>
+    
+    <div class="flex space-x-4">
+      <a href="{% url 'account:login' %}" class="block flex-1 text-center bg-blue-100 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+        Log In
+      </a>
+      <a href="{% url 'core:home' %}" class="block flex-1 text-center bg-gray-100 hover:bg-gray-500 font-bold py-2 px-4 rounded">
+        Home
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

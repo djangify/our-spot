@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Verification Failed{% endblock %}
+
+{% block content %}
+<div class="flex items-center justify-center py-12">
+  <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-6 text-center">Verification Failed</h1>
+    
+    <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+      <div class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm text-red-700">
+            The verification link is invalid or has expired.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <p class="mb-4 text-gray-700">
+      Please request a new verification email or contact our support team if you continue to have issues.
+    </p>
+    
+    <p class="text-sm text-gray-600 mb-6">
+      For assistance, please email <a href="mailto:support@showyourspot.com" class="text-blue-600 hover:underline">admin@showyourspot.com</a>
+    </p>
+    
+    <div class="flex space-x-4">
+      <a href="{% url 'account:register' %}" class="block flex-1 text-center bg-blue-100 hover:bg-blue-500 font-bold py-2 px-4 rounded">
+        Register Again
+      </a>
+      <a href="{% url 'core:home' %}" class="block flex-1 text-center bg-gray-100 hover:bg-gray-500 font-bold py-2 px-4 rounded">
+        Home
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

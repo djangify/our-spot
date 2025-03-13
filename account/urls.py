@@ -20,4 +20,6 @@ urlpatterns = [
     path("edit/", views.edit, name="edit"),
     path("users/", views.user_list, name="user_list"),
     path("users/<username>/", views.user_detail, name="user_detail"),
+    path("verify-email/<str:token>/", views.verify_email, name="verify_email"),
+    path("verification-sent/", views.verification_sent, name="verification_sent"),
 ]

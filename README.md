@@ -1,4 +1,4 @@
-# Our Spot Photo Sharing Platform
+# Share Your Spot Photo Sharing Platform
 ![homepage](readme/images/rm-homepage.webp)
 
 

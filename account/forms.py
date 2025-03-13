@@ -9,7 +9,6 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-
 class UserRegistrationForm(forms.ModelForm):
     """User registration form"""
 
@@ -23,6 +22,7 @@ class UserRegistrationForm(forms.ModelForm):
         help_text="Enter the same password as before, for verification.",
         widget=forms.PasswordInput,
     )
+    email = forms.EmailField(required=True)
 
     class Meta:
         model = User
@@ -40,7 +40,7 @@ class UserRegistrationForm(forms.ModelForm):
             if User.objects.filter(email=data).exists():
                 raise forms.ValidationError("Email already in use.")
         return data
-
+    
 
 class UserEditForm(forms.ModelForm):
     """User can edit registration details"""
