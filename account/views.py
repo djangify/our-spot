@@ -65,6 +65,7 @@ def send_verification_email(request, user):
         html_message = render_to_string('account/email_verification_email.html', {
             'user': user,
             'verification_url': verification_url,
+            'site_url': settings.SITE_URL,
         })
         plain_message = strip_tags(html_message)
         
