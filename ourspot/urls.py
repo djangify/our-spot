@@ -9,6 +9,7 @@ urlpatterns = [
     path("", include("core.urls", namespace="core")),
     path("locations/", include("locations.urls")),
     path("blog/", include("blog.urls", namespace="blog")),
+    path('prose-editor/', include('django_prose_editor.urls')),
 ]
 
 if settings.DEBUG:
