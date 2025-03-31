@@ -1,11 +1,10 @@
 # Core Django imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.contrib.auth.models import User, auth
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView,
     ListView,
@@ -29,24 +28,25 @@ class Index(TemplateView):
 
 
 class Locations(ListView):
-    """View images uploaded by users."""
-
+    """View locations uploaded by followed users."""
     template_name = "locations/locations.html"
     model = Location
     context_object_name = "locations"
+    paginate_by = 12
 
-    def get_queryset(self, **kwargs):
-        query = self.request.GET.get("q")
-        if query:
-            location = self.model.objects.filter(
-                Q(title__icontains=query)
-                | Q(description__icontains=query)
-                | Q(location_types__icontains=query)
-            )
+    def get_queryset(self):
+        # Get users that the current user follows
+        if self.request.user.is_authenticated:
+            followed_users = self.request.user.get_following()
+            # Include the user's own posts
+            queryset = self.model.objects.filter(
+                Q(user__in=followed_users) | Q(user=self.request.user)
+            ).order_by('-posted_date')
         else:
-            location = self.model.objects.all()
-        return location
-
+            # For unauthenticated users, show a selection of recent locations
+            queryset = self.model.objects.all().order_by('-posted_date')[:20]
+            
+        return queryset
 
 class LocationDetail(DetailView):
     """View a single location"""
@@ -83,7 +83,7 @@ class AddLocation(LoginRequiredMixin, CreateView):
     template_name = "locations/add_location.html"
     model = Location
     form_class = LocationForm
-    success_url = "/locations/locations/"
+    success_url = reverse_lazy("locations:locations")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -96,7 +96,7 @@ class EditLocation(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     template_name = "locations/edit_location.html"
     model = Location
     form_class = LocationForm
-    success_url = "/locations/locations/"
+    success_url = reverse_lazy("locations:locations")
 
     def test_func(self):
         return self.request.user == self.get_object().user
@@ -106,7 +106,7 @@ class DeleteLocation(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """User can delete any image/description they add"""
 
     model = Location
-    success_url = "/locations/locations"
+    success_url = reverse_lazy("locations:locations")
 
     def test_func(self):
         return self.request.user == self.get_object().user

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from .models import Profile, EmailVerificationToken
+from .models import Profile, EmailVerificationToken, UserFollow
 
 # Custom filter for verification status
 class VerificationStatusFilter(admin.SimpleListFilter):
@@ -75,3 +75,10 @@ admin.site.register(User, UserAdmin)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ["user", "date_of_birth", "photo"]
     raw_id_fields = ["user"]
+
+@admin.register(UserFollow)
+class UserFollowAdmin(admin.ModelAdmin):
+    list_display = ['user', 'followed_user', 'created_at']
+    list_filter = ['created_at']
+    search_fields = ['user__username', 'followed_user__username']
+    date_hierarchy = 'created_at'

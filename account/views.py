@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -180,20 +179,57 @@ def user_list(request):
 def user_detail(request, username):
     user = get_object_or_404(User, username=username, is_active=True)
     locations = Location.objects.filter(user=user)
-    context = {"user": user, "locations": locations}
-    return render(request, "account/user/detail.html", context)
-
-
-@login_required  # Display user profile information
-def user_profile(request, username):
-    user = User.objects.get(username=username)
+    
+    # Check if current user is following this user
+    is_following = False
+    if request.user.is_authenticated:
+        is_following = request.user.is_following(user)
+    
+    # Get follower and following counts
+    follower_count = user.get_followers().count()
+    following_count = user.get_following().count()
+    
     context = {
-        "user": user,
+        "user": user, 
+        "locations": locations,
+        "is_following": is_following,
+        "follower_count": follower_count,
+        "following_count": following_count
     }
+    
     return render(request, "account/user/detail.html", context)
+
+
+@login_required  # Display user profile information (now just redirects to user_detail)
+def user_profile(request, username):
+    # Simply redirect to user_detail since it has the same functionality
+    return redirect('account:user_detail', username=username)
 
 
 def logout_view(request):
     """Custom logout view that works with any HTTP method"""
     logout(request)
     return redirect('core:home')  # Redirects to the homepage after logout
+@login_required
+def follow_user(request, username):
+    """View to follow a user"""
+    user_to_follow = get_object_or_404(User, username=username, is_active=True)
+    
+    if request.user != user_to_follow:  # Can't follow yourself
+        _, created = request.user.follow(user_to_follow)
+        if created:
+            messages.success(request, f"You are now following {user_to_follow.get_full_name() or username}")
+    
+    # Redirect back to the user's profile
+    return redirect('account:user_detail', username=username)
+
+@login_required
+def unfollow_user(request, username):
+    """View to unfollow a user"""
+    user_to_unfollow = get_object_or_404(User, username=username, is_active=True)
+    
+    request.user.unfollow(user_to_unfollow)
+    messages.success(request, f"You have unfollowed {user_to_unfollow.get_full_name() or username}")
+    
+    # Redirect back to the user's profile
+    return redirect('account:user_detail', username=username)

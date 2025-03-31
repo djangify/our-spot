@@ -1,8 +1,7 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 from django_resized import ResizedImageField
+from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
@@ -45,4 +44,67 @@ class EmailVerificationToken(models.Model):
     
     def __str__(self):
         return f"Verification for {self.user.username}"
+
+
+class UserFollow(models.Model):
+    """Model to track user follow relationships"""
+    user = models.ForeignKey(
+        User, 
+        related_name='following_set',
+        on_delete=models.CASCADE
+    )
+    followed_user = models.ForeignKey(
+        User,
+        related_name='followers_set',
+        on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        unique_together = ('user', 'followed_user')
+        ordering = ['-created_at']
+        verbose_name = 'User Follow'
+        verbose_name_plural = 'User Follows'
+    
+    def __str__(self):
+        return f"{self.user.username} follows {self.followed_user.username}"
+
+# Add these methods to extend the User model functionality
+def add_to_class(cls, name, value):
+    """Add a method to an existing class."""
+    if not hasattr(cls, name):
+        setattr(cls, name, value)
+
+# Method to follow a user
+def follow(self, user):
+    """Follow a user"""
+    if self != user:  # Can't follow yourself
+        return UserFollow.objects.get_or_create(user=self, followed_user=user)
+    return None, False
+
+# Method to unfollow a user
+def unfollow(self, user):
+    """Unfollow a user"""
+    UserFollow.objects.filter(user=self, followed_user=user).delete()
+
+# Method to check if user is following another user
+def is_following(self, user):
+    """Check if user is following another user"""
+    return self.following_set.filter(followed_user=user).exists()
+
+# Method to get all users followed by this user
+def get_following(self):
+    """Get all users followed by this user"""
+    return User.objects.filter(followers_set__user=self)
+
+# Method to get all followers of this user
+def get_followers(self):
+    """Get all followers of this user"""
+    return User.objects.filter(following_set__followed_user=self)
+
+# Add the methods to the User model
+add_to_class(User, 'follow', follow)
+add_to_class(User, 'unfollow', unfollow)
+add_to_class(User, 'is_following', is_following)
+add_to_class(User, 'get_following', get_following)
+add_to_class(User, 'get_followers', get_followers)
