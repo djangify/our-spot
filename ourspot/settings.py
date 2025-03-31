@@ -77,7 +77,7 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "djrichtextfield",
     "widget_tweaks",
-    "django_prose_editor",
+    "tinymce",
 ]
 
 MIDDLEWARE = [
@@ -158,29 +158,32 @@ AUTHENTICATION_BACKENDS = [
     "account.authentication.EmailAuthBackend",
 ]
 
-
-PROSE_EDITOR_CONFIG = {
-    'toolbar': [
-        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-        'bold', 'italic', 'strike', 'underline',
-        'blockquote', 'code',
-        'link', 'image',
-        'ul', 'ol',
-        'align', 
-        'clean',
-    ],
-    'modules': {
-        'toolbar': {
-            'container': [
-                [{ 'header': [1, 2, 3, 4, 5, 6, False] }],  
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'align': ['', 'center', 'right', 'justify'] }],  
-                ['blockquote', 'code-block'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                ['link', 'image'],
-                ['clean']
-            ]
-        }
-    }
+# Add TinyMCE configuration 
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 650,
+    'width': 'auto',
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
+    'theme': 'silver',
+    'plugins': '''
+        textcolor save link image media preview codesample contextmenu
+        table code lists fullscreen insertdatetime nonbreaking
+        contextmenu directionality searchreplace wordcount visualblocks
+        visualchars code fullscreen autolink lists charmap print hr
+        anchor pagebreak
+        ''',
+    'toolbar1': '''
+        fullscreen preview bold italic underline | fontselect,
+        fontsizeselect | forecolor backcolor | alignleft alignright |
+        aligncenter alignjustify | indent outdent | bullist numlist table |
+        | link image media | codesample |
+        ''',
+    'toolbar2': '''
+        visualblocks visualchars |
+        charmap hr pagebreak nonbreaking anchor | code |
+        ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
 }
-

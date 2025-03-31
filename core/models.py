@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 from django_resized import ResizedImageField
-from django_prose_editor.fields import ProseEditorField
+from tinymce.models import HTMLField
 
 
 class SEOFields(models.Model):
@@ -44,8 +44,8 @@ class HomePage(SEOFields):
     button1_link = models.CharField(max_length=200, default="/account/register/")
     button2_text = models.CharField(max_length=50, default="Log-In Here")
     button2_link = models.CharField(max_length=200, default="/account/login/")
-    main_content = ProseEditorField(blank=True, null=True)
-    second_content = ProseEditorField(blank=True, null=True)
+    main_content = HTMLField(blank=True, null=True)
+    second_content = HTMLField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -77,8 +77,8 @@ class Page(SEOFields):
     """Model for standard pages like About, Privacy Policy, etc."""
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
-    content = ProseEditorField(blank=True, null=True)
-    second_content = ProseEditorField(blank=True, null=True)
+    content = HTMLField(blank=True, null=True)
+    second_content = HTMLField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     publish_date = models.DateTimeField(default=timezone.now)
 

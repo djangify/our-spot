@@ -14,7 +14,7 @@
     {% block meta %}{% endblock %}
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.webp' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
     <link rel="icon" type="image/png" sizes="192x192"
     href="{% static 'images/android-chrome-192x192.png' %}">
     <link rel="icon" type="image/png" sizes="512x512"
@@ -37,6 +37,7 @@
     <!-- css style link -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     {% endblock %}
 
     <title>Show Your Spot - {% block title %} {% endblock %}</title>
