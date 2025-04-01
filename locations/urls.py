@@ -15,7 +15,7 @@ app_name = 'locations'
 
 urlpatterns = [
     path("", Index.as_view(), name="home"),
-    path("locations/", Locations.as_view(), name="locations"),
+    path("feed/", Locations.as_view(), name="locations"),
     path("add/", AddLocation.as_view(), name="add_location"),
     path("delete/<slug:slug>/", DeleteLocation.as_view(),
          name="delete_location"),

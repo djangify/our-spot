@@ -1,6 +1,8 @@
 # Core Django imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.http import HttpResponseRedirect, JsonResponse
+from django.db import models  # Add this for the models.Count
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
@@ -19,6 +21,7 @@ from django.views.generic import (
 from .forms import LocationForm
 from .models import Location, Comment
 from .forms import CommentForm
+from account.models import UserFollow
 
 
 class Index(TemplateView):
@@ -32,21 +35,87 @@ class Locations(ListView):
     template_name = "locations/locations.html"
     model = Location
     context_object_name = "locations"
-    paginate_by = 12
+    paginate_by = 7  # Reasonable number of posts per load
 
     def get_queryset(self):
-        # Get users that the current user follows
         if self.request.user.is_authenticated:
+            # Get users being followed
             followed_users = self.request.user.get_following()
-            # Include the user's own posts
+            
+            # Get content from followed users and the current user, ordered by date
             queryset = self.model.objects.filter(
                 Q(user__in=followed_users) | Q(user=self.request.user)
             ).order_by('-posted_date')
         else:
-            # For unauthenticated users, show a selection of recent locations
+            # For non-authenticated users, just show most recent content
             queryset = self.model.objects.all().order_by('-posted_date')[:20]
             
+        # Check if there's a search query
+        query = self.request.GET.get("q")
+        if query:
+            queryset = queryset.filter(
+                Q(title__icontains=query) | 
+                Q(description__icontains=query) | 
+                Q(location_types__icontains=query)
+            )
+            
         return queryset
+  
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Add recent locations for sidebar
+        context['recent_locations'] = Location.objects.all().order_by('-posted_date')[:5]
+        
+        if self.request.user.is_authenticated:
+            # Add recent followers for sidebar
+            recent_followers = UserFollow.objects.filter(
+                followed_user=self.request.user
+            ).order_by('-created_at')[:5]
+            context['recent_followers'] = [follow.user for follow in recent_followers]
+            
+            # Popular locations based on likes
+            context['popular_locations'] = Location.objects.annotate(
+                like_count=models.Count('likes')
+            ).order_by('-like_count')[:5]
+        
+        # Add a flag to indicate if this is an AJAX request for more content
+        context['is_ajax_request'] = self.request.headers.get('X-Requested-With') == 'XMLHttpRequest'
+        
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        """Override render_to_response to handle AJAX requests."""
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            from django.template.loader import render_to_string
+            from django.http import JsonResponse
+            
+            # Get the total number of pages for max page check
+            total_pages = context['paginator'].num_pages
+            current_page = context['page_obj'].number
+            
+            # Debug info
+            print(f"AJAX request - Page {current_page} of {total_pages}")
+            
+            # Render only the location items, not the whole page
+            html = render_to_string(
+                'partials/location_list_items.html',
+                {'locations': context['locations']},
+                request=self.request
+            )
+            
+            # Create response with has_next and current/total page info
+            response_data = {
+                'html': html,
+                'has_next': context['page_obj'].has_next(),
+                'current_page': current_page,
+                'total_pages': total_pages
+            }
+            
+            return JsonResponse(response_data)
+            
+        return super().render_to_response(context, **response_kwargs)
+
 
 class LocationDetail(DetailView):
     """View a single location"""
@@ -63,20 +132,30 @@ class LocationDetail(DetailView):
             {"location": location, "form": form, "liked": liked},  
         )
 
-
 class LocationLike(View):
-    """Like button"""
+    """Like button functionality with AJAX support"""
     def post(self, request, slug):
         location = get_object_or_404(Location, slug=slug)
-
+        
+        # Toggle like status
         if location.likes.filter(id=request.user.id).exists():
             location.likes.remove(request.user)
+            liked = False
         else:
             location.likes.add(request.user)
-
-        return HttpResponseRedirect(reverse("locations:location_detail", args=[slug]))
-
+            liked = True
+            
+        # Check if AJAX request
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'liked': liked,
+                'likes_count': location.likes.count()
+            })
+        else:
+            # Fallback for non-JS browsers
+            return HttpResponseRedirect(reverse("locations:location_detail", args=[slug]))
         
+               
 class AddLocation(LoginRequiredMixin, CreateView):
     """User can add a new location/spot"""
 

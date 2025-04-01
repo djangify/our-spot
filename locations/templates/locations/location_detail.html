@@ -48,12 +48,12 @@
             {% csrf_token %}
             {% if liked %}
             <button type="submit" name="location_id" value="{{ location.slug }}" 
-                class="text-red-600 hover:text-red-800 focus:outline-none">
+                class="like-button text-red-600 hover:text-red-800 focus:outline-none">
                 <i class="fas fa-heart"></i>
             </button>
             {% else %}
             <button type="submit" name="location_id" value="{{ location.slug }}" 
-                class="text-gray-600 hover:text-red-600 focus:outline-none">
+                class="text-gray-600 hover:text-red-600 focus:outline-none border-none bg-transparent">
                 <i class="far fa-heart"></i>
             </button>
             {% endif %}
