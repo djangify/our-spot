@@ -54,7 +54,7 @@
                         <div class="flex items-center space-x-4">
                             <!-- Like Button -->
                             <div class="flex items-center">
-                                <form action="{% url 'locations:like_location' location.slug %}" method="post" class="inline-block">
+                                <form action="{% url 'locations:like_location' location.slug %}" method="post" class="like-form inline-block">
                                     {% csrf_token %}
                                     <button type="submit" class="text-gray-500 hover:text-red-500 focus:outline-none border-none  ">
                                         {% if request.user in location.likes.all %}

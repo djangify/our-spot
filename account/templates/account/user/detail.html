@@ -64,14 +64,14 @@
                         {% if is_following %}
                             <form action="{% url 'account:unfollow_user' user.username %}" method="post" class="inline">
                                 {% csrf_token %}
-                                <button type="submit" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-md transition-colors">
+                                <button type="submit" class="px-4 py-2 bg-gray-300 hover:bg-gray-300 rounded-md transition-colors">
                                     Unfollow
                                 </button>
                             </form>
                         {% else %}
                             <form action="{% url 'account:follow_user' user.username %}" method="post" class="inline">
                                 {% csrf_token %}
-                                <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors">
+                                <button type="submit" class="px-4 py-2 bg-gray-300 border-2 hover:bg-gray-500 text-white rounded-md transition-colors">
                                     Follow
                                 </button>
                             </form>
