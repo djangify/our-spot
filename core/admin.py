@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .models import HomePage, HeroBanner, Page
 
+from core.views import send_moderation_action_notification
+from .models import HomePage, HeroBanner, Page
+from .models import Report
 
 @admin.register(HomePage)
 class HomePageAdmin(admin.ModelAdmin):
@@ -53,3 +55,38 @@ class PageAdmin(admin.ModelAdmin):
         }),
     )
     
+
+@admin.register(Report)
+class ReportAdmin(admin.ModelAdmin):
+    list_display = ('id', 'report_content_type', 'report_type', 'reporter', 'status', 'created_at')
+    list_filter = ('report_content_type', 'report_type', 'status', 'created_at')
+    search_fields = ('reporter__username', 'details', 'reason')
+    readonly_fields = ('reporter', 'content_type', 'object_id', 'report_type', 'reason', 'details', 'created_at')
+    
+    fieldsets = (
+        ('Report Information', {
+            'fields': ('reporter', 'report_content_type', 'report_type', 'reason', 'details', 'created_at')
+        }),
+        ('Content', {
+            'fields': ('content_type', 'object_id')
+        }),
+        ('Review', {
+            'fields': ('status', 'reviewed_by', 'review_notes', 'updated_at')
+        }),
+    )
+    
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # Editing an existing object
+            return self.readonly_fields
+        return ()
+        
+    def save_model(self, request, obj, form, change):
+        if change and 'status' in form.changed_data:
+            # Set the reviewer to the current admin user when status changes
+            obj.reviewed_by = request.user
+            
+            # If status changed to "actioned" or "dismissed", send notification email
+            if obj.status in ['actioned', 'dismissed']:
+                send_moderation_action_notification(obj)
+        
+        super().save_model(request, obj, form, change)

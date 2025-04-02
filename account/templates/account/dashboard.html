@@ -39,7 +39,7 @@
                 </a>
                 
                 <div class="p-4 flex-grow">
-                    <h3 class="text-xl font-lg mb-2">{{ location.title }}</h3>
+                    <h2 class="text-xl font-lg mb-2">{{ location.title }}</h2>
                     <p class="text-sm text-gray-500 mb-2">Posted on {{ location.posted_date|date:"F d, Y" }}</p>
                     <p class="text-gray-700">{{ location.description | truncatechars:280 }}</p>
                 </div>
@@ -82,7 +82,7 @@
             </a>
             
             <div class="p-4 flex-grow">
-                <h3 class="text-xl font-lg mb-2">{{ saved.location.title }}</h3>
+                <h2 class="text-xl font-lg mb-2">{{ saved.location.title }}</h2>
                 <p class="text-sm text-gray-500 mb-2">Saved on {{ saved.saved_date|date:"F d, Y" }}</p>
                 <p class="text-gray-700">{{ saved.location.description | truncatechars:280 }}</p>
             </div>

@@ -22,6 +22,7 @@ from .forms import LocationForm
 from .models import Location, Comment, SavedLocation
 from .forms import CommentForm
 from account.models import UserFollow
+from django.contrib.contenttypes.models import ContentType
 from .models import Location, Comment, SavedLocation, LOCATION_TYPES
 
 
@@ -141,10 +142,19 @@ class LocationDetail(DetailView):
         liked = False
         if location.likes.filter(id=request.user.id).exists():
             liked = True
+            
+        # Add content type ID for reporting
+        location_content_type_id = ContentType.objects.get_for_model(Location).id
+        
         return render(
             request,
             "locations/location_detail.html",
-            {"location": location, "form": form, "liked": liked},  
+            {
+                "location": location, 
+                "form": form, 
+                "liked": liked,
+                "location_content_type_id": location_content_type_id
+            },  
         )
 
     def get_context_data(self, **kwargs):

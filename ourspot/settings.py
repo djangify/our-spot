@@ -187,3 +187,10 @@ TINYMCE_DEFAULT_CONFIG = {
     'menubar': True,
     'statusbar': True,
 }
+
+# Content moderation settings
+MODERATION_SETTINGS = {
+    'DAILY_REPORT_LIMIT': 4,  # Maximum number of reports a user can submit per day
+    'MODERATION_EMAIL': 'djangify@gmail.com',  # Email to receive moderation notifications
+    'REPORT_RETENTION_DAYS': 30,  # How many days to keep resolved reports before deletion
+}

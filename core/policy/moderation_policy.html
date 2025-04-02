@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Content Moderation Policy{% endblock %}
+
+{% block content %}
+<div class="bg-white py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Table of Contents -->
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-8">Content Moderation Policy</h1>
+            <p class="text-gray-600 mb-6">Last updated: April 2025</p>
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h2 class="text-lg font-semibold mb-4">Contents:</h2>
+                <nav class="space-y-2">
+                    <a href="#overview" class="block text-blue-600 hover:text-blue-800">1. Overview</a>
+                    <a href="#prohibited-content" class="block text-blue-600 hover:text-blue-800">2. Prohibited Content</a>
+                    <a href="#reporting-process" class="block text-blue-600 hover:text-blue-800">3. Reporting Process</a>
+                    <a href="#review-process" class="block text-blue-600 hover:text-blue-800">4. Review Process</a>
+                    <a href="#actions" class="block text-blue-600 hover:text-blue-800">5. Moderation Actions</a>
+                    <a href="#appeals" class="block text-blue-600 hover:text-blue-800">6. Appeals Process</a>
+                    <a href="#user-responsibilities" class="block text-blue-600 hover:text-blue-800">7. User Responsibilities</a>
+                    <a href="#updates" class="block text-blue-600 hover:text-blue-800">8. Policy Updates</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Content Moderation Policy Content -->
+        <div class="prose prose-blue max-w-none">
+            <section id="overview" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Overview</h2>
+                <p class="mb-4">At Show Your Spot, we're committed to creating a safe, respectful, and positive community where users can share their favorite locations and experiences. This Content Moderation Policy outlines the standards we expect from all users and explains how we handle content that violates these standards.</p>
+                <p class="mb-4">Our moderation system relies on both community reporting and proactive review to maintain the quality and safety of our platform.</p>
+            </section>
+
+            <section id="prohibited-content" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Prohibited Content</h2>
+                <p class="mb-4">The following types of content are not permitted on Show Your Spot:</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2.1 Illegal Content</h3>
+                <p class="mb-4">Any content that violates local, national, or international laws is prohibited, including but not limited to:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Content that promotes illegal activities</li>
+                    <li>Content that depicts illegal activities at specific locations</li>
+                    <li>Content that violates intellectual property rights</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2.2 Harassment and Bullying</h3>
+                <p class="mb-4">Content that harasses, intimidates, or bullies individuals or groups, including:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Personal attacks or derogatory comments</li>
+                    <li>Content that encourages others to harass an individual</li>
+                    <li>Repeated unwanted interactions after being asked to stop</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2.3 Hate Speech</h3>
+                <p class="mb-4">Content that promotes hatred, discrimination, or violence against groups or individuals based on attributes such as:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Race, ethnicity, or nationality</li>
+                    <li>Religion or religious beliefs</li>
+                    <li>Gender, gender identity, or sexual orientation</li>
+                    <li>Disability or medical conditions</li>
+                    <li>Age or physical appearance</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2.4 Adult Content</h3>
+                <p class="mb-4">Show Your Spot is a platform for all ages. The following content is prohibited:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Sexually explicit or pornographic content</li>
+                    <li>Content that sexualizes individuals</li>
+                    <li>Overly suggestive or provocative content</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2.5 Violence and Gore</h3>
+                <p class="mb-4">Content that depicts or glorifies:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Graphic violence or gore</li>
+                    <li>Animal cruelty</li>
+                    <li>Self-harm or suicide</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2.6 Spam and Misleading Content</h3>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Commercial spam or excessive self-promotion</li>
+                    <li>Misleading or false information about locations</li>
+                    <li>Scams or content designed to mislead users</li>
+                    <li>Artificially inflated engagement (likes, comments, etc.)</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2.7 Private Information</h3>
+                <p class="mb-4">Content that shares private or personal information without consent:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Private addresses or contact information</li>
+                    <li>Confidential personal documents</li>
+                    <li>Information that could facilitate identity theft</li>
+                </ul>
+            </section>
+
+            <section id="reporting-process" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Reporting Process</h2>
+                <p class="mb-4">If you encounter content on Show Your Spot that violates our policies, please report it:</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">3.1 How to Report Content</h3>
+                <ol class="list-decimal pl-6 mb-4">
+                    <li>Click the "Report" button located near the content (photo, profile, or comment)</li>
+                    <li>Select the reason for your report from the dropdown menu</li>
+                    <li>Provide additional details that will help our moderation team understand the issue</li>
+                    <li>Submit your report</li>
+                </ol>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">3.2 What Happens After You Report</h3>
+                <p class="mb-4">After submitting a report:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>You'll receive confirmation that your report was submitted</li>
+                    <li>Our moderation team will review the reported content, typically within 24-48 hours</li>
+                    <li>Appropriate action will be taken if the content violates our policies</li>
+                    <li>Your report remains confidential (the reported user will not know who reported them)</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">3.3 Report Limitations</h3>
+                <p class="mb-4">To prevent abuse of our reporting system:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Users are limited to 4 reports per day</li>
+                    <li>False or malicious reporting may result in account restrictions</li>
+                </ul>
+            </section>
+
+            <section id="review-process" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">4. Review Process</h2>
+                <p class="mb-4">Our content moderation team carefully reviews all reported content:</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">4.1 Review Criteria</h3>
+                <p class="mb-4">When reviewing reported content, we consider:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Context of the content and its caption/description</li>
+                    <li>Intent of the user who posted the content</li>
+                    <li>Severity of the violation (if any)</li>
+                    <li>The user's history of policy violations</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">4.2 Review Timeline</h3>
+                <p class="mb-4">Our goal is to review all reports within 48 hours, with priority given to reports involving serious violations such as illegal content, harassment, or harmful misinformation.</p>
+            </section>
+
+            <section id="actions" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">5. Moderation Actions</h2>
+                <p class="mb-4">Depending on the nature and severity of the violation, our moderation team may take one or more of the following actions:</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">5.1 Content Removal</h3>
+                <p class="mb-4">Removing the specific content (photo, comment, etc.) that violates our policies.</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">5.2 Warnings</h3>
+                <p class="mb-4">Issuing a warning to the user explaining the violation and requesting compliance with our policies.</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">5.3 Account Restrictions</h3>
+                <p class="mb-4">Temporarily limiting certain account functions, such as:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Ability to post new content</li>
+                    <li>Ability to comment on other users' content</li>
+                    <li>Visibility of content to other users</li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">5.4 Account Suspension</h3>
+                <p class="mb-4">Temporarily suspending an account for serious or repeated violations.</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">5.5 Permanent Ban</h3>
+                <p class="mb-4">Permanently removing an account from the platform for severe violations or a pattern of misconduct despite previous interventions.</p>
+            </section>
+
+            <section id="appeals" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Appeals Process</h2>
+                <p class="mb-4">If you believe moderation action was taken against your content or account in error:</p>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">6.1 How to Appeal</h3>
+                <ol class="list-decimal pl-6 mb-4">
+                    <li>Send an email to <span class="text-blue-600">admin@showyourspot.com</span> with the subject line "Moderation Appeal"</li>
+                    <li>Include your username and details about the content that was moderated</li>
+                    <li>Explain why you believe the moderation decision was incorrect</li>
+                    <li>Provide any additional context that might help our team understand the situation</li>
+                </ol>
+                
+                <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">6.2 Appeal Review Timeline</h3>
+                <p class="mb-4">Appeals are typically reviewed within 5 business days. We'll notify you of the outcome via email.</p>
+            </section>
+
+            <section id="user-responsibilities" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">7. User Responsibilities</h2>
+                <p class="mb-4">All Show Your Spot users share responsibility for maintaining a positive community:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Familiarize yourself with this Content Moderation Policy</li>
+                    <li>Report content that violates our policies</li>
+                    <li>Respect moderation decisions and the appeals process</li>
+                    <li>Be mindful of different cultural sensitivities when sharing content</li>
+                    <li>Use clear descriptions and appropriate tags for your content</li>
+                </ul>
+            </section>
+
+            <section id="updates" class="mb-12">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">8. Policy Updates</h2>
+                <p class="mb-4">This Content Moderation Policy may be updated periodically to reflect changes in our practices, community needs, or legal requirements. We will notify users of significant changes through:</p>
+                <ul class="list-disc pl-6 mb-4">
+                    <li>Site announcements</li>
+                    <li>Update notifications via email for registered users</li>
+                    <li>Updates to the "Last updated" date at the top of this policy</li>
+                </ul>
+                <p class="mb-4">For questions about our Content Moderation Policy, please contact <span class="text-blue-600">admin@showyourspot.com</span>.</p>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

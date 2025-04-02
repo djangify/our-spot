@@ -4,7 +4,9 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django_resized import ResizedImageField
 from tinymce.models import HTMLField
-
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from account.models import User 
 
 class SEOFields(models.Model):
     """Abstract model for common SEO fields"""
@@ -99,3 +101,45 @@ class Page(SEOFields):
     @property
     def is_published(self):
         return self.is_active and self.publish_date <= timezone.now()
+
+class Report(models.Model):
+    REPORT_TYPES = (
+        ('profile', 'Profile'),
+        ('location', 'Location/Photo'),
+        ('comment', 'Comment'),
+    )
+    
+    STATUS_CHOICES = (
+        ('pending', 'Pending Review'),
+        ('reviewed', 'Reviewed'),
+        ('actioned', 'Action Taken'),
+        ('dismissed', 'Dismissed'),
+    )
+    
+    reporter = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='reports_made')
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+    report_type = models.CharField(max_length=20, choices=REPORT_TYPES)
+    report_content_type = models.CharField(
+        max_length=20, 
+        choices=[
+            ('photo', 'Photo'),
+            ('profile', 'Profile'),
+            ('comment', 'Comment'),
+        ],
+        default='photo'
+    )
+    reason = models.CharField(max_length=255)
+    details = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    reviewed_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='reports_reviewed')
+    review_notes = models.TextField(blank=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+        
+    def __str__(self):
+        return f"Report #{self.id} - {self.get_report_type_display()}"

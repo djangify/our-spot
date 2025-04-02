@@ -1,0 +1,58 @@
+<!-- Report Modal Component -->
+<div id="report-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+    <div class="bg-white rounded-lg max-w-md w-full mx-auto mt-20 overflow-hidden" onclick="event.stopPropagation()">
+        <div class="flex justify-between items-center p-4 border-b border-gray-200">
+            <h5 class="text-lg font-medium text-gray-900">Report Content</h5>
+            <button id="close-modal" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <form id="report-form" method="POST" action="{% url 'core:report_content' %}">
+            {% csrf_token %}
+            <input type="hidden" name="content_type_id" value="{{ content_type_id }}">
+            <input type="hidden" name="object_id" value="{{ object_id }}">
+            <input type="hidden" name="report_type" value="{{ report_type }}">
+            
+            <div class="p-4">
+                <div class="mb-4">
+                    <label for="id_report_content_type" class="block text-sm font-medium text-gray-700 mb-1">I want to report...</label>
+                    <select name="report_content_type" id="id_report_content_type" class="w-full border border-gray-300 rounded-md p-2">
+                        <option value="photo" {% if report_type == 'photo' %}selected{% endif %}>A photo</option>
+                        <option value="profile" {% if report_type == 'profile' %}selected{% endif %}>A member profile</option>
+                        <option value="comment" {% if report_type == 'comment' %}selected{% endif %}>An offensive comment</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="id_reason" class="block text-sm font-medium text-gray-700 mb-1">Reason for reporting</label>
+                    <select name="reason" id="id_reason" class="w-full border border-gray-300 rounded-md p-2">
+                        <option value="inappropriate">Inappropriate Content</option>
+                        <option value="spam">Spam Content</option>
+                        <option value="offensive">Offensive Language</option>
+                        <option value="harassment">Harassment</option>
+                        <option value="copyright">Copyright Violation</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="mb-2">
+                    <label for="id_details" class="block text-sm font-medium text-gray-700 mb-1">Details</label>
+                    <textarea name="details" id="id_details" rows="4" 
+                        class="w-full border border-gray-300 rounded-md p-2"
+                        placeholder="Please provide additional details about your report..."></textarea>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t border-gray-200 flex justify-end">
+                <button type="button" id="cancel-report" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 mr-2">
+                    Cancel
+                </button>
+                <button type="submit" id="submit-report" class="px-4 py-2 bg-gray-300 text-white rounded hover:bg-blue-700">
+                    Submit Report
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
