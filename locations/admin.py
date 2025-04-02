@@ -1,13 +1,24 @@
 from django.contrib import admin
-from .models import Location, Comment
+from .models import Location, Comment, Tag
 
 
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ("title", "slug", "description", "image", "posted_date")
-    list_filter = ("location_types",)
+    list_filter = ("location_types", "tags")  
     prepopulated_fields = {"slug": ("title",)}
-    fields = ("title", "slug", "description", "image", "image_alt", "location_types", "posted_date", "user", "likes")
+    fields = (
+        "title", "slug", "description", "image", "image_alt", 
+        "location_types", "posted_date", "user", "likes", "tags"
+    )
+    filter_horizontal = ("tags",)  
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug', 'created_at')
+    search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Comment)

@@ -22,6 +22,7 @@ from .forms import LocationForm
 from .models import Location, Comment, SavedLocation
 from .forms import CommentForm
 from account.models import UserFollow
+from .models import Location, Comment, SavedLocation, LOCATION_TYPES
 
 
 class Index(TemplateView):
@@ -35,7 +36,7 @@ class Locations(ListView):
     template_name = "locations/locations.html"
     model = Location
     context_object_name = "locations"
-    paginate_by = 7  # Reasonable number of posts per load
+    paginate_by = 12  # Reasonable number of posts per load
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -53,14 +54,28 @@ class Locations(ListView):
         # Check if there's a search query
         query = self.request.GET.get("q")
         if query:
-            queryset = queryset.filter(
-                Q(title__icontains=query) | 
-                Q(description__icontains=query) | 
-                Q(location_types__icontains=query)
-            )
+            # Check if query matches any location type first
+            location_type_match = None
+            for loc_code, loc_name in LOCATION_TYPES:
+                if query.lower() in loc_name.lower():
+                    location_type_match = loc_code
+                    break
+                    
+            # Build search query with multiple criteria
+            search_query = Q(title__icontains=query) | Q(description__icontains=query)
             
+            # Add location type if matched
+            if location_type_match:
+                search_query |= Q(location_types=location_type_match)
+                
+            # Add tag search
+            search_query |= Q(tags__name__icontains=query)
+            
+            # Apply the combined search
+            queryset = queryset.filter(search_query).distinct()
+        
         return queryset
-  
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         

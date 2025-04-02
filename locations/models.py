@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.utils import timezone
 from django_resized import ResizedImageField
+from tinymce.models import HTMLField
 
 # Choice Fields to save locations under
 LOCATION_TYPES = (
@@ -17,6 +18,20 @@ LOCATION_TYPES = (
     ("oceanic", "Oceanic"),
 )
 
+class Tag(models.Model):
+    """Model for tagging locations"""
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
 class Location(models.Model):
     """Creates and manages shared locations"""
 
@@ -25,7 +40,7 @@ class Location(models.Model):
     )
     title = models.CharField(max_length=300, null=False, blank=False)
     slug = models.SlugField(max_length=200, null=False, unique=True)
-    description = models.CharField(max_length=500, null=False, blank=False)
+    description = HTMLField(null=False, blank=False, verbose_name="Location Description")
 
     image = ResizedImageField(
         size=[1200, 900],
@@ -46,6 +61,7 @@ class Location(models.Model):
     location_types = models.CharField(
         max_length=50, choices=LOCATION_TYPES, default="Africa"
     )
+    tags = models.ManyToManyField(Tag, blank=True, related_name="locations")
     created_date = models.DateTimeField(auto_now_add=True) 
     posted_date = models.DateTimeField(default=timezone.now)
     likes = models.ManyToManyField(User, related_name="location_likes", blank=True)
