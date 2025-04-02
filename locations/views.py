@@ -1,10 +1,10 @@
 # Core Django imports
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.http import HttpResponseRedirect, JsonResponse
-from django.db import models  # Add this for the models.Count
+from django.contrib import messages
+from django.db import models  
 from django.db.models import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (
@@ -19,7 +19,7 @@ from django.views.generic import (
 
 # Imports from apps
 from .forms import LocationForm
-from .models import Location, Comment
+from .models import Location, Comment, SavedLocation
 from .forms import CommentForm
 from account.models import UserFollow
 
@@ -132,6 +132,15 @@ class LocationDetail(DetailView):
             {"location": location, "form": form, "liked": liked},  
         )
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['is_saved'] = SavedLocation.objects.filter(
+                user=self.request.user, 
+                location=self.object
+            ).exists()
+        return context
+    
 class LocationLike(View):
     """Like button functionality with AJAX support"""
     def post(self, request, slug):
@@ -247,3 +256,28 @@ def delete_comment(request, comment_id):
         comment.delete()
         return redirect("locations:location_detail", slug=comment.location.slug)
     return render(request, "locations/delete_comment.html", {"comment": comment})
+
+@login_required
+def save_location(request, location_id):
+    location = get_object_or_404(Location, id=location_id)
+    saved, created = SavedLocation.objects.get_or_create(
+        user=request.user,
+        location=location
+    )
+    
+    if created:
+        messages.success(request, f"You've saved '{location.title}' to your profile.")
+    else:
+        messages.info(request, f"'{location.title}' was already in your saved locations.")
+    
+    # Redirect back to the page they came from
+    return redirect(request.META.get('HTTP_REFERER', 'locations:locations'))
+
+@login_required
+def remove_saved_location(request, saved_id):
+    saved = get_object_or_404(SavedLocation, id=saved_id, user=request.user)
+    location_title = saved.location.title
+    saved.delete()
+    messages.success(request, f"'{location_title}' removed from your saved locations.")
+    return redirect('account:dashboard')
+

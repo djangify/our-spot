@@ -89,3 +89,23 @@ class Comment(models.Model):
         if not self.updated_at or self.updated_at == self.created_at:
             self.updated_at = timezone.now()
         super().save(*args, **kwargs)
+
+class SavedLocation(models.Model):
+    user = models.ForeignKey(
+        User,  # Using User directly since it's already imported in your models.py
+        on_delete=models.CASCADE,
+        related_name='saved_locations'
+    )
+    location = models.ForeignKey(
+        Location,  # This will refer to your Location model in the same file
+        on_delete=models.CASCADE,
+        related_name='saved_by'
+    )
+    saved_date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('user', 'location')
+        ordering = ['-saved_date']
+    
+    def __str__(self):
+        return f"{self.user.username} saved {self.location.title}"

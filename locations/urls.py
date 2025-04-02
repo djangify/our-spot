@@ -2,11 +2,9 @@ from django.urls import path
 from .views import (
     AddLocation,
     Locations,
-    LocationDetail,
     DeleteLocation,
     EditLocation,
     LocationImage,
-    LocationLike,
     Index,
 )
 from . import views
@@ -32,4 +30,6 @@ urlpatterns = [
          ),
     path("<slug:slug>/", views.LocationDetail.as_view(),
          name="location_detail"),
+    path('save/<int:location_id>/', views.save_location, name='save_location'),
+    path('saved/remove/<int:saved_id>/', views.remove_saved_location, name='remove_saved_location'),
 ]

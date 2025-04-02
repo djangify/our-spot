@@ -66,5 +66,44 @@
             </div>
         {% endfor %}
     </div>
+    <!-- After the user's locations section in dashboard.html -->
+
+<h2 class="text-2xl font-semibold mt-12 mb-6">Your Saved Locations</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {% for saved in request.user.saved_locations.all %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
+            <!-- Image container with fixed aspect ratio -->
+            <a href="{{ saved.location.get_absolute_url }}" aria-label="Click to view {{ saved.location.title }}" class="relative block h-64">
+                <img src="{% if saved.location.thumbnail %}{{ saved.location.thumbnail.url }}{% else %}{{ saved.location.image.url }}{% endif %}" 
+                loading="lazy"
+                alt="{{ saved.location.image_alt }}" 
+                class="w-full h-full object-cover">
+            </a>
+            
+            <div class="p-4 flex-grow">
+                <h3 class="text-xl font-lg mb-2">{{ saved.location.title }}</h3>
+                <p class="text-sm text-gray-500 mb-2">Saved on {{ saved.saved_date|date:"F d, Y" }}</p>
+                <p class="text-gray-700">{{ saved.location.description | truncatechars:280 }}</p>
+            </div>
+            
+            <!-- Action buttons -->
+            <div class="px-4 py-3 bg-gray-50 border-t flex flex-wrap gap-2 mt-auto">
+                <a href="{% url 'locations:location_detail' slug=saved.location.slug %}" 
+                   class="px-3 py-1 rounded text-sm font-medium text-green-600 border border-green-600 hover:bg-green-600 hover:text-white transition-colors">
+                    View
+                </a>
+                <a href="{% url 'locations:remove_saved_location' saved_id=saved.id %}" 
+                   class="px-3 py-1 rounded text-sm font-medium text-white bg-red-600 border border-red-600 hover:bg-red-700 transition-colors">
+                    Remove
+                </a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-span-full text-center py-12 bg-gray-50 rounded-lg">
+            <p class="text-gray-600">You haven't saved any locations yet. When browsing locations, click "Save" to add them here.</p>
+        </div>
+    {% endfor %}
+</div>
 </div>
 {% endblock %}
