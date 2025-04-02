@@ -60,14 +60,7 @@
                 </ul>
                 
                 <!-- Search form -->
-                <form class="mt-4 md:mt-0 md:ml-6" method="GET" action="{% url 'locations:locations' %}">
-                    <div class="flex">
-                        <input class="px-4 py-2 w-full border border-gray-300 rounded-l focus:outline-none focus:ring-2 focus:ring-blue-500" name="q" type="search" placeholder="Search" aria-label="Search">
-                        <button class="px-4 py-2 bg-blue-600 text-white rounded-r hover:bg-blue-700 transition" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
+                {% include 'core/components/search_form.html' %}
             </div>
         </div>
     </nav>

@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Search Results for "{{ query }}"</h1>
+    
+    <!-- Search type tabs -->
+    <div class="flex border-b mb-6">
+        <a href="{% url 'core:search' %}?q={{ query }}&type=all" 
+           class="px-4 py-2 {% if search_type == 'all' %}font-semibold border-b-2 border-blue-600{% endif %}">
+            All Results
+        </a>
+        <a href="{% url 'core:search' %}?q={{ query }}&type=locations" 
+           class="px-4 py-2 {% if search_type == 'locations' %}font-semibold border-b-2 border-blue-600{% endif %}">
+            Locations
+        </a>
+        <a href="{% url 'core:search' %}?q={{ query }}&type=blog" 
+           class="px-4 py-2 {% if search_type == 'blog' %}font-semibold border-b-2 border-blue-600{% endif %}">
+            Blog Posts
+        </a>
+        <a href="{% url 'core:search' %}?q={{ query }}&type=members" 
+           class="px-4 py-2 {% if search_type == 'members' %}font-semibold border-b-2 border-blue-600{% endif %}">
+            Members
+        </a>
+    </div>
+    
+    {% if search_type == 'all' %}
+        <!-- Locations Section -->
+        {% if locations %}
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Locations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for location in locations %}
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="font-bold text-lg">{{ location.name }}</h3>
+                    <p class="text-gray-600 truncate">{{ location.description }}</p>
+                    <a href="{% url 'locations:location_detail' location.id %}" class="text-blue-600 hover:underline mt-2 inline-block">View</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% if locations.count >= 5 %}
+            <a href="{% url 'core:search' %}?q={{ query }}&type=locations" class="text-blue-600 hover:underline mt-2 inline-block">See all location results</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <!-- Blog Posts Section -->
+        {% if blog_posts %}
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Blog Posts</h2>
+            <div class="space-y-4">
+                {% for post in blog_posts %}
+                <div class="bg-white p-4 rounded shadow">
+                    <h3 class="font-bold text-lg">{{ post.title }}</h3>
+                    <p class="text-gray-600 truncate">{{ post.content|striptags }}</p>
+                    <a href="{% url 'blog:detail' post.id %}" class="text-blue-600 hover:underline mt-2 inline-block">Read more</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% if blog_posts.count >= 5 %}
+            <a href="{% url 'core:search' %}?q={{ query }}&type=blog" class="text-blue-600 hover:underline mt-2 inline-block">See all blog results</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <!-- Members Section -->
+        {% if members %}
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Members</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {% for member in members %}
+                <div class="bg-white p-4 rounded shadow flex items-center">
+                    {% if member.profile_image %}
+                    <img src="{{ member.profile_image.url }}" alt="{{ member.username }}" class="w-10 h-10 rounded-full mr-3">
+                    {% else %}
+                    <div class="w-10 h-10 rounded-full bg-gray-300 mr-3 flex items-center justify-center">
+                        <span class="text-gray-600">{{ member.username|first|upper }}</span>
+                    </div>
+                    {% endif %}
+                    <div>
+                        <h3 class="font-bold">{{ member.get_full_name|default:member.username }}</h3>
+                        <a href="{% url 'account:user_detail' member.username %}" class="text-blue-600 hover:underline text-sm">View profile</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if members.count >= 5 %}
+            <a href="{% url 'core:search' %}?q={{ query }}&type=members" class="text-blue-600 hover:underline mt-2 inline-block">See all member results</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    {% elif search_type == 'locations' %}
+        <!-- Only Locations Results -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for location in locations %}
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-bold text-lg">{{ location.name }}</h3>
+                <p class="text-gray-600">{{ location.description|truncatewords:20 }}</p>
+                <a href="{% url 'locations:location_detail' location.id %}" class="text-blue-600 hover:underline mt-2 inline-block">View</a>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-8">
+                <p class="text-gray-500">No locations found matching your query.</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% elif search_type == 'blog' %}
+        <!-- Only Blog Results -->
+        <div class="space-y-4">
+            {% for post in blog_posts %}
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-bold text-lg">{{ post.title }}</h3>
+                <p class="text-gray-600">{{ post.content|striptags|truncatewords:30 }}</p>
+                <a href="{% url 'blog:detail' post.id %}" class="text-blue-600 hover:underline mt-2 inline-block">Read more</a>
+            </div>
+            {% empty %}
+            <div class="text-center py-8">
+                <p class="text-gray-500">No blog posts found matching your query.</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% elif search_type == 'members' %}
+        <!-- Only Members Results -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for member in members %}
+            <div class="bg-white p-4 rounded shadow flex items-center">
+                {% if member.profile_image %}
+                <img src="{{ member.profile_image.url }}" alt="{{ member.username }}" class="w-10 h-10 rounded-full mr-3">
+                {% else %}
+                <div class="w-10 h-10 rounded-full bg-gray-300 mr-3 flex items-center justify-center">
+                    <span class="text-gray-600">{{ member.username|first|upper }}</span>
+                </div>
+                {% endif %}
+                <div>
+                    <h3 class="font-bold">{{ member.get_full_name|default:member.username }}</h3>
+                    <a href="{% url 'account:user_detail' member.username %}" class="text-blue-600 hover:underline text-sm">View profile</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-8">
+                <p class="text-gray-500">No members found matching your query.</p>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    
+    {% if not locations and not blog_posts and not members %}
+    <div class="text-center py-12">
+        <p class="text-gray-500 text-lg">No results found for "{{ query }}"</p>
+        <p class="text-gray-400 mt-2">Try different keywords or check your spelling</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -2,6 +2,11 @@ from django.views.generic import TemplateView, DetailView
 from .models import HomePage, HeroBanner, Page
 from locations.models import Location
 from django.apps import apps
+from django.shortcuts import render
+from django.db.models import Q
+from locations.models import Location
+from blog.models import Post
+from account.models import User  
 
 
 class HomeView(TemplateView):
@@ -64,3 +69,49 @@ class PageDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+def search(request):
+    query = request.GET.get('q', '')
+    search_type = request.GET.get('type', 'all')
+    
+    # If no type specified, use the one from session or default to 'all'
+    if not search_type:
+        search_type = request.session.get('last_search_type', 'all')
+    else:
+        # Save the current search type to session
+        request.session['last_search_type'] = search_type
+
+    locations = []
+    blog_posts = []
+    members = []
+    
+    if query:
+        # Filter based on search_type or search all
+        if search_type == 'all' or search_type == 'locations':
+            locations = Location.objects.filter(
+                Q(title__icontains=query) | 
+                Q(description__icontains=query)
+            )[:5]  # Limit to 5 results per category
+            
+        if search_type == 'all' or search_type == 'blog':
+            blog_posts = Post.objects.filter(
+                Q(title__icontains=query) | 
+                Q(content__icontains=query)
+            )[:5]
+            
+        if search_type == 'all' or search_type == 'members':
+            members = User.objects.filter(
+                Q(username__icontains=query) | 
+                Q(first_name__icontains=query) | 
+                Q(last_name__icontains=query)
+            )[:5]
+    
+    context = {
+        'query': query,
+        'locations': locations,
+        'blog_posts': blog_posts,
+        'members': members,
+        'search_type': search_type,
+    }
+    
+    return render(request, 'core/components/search_results.html', context)
