@@ -10,6 +10,8 @@ from locations.models import Location
 from django.apps import apps
 from django.shortcuts import render
 from django.db.models import Q
+from django.http import HttpResponse
+from django.views.decorators.http import require_GET
 
 from django.utils import timezone
 from locations.models import Location, Comment
@@ -234,3 +236,15 @@ def send_moderation_action_notification(report):
 def moderation_policy(request):
     """View for displaying the content moderation policy"""
     return render(request, 'core/policy/moderation_policy.html')
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow: /admin/",
+        "Disallow: /account/login/",
+        "Disallow: /account/register/",
+        "Disallow: /account/password-reset/",
+        f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
