@@ -21,7 +21,7 @@
     
     <!-- Location Image -->
     <a href="{{ location.get_absolute_url }}">
-        <img src="{{ location.image.url }}" 
+        <img src="{{ location.get_image_url }}" 
              loading="lazy"
              alt="{{ location.image_alt }}" 
              class="w-full object-cover" 

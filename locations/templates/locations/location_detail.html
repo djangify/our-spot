@@ -9,9 +9,9 @@
     <h1 class="text-3xl font-bold mb-4">{{ location.title }}</h1>
     
     <div class="mb-4 flex justify-center">
-        <img src="{{ location.image.url }}" 
+        <img src="{{ location.get_image_url }}" 
              srcset="{% if location.thumbnail %}{{ location.thumbnail.url }} 400w, {% endif %}
-                     {{ location.image.url }} 1200w"
+                     {{ location.get_image_url }} 1200w"
              sizes="(max-width: 768px) 100vw, 50vw"
              loading="lazy"
              class="rounded-lg shadow-md max-h-[70vh] object-contain" 

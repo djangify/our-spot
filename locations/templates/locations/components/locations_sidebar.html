@@ -55,7 +55,7 @@
         {% for location in recent_locations %}
         <a href="{{ location.get_absolute_url }}" class="flex items-start hover:bg-gray-50 p-2 rounded">
             <div class="w-16 h-16 overflow-hidden rounded mr-3 flex-shrink-0">
-                <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.get_image_url }}{% endif %}" 
                      alt="{{ location.title }}" 
                      class="w-full h-full object-cover">
             </div>
@@ -98,7 +98,7 @@
         {% for location in popular_locations %}
         <a href="{{ location.get_absolute_url }}" class="flex items-start hover:bg-gray-50 p-2 rounded">
             <div class="w-16 h-16 overflow-hidden rounded mr-3 flex-shrink-0">
-                <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.get_image_url }}{% endif %}" 
                      alt="{{ location.title }}" 
                      class="w-full h-full object-cover">
             </div>

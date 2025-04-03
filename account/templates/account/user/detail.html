@@ -89,7 +89,7 @@
             {% for location in locations %}
             <div class="bg-white shadow-md overflow-hidden">
                 <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
-                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{  }}{% endif %}" 
                     loading="lazy"
                     alt="{{ location.image_alt }}" 
                     class="w-full h-52 object-cover">

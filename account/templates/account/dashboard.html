@@ -32,7 +32,7 @@
             <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
                 <!-- Image container with fixed aspect ratio -->
                 <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}" class="relative block h-64">
-                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.get_image_url }}{% endif %}" 
                     loading="lazy"
                     alt="{{ location.image_alt }}" 
                     class="w-full h-full object-cover">
@@ -75,7 +75,7 @@
         <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full">
             <!-- Image container with fixed aspect ratio -->
             <a href="{{ saved.location.get_absolute_url }}" aria-label="Click to view {{ saved.location.title }}" class="relative block h-64">
-                <img src="{% if saved.location.thumbnail %}{{ saved.location.thumbnail.url }}{% else %}{{ saved.location.image.url }}{% endif %}" 
+                <img src="{% if saved.location.thumbnail %}{{ saved.location.thumbnail.url }}{% else %}{{ saved.location.get_image_url }}{% endif %}" 
                 loading="lazy"
                 alt="{{ saved.location.image_alt }}" 
                 class="w-full h-full object-cover">

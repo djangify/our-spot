@@ -12,10 +12,13 @@ LOCATION_TYPES = (
     ("america", "America"),
     ("asia", "Asia"),
     ("caribbean", "Caribbean"),
+    ("central_america", "Central America"),
+    ("england", "England"),
     ("europe", "Europe"),
-    ("great_britain", "Great Britain"),
     ("middle_east", "Middle East"),
+    ("wales", "Wales"),
     ("oceanic", "Oceanic"),
+    ("scotland", "Scotland"),
 )
 
 class Tag(models.Model):
@@ -46,8 +49,15 @@ class Location(models.Model):
         size=[1200, 900],
         quality=75,
         upload_to='locations/',
-        blank=False,
+        blank=True,
+        null=True,
         force_format='WEBP'
+    )
+    external_image_url = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="External URL for photo (if not uploading directly)"
     )
     thumbnail = ResizedImageField(
         size=[400, 300],
@@ -77,6 +87,14 @@ class Location(models.Model):
 
     def get_absolute_url(self):
         return reverse("locations:location_detail", kwargs={"slug": self.slug})
+    
+    def get_image_url(self):
+        """Return the appropriate image URL (uploaded or external)"""
+        if self.external_image_url:
+            return self.external_image_url
+        elif self.image:
+            return self.image.url
+        return None
 
     def save(self, *args, **kwargs):
         # Generate a slug based on the title

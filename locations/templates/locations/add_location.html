@@ -7,7 +7,7 @@
 {% block content %}
 <div class="max-w-4xl mx-auto px-4 py-8">
     <!-- Users can add new locations-->
-    <h1 class="text-3xl font-bold mb-6">Add Your Spot</h1>
+    <h1 class="text-3xl font-bold mb-6">Show Us Your Spot</h1>
 
     <form method="POST" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
         {% csrf_token %}
@@ -20,11 +20,23 @@
                     </label>
                     {% if field.field.widget.input_type == 'file' %}
                         <div class="border border-gray-300 rounded p-4 bg-gray-50">
-                            {{ field }}
+                            <div class="flex flex-col items-center justify-center">
+                                <img src="{% static 'images/upload-icon.png' %}" alt="Upload" class="w-16 h-16 mb-2" onerror="this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'64\' height=\'64\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666\' stroke-width=\'2\'><path d=\'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\'></path><polyline points=\'17 8 12 3 7 8\'></polyline><line x1=\'12\' y1=\'3\' x2=\'12\' y2=\'15\'></line></svg>'">
+                                <label for="{{ field.id_for_label }}" class="bg-gray-300 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded cursor-pointer mb-2">
+                                    Choose Photo
+                                </label>
+                                <span class="text-xs text-gray-500">PNG, JPG, WEBP up to 5MB</span>
+                                {{ field|add_class:"hidden" }}
+                            </div>
                         </div>
+                    {% elif field.name == 'tags' %}
+                        <div class="w-full">
+                            {{ field|add_class:"w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" }}
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500">Add tags separated by commas (e.g., beach, sunset, mountain)</p>
                     {% elif field.field.widget.input_type == 'select' %}
-                        <div class="border border-gray-300 rounded">
-                            {{ field }}
+                        <div class="relative">
+                            {{ field|add_class:"block w-full border border-gray-300 rounded-md py-2 pl-3 pr-10 text-base focus:outline-none focus:ring-blue-500 focus:border-blue-500" }}
                         </div>
                     {% elif field.field.widget.input_type == 'textarea' %}
                         <div class="w-full">
@@ -35,7 +47,7 @@
                             {{ field|add_class:"w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" }}
                         </div>
                     {% endif %}
-                    {% if field.help_text %}
+                    {% if field.help_text and field.name != 'tags' %}
                         <p class="mt-1 text-sm text-gray-500">{{ field.help_text }}</p>
                     {% endif %}
                     {% for error in field.errors %}
@@ -45,8 +57,8 @@
             {% endfor %}
         </div>
         <div class="mt-6">
-            <button type="submit" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
-                Create Location
+            <button type="submit" class="w-full px-4 py-2 bg-gray-300 text-white rounded-md hover:bg-gray-700 transition-colors">
+                Share Your Spot
             </button>
         </div>
     </form>
