@@ -98,7 +98,7 @@
                 <p class="text-lg text-gray-600">No locations found.</p>
                 {% if user.is_authenticated %}
                 <p class="mt-2 text-gray-500">Follow users or add your own spots to see content here!</p>
-                <a href="{% url 'locations:add_location' %}" class="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                <a href="{% url 'locations:add_location' %}" class="mt-4 inline-block px-4 py-2 bg-gray-300 text-white rounded hover:bg-blue-700">
                     Add Your Spot
                 </a>
                 {% else %}
