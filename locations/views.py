@@ -1,4 +1,5 @@
 # Core Django imports
+from django.apps import apps
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib import messages
@@ -95,10 +96,40 @@ class Locations(ListView):
                 like_count=models.Count('likes')
             ).order_by('-like_count')[:5]
         
+        # Add active members - users with most locations
+        from django.contrib.auth.models import User
+        from django.db.models import Count
+        
+        # Get users who have shared at least one location, ordered by count
+        active_members = User.objects.annotate(
+            location_count=Count('location_owner')
+        ).filter(
+            location_count__gt=0
+        ).order_by('-location_count')[:5]
+        
+        context['active_members'] = active_members
+        
+        # Add latest blog post
+        try:
+            # Check if blog app is installed
+            if 'blog' in [app.name for app in apps.get_app_configs()]:
+                # Import models only if app exists
+                Post = apps.get_model('blog', 'Post')
+                # Get the latest published post
+                latest_post = Post.objects.filter(
+                    status='published'
+                ).order_by('-publish_date').first()
+                
+                context['latest_blog_post'] = latest_post
+        except (LookupError, ImportError):
+            # If blog app doesn't exist or models aren't available
+            context['latest_blog_post'] = None
+        
         # Add a flag to indicate if this is an AJAX request for more content
         context['is_ajax_request'] = self.request.headers.get('X-Requested-With') == 'XMLHttpRequest'
         
         return context
+
 
     def render_to_response(self, context, **response_kwargs):
         """Override render_to_response to handle AJAX requests."""

@@ -1,0 +1,138 @@
+<!-- Recent Followers Widget -->
+{% if user.is_authenticated and recent_followers %}
+<div class="bg-white rounded-lg shadow-md p-4 mb-6">
+    <h3 class="text-lg font-medium text-gray-900 mb-3">Recent Followers</h3>
+    <div class="space-y-3">
+        {% for follower in recent_followers %}
+        <a href="{% url 'account:user_detail' username=follower.username %}" class="flex items-center hover:bg-gray-50 p-2 rounded">
+            {% if follower.profile.photo %}
+            <img src="{{ follower.profile.photo.url }}" 
+                 alt="{{ follower.username }}" 
+                 class="w-10 h-10 rounded-full object-cover mr-3">
+            {% else %}
+            <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center mr-3">
+                <span class="text-xl font-medium">{{ follower.username|first|upper }}</span>
+            </div>
+            {% endif %}
+            <div>
+                <p class="font-medium text-gray-900">{{ follower.get_full_name|default:follower.username }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<!-- Most Active Members Widget -->
+{% if active_members %}
+<div class="bg-white rounded-lg shadow-md p-4 mb-6">
+    <h3 class="text-lg font-medium text-gray-900 mb-3">Most Active Members</h3>
+    <div class="space-y-3">
+        {% for member in active_members %}
+        <a href="{% url 'account:user_detail' username=member.username %}" class="flex items-center hover:bg-gray-50 p-2 rounded">
+            {% if member.profile.photo %}
+            <img src="{{ member.profile.photo.url }}" 
+                 alt="{{ member.username }}" 
+                 class="w-10 h-10 rounded-full object-cover mr-3">
+            {% else %}
+            <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center mr-3">
+                <span class="text-xl font-medium">{{ member.username|first|upper }}</span>
+            </div>
+            {% endif %}
+            <div>
+                <p class="font-medium text-gray-900">{{ member.get_full_name|default:member.username }}</p>
+                <p class="text-xs text-gray-500">{{ member.location_count }} spots shared</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Recent Locations Widget -->
+<div class="bg-white rounded-lg shadow-md p-4 mb-6">
+    <h3 class="text-lg font-medium text-gray-900 mb-3">Recent Spots</h3>
+    <div class="space-y-3">
+        {% for location in recent_locations %}
+        <a href="{{ location.get_absolute_url }}" class="flex items-start hover:bg-gray-50 p-2 rounded">
+            <div class="w-16 h-16 overflow-hidden rounded mr-3 flex-shrink-0">
+                <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                     alt="{{ location.title }}" 
+                     class="w-full h-full object-cover">
+            </div>
+            <div>
+                <p class="font-medium text-gray-900 leading-tight">{{ location.title|truncatechars:30 }}</p>
+                <p class="text-xs text-gray-500">{{ location.posted_date|date:"M d, Y" }}</p>
+                <p class="text-xs text-gray-600">by {{ location.user.username }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- Latest Blog Post Widget -->
+{% if latest_blog_post %}
+<div class="bg-white rounded-lg shadow-md p-4 mb-6">
+    <h3 class="text-lg font-medium text-gray-900 mb-3">Latest Blog Post</h3>
+    <a href="{{ latest_blog_post.get_absolute_url }}" class="block">
+        {% if latest_blog_post.image %}
+        <div class="mb-3">
+            <img src="{{ latest_blog_post.image.url }}" 
+                 alt="{{ latest_blog_post.title }}" 
+                 class="w-full h-40 object-cover rounded">
+        </div>
+        {% endif %}
+        <h4 class="font-medium text-gray-900 hover:text-blue-600">{{ latest_blog_post.title|truncatechars:60 }}</h4>
+        <p class="text-sm text-gray-600 mt-1">{{ latest_blog_post.publish_date|date:"M d, Y" }}</p>
+    </a>
+</div>
+{% endif %}
+
+
+
+<!-- Popular Locations Widget -->
+{% if popular_locations %}
+<div class="bg-white rounded-lg shadow-md p-4 mb-6">
+    <h3 class="text-lg font-medium text-gray-900 mb-3">Popular Spots</h3>
+    <div class="space-y-3">
+        {% for location in popular_locations %}
+        <a href="{{ location.get_absolute_url }}" class="flex items-start hover:bg-gray-50 p-2 rounded">
+            <div class="w-16 h-16 overflow-hidden rounded mr-3 flex-shrink-0">
+                <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.image.url }}{% endif %}" 
+                     alt="{{ location.title }}" 
+                     class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1">
+                <p class="font-medium text-gray-900 leading-tight">{{ location.title|truncatechars:30 }}</p>
+                <div class="flex items-center mt-1">
+                    <i class="fas fa-heart text-red-500 text-xs"></i>
+                    <span class="ml-1 text-xs text-gray-600">{{ location.likes.count }} likes</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Quick Links Widget -->
+<div class="bg-white rounded-lg shadow-md p-4">
+    <h3 class="text-lg font-medium text-gray-900 mb-3">Quick Links</h3>
+    <ul class="space-y-2">
+        <li>
+            <a href="{% url 'core:page_detail' slug='about' %}" class="text-gray-600 hover:text-gray-900 flex items-center">
+                <i class="fas fa-info-circle mr-2"></i> About Us
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'core:page_detail' slug='privacy-policy' %}" class="text-gray-600 hover:text-gray-900 flex items-center">
+                <i class="fas fa-shield-alt mr-2"></i> Privacy Policy
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'core:moderation_policy' %}" class="text-gray-600 hover:text-gray-900 flex items-center">
+                <i class="fas fa-gavel mr-2"></i> Moderation Policy
+            </a>
+        </li>
+    </ul>
+</div>
