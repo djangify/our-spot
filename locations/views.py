@@ -146,10 +146,13 @@ class Locations(ListView):
             
             # Render only the location items, not the whole page
             html = render_to_string(
-                'partials/location_list_items.html',
+                'locations/components/location_list_items.html',
                 {'locations': context['locations']},
                 request=self.request
             )
+
+
+
             
             # Create response with has_next and current/total page info
             response_data = {
