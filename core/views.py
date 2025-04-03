@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from django.views.generic import TemplateView, DetailView
 from .models import HomePage, HeroBanner, Page
 from locations.models import Location
@@ -233,9 +234,67 @@ def send_moderation_action_notification(report):
         fail_silently=False,
     )
 
+
+def policies_index(request):
+    """View for displaying the policies index page"""
+    context = {
+        'breadcrumbs': [
+            {'title': 'Policies', 'url': None}
+        ]
+    }
+    return render(request, 'core/policy/policies_index.html', context)
+
+
+def privacy_policy(request):
+    """View for displaying the privacy policy"""
+    context = {
+        'breadcrumbs': [
+            {'title': 'Policies', 'url': reverse('core:policies_index')},
+            {'title': 'Privacy Policy', 'url': None}
+        ]
+    }
+    return render(request, 'core/policy/privacy_policy.html', context)
+
+def cookies_policy(request):
+    """View for displaying the cookies policy"""
+    context = {
+        'breadcrumbs': [
+            {'title': 'Policies', 'url': reverse('core:policies_index')},
+            {'title': 'Cookies Policy', 'url': None}
+        ]
+    }
+    return render(request, 'core/policy/cookies_policy.html', context)
+
+def advertising_policy(request):
+    """View for displaying the advertising policy"""
+    context = {
+        'breadcrumbs': [
+            {'title': 'Policies', 'url': reverse('core:policies_index')},
+            {'title': 'Advertising Policy', 'url': None}
+        ]
+    }
+    return render(request, 'core/policy/advertising_policy.html', context)
+
+def terms_policy(request):
+    """View for displaying the terms and conditions"""
+    context = {
+        'breadcrumbs': [
+            {'title': 'Policies', 'url': reverse('core:policies_index')},
+            {'title': 'Terms & Conditions', 'url': None}
+        ]
+    }
+    return render(request, 'core/policy/terms_policy.html', context)
+
 def moderation_policy(request):
     """View for displaying the content moderation policy"""
-    return render(request, 'core/policy/moderation_policy.html')
+    context = {
+        'breadcrumbs': [
+            {'title': 'Policies', 'url': reverse('core:policies_index')},
+            {'title': 'Moderation Policy', 'url': None}
+        ]
+    }
+    return render(request, 'core/policy/moderation_policy.html', context)
+
 
 @require_GET
 def robots_txt(request):

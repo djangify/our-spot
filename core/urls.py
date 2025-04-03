@@ -25,4 +25,9 @@ urlpatterns = [
     path('report/', views.report_content, name='report_content'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views'),
+    path('policy/advertising', views.advertising_policy, name='advertising_policy'),
+    path('policy/cookies', views.cookies_policy, name='cookies_policy'),
+    path('policy/privacy', views.privacy_policy, name='privacy_policy'),
+    path('policy/terms', views.terms_policy, name='terms_policy'),
+    path('policy/', views.policies_index, name='policies_index'),
 ]
