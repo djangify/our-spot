@@ -19,10 +19,11 @@
         <h1 class="text-2xl md:text-3xl font-bold mb-2">{{ home.heading|default:"Show Your Spot" }}</h1>
         <h2 class="text-xl md:text-2xl mb-4">{{ home.subheading|default:"Every Spot Tells A Story" }}</h2>
         
-        <p class="mb-6">{{ home.text|default:"Discover hidden gems and share your favorite places with the world. Whether it's a tranquil nature retreat, a cozy café, or a breathtaking viewpoint - every spot tells a story. Share yours today. Got a location you love to be at with family, a loved one or friend? Share your photos here. Find places worth visiting. Register below to get started." }}</p>
+        <p class="mb-8">{{ home.text|safe|default:"Discover hidden gems and share your favorite places with the world." }}</p>
         
         <!-- Buttons side by side on larger screens, stacked on mobile -->
-        <div class="flex flex-col sm:flex-row sm:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+         <br>
+        <div class="flex flex-col sm:flex-row sm:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-4">
           <a href="{% url 'account:register' %}" class="inline-block py-2 px-6 bg-transparent border border-gray-900 hover:text-white hover:bg-gray-700 rounded-md font-medium transition-colors">
             {{ home.button1_text|default:"Register Here" }}
           </a>
