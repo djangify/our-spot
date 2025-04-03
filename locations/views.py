@@ -38,7 +38,7 @@ class Locations(ListView):
     template_name = "locations/locations.html"
     model = Location
     context_object_name = "locations"
-    paginate_by = 12  # Reasonable number of posts per load
+    paginate_by = 7  # Reasonable number of posts per load
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
@@ -51,7 +51,7 @@ class Locations(ListView):
             ).order_by('-posted_date')
         else:
             # For non-authenticated users, just show most recent content
-            queryset = self.model.objects.all().order_by('-posted_date')[:20]
+             queryset = self.model.objects.all().order_by('-posted_date', 'id')[:20]
             
         # Check if there's a search query
         query = self.request.GET.get("q")
@@ -130,7 +130,6 @@ class Locations(ListView):
         
         return context
 
-
     def render_to_response(self, context, **response_kwargs):
         """Override render_to_response to handle AJAX requests."""
         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -144,22 +143,28 @@ class Locations(ListView):
             # Debug info
             print(f"AJAX request - Page {current_page} of {total_pages}")
             
+            # Ensure each item has a unique identifier for client-side duplicate detection
+            location_ids = []
+            unique_locations = []
+            for location in context['locations']:
+                if location.id not in location_ids:
+                    location_ids.append(location.id)
+                    unique_locations.append(location)
+            
             # Render only the location items, not the whole page
             html = render_to_string(
                 'locations/components/location_list_items.html',
-                {'locations': context['locations']},
+                {'locations': unique_locations},
                 request=self.request
             )
-
-
-
             
             # Create response with has_next and current/total page info
             response_data = {
                 'html': html,
                 'has_next': context['page_obj'].has_next(),
                 'current_page': current_page,
-                'total_pages': total_pages
+                'total_pages': total_pages,
+                'location_ids': location_ids  # Send IDs to client for duplicate detection
             }
             
             return JsonResponse(response_data)

@@ -1,109 +1,100 @@
+<!-- In templates/components/infinite_scroll.html -->
 <div id="infinite-scroll" data-url="{% url 'locations:locations' %}"></div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         let currentPage = 1;
         let hasNextPage = {{ page_obj.has_next|yesno:"true,false" }};
         let isLoading = false;
-        let maxPages = {{ page_obj.paginator.num_pages }};  // Get the total number of pages
-        
+        let maxPages = {{ page_obj.paginator.num_pages }};
+        let loadedLocationIds = new Set();
+
+        // Get all initial location IDs
+        document.querySelectorAll('[data-location-id]').forEach(el => {
+            loadedLocationIds.add(parseInt(el.dataset.locationId));
+        });
+
         const locationFeed = document.getElementById('location-feed');
         const loadingIndicator = document.getElementById('loading-indicator');
         const noMorePosts = document.getElementById('no-more-posts');
-        
-        console.log("Infinite scroll initialized:", {
-            locationFeed: !!locationFeed,
-            loadingIndicator: !!loadingIndicator,
-            noMorePosts: !!noMorePosts,
-            currentPage,
-            maxPages,
-            hasNextPage
-        });
-        
+
         if (!locationFeed || !loadingIndicator || !noMorePosts) {
             console.error('Missing required elements for infinite scroll');
             return;
         }
-        
-        // Function to check if user has scrolled to the bottom of the page
+
         function isNearBottom() {
             return window.innerHeight + window.scrollY >= document.body.offsetHeight - 500;
         }
-        
-        // Function to load more locations
+
         function loadMoreLocations() {
-            if (isLoading || !hasNextPage || currentPage >= maxPages) {
-                console.log(`Skipping load: isLoading=${isLoading}, hasNextPage=${hasNextPage}, currentPage=${currentPage}, maxPages=${maxPages}`);
-                
-                // If we've reached the end, show the "no more posts" message
-                if (currentPage >= maxPages && noMorePosts.classList.contains('hidden')) {
+            if (isLoading || !hasNextPage) {
+                if (!hasNextPage && noMorePosts.classList.contains('hidden')) {
                     noMorePosts.classList.remove('hidden');
                     loadingIndicator.classList.add('hidden');
                 }
                 return;
             }
-            
+
             isLoading = true;
             loadingIndicator.classList.remove('hidden');
-            
-            // Increment the page number
             currentPage++;
-            
-            // Just use the page parameter, don't build a full URL
+
             const url = `?page=${currentPage}`;
-            console.log(`Fetching: ${url}, current page: ${currentPage}, max pages: ${maxPages}`);
-            
-            // Make AJAX request to get more locations
             fetch(url, {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 }
             })
             .then(response => {
-                console.log('Response status:', response.status);
                 if (!response.ok) {
                     throw new Error(`Network response was not ok: ${response.status}`);
                 }
                 return response.json();
             })
             .then(data => {
-                console.log('Received data:', data);
-                
-                // Append new locations to the feed
-                if (data.html && data.html.trim().length > 0) {
-                    locationFeed.insertAdjacentHTML('beforeend', data.html);
-                    console.log('Content appended');
+                if (data.location_ids && Array.isArray(data.location_ids)) {
+                    const newContent = document.createElement('div');
+                    newContent.innerHTML = data.html.trim();
+
+                    let newItems = 0;
+                    const fragments = document.createDocumentFragment();
+
+                    Array.from(newContent.children).forEach(child => {
+                        const locationId = parseInt(child.dataset.locationId);
+                        if (locationId && !loadedLocationIds.has(locationId)) {
+                            loadedLocationIds.add(locationId);
+                            fragments.appendChild(child);
+                            newItems++;
+                        }
+                    });
+
+                    if (newItems > 0) {
+                        locationFeed.appendChild(fragments);
+                    } else {
+                        console.log('No new locations to add - all were duplicates');
+                    }
                 } else {
-                    console.warn('No HTML content in response');
+                    locationFeed.insertAdjacentHTML('beforeend', data.html);
                 }
-                
-                // Update pagination state
+
                 hasNextPage = data.has_next;
-                console.log(`Updated hasNextPage to ${hasNextPage}`);
-                
-                // Hide loading indicator
-                loadingIndicator.classList.add('hidden');
-                
-                // Show "no more posts" message if there are no more pages
-                if (!hasNextPage || currentPage >= maxPages) {
-                    console.log('No more pages, showing end message');
+                maxPages = data.total_pages;
+
+                if (!hasNextPage) {
                     noMorePosts.classList.remove('hidden');
                 }
-                
+
+                loadingIndicator.classList.add('hidden');
                 isLoading = false;
             })
             .catch(error => {
                 console.error('Error loading more locations:', error);
                 loadingIndicator.classList.add('hidden');
+                noMorePosts.classList.remove('hidden');
                 isLoading = false;
-                
-                // If there's an error, show "no more posts" message
-                if (currentPage >= maxPages) {
-                    noMorePosts.classList.remove('hidden');
-                }
             });
         }
-        
-        // Debounce scroll event to prevent multiple rapid fire requests
+
         let scrollTimer = null;
         window.addEventListener('scroll', function() {
             if (scrollTimer !== null) {
@@ -111,15 +102,13 @@
             }
             scrollTimer = setTimeout(function() {
                 if (isNearBottom()) {
-                    console.log('Near bottom, loading more content');
                     loadMoreLocations();
                 }
-            }, 200); // 200ms delay
+            }, 200);
         });
-        
-        // Initial check in case the page isn't tall enough
+
         if (isNearBottom() && hasNextPage) {
             loadMoreLocations();
         }
     });
-  </script>
+</script>

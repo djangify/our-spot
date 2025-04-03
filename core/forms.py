@@ -1,18 +1,29 @@
 from django import forms
-from .models import Report
 
-class ReportForm(forms.ModelForm):
-    class Meta:
-        model = Report
-        fields = ['reason', 'details']
-        widgets = {
-            'reason': forms.Select(choices=[
-                ('inappropriate', 'Inappropriate Content'),
-                ('spam', 'Spam'),
-                ('offensive', 'Offensive Language'),
-                ('harassment', 'Harassment'),
-                ('copyright', 'Copyright Violation'),
-                ('other', 'Other')
-            ]),
-            'details': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Please provide additional details about your report...'})
-        }
+class ReportForm(forms.Form):
+    REPORT_CONTENT_TYPES = [
+        ('photo', 'A photo'),
+        ('profile', 'A member profile'),
+        ('comment', 'A comment'),
+    ]
+    
+    REPORT_TYPES = [
+        ('location', 'Location/Photo'),
+        ('profile', 'Profile'),
+        ('comment', 'Comment'),
+    ]
+    
+    REASON_CHOICES = [
+        ('', 'Please select a reason'),
+        ('inappropriate', 'Inappropriate Content'),
+        ('spam', 'Spam Content'),
+        ('offensive', 'Offensive Language'),
+        ('harassment', 'Harassment'),
+        ('copyright', 'Copyright Violation'),
+        ('other', 'Other'),
+    ]
+    
+    report_content_type = forms.ChoiceField(choices=REPORT_CONTENT_TYPES)
+    report_type = forms.ChoiceField(choices=REPORT_TYPES)
+    reason = forms.ChoiceField(choices=REASON_CHOICES)
+    details = forms.CharField(widget=forms.Textarea)

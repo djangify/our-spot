@@ -27,12 +27,9 @@
     </div>
     {% endif %}
 
-   <!-- Add Report Photo button -->
-    <div class="text-center my-2">
-        <button id="report-link" class="text-gray-600 hover:text-gray-800 text-sm cursor-pointer">Report Photo</button>
-    </div>
-    <!-- Report Photo Modal - Updated with form submission -->
-    {% include 'core/components/report.html' with content_type_id=location_content_type_id object_id=location.id report_type="photo" %}
+   <!-- Report Photo button -->
+   <a href="{% url 'core:report_content' %}?report_type=location&content_type_id={{ location_content_type_id }}&object_id={{ location.id }}" class="text-gray-600 hover:text-gray-800 text-sm">Report Photo</a>
+
 
     <!-- Photo details -->
     <div class="my-4">

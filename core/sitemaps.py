@@ -32,10 +32,12 @@ class UserSitemap(Sitemap):
     priority = 0.3
     
     def items(self):
-        return User.objects.filter(is_active=True)
+        # Add ordering to eliminate the warning
+        return User.objects.filter(is_active=True).order_by('id')
     
     def location(self, obj):
         return reverse('account:user_detail', args=[obj.username])
+    
 
 class PageSitemap(Sitemap):
     changefreq = 'monthly'

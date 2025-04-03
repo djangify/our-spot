@@ -1,5 +1,5 @@
 {% for location in locations %}
-<div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+<div class="bg-white rounded-lg shadow-md overflow-hidden mb-6" data-location-id="{{ location.id }}">
     <!-- Post Header with User Info -->
     <div class="p-4 flex items-center">
         <a href="{% url 'account:user_detail' username=location.user.username %}" class="flex items-center">

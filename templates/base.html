@@ -46,6 +46,19 @@
     
     <!-- Include the navigation bar -->
     {% include 'includes/navbar.html' %}
+
+        <!-- Messages section goes here -->
+        {% if messages %}
+        <div class="messages container mx-auto px-4 mt-4">
+            {% for message in messages %}
+            <div class="message p-4 mb-2 rounded {% if message.tags == 'success' %}bg-green-100 text-green-800{% elif message.tags == 'error' %}bg-red-100 text-red-800{% elif message.tags == 'warning' %}bg-yellow-100 text-yellow-800{% elif message.tags == 'info' %}bg-blue-100 text-blue-800{% else %}bg-gray-100 text-gray-800{% endif %}">
+                {{ message|safe }}
+                <button class="float-right focus:outline-none hover:text-gray-500">&times;</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
     {% block content %}
     {% endblock %}
 
@@ -55,7 +68,34 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{% static 'js/pagination.js' %}"></script>
-    <script src="{% static 'js/report.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all message elements
+            const messages = document.querySelectorAll('.message');
+            
+            // Add click event listeners to close buttons
+            document.querySelectorAll('.message button').forEach(button => {
+              button.addEventListener('click', function() {
+                this.parentElement.remove();
+              });
+            });
+            
+            // Auto-hide messages after 3 seconds
+            if (messages.length > 0) {
+              setTimeout(function() {
+                messages.forEach(message => {
+                  message.style.transition = 'opacity 0.5s ease';
+                  message.style.opacity = '0';
+                  
+                  // Remove from DOM after fade out completes
+                  setTimeout(function() {
+                    message.remove();
+                  }, 500);
+                });
+              }, 3000);
+            }
+          });
+      </script>
     {% endblock %}
 
 </body>

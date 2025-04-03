@@ -28,11 +28,8 @@
             {% endif %}
             
             <!-- Link to report a profile -->
-            <div class="mt-2 text-center">
-                <button id="report-link" class="text-sm text-gray-600 hover:text-gray-800 cursor-pointer">Report Photo</button>
-            </div>
-            <!-- Report Photo Modal - Updated with form submission -->
-            {% include 'core/components/report.html' with content_type_id=user_content_type_id object_id=user.id report_type="profile" %}
+            <a href="{% url 'core:report_content' %}?report_type=profile&content_type_id={{ user_content_type_id }}&object_id={{ user.id }}" class="text-gray-600 hover:text-gray-800 text-sm">Report Profile</a>
+           
         </div>
         
         <div class="flex-1">
