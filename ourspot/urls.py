@@ -9,6 +9,7 @@ urlpatterns = [
     path("", include("core.urls", namespace="core")),
     path("locations/", include("locations.urls", namespace="locations")),
     path("blog/", include("blog.urls", namespace="blog")),
+    path('tinymce/', include('tinymce.urls')),
 ]
 
 if settings.DEBUG:

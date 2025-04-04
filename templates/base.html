@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Show Your Spot - Photo Sharing Platform and Social Network for Sharing Your Favorite Places">
     <meta name="keywords" content="share your spot, show your spot, photo sharing, favorite locations, hidden gems, things to do, family holidays, wedding venue">
+    
+    <!-- Facebook App ID - Adding here ensures it's available across all pages -->
+    <meta property="fb:app_id" content="976224278058250" />
 
     {% block meta %}{% endblock %}
     
@@ -62,41 +65,55 @@
     {% block content %}
     {% endblock %}
 
+    <!-- Cookie Consent Banner - Using Tailwind classes -->
+    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 w-half bg-gray-100 bg-opacity-95 shadow-md z-50 transform translate-y-full transition-transform duration-300 ease-in-out">
+        <div class="max-w-7xl mx-auto p-4 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex-1 min-w-[280px]">
+                <p class="text-gray-700">We use cookies to enhance your experience on our site. By clicking "Accept", you consent to the use of all cookies. You can manage preferences in our cookie policy.</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="{% url 'core:cookies_policy' %}" class="px-4 py-2 border border-gray-900 rounded-md text-gray-600 font-semibold hover:bg-gray-100 transition-colors">Cookie Policy</a>
+                <button id="accept-cookies" class="px-4 py-2 bg-gray-500 text-white rounded-md font-semibold hover:bg-gray-700 transition-colors">Accept</button>
+            </div>
+        </div>
+    </div>
 
     {% block onload_js %}
     <!-- JavaScript links -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{% static 'js/pagination.js' %}"></script>
+    <script src="{% static 'js/report.js' %}"></script>
+    {% endblock %}
+
+    <!-- Cookie Consent JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all message elements
-            const messages = document.querySelectorAll('.message');
+            const cookieBanner = document.getElementById('cookie-consent-banner');
+            const acceptButton = document.getElementById('accept-cookies');
             
-            // Add click event listeners to close buttons
-            document.querySelectorAll('.message button').forEach(button => {
-              button.addEventListener('click', function() {
-                this.parentElement.remove();
-              });
+            // Check if user has already accepted cookies
+            if (!localStorage.getItem('cookiesAccepted')) {
+                // Show the banner with animation
+                setTimeout(function() {
+                    cookieBanner.classList.remove('translate-y-full');
+                }, 500);
+            }
+            
+            // Handle accept button click
+            acceptButton.addEventListener('click', function() {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.classList.add('translate-y-full');
             });
             
-            // Auto-hide messages after 3 seconds
-            if (messages.length > 0) {
-              setTimeout(function() {
-                messages.forEach(message => {
-                  message.style.transition = 'opacity 0.5s ease';
-                  message.style.opacity = '0';
-                  
-                  // Remove from DOM after fade out completes
-                  setTimeout(function() {
-                    message.remove();
-                  }, 500);
+            // Close message alerts
+            document.querySelectorAll('.message button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.parentElement.style.display = 'none';
                 });
-              }, 3000);
-            }
-          });
-      </script>
-    {% endblock %}
+            });
+        });
+    </script>
 
 </body>
 </html>

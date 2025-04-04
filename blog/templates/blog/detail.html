@@ -1,18 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block opengraph %}
+<meta property="fb:app_id" content="976224278058250" />
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.content|striptags|truncatewords:30 }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+{% if post.get_image_url %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.get_image_url }}">
+{% endif %}
+<meta property="article:published_time" content="{{ post.publish_date|date:'c' }}">
+<meta property="article:section" content="{{ post.category.name }}">
+{% endblock %}
+
 {% block content %}
 
 <!-- templates/blog/detail.html -->
 <div class="mx-auto max-w-4xl mt-8 px-6 sm:px-8 lg:px-12">
     <div class="bg-white p-8 rounded-lg shadow-sm">
-        <header class="mb-8">
+        <div class="mb-8">
             <h1 class="text-4xl font-bold">{{ post.title }}</h1>
-            <div class="mt-2 text-gray-600">
+            <div class="mt-2 mb-4 text-gray-600">
                 {{ post.publish_date|date:"F j, Y" }} | 
                 <a href="{{ post.category.get_absolute_url }}" class="text-blue-600 hover:text-blue-800">
                     {{ post.category.name }}
                 </a>
             </div>
-        </header>
+                <!-- social media sharing buttons -->
+                <div class="mt-4 mb-6">
+                    <p class="text-sm text-gray-600 mb-2">Thanks for sharing:</p>
+                    {% include 'includes/social_share.html' with post=post %}
+                </div>
+        </div>
         
         {% if post.external_image_url %}
             <div class="mb-8">
@@ -109,6 +129,12 @@
                 {% endfor %}
             </div>
         </div>
+        <!-- social media sharing buttons -->
+        <div class="mb-6">
+            <p class="text-sm text-gray-600 mb-2">Thanks for sharing:</p>
+            {% include 'includes/social_share.html' with post=post %}
+        </div>
+
         <!-- Advertisement Section -->
         {% if post.ad_type == 'banner' and post.ad_image %}
             {% if post.ad_url %}
