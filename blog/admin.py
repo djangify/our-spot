@@ -10,8 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'status', 'publish_date', 'display_image')
-    list_filter = ('status', 'category', 'publish_date')
+    list_display = ('title', 'category', 'status', 'featured', 'publish_date', 'display_image')
+    list_filter = ('status', 'featured', 'category', 'publish_date')
     search_fields = ('title', 'content')
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'publish_date'
@@ -19,7 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('title', 'slug', 'category', 'status', 'publish_date')
+            'fields': ('title', 'slug', 'category', 'status', 'featured', 'publish_date')
         }),
         ('Content', {
             'fields': ('content',)

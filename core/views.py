@@ -51,16 +51,25 @@ class HomeView(TemplateView):
             if 'blog' in [app.name for app in apps.get_app_configs()]:
                 # Import models only if app exists
                 Post = apps.get_model('blog', 'Post')
-                Category = apps.get_model('blog', 'Category')
                 
-                # Get Spot Highlights category
-                spot_highlights = Category.objects.filter(slug='spot-highlights').first()
-                if spot_highlights:
-                    # Get published posts from this category
-                    context['blog_features'] = Post.objects.filter(
-                        category=spot_highlights, 
-                        status='published'
-                    ).order_by('-publish_date')[:3]
+                # Get featured posts
+                context['blog_features'] = Post.objects.filter(
+                    status='published',
+                    featured=True,
+                    publish_date__lte=timezone.now()
+                ).order_by('-publish_date')[:3]
+                
+                # Fallback to category if no featured posts found
+                if not context['blog_features']:
+                    Category = apps.get_model('blog', 'Category')
+                    spot_highlights = Category.objects.filter(slug='spot-highlights').first()
+                    if spot_highlights:
+                        # Get published posts from this category
+                        context['blog_features'] = Post.objects.filter(
+                            category=spot_highlights, 
+                            status='published',
+                            publish_date__lte=timezone.now()
+                        ).order_by('-publish_date')[:3]
         except (LookupError, ImportError):
             # If blog app doesn't exist or models aren't available
             pass

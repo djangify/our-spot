@@ -36,6 +36,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="draft")
+    featured = models.BooleanField(default=False, help_text="Feature this post on the homepage")
 
     # Dates
     created = models.DateTimeField(auto_now_add=True)
