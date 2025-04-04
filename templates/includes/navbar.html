@@ -47,7 +47,7 @@
                     <li>
                         <a class="block {% if url_name == 'blog:list' %} font-semibold{% endif %}" href="{% url 'blog:list' %}">Blog</a>
                     </li>
-                    
+           
                     <li>
                         <a class="block  {% if url_name == 'accounts_signup' %} font-semibold{% endif %}" href="{% url 'account:register' %}">Register</a>
                     </li>
@@ -55,40 +55,12 @@
                         <a class="blockhover:text-blue-600 {% if url_name == 'accounts_login' %} font-semibold{% endif %}" href="{% url 'account:login' %}">Login</a>
                     </li>
                     {% endif %}
-
-
                 </ul>
-                
                 <!-- Search form -->
                 {% include 'core/components/search_form.html' %}
             </div>
         </div>
     </nav>
   {% endwith %}
-
-  <!-- Messages shown to users -->
-  {% if messages %}
-  <div class="container mx-auto px-4 mt-2">
-      {% for message in messages %}
-      <div class="p-4 mb-2 rounded {% if message.tags == 'success' %}bg-green-100 text-green-800{% elif message.tags == 'error' %}bg-red-100 text-red-800{% elif message.tags == 'warning' %}bg-yellow-100 text-yellow-800{% elif message.tags == 'info' %}bg-blue-100 text-blue-800{% else %}bg-gray-100 text-gray-800{% endif %}">
-          {{ message|safe }}
-          <button class="float-right focus:outline-none hover:text-gray-500">&times;</button>
-      </div>
-      {% endfor %}
-  </div>
-  {% endif %}
 </header>
 
-<script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-        const menu = document.getElementById('navbar-content');
-        if (menu.classList.contains('hidden')) {
-            menu.classList.remove('hidden');
-            menu.classList.add('block');
-        } else {
-            menu.classList.add('hidden');
-            menu.classList.remove('block');
-        }
-    });
-</script>

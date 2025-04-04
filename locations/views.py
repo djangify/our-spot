@@ -132,7 +132,8 @@ class Locations(ListView):
 
     def render_to_response(self, context, **response_kwargs):
         """Override render_to_response to handle AJAX requests."""
-        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        # Check for both AJAX requests and explicit format=json parameter
+        if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest' or self.request.GET.get('format') == 'json':
             from django.template.loader import render_to_string
             from django.http import JsonResponse
             
@@ -140,8 +141,10 @@ class Locations(ListView):
             total_pages = context['paginator'].num_pages
             current_page = context['page_obj'].number
             
-            # Debug info
-            print(f"AJAX request - Page {current_page} of {total_pages}")
+            # Debug info - add more detailed logging
+            print(f"JSON/AJAX request - Page {current_page} of {total_pages}")
+            print(f"Request headers: {dict(self.request.headers)}")
+            print(f"Request GET params: {dict(self.request.GET)}")
             
             # Ensure each item has a unique identifier for client-side duplicate detection
             location_ids = []
@@ -168,9 +171,8 @@ class Locations(ListView):
             }
             
             return JsonResponse(response_data)
-            
+        
         return super().render_to_response(context, **response_kwargs)
-
 
 class LocationDetail(DetailView):
     """View a single location"""

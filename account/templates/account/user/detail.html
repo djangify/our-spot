@@ -19,7 +19,7 @@
         <div class="mb-6 md:mb-0">
             {% if user.profile.photo %}
                 <img src="{{ user.profile.photo.url }}" 
-                     alt="{{ user.profile.photo_alt|default:'Profile photo' }}" 
+                     alt="Profile photo of {{ user.username }}" 
                      class="w-48 h-48 object-cover rounded-lg shadow-md">
             {% else %}
                 <img src="{% static 'images/blankavatar.png' %}" 
@@ -89,7 +89,7 @@
             {% for location in locations %}
             <div class="bg-white shadow-md overflow-hidden">
                 <a href="{{ location.get_absolute_url }}" aria-label="Click to view {{ location.title }}">
-                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{  }}{% endif %}" 
+                    <img src="{% if location.thumbnail %}{{ location.thumbnail.url }}{% else %}{{ location.get_image_url }}{% endif %}" 
                     loading="lazy"
                     alt="{{ location.image_alt }}" 
                     class="w-full h-52 object-cover">
@@ -99,7 +99,7 @@
                         <h2 class="text-lg font-medium">{{ location.title }}</h2>
                     </a>
                     <p class="text-sm text-gray-500 mt-1">Posted on {{ location.posted_date|date:"F d, Y" }}</p>
-                    <p class="text-gray-700 mt-2">{{ location.description | truncatechars:280 }}</p>
+                    <p class="text-gray-700 mt-2">{{ location.description|safe|truncatechars:280 }}</p>
                 </div>
             </div>
             {% empty %}
@@ -110,7 +110,5 @@
         </div>
     </div>
 
-    <!-- Report success message -->
-    <p id="report-success-message" class="text-green-600 text-center mt-4"></p>
 </div>
 {% endblock %}
