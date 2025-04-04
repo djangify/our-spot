@@ -94,13 +94,14 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+                    messages.info(request, f"You are now logged in as {user.username}.")
                     return redirect('account:dashboard')
                 else:
                     messages.error(request, "Account not activated. Please check your email for verification link.")
-                    return redirect('login')
+                    return redirect('account:login')
             else:
                 messages.error(request, "Invalid username or password.")
-                return redirect('login')
+                return redirect('account:login')
     else:
         form = LoginForm()
     return render(request, "account/login.html", {"form": form})
@@ -209,6 +210,9 @@ def user_profile(request, username):
 def logout_view(request):
     """Custom logout view that works with any HTTP method"""
     logout(request)
+    messages.info(
+        request, "Thank you for visiting. You are now logged out."
+    )
     return redirect('core:home')  # Redirects to the homepage after logout
 @login_required
 def follow_user(request, username):
