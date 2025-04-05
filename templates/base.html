@@ -71,7 +71,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="{% static 'js/pagination.js' %}"></script>
-    <script src="{% static 'js/cookie-banner.js' %}"></script>
+  
     <!-- Messages Auto-close JavaScript -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -100,24 +100,7 @@
       });
     </script>
     {% endblock %}
-<!-- Cookie Consent Banner -->
-   
-  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-300 p-4 z-50 shadow-md hidden">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
-        <div class="text-gray-700 text-sm mb-4 md:mb-0">
-            <p>This website uses cookies to ensure you get the best experience on our website. By continuing to use this site, you consent to our use of cookies.</p>
-            <a href="{% url 'core:cookies_policy' %}" class="text-blue-600 hover:text-blue-800 underline">Learn more</a>
-        </div>
-        <div class="flex space-x-4">
-            <button id="accept-cookies" class="mx-4 px-4 py-2 bg-gray-300 text-white rounded-md hover:bg-blue-700 transition-colors focus:outline-none">
-                Accept
-            </button>
-            <button id="decline-cookies" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors focus:outline-none">
-                Decline
-            </button>
-        </div>
-    </div>
-  </div>
-    
+
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

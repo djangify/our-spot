@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<!-- Banner Section -->
+<!-- TOP Banner Section -->
 {% if banner %}
 <div class="flex items-center justify-center py-8 px-4 bg-slate-50 dark:bg-gray-800">
     <div class="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-md text-gray-900 shadow">
@@ -156,6 +156,28 @@
         {% endif %}
     </div>
 </section>
+<!-- COOKIE BANNER SECTION -->
+<div id="cookie-banner" style="display: block !important; position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important; z-index: 9999 !important; background-color: #808080 !important; color: white !important; padding: 1rem !important;">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+        <div class=" text-md mb-4 md:mb-0">
+            <p>This website uses cookies to ensure you get the best experience on our website. By continuing to use this site, you consent to our use of cookies.</p>
+            <a href="{% url 'core:cookies_policy' %}" class="text-blue-600 hover:text-blue-800 underline">Learn more</a>
+        </div>
+        <div class="flex space-x-4">
+            <button id="accept-cookies" class="px-4 py-2 bg-gray-300 text-gray-700 font-bold rounded-md hover:bg-blue-700 transition-colors focus:outline-none">
+                Accept
+            </button>
+            <button id="decline-cookies" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 transition-colors focus:outline-none">
+                Decline
+            </button>
+        </div>
+    </div>
+</div>
 
 {% include 'includes/footer.html' %}
+
+{% block extra_js %}
+<script src="{% static 'js/cookie-banner.js' %}"></script>
+{% endblock %}
+
 {% endblock content %}
