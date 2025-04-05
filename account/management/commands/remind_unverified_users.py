@@ -24,13 +24,12 @@ class Command(BaseCommand):
         # Calculate 15 days ago to ensure we only get users who are exactly at the 14-day mark
         fifteen_days_ago = timezone.now() - timedelta(days=15)
         
-        # Find unverified users who registered approximately 14 days ago (between 14 and 15 days)
-        # and haven't been sent a reminder yet
-        unverified_users = User.objects.filter(
-            is_active=False,
-            date_joined__lt=fourteen_days_ago,
-            date_joined__gte=fifteen_days_ago,
-            emailverificationtoken__reminder_sent=False  # Check if reminder has not been sent
+        # First, find tokens that haven't had reminders sent
+        tokens = EmailVerificationToken.objects.filter(
+            reminder_sent=False,
+            user__is_active=False,
+            user__date_joined__lt=fourteen_days_ago,
+            user__date_joined__gte=fifteen_days_ago
         )
         
         # Get the 6 most recent locations for the reminder email
@@ -38,43 +37,37 @@ class Command(BaseCommand):
         
         # Send reminder emails
         count = 0
-        for user in unverified_users:
-            # Check if user has a verification token
-            try:
-                token = EmailVerificationToken.objects.get(user=user)
-                
-                # Prepare the verification URL
-                verification_url = f"{settings.SITE_URL}{reverse('account:verify_email', args=[str(token.token)])}"
-                
-                # Render the email template
-                subject = 'Reminder: Verify your email for Show Your Spot'
-                html_message = render_to_string('account/email_verification_reminder.html', {
-                    'user': user,
-                    'verification_url': verification_url,
-                    'recent_spots': recent_spots,
-                })
-                plain_message = strip_tags(html_message)
-                
-                # Send the email
-                send_mail(
-                    subject,
-                    plain_message,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [user.email],
-                    html_message=html_message,
-                    fail_silently=False,
-                )
-                
-                # Mark that the reminder has been sent
-                token.reminder_sent = True
-                token.reminder_sent_at = timezone.now()
-                token.save()
-                
-                count += 1
-                
-            except EmailVerificationToken.DoesNotExist:
-                # If no token exists, log the issue
-                self.stdout.write(self.style.WARNING(f"No verification token found for {user.username}"))
+        for token in tokens:
+            user = token.user
+            
+            # Prepare the verification URL
+            verification_url = f"{settings.SITE_URL}{reverse('account:verify_email', args=[str(token.token)])}"
+            
+            # Render the email template
+            subject = 'Reminder: Verify your email for Show Your Spot'
+            html_message = render_to_string('account/email_verification_reminder.html', {
+                'user': user,
+                'verification_url': verification_url,
+                'recent_spots': recent_spots,
+            })
+            plain_message = strip_tags(html_message)
+            
+            # Send the email
+            send_mail(
+                subject,
+                plain_message,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+            
+            # Mark that the reminder has been sent
+            token.reminder_sent = True
+            token.reminder_sent_at = timezone.now()
+            token.save()
+            
+            count += 1
         
         self.stdout.write(
             self.style.SUCCESS(f'Sent {count} reminder emails to unverified users at the 14-day mark')
