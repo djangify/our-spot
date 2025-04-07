@@ -160,6 +160,17 @@ def privacy_policy(request):
     return render(request, 'core/policy/privacy_policy.html', context)
 
 
+def support_policy(request):
+    """View for displaying the cookies policy"""
+    context = {
+        'breadcrumbs': [
+            {'title': 'Policies', 'url': reverse('core:policies_index')},
+            {'title': 'Support Policy', 'url': None}
+        ]
+    }
+    return render(request, 'core/policy/support_policy.html', context)
+
+
 def cookies_policy(request):
     """View for displaying the cookies policy"""
     context = {

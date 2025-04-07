@@ -25,6 +25,7 @@ urlpatterns = [
     path('policy/cookies', views.cookies_policy, name='cookies_policy'),
     path('policy/privacy', views.privacy_policy, name='privacy_policy'),
     path('policy/terms', views.terms_policy, name='terms_policy'),
+    path('policy/support', views.support_policy, name='support_policy'),
     path('policy/', views.policies_index, name='policies_index'),
     path('report/', views.report_content, name='report_content'),
 ]
