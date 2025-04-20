@@ -40,6 +40,12 @@ class Command(BaseCommand):
         for token in tokens:
             user = token.user
             
+            # Reset the token to give a fresh verification period
+            import uuid
+            token.token = uuid.uuid4()
+            token.created_at = timezone.now()
+            token.save()  # Save immediately to update the token
+            
             # Prepare the verification URL
             verification_url = f"{settings.SITE_URL}{reverse('account:verify_email', args=[str(token.token)])}"
             

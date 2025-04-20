@@ -40,7 +40,7 @@ class EmailVerificationToken(models.Model):
     
     def is_valid(self):
         # Token expires after 24 hours
-        return self.created_at >= timezone.now() - timedelta(hours=24)
+        return self.created_at >= timezone.now() - timedelta(days=24)
     
     def __str__(self):
         return f"Verification for {self.user.username}"
