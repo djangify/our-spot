@@ -1,10 +1,5 @@
 # ShowYourSpot
 
-[![Build Status](https://img.shields.io/github/actions/workflow/status/djangify/our-spot/ci.yml)](https://github.com/djangify/our-spot/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-![Homepage Screenshot](static/images/homepage.png)
-
 **Live Demo:** [https://www.showyourspot.com](https://www.showyourspot.com)
 
 *A social platform to share images of the places you love, built with Django.*
@@ -47,8 +42,8 @@ Developer: Diane Corriette - [GitHub](https://github.com/djangify) & [Website](h
 | ------------ | --------------------------------- |
 | **Backend**  | Django                            |
 | **Frontend** | Django Templates, HTML5, CSS3, JS |
-| **Database** | SQLite (dev), PostgreSQL (prod)   |
-| **Storage**  | Local Filesystem / AWS S3         |
+| **Database** | MariaDB (dev), MariaDB (prod)   |
+| **Storage**  | Local Filesystem / Django        |
 | **Server**   | Gunicorn / Passenger WSGI         |
 | **Testing**  | Pytest                            |
 
@@ -123,10 +118,6 @@ Visit `http://localhost:8000` to see the app in action.
    ALLOWED_HOSTS=localhost,127.0.0.1
    DATABASE_URL=sqlite:///db.sqlite3  # or your production DB URL
 
-   # Optional: AWS S3 for media storage
-   AWS_ACCESS_KEY_ID=
-   AWS_SECRET_ACCESS_KEY=
-   AWS_STORAGE_BUCKET_NAME=
    ```
 
 ---
@@ -154,11 +145,11 @@ pytest
 
 ## 🚢 Deployment
 
-This app can be deployed on platforms like Heroku, AWS, or Railway. Key steps:
+This app can be deployed on cpanel or on platforms like Railway. Key steps:
 
 1. Set environment variables in your host.
 2. Use PostgreSQL for production database.
-3. Configure AWS S3 (or similar) for static/media files.
+3. Configure settings for static/media files.
 4. Ensure `DEBUG=False` and proper `ALLOWED_HOSTS`.
 
 ---
@@ -187,7 +178,7 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 * 🌐 Website: [showyourspot.com](https://www.showyourspot.com)
 * 📂 Repo: [djangify/our-spot](https://github.com/djangify/our-spot)
-* 👩‍💻 Developer: Diane Corriette ([@todiane](https://github.com/todiane))
+* 👩‍💻 Developer: Diane Corriette ([@todiane](https://github.com/djangify))
 
 
 Live Demo: https://www.showyourspot.com
@@ -296,10 +287,7 @@ SECRET_KEY=your_secret_key
 DEBUG=True
 ALLOWED_HOSTS=localhost,127.0.0.1
 DATABASE_URL=sqlite:///db.sqlite3  # or your production DB URL
-# S3 Storage (optional)
-AWS_ACCESS_KEY_ID=
-AWS_SECRET_ACCESS_KEY=
-AWS_STORAGE_BUCKET_NAME=
+
 
 Usage
 
@@ -349,3 +337,5 @@ Developer: Diane Corriette (@todiane)
 
 
 <p align="right">(<a href="#table-of-content">back to top</a>)</p>
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
